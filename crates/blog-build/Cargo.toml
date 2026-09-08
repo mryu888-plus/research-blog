@@ -1,0 +1,17 @@
+[package]
+name = "blog-build"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+blog-ir = { path = "../blog-ir" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+tantivy = { workspace = true }
+tantivy-jieba = { workspace = true }
+walkdir = "2.5"

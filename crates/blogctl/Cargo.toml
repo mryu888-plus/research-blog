@@ -1,0 +1,22 @@
+[package]
+name = "blogctl"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "blogctl"
+path = "src/main.rs"
+
+[dependencies]
+blog-ir = { path = "../blog-ir" }
+blog-build = { path = "../blog-build" }
+blog-agent = { path = "../blog-agent" }
+anyhow = { workspace = true }
+clap = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+tokio = { workspace = true }
+dotenvy = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+axum = { workspace = true }

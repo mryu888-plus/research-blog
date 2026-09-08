@@ -1,0 +1,56 @@
+[workspace]
+members = [
+    "crates/blog-ir",
+    "crates/blog-build",
+    "crates/blog-agent",
+    "crates/blogctl",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Research Blog"]
+license = "MIT"
+
+[workspace.dependencies]
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["clock"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# CLI
+clap = { version = "4.5", features = ["derive"] }
+
+# Web
+axum = { version = "0.7", features = ["macros"] }
+tokio = { version = "1.40", features = ["full"] }
+tower-http = { version = "0.5", features = ["cors", "trace"] }
+
+# LLM
+rig-core = "0.3"
+
+# Search
+tantivy = "0.22"
+tantivy-jieba = "0.11"
+
+# Markdown
+pulldown-cmark = "0.11"
+
+# Hash
+sha2 = "0.10"
+hex = "0.4"
+
+# HTTP
+reqwest = { version = "0.12", features = ["json", "stream"] }
+
+# Env
+dotenvy = "0.15"

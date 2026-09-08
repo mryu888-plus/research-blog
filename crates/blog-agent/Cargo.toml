@@ -1,0 +1,21 @@
+[package]
+name = "blog-agent"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+blog-ir = { path = "../blog-ir" }
+blog-build = { path = "../blog-build" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+axum = { workspace = true }
+tokio = { workspace = true }
+tower-http = { workspace = true }
+tantivy = { workspace = true }
+tantivy-jieba = { workspace = true }
+reqwest = { workspace = true }
+futures = "0.3"
+async-stream = "0.3"

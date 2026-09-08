@@ -1,0 +1,15 @@
+{# Tera 组件定义（Zola 0.23+ 取代了旧的 shortcodes 机制）#} {# Typst
+图形嵌入：SVG 由 blogctl build 预编译到 page bundle 同目录 #} {% component
+fig(id, caption="", alt="") %}
+<figure class="figure-wrapper" data-figure-id="{{ id }}">
+  <img
+    src="{{ id }}.svg"
+    alt="{% if alt %}{{ alt }}{% elif caption %}{{ caption }}{% else %}{{ id }}{% endif %}"
+    loading="lazy"
+    class="typst-figure"
+  />
+  {% if caption %}
+  <figcaption class="figure-caption">{{ caption }}</figcaption>
+  {% endif %}
+</figure>
+{% endcomponent fig %}

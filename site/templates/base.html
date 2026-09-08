@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ config.default_language }}">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light">
+<title>{% block title %}{{ config.title }}{% endblock title %}</title>
+{% if page %}{% set description = page.description | default(value=config.description) %}{% else %}{% set description = config.description %}{% endif %}
+<meta name="description" content="{{ description }}"><meta property="og:description" content="{{ description }}">
+<meta property="og:title" content="{% if page %}{{ page.title }}{% else %}{{ config.title }}{% endif %}">
+<meta property="og:type" content="{% if page %}article{% else %}website{% endif %}"><meta property="og:url" content="{{ current_url | default(value=config.base_url) }}">
+<link rel="canonical" href="{{ current_url | default(value=config.base_url) }}">
+<link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml') }}">
+<link rel="icon" href="{{ get_url(path='favicon.svg') }}" type="image/svg+xml">
+<script>try { document.documentElement.dataset.theme = localStorage.getItem('blog-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (_) {}</script>
+<link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+{% if config.extra.enable_katex %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+{% endif %}
+</head>
+<body data-search-url="{{ get_url(path='search-index/') }}" data-agent-endpoint="{{ config.extra.agent_endpoint }}">
+<a class="skip-link" href="#main">跳到正文</a>
+<nav class="nav" aria-label="主导航"><div class="nav-content">
+<a class="nav-title" href="{{ get_url(path='@/_index.md') }}"><span class="brand-mark" aria-hidden="true">R.</span>{{ config.title }}</a>
+<div class="nav-links"><a href="{{ get_url(path='posts/') }}">文章</a><a href="{{ get_url(path='tags/') }}">主题</a><button id="search-toggle" aria-label="搜索文章">搜索 <kbd>/</kbd></button><button id="theme-toggle" aria-label="切换明暗主题">◐</button></div>
+</div></nav>
+<main id="main" class="main" tabindex="-1">{% block content %}{% endblock content %}</main>
+<footer class="site-footer"><span>{{ config.title }} · 研究与记录</span><a href="{{ get_url(path='atom.xml') }}">RSS 订阅 ↗</a></footer>
+<dialog id="search-dialog" aria-labelledby="search-title">
+<div class="dialog-header"><h2 id="search-title">搜索笔记</h2><button data-close-dialog aria-label="关闭搜索">×</button></div>
+<label class="sr-only" for="search-input">关键词</label><input id="search-input" type="search" placeholder="搜索标题、主题或正文…" autocomplete="off">
+<p id="search-status" role="status">输入关键词开始搜索</p><div id="search-results"></div>
+</dialog>
+<dialog id="figure-dialog" aria-label="图形预览"><button data-close-dialog aria-label="关闭图形">×</button><img alt=""><p></p></dialog>
+{% if config.extra.agent_endpoint %}
+<aside id="agent-panel" class="agent-panel hidden" aria-label="文章助手">
+<div class="agent-header"><h3>文章助手</h3><button id="close-panel" aria-label="关闭助手">×</button></div>
+<div id="agent-output" class="agent-output" role="log"></div>
+<div class="agent-input"><label class="sr-only" for="question-input">问题</label><textarea id="question-input" maxlength="600" placeholder="询问这篇文章…"></textarea><button id="submit-question">发送</button></div>
+</aside>
+{% endif %}
+<script defer src="{{ get_url(path='main.js') }}"></script>
+</body></html>

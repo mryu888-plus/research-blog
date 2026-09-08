@@ -1,0 +1,23 @@
+base_url = "https://mryu888-plus.github.io/research-blog/"
+title = "Research Blog"
+description = "关于智能体、技能学习与可复现研究的思考和笔记。"
+default_language = "zh"
+
+compile_sass = true
+build_search_index = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+taxonomies = [{name = "tags", feed = true}]
+
+[markdown]
+render_emoji = false
+insert_anchor_links = "heading"
+
+[markdown.highlighting]
+style = "inline"
+theme = "ayu-dark"
+
+[extra]
+author = "Researcher"
+enable_katex = true
+agent_endpoint = ""

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block content %}
+<a class="back-link" href="{{ get_url(path='posts/') }}">← 全部文章</a>
+<article class="article" data-article-id="{{ page.slug }}">
+<header class="article-header"><p class="eyebrow">RESEARCH NOTE</p><h1>{{ page.title }}</h1><p class="article-description">{{ page.description | default(value="") }}</p><div class="article-meta"><time datetime="{{ page.date }}">{{ page.date | date(format="%Y.%m.%d") }}</time><span>{{ page.reading_time }} 分钟阅读</span><span>{{ page.extra.author | default(value=config.extra.author) }}</span></div>
+<div class="tags">{% if page.taxonomies.tags %}{% for tag in page.taxonomies.tags %}<a class="tag" href="{{ get_taxonomy_url(kind='tags', term=tag) }}">{{ tag }}</a>{% endfor %}{% endif %}</div>
+{% if config.extra.agent_endpoint %}<button id="ask-article">询问文章助手</button>{% endif %}</header>
+<div class="reading-layout"><div class="article-content">{{ page.content | safe }}</div>
+{% if page.toc %}<aside class="toc"><details open><summary>本文目录</summary><nav aria-label="文章目录"><ol>{% for heading in page.toc %}<li><a href="{{ heading.permalink }}">{{ heading.title }}</a>{% if heading.children %}<ol>{% for child in heading.children %}<li><a href="{{ child.permalink }}">{{ child.title }}</a></li>{% endfor %}</ol>{% endif %}</li>{% endfor %}</ol></nav></details></aside>{% endif %}</div>
+<div class="article-end"><a href="#main">↑ 回到顶部</a><a href="{{ get_url(path='posts/') }}">更多笔记 →</a></div>
+</article>{% endblock content %}

@@ -1,0 +1,35 @@
+# Rust
+target/
+
+# Build outputs
+output/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Zola
+site/public/
+
+# Temporary
+*.tmp
+*.bak
+.tools/
+.work_nlu/
+*.log
+NUL
+FINAL_REPORT.md
+IMPLEMENTATION_REPORT.md
+site/content/**/article-manifest.json

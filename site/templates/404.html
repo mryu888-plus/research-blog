@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block title %}页面未找到 · {{ config.title }}{% endblock title %}
+{% block content %}<header class="home-header"><p class="eyebrow">404</p><h1>这页笔记不在这里。</h1><p>链接可能已变更，你可以搜索文章或返回首页。</p><a href="{{ get_url(path='@/_index.md') }}">返回首页 →</a></header>{% endblock content %}
