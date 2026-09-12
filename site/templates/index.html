@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block title %}{% if section.path == "/" %}{{ config.title }}{% else %}字里行间 · {{ config.title }}{% endif %}{% endblock title %}
+{% block title %}{% if section.path == "/" %}{{ config.title }}{% else %}研究手记 · {{ config.title }}{% endif %}{% endblock title %}
 {% block content %}
 {% set posts = get_section(path="posts/_index.md") %}
-<header class="home-header{% if section.path == '/' %} home-intro{% endif %}"><h1>{% if section.path == "/" %}<span class="motto-line">我们应当知道，</span><span class="motto-line">我们必将知道<span class="title-period">。</span></span>{% else %}字里行间{% endif %}</h1><p class="home-description">{{ config.description }}</p></header>
+<header class="home-header{% if section.path == '/' %} home-intro{% endif %}"><h1>{% if section.path == "/" %}<span class="motto-line">我们应当知道，</span><span class="motto-line">我们必将知道<span class="title-period">。</span></span>{% else %}研究手记{% endif %}</h1><p class="home-description">{{ config.description }}</p></header>
 <div class="section-heading" id="notes"><h2><span class="accent-mark" aria-hidden="true">#</span> 研究笔记</h2><span>{{ posts.pages | length }} 篇文章</span></div>
 <div class="posts-list">
 {% for post in posts.pages %}

@@ -167,7 +167,7 @@
     const toolbar=element('div','graph-toolbar');
     const searchLabel=element('label','graph-search');
     searchLabel.append(icon('M16.5 16.5 21 21 M18 10.5a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0'));
-    const search=element('input'); search.type='search'; search.placeholder='寻找一篇文字'; search.autocomplete='off';
+    const search=element('input'); search.type='search'; search.placeholder='搜索文章或主题'; search.autocomplete='off';
     search.setAttribute('aria-label','查找文章或主题');
     if (typeof saved?.query==='string') search.value=saved.query;
     searchLabel.append(search);
@@ -197,13 +197,13 @@
     selection.prepend(selectionText,selectionActions); canvas.append(selection);
 
     const articles=element('details','graph-articles'); articles.open=saved?.panelOpen===true;
-    const summary=element('summary'); summary.append(element('span','','索引与操作'),icon('M8 10l4 4 4-4'));
+    const summary=element('summary'); summary.append(element('span','','文章列表'),icon('M8 10l4 4 4-4'));
     const panel=element('div','graph-panel');
-    const focusLabel=element('label','graph-field'); focusLabel.append(element('span','','循着一篇文章'));
+    const focusLabel=element('label','graph-field'); focusLabel.append(element('span','','查看文章关联'));
     const focus=element('select'); focus.setAttribute('aria-label','选择一篇文章查看关联'); focus.append(new Option('全部文章',''));
     graph.nodes.forEach(node => focus.append(new Option(node.title,node.id)));
     focus.value=focusId; focusLabel.append(focus);
-    const help=element('p','graph-help','选择一处，展开阅读；拖动与缩放，循迹而行。键盘方向键移动，＋ / − 缩放，Esc 收起详情。');
+    const help=element('p','graph-help','点击文章节点查看详情，拖动或缩放图谱查看其他文章。也可以用方向键移动，＋ / − 缩放，Esc 收起详情。');
     const list=element('ul','graph-article-list'); panel.append(focusLabel,help,list); articles.append(summary,panel);
     container.append(toolbar,canvas,articles);
     const stage=svg.getBoundingClientRect();
@@ -250,7 +250,7 @@
         selectionTitle.textContent=node.title; selectionTitle.href=node.url; readLink.href=node.url;
         readLink.setAttribute('aria-label',`阅读「${node.title}」`);
         const count=adjacent.get(node.id).size;
-        selectionMeta.textContent=count?`与 ${count} 篇文字相连`:'一处起笔，等待更多回响。';
+        selectionMeta.textContent=count?`与 ${count} 篇文章有关联`:'这篇笔记暂时没有关联文章。';
       }
       highlight(hoveredId || selectedId || focusId);
     }
@@ -307,10 +307,10 @@
       }
       if (!nodeElements.has(selectedId)) selectedId='';
       updatePositions(); fit(animated); updateSelection();
-      status.textContent=`${visible.nodes.length} 篇文字${visible.edges.length?` · ${visible.edges.length} 处相连`:''}`;
+      status.textContent=`${visible.nodes.length} 篇文章${visible.edges.length?` · ${visible.edges.length} 条引用`:''}`;
       if (!visible.nodes.length) {
         const empty=element('div','graph-empty');
-        empty.append(element('strong','',graph.nodes.length?'暂未找到这篇文字':'故事尚待落笔'),element('p','',graph.nodes.length?'换个词，再找找。':'第一篇文字，将从这里生长。'));
+        empty.append(element('strong','',graph.nodes.length?'没有找到相关文章':'还没有发布的笔记'),element('p','',graph.nodes.length?'换个关键词试试。':'发布第一篇笔记后，就能在这里看到它。'));
         const restore=button(empty,'清除图谱筛选','清除筛选',reset); restore.hidden=!graph.nodes.length;
         canvas.append(empty);
       }
