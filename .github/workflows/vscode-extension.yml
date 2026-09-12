@@ -1,0 +1,50 @@
+name: Build VS Code extension
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'extensions/research-blog/**'
+      - 'site/static/knowledge-core.js'
+      - '.github/workflows/vscode-extension.yml'
+  pull_request:
+    paths:
+      - 'extensions/research-blog/**'
+      - 'site/static/knowledge-core.js'
+      - '.github/workflows/vscode-extension.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extension:
+    name: Package and test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    defaults:
+      run:
+        working-directory: extensions/research-blog
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: extensions/research-blog/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+      - name: Bundle extension and language server
+        run: npm run build
+      - name: Test language server and AI completion
+        run: npm test
+      - name: Package VSIX
+        run: npm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: research-blog-vsix-${{ matrix.os }}
+          path: extensions/research-blog/*.vsix
+          if-no-files-found: error

@@ -4,6 +4,7 @@
 
 - 网站：https://mryu888-plus.github.io/research-blog/
 - 源码：https://github.com/mryu888-plus/research-blog
+- VS Code 插件：[下载 v0.1.0 安装包](https://github.com/mryu888-plus/research-blog/releases/download/vscode-v0.1.0/research-blog-0.1.0.vsix) · [使用说明](extensions/research-blog/README.md)
 
 ## 本地构建与预览
 
@@ -54,7 +55,7 @@ author = "你的名字"
 {{ <fig id="example" caption="图标题" alt="对图内容的描述" /> }}
 ```
 
-`python scripts/build_site.py` 会将 `figures/example.typ` 编译为同目录的 `example.svg`，然后生成网站。图形可通过点击或键盘放大；代码块支持复制。
+`python scripts/build_site.py` 会将 `figures/example.typ` 编译为文章目录下的 `example.svg`（与 `index.md` 同级），然后生成网站。图形可通过点击或键盘放大；代码块支持复制。
 
 ## GitHub Pages
 
@@ -105,6 +106,7 @@ Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径
 | `site/content` | 文章源文件 |
 | `site/templates`、`site/static` | 模板、样式与交互 |
 | `scripts`、`tests` | 静态构建与验证 |
+| `extensions/research-blog` | VS Code 插件源码、LSP、AI 补全与使用文档 |
 
 当前示例文章属于方法论笔记，没有实验结果。BibTeX 文件可随文章保存，但尚未实现自动参考文献排版。图形每次完整编译，以保证导入文件修改和缺失产物不会被缓存漏掉。
 
@@ -132,4 +134,10 @@ Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径
 
 `extensions/research-blog` 提供此主题的 VS Code 插件：双链与章节补全、跳转和引用查找，TOML 元数据诊断，tags 补全与重复检查，以及 Typst 图形 ID 补全。配套 Tinymist 负责 `.typ` 语言服务，公式和代码可配置 AI 行内补全（默认关闭，密钥存入 VS Code SecretStorage）。
 
-安装、AI 配置和开发步骤见 [插件说明](extensions/research-blog/README.md)。在插件目录运行 `npm ci`、`npm run build`、`npm test` 和 `npm run package` 可生成 `.vsix`；通过 VS Code 的 **Install from VSIX…** 安装。
+从 [GitHub Release](https://github.com/mryu888-plus/research-blog/releases/tag/vscode-v0.1.0) 下载 `research-blog-0.1.0.vsix`，在 VS Code 扩展面板的菜单中选择 **Install from VSIX…** 安装，然后用 VS Code 打开博客仓库根目录。若当前窗口尚未生效，运行 **Developer: Reload Window**。
+
+输入 `[[` 补全文章、`[[文章#` 补全章节，在 `[taxonomies]` 的 `tags` 数组中按 Ctrl+Space 选择标签；F12 跳转、Shift+F12 查找引用。打开 `figures/*.typ` 使用 Tinymist。AI 补全需在用户设置中填写接口和模型，并通过 **Research Blog: 设置 AI API Key** 保存密钥；建议以灰色文字显示，Tab 接受。
+
+完整示例、配置表、升级和排错步骤见 [插件使用说明](extensions/research-blog/README.md)，版本变化见 [更新记录](extensions/research-blog/CHANGELOG.md)。源码随仓库管理，安装包通过 GitHub Releases 分发；尚未发布到 VS Code Marketplace。
+
+开发者在插件目录运行 `npm ci --ignore-scripts`、`npm run build`、`npm test` 和 `npm run package` 可生成 `.vsix`。`.github/workflows/vscode-extension.yml` 会在 Windows 和 Linux 上构建、测试并保存安装包；下载入口位于对应 Actions 运行的 Artifacts。

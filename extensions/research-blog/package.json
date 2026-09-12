@@ -133,7 +133,7 @@
     "build": "node scripts/build.cjs",
     "test": "node --test test/*.test.cjs",
     "vscode:prepublish": "npm run build",
-    "package": "vsce package --no-dependencies --out research-blog-0.1.0.vsix"
+    "package": "vsce package --no-dependencies --baseContentUrl https://github.com/mryu888-plus/research-blog/blob/main/extensions/research-blog --out research-blog-0.1.0.vsix"
   },
   "dependencies": {
     "markdown-it": "14.3.1",
