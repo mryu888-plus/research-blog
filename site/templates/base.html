@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ config.default_language }}">
+<html lang="{{ config.default_language }}" data-theme="dark">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light">
 <title>{% block title %}{{ config.title }}{% endblock title %}</title>
@@ -10,19 +10,22 @@
 <link rel="canonical" href="{{ current_url | default(value=config.base_url) }}">
 <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml') }}">
 <link rel="icon" href="{{ get_url(path='favicon.svg') }}" type="image/svg+xml">
-<script>try { document.documentElement.dataset.theme = localStorage.getItem('blog-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (_) {}</script>
+<script>try { document.documentElement.dataset.theme = localStorage.getItem('blog-theme') === 'light' ? 'light' : 'dark'; } catch (_) {}</script>
 <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+<link rel="stylesheet" href="{{ get_url(path='graph.css') }}">
+<link rel="stylesheet" href="{{ get_url(path='apollo.css') }}">
+<link rel="stylesheet" href="{{ get_url(path='topics.css') }}">
 {% if config.extra.enable_katex %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 {% endif %}
 </head>
-<body data-search-url="{{ get_url(path='search-index/') }}" data-agent-endpoint="{{ config.extra.agent_endpoint }}">
+<body data-search-url="{{ get_url(path='search-index/') }}" data-graph-url="{{ get_url(path='graph-data/') }}" data-agent-endpoint="{{ config.extra.agent_endpoint }}">
 <a class="skip-link" href="#main">跳到正文</a>
 <nav class="nav" aria-label="主导航"><div class="nav-content">
-<a class="nav-title" href="{{ get_url(path='@/_index.md') }}"><span class="brand-mark" aria-hidden="true">R.</span>{{ config.title }}</a>
-<div class="nav-links"><a href="{{ get_url(path='posts/') }}">文章</a><a href="{{ get_url(path='tags/') }}">主题</a><button id="search-toggle" aria-label="搜索文章">搜索 <kbd>/</kbd></button><button id="theme-toggle" aria-label="切换明暗主题">◐</button></div>
+<a class="nav-title" href="{{ get_url(path='@/_index.md') }}"><span class="brand-mark" aria-hidden="true">/</span>{{ config.title }}</a>
+<div class="nav-links"><a href="{{ get_url(path='tags/') }}"><span aria-hidden="true">/</span>主题</a><a href="{{ get_url(path='graph/') }}"><span aria-hidden="true">/</span>图谱</a><span class="nav-tools"><button id="search-toggle" aria-label="搜索文章" title="搜索文章（/）"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><kbd>/</kbd></button><button id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题"><svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg><svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.1A8.7 8.7 0 0 1 10.9 3.4 8.8 8.8 0 1 0 20.6 13.1Z"/></svg></button></span></div>
 </div></nav>
 <main id="main" class="main" tabindex="-1">{% block content %}{% endblock content %}</main>
 <footer class="site-footer"><span>{{ config.title }} · 研究与记录</span><a href="{{ get_url(path='atom.xml') }}">RSS 订阅 ↗</a></footer>
@@ -40,4 +43,9 @@
 </aside>
 {% endif %}
 <script defer src="{{ get_url(path='main.js') }}"></script>
+<script defer src="{{ get_url(path='topics.js') }}"></script>
+<script defer src="{{ get_url(path='knowledge-core.js') }}"></script>
+<script defer src="{{ get_url(path='graph.js') }}"></script>
+<script defer src="{{ get_url(path='knowledge.js') }}"></script>
+{% if config.mode == 'serve' %}<script src="{{ get_url(path='preview.js') }}"></script>{% endif %}
 </body></html>

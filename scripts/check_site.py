@@ -25,7 +25,8 @@ class Page(HTMLParser):
             if values.get(attribute):
                 self.links.append(values[attribute])
 
-pages = {p: Page(p) for p in PUBLIC.rglob('*.html')}
+json_routes = {'search-index/index.html', 'graph-data/index.html'}
+pages = {p: Page(p) for p in PUBLIC.rglob('*.html') if p.relative_to(PUBLIC).as_posix() not in json_routes}
 errors = []
 checked = 0
 for path, page in pages.items():
@@ -52,6 +53,18 @@ assert index and any(post['title'] == '从轨迹中提取可复用技能' for po
 assert '从轨迹中提取可复用技能' in (PUBLIC / 'index.html').read_text(encoding='utf-8')
 assert (PUBLIC / 'atom.xml').is_file() and (PUBLIC / 'sitemap.xml').is_file()
 assert (PUBLIC / '404.html').is_file()
+assert (PUBLIC / 'graph' / 'index.html').is_file()
+graph = json.loads((PUBLIC / 'graph-data' / 'index.html').read_text(encoding='utf-8-sig'))
+assert isinstance(graph, list) and len({post['id'] for post in graph}) == len(graph)
+for post in graph:
+    assert not post['draft'], f"Draft leaked into graph: {post['id']}"
+    parts = urlsplit(post['url'])
+    assert parts.netloc == base_parts.netloc and parts.path.startswith(base_parts.path)
+    target = PUBLIC / unquote(parts.path[len(base_parts.path):])
+    if target.is_dir():
+        target /= 'index.html'
+    assert target.is_file(), f"Missing graph article: {post['url']}"
+    assert isinstance(post['html'], str) and isinstance(post['headings'], list)
 assert not list(PUBLIC.rglob('article-manifest.json'))
 assert not list(PUBLIC.rglob('.env*'))
 for path in pages:

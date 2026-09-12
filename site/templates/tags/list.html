@@ -1,3 +1,23 @@
 {% extends "base.html" %}
-{% block title %}主题 · {{ config.title }}{% endblock title %}
-{% block content %}<header class="home-header"><p class="eyebrow">EXPLORE</p><h1>按主题阅读</h1></header><div class="topic-list">{% for term in terms %}<a href="{{ term.permalink }}">{{ term.name }}<span>{{ term.pages | length }} 篇 ↗</span></a>{% endfor %}</div>{% endblock content %}
+{% block title %}循题而读 · {{ config.title }}{% endblock title %}
+{% block content %}
+<header class="home-header topics-header"><h1>循题而读</h1><p class="home-description">从一个问题出发，读到彼此相连的思考。</p></header>
+<section class="topics-browser" data-topics data-topic-tree="{{ config.extra.topic_tree | default(value=[]) | json_encode() }}" aria-label="按主题浏览文章">
+  <div class="topics-fallback">
+  {% for term in terms %}
+  <details class="topic-collection" open data-topic-id="{{ term.name }}" data-topic-label="{{ config.extra.tag_labels | get(key=term.name, default=term.name) }}" data-topic-description="{{ config.extra.tag_descriptions | get(key=term.name, default='') }}" data-topic-url="{{ term.permalink }}">
+    <summary><span>{{ config.extra.tag_labels | get(key=term.name, default=term.name) }}</span><span>{{ term.pages | length }} 篇</span></summary>
+    <ol class="topic-note-list">
+    {% for post in term.pages %}
+      <li class="topic-note" data-topic-note>
+        <time datetime="{{ post.date }}">{{ post.date | date(format="%Y.%m.%d") }}</time>
+        <h3><a data-note-link href="{{ post.permalink }}">{{ post.title }}</a></h3>
+        <p data-note-description>{{ post.description | default(value='') }}</p>
+      </li>
+    {% endfor %}
+    </ol>
+  </details>
+  {% else %}<p class="topics-empty">新的问题，等待落笔。</p>{% endfor %}
+  </div>
+</section>
+{% endblock content %}

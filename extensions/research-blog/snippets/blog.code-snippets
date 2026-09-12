@@ -1,0 +1,49 @@
+{
+  "博客文章模板": {
+    "scope": "markdown",
+    "prefix": "blogpost",
+    "description": "Zola 博客文章（默认草稿）",
+    "body": [
+      "+++",
+      "title = \"${1:文章标题}\"",
+      "date = $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "description = \"${2:一句话摘要}\"",
+      "draft = true",
+      "",
+      "[taxonomies]",
+      "tags = [\"${3:Agent}\"]",
+      "",
+      "[extra]",
+      "author = \"${4:Researcher}\"",
+      "+++",
+      "",
+      "## ${5:问题与背景}",
+      "",
+      "$0"
+    ]
+  },
+  "博客图形": {
+    "scope": "markdown",
+    "prefix": "blogfig",
+    "description": "引用文章 figures 目录的 Typst 图形",
+    "body": [
+      "{{ <fig id=\"${1:example}\" caption=\"${2:图标题}\" alt=\"${3:图形描述}\" /> }}"
+    ]
+  },
+  "博客双链": {
+    "scope": "markdown",
+    "prefix": "bloglink",
+    "description": "引用另一篇博客文章（支持中文标题）",
+    "body": [
+      "[[${1:文章标题}]]$0"
+    ]
+  },
+  "博客章节双链": {
+    "scope": "markdown",
+    "prefix": "blogsectionlink",
+    "description": "引用文章的指定章节",
+    "body": [
+      "[[${1:文章标题}#${2:章节标题}|${3:显示文字}]]$0"
+    ]
+  }
+}

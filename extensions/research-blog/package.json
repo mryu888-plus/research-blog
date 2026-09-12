@@ -1,0 +1,150 @@
+{
+  "name": "research-blog",
+  "displayName": "Research Blog Language Tools",
+  "description": "Zola 研究博客：双链、章节、TOML 元数据和 Typst 图形的语言服务。",
+  "version": "0.1.0",
+  "publisher": "mryu888-plus",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mryu888-plus/research-blog.git",
+    "directory": "extensions/research-blog"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./dist/extension.cjs",
+  "activationEvents": [
+    "onLanguage:markdown",
+    "onLanguage:typst"
+  ],
+  "extensionPack": [
+    "myriad-dreamin.tinymist"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "researchBlog.restartServer",
+        "title": "Research Blog: 重启语言服务"
+      },
+      {
+        "command": "researchBlog.ai.setKey",
+        "title": "Research Blog: 设置 AI API Key"
+      },
+      {
+        "command": "researchBlog.ai.clearKey",
+        "title": "Research Blog: 删除 AI API Key"
+      },
+      {
+        "command": "researchBlog.ai.complete",
+        "title": "Research Blog: AI 补全公式或代码"
+      },
+      {
+        "command": "researchBlog.typst",
+        "title": "Research Blog: 打开 Tinymist Typst 语言支持"
+      }
+    ],
+    "configuration": {
+      "title": "Research Blog",
+      "properties": {
+        "researchBlog.contentPath": {
+          "type": "string",
+          "default": "site/content",
+          "scope": "resource",
+          "description": "相对于工作区的文章目录；直接打开 site 时设为 content。修改后重启语言服务。"
+        },
+        "researchBlog.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "语言服务器通信日志。"
+        },
+        "researchBlog.ai.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "启用公式、代码和 Typst 的 AI 行内补全，将有限的光标上下文发送至配置的 API。"
+        },
+        "researchBlog.ai.baseUrl": {
+          "type": "string",
+          "default": "https://api.openai.com/v1",
+          "scope": "machine",
+          "description": "OpenAI 兼容 API 的基础地址（含 /v1，不含 /chat/completions），在用户设置中配置。"
+        },
+        "researchBlog.ai.model": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "接口可用的模型 ID；必须显式填写。"
+        },
+        "researchBlog.ai.debounceMs": {
+          "type": "integer",
+          "default": 600,
+          "minimum": 200,
+          "maximum": 3000,
+          "description": "停止输入后等待多少毫秒再请求 AI。"
+        },
+        "researchBlog.ai.contextChars": {
+          "type": "integer",
+          "default": 4000,
+          "minimum": 500,
+          "maximum": 12000,
+          "description": "发送的光标前后上下文字符总数上限。"
+        },
+        "researchBlog.ai.maxTokens": {
+          "type": "integer",
+          "default": 256,
+          "minimum": 32,
+          "maximum": 2048,
+          "description": "AI 请求输出 token 上限。"
+        },
+        "researchBlog.ai.tokenParameter": {
+          "type": "string",
+          "enum": [
+            "max_completion_tokens",
+            "max_tokens"
+          ],
+          "default": "max_completion_tokens",
+          "scope": "machine",
+          "description": "兼容接口仅支持旧参数时选择 max_tokens。"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "markdown",
+        "path": "./snippets/blog.code-snippets"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "test": "node --test test/*.test.cjs",
+    "vscode:prepublish": "npm run build",
+    "package": "vsce package --no-dependencies --out research-blog-0.1.0.vsix"
+  },
+  "dependencies": {
+    "markdown-it": "14.3.1",
+    "smol-toml": "1.8.0",
+    "vscode-languageclient": "9.0.1",
+    "vscode-languageserver": "9.0.1",
+    "vscode-languageserver-textdocument": "1.0.12",
+    "vscode-uri": "3.1.0"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "3.6.0",
+    "esbuild": "0.25.9"
+  }
+}

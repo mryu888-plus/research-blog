@@ -387,6 +387,22 @@ button { cursor:pointer; color:var(--text-primary); background:var(--surface-2);
 button:hover { border-color:var(--accent); }
 button:disabled { opacity:.55; cursor:wait; }
 :focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+.wiki-link { text-decoration:underline; text-underline-offset:.2em; }
+.article-content .wiki-link:not(a) { color:var(--text-secondary); text-decoration:underline dashed; cursor:help; }
+.article-connections { border-top:1px solid var(--surface-3); margin-top:3rem; padding-top:1.6rem; }
+.connections-heading { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+.connections-heading h2 { font-size:1.25rem; }
+.connections-heading a { font-size:.85rem; }
+.connections-columns { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:1rem; }
+.connections-columns h3 { font-size:.9rem; color:var(--text-secondary); font-weight:500; }
+.connections-columns h3 span { font: .8rem var(--font-mono); margin-left:.3rem; }
+.connections-columns ul { list-style:none; padding:0; }
+.connections-columns li { margin:.6rem 0; font-size:.95rem; }
+.connections-columns small { display:inline-block; font-size:.7rem; color:var(--text-secondary); margin-left:.6rem; }
+.connections-empty, [data-knowledge-status] { color:var(--text-secondary); font-size:.85rem; }
+[data-knowledge-status] { margin:.8rem 0; }
+[data-knowledge-status] button { margin-left:.8rem; }
+@media(max-width:600px) { .connections-columns { grid-template-columns:1fr; gap:1rem; } }
 .nav-content { max-width:1120px; min-height:82px; }
 .nav-title { display:flex; align-items:center; gap:14px; font-size:1.1rem; }
 .brand-mark { font:700 1.8rem Georgia,serif; color:var(--accent); }

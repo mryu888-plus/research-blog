@@ -26,3 +26,12 @@ test('Chinese and English search matches body, tags and all query terms', () => 
   assert.deepEqual(searchPosts(posts, '不存在'), []);
   assert.deepEqual(searchPosts(posts, '  '), []);
 });
+
+test('search index supports Zola preview injection and rejects malformed JSON', () => {
+  const { parseSearchIndex } = require('../site/static/main.js');
+  const posts = [{title:'中文文章', body:'test', tags:[], description:''}];
+  const json = JSON.stringify(posts);
+  assert.deepEqual(parseSearchIndex(json), posts);
+  assert.deepEqual(parseSearchIndex(json + '\r\n<script>window.LiveReloadOptions={port:1111};</script><script src="/livereload.js"></script>'), posts);
+  assert.throws(() => parseSearchIndex('{broken'));
+});

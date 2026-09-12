@@ -1,6 +1,6 @@
 base_url = "https://mryu888-plus.github.io/research-blog/"
 title = "Research Blog"
-description = "关于智能体、技能学习与可复现研究的思考和笔记。"
+description = "记下尚未解开的疑问，也记下渐渐清晰的答案。"
 default_language = "zh"
 
 compile_sass = true
@@ -21,3 +21,17 @@ theme = "ayu-dark"
 author = "Researcher"
 enable_katex = true
 agent_endpoint = ""
+topic_tree = [
+  { id = "learning", label = "学习与决策", children = [{ tag = "reinforcement-learning", children = [{ tag = "skill-discovery" }] }] },
+  { id = "abstraction", label = "表示与抽象", children = [{ tag = "behavioral-equivalence" }] },
+]
+
+[extra.tag_labels]
+reinforcement-learning = "强化学习"
+skill-discovery = "技能发现"
+behavioral-equivalence = "行为等价"
+
+[extra.tag_descriptions]
+reinforcement-learning = "从试错中学习，在行动中接近答案。"
+skill-discovery = "从一次次经历中，寻找可以复用的经验。"
+behavioral-equivalence = "越过表象的差异，辨认行为的共同之处。"

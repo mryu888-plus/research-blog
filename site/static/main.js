@@ -21,6 +21,14 @@ function createSseParser(onData) {
   };
 }
 
+function parseSearchIndex(text) {
+  // Zola serve appends LiveReload scripts even to this JSON-producing HTML route.
+  const payload = text.split(/\r?\n<script>window\.LiveReloadOptions=/, 1)[0];
+  const posts = JSON.parse(payload);
+  if (!Array.isArray(posts)) throw new Error("Invalid search index");
+  return posts;
+}
+
 function searchPosts(posts, query) {
   const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   if (!terms.length) return [];
@@ -32,7 +40,7 @@ function searchPosts(posts, query) {
   }).filter(item => item.score).sort((a, b) => b.score - a.score).slice(0, 30).map(item => item.post);
 }
 
-if (typeof module !== "undefined") module.exports = { createSseParser, searchPosts };
+if (typeof module !== "undefined") module.exports = { createSseParser, searchPosts, parseSearchIndex };
 if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("theme-toggle").onclick = () => {
     const theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
@@ -48,6 +56,11 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
   }));
   initSearch();
+  initArticleContent();
+  document.addEventListener("blog:preview-updated", () => { currentSelection = ""; initArticleContent(); });
+});
+
+function initArticleContent() {
   initFigures();
   document.querySelectorAll("pre > code").forEach(code => {
     const button = document.createElement("button");
@@ -71,7 +84,7 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
     currentArticleId = article.dataset.articleId;
     initAgent();
   }
-});
+}
 
 function initSearch() {
   const dialog = document.getElementById("search-dialog");
@@ -80,7 +93,11 @@ function initSearch() {
   const results = document.getElementById("search-results");
   let indexPromise;
   let revision = 0;
-  function open() { dialog.showModal(); input.focus(); }
+  document.addEventListener("blog:preview-updated", () => {
+    indexPromise = null; revision++;
+    if (dialog.open) input.dispatchEvent(new Event("input"));
+  });
+  function open() { dialog.showModal(); input.focus(); if (input.value.trim()) input.dispatchEvent(new Event("input")); }
   document.getElementById("search-toggle").onclick = open;
   document.addEventListener("keydown", event => {
     if (event.key === "/" && !event.ctrlKey && !event.metaKey && !event.altKey &&
@@ -97,7 +114,7 @@ function initSearch() {
     try {
       if (!indexPromise) indexPromise = fetch(document.body.dataset.searchUrl).then(response => {
         if (!response.ok) throw new Error("index unavailable");
-        return response.json();
+        return response.text().then(parseSearchIndex);
       }).catch(error => { indexPromise = null; throw error; });
       const posts = await indexPromise;
       if (version !== revision) return;

@@ -33,3 +33,7 @@ NUL
 FINAL_REPORT.md
 IMPLEMENTATION_REPORT.md
 site/content/**/article-manifest.json
+
+# Python task helpers
+__pycache__/
+*.pyc
