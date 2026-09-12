@@ -64,6 +64,8 @@ button { transition: color 160ms ease, border-color 160ms ease, background-color
 .home-header { max-width: none; padding: 2.5rem 0 4rem; }
 .home-header h1 { font-size: clamp(2.2rem, 4.2vw, 3.6rem); font-weight: 550; letter-spacing: -.055em; line-height: 1.45; text-wrap: balance; }
 .home-description { max-width: 38rem; font-size: 1rem; line-height: 1.9; margin-top: 1.3rem; }
+.page-header { padding: 1.4rem 0 3rem; }
+.page-header .home-description { margin-top: 1rem; }
 .eyebrow { color: var(--text-muted); font-size: .75rem; font-weight: 400; letter-spacing: .14em; margin-bottom: 1.4rem; }
 .accent-mark { color: var(--accent); font-family: var(--font-mono); font-weight: 400; }
 .eyebrow .accent-mark { margin-right: .35rem; }
@@ -139,6 +141,15 @@ dialog { background: var(--surface-1); border-radius: 8px; border-color: var(--s
 dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(8px); }
 .dialog-header h2 { font-size: 1.1rem; font-weight: 500; }
 .dialog-header button, #figure-dialog > button { width: 36px; height: 36px; display: grid; place-content: center; background: transparent; border-color: transparent; font-size: 1.5rem; }
+#rss-dialog { width: min(560px, calc(100% - 2rem)); }
+#rss-description, #rss-status { color: var(--text-secondary); font-size: .9375rem; }
+.rss-label { display: block; margin: 1.4rem 0 .5rem; font-size: .8125rem; color: var(--text-secondary); }
+#rss-address { width: 100%; min-width: 0; padding: .75rem; border: 1px solid var(--surface-4); border-radius: 4px; background: var(--surface-0); color: var(--text-primary); font: .8125rem/1.6 var(--font-mono); }
+.rss-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem 1.2rem; margin-top: 1rem; }
+#rss-copy { padding: .65rem 1rem; border: 1px solid var(--text-primary); border-radius: 4px; background: var(--text-primary); color: var(--surface-0); font: inherit; font-size: .875rem; cursor: pointer; }
+#rss-copy:disabled { opacity: .6; cursor: wait; }
+.rss-actions a { font-size: .8125rem; color: var(--text-secondary); }
+#rss-status { min-height: 3.4em; margin-top: 1rem; }
 #search-input { border-radius: 4px; padding: .8rem 1rem; }
 .search-result { padding: 1.2rem 0; }
 .search-result strong { font-weight: 550; }
@@ -147,6 +158,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(8px); }
 .ask-trigger:hover { transform: none; }
 @media (min-width: 851px) { .article-connections, .article-end { max-width: 700px; } }
 @media (max-width: 1088px) { .site-footer { width: calc(100% - 4rem); } }
+@media (max-width: 760px) { .home-header.page-header { padding: 1.3rem 0 2rem; } }
 @media (max-width: 850px) {
   .reading-layout { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .toc { position: static; max-height: 260px; padding: 1rem 1.2rem; border: 1px solid var(--surface-3); border-radius: 4px; }

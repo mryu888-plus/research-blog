@@ -28,7 +28,15 @@
 <div class="nav-links"><a href="{{ get_url(path='tags/') }}"><span aria-hidden="true">/</span>主题</a><a href="{{ get_url(path='graph/') }}"><span aria-hidden="true">/</span>图谱</a><span class="nav-tools"><button id="search-toggle" aria-label="搜索文章" title="搜索文章（/）"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><kbd>/</kbd></button><button id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题"><svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg><svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.1A8.7 8.7 0 0 1 10.9 3.4 8.8 8.8 0 1 0 20.6 13.1Z"/></svg></button></span></div>
 </div></nav>
 <main id="main" class="main" tabindex="-1">{% block content %}{% endblock content %}</main>
-<footer class="site-footer"><span>{{ config.title }} · 研究与记录</span><a href="{{ get_url(path='atom.xml') }}">RSS 订阅 ↗</a></footer>
+<footer class="site-footer"><span>{{ config.title }} · 研究与记录</span><a id="rss-toggle" href="{{ get_url(path='atom.xml') }}" aria-haspopup="dialog" aria-controls="rss-dialog">RSS 订阅</a></footer>
+<dialog id="rss-dialog" aria-labelledby="rss-title" aria-describedby="rss-description">
+<div class="dialog-header"><h2 id="rss-title">订阅研究手记</h2><button data-close-dialog aria-label="关闭订阅">×</button></div>
+<p id="rss-description">把下面的地址添加到你的 RSS 阅读器，发布新文章后，就能在阅读器里看到更新。</p>
+<label class="rss-label" for="rss-address">订阅地址</label>
+<input id="rss-address" type="url" value="{{ get_url(path='atom.xml') }}" readonly spellcheck="false">
+<div class="rss-actions"><button id="rss-copy" type="button">复制订阅地址</button><a href="{{ get_url(path='atom.xml') }}">查看订阅源 ↗</a></div>
+<p id="rss-status" role="status" aria-live="polite"></p>
+</dialog>
 <dialog id="search-dialog" aria-labelledby="search-title">
 <div class="dialog-header"><h2 id="search-title">搜索笔记</h2><button data-close-dialog aria-label="关闭搜索">×</button></div>
 <label class="sr-only" for="search-input">关键词</label><input id="search-input" type="search" placeholder="搜索标题、主题或正文…" autocomplete="off">

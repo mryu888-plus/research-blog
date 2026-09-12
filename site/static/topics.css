@@ -1,5 +1,3 @@
-.topics-header { padding: 1.4rem 0 3rem; }
-.topics-header .home-description { margin-top: 1rem; }
 .topics-browser { min-width: 0; }
 .topics-browser [hidden] { display: none !important; }
 .topics-workspace { display: grid; grid-template-columns: 225px minmax(0, 1fr); gap: 3.2rem; padding: .5rem 0 2rem; align-items: start; }
@@ -40,7 +38,6 @@
   .topics-workspace { grid-template-columns: 1fr; gap: 1.8rem; }
   .topics-sidebar { position: static; padding-bottom: 1.2rem; border-bottom: 1px solid var(--surface-3); }
   .topics-tree { max-height: 20rem; overflow-y: auto; }
-  .topics-header { padding: 1.3rem 0 2rem; }
 }
 @media(prefers-reduced-motion: reduce) {
   .topics-browser *, .topics-browser *::after { transition: none !important; animation: none !important; }

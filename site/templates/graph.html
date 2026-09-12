@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
 {% block content %}
-<header class="graph-page-header">
+<header class="home-header page-header">
   <h1>{{ page.title }}</h1>
-  <p>{{ page.description }}</p>
+  <p class="home-description">{{ page.description }}</p>
 </header>
 <section id="knowledge-graph" aria-label="文章关联图谱"><p class="graph-loading" role="status">正在加载文章关联…</p></section>
 <noscript><p>图谱需要 JavaScript。你也可以<a href="{{ get_url(path='@/_index.md') }}#notes">浏览全部文章</a>。</p></noscript>

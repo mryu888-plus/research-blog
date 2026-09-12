@@ -56,9 +56,38 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
   }));
   initSearch();
+  initRss();
   initArticleContent();
   document.addEventListener("blog:preview-updated", () => { currentSelection = ""; initArticleContent(); });
 });
+
+function initRss() {
+  const trigger = document.getElementById("rss-toggle");
+  const dialog = document.getElementById("rss-dialog");
+  const address = document.getElementById("rss-address");
+  const copy = document.getElementById("rss-copy");
+  const status = document.getElementById("rss-status");
+  if (!trigger || !dialog || typeof dialog.showModal !== "function") return;
+  trigger.addEventListener("click", event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    status.textContent = "";
+    dialog.showModal();
+    copy.focus();
+  });
+  address.addEventListener("click", () => address.select());
+  copy.addEventListener("click", async () => {
+    copy.disabled = true;
+    try {
+      await navigator.clipboard.writeText(address.value);
+      status.textContent = "已复制，在 RSS 阅读器中添加这个地址即可。";
+    } catch (_) {
+      address.focus();
+      address.select();
+      status.textContent = "无法自动复制。地址已选中，请手动复制。";
+    } finally { copy.disabled = false; }
+  });
+}
 
 function initArticleContent() {
   initFigures();
