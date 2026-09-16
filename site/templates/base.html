@@ -11,10 +11,10 @@
 <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml') }}">
 <link rel="icon" href="{{ get_url(path='favicon.svg') }}" type="image/svg+xml">
 <script>try { document.documentElement.dataset.theme = localStorage.getItem('blog-theme') === 'light' ? 'light' : 'dark'; } catch (_) {}</script>
-<link rel="stylesheet" href="{{ get_url(path='style.css') }}">
-<link rel="stylesheet" href="{{ get_url(path='graph.css') }}">
-<link rel="stylesheet" href="{{ get_url(path='apollo.css') }}">
-<link rel="stylesheet" href="{{ get_url(path='topics.css') }}">
+<link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) }}">
+<link rel="stylesheet" href="{{ get_url(path='graph.css', cachebust=true) }}">
+<link rel="stylesheet" href="{{ get_url(path='apollo.css', cachebust=true) }}">
+<link rel="stylesheet" href="{{ get_url(path='topics.css', cachebust=true) }}">
 {% block extra_styles %}{% endblock extra_styles %}
 {% if config.extra.enable_katex %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
