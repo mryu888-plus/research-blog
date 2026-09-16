@@ -25,7 +25,6 @@
         <circle class="art-point" cx="245" cy="87" r="4"/>
         <circle class="art-point art-point-secondary" cx="74" cy="232" r="3"/>
       </svg>
-      <span class="art-caption">保持好奇，慢慢想清楚。</span>
     </div>
   </header>
   <section class="profile-section" aria-labelledby="profile-writing">
@@ -50,18 +49,18 @@
     <div>{% for school in page.extra.education %}<article class="education-entry"><div class="education-heading"><h3>{{ school.school }}</h3><span>{{ school.period }}</span></div><p class="education-degree">{{ school.degree }}</p><p class="education-detail">{{ school.detail }}</p></article>{% endfor %}</div>
   </section>
   <section class="profile-section" aria-labelledby="profile-honors">
-    <div class="profile-section-label"><span aria-hidden="true">04 /</span><h2 id="profile-honors">一些收获</h2></div>
+    <div class="profile-section-label"><span aria-hidden="true">04 /</span><h2 id="profile-honors">竞赛经历</h2></div>
     <ul class="profile-honors">{% for honor in page.extra.honors %}<li><span>{{ honor.year }}</span><span>{{ honor.name }}</span><span>{{ honor.result }}</span></li>{% endfor %}</ul>
   </section>
   {% set posts = get_section(path="posts/_index.md") %}
   <section class="profile-section" aria-labelledby="profile-notes">
-    <div class="profile-section-label"><span aria-hidden="true">05 /</span><h2 id="profile-notes">最近写下</h2></div>
+    <div class="profile-section-label"><span aria-hidden="true">05 /</span><h2 id="profile-notes">最近文章</h2></div>
     <div class="profile-notes">
     {% for post in posts.pages %}{% if loop.index <= 3 %}
       <a class="profile-note" href="{{ post.permalink }}"><time datetime="{{ post.date }}">{{ post.date | date(format="%Y.%m.%d") }}</time><span>{{ post.title }}</span><span aria-hidden="true">↗</span></a>
     {% endif %}{% else %}<p>笔记正在整理中。</p>{% endfor %}
     </div>
   </section>
-  <div class="profile-closing"><p>欢迎交流研究，也欢迎分享想法。</p><a class="text-link" href="mailto:{{ page.extra.email }}">{{ page.extra.email }} <span aria-hidden="true">↗</span></a></div>
+  <div class="profile-closing"><p>联系</p><a class="text-link" href="mailto:{{ page.extra.email }}">{{ page.extra.email }} <span aria-hidden="true">↗</span></a></div>
 </article>
 {% endblock content %}

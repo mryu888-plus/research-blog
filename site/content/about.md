@@ -7,7 +7,7 @@ template = "about.html"
 # Update the profile here. Publication statuses are stated separately from roles.
 display_name = "于嘉澄"
 english_name = "Jiacheng Yu"
-intro = "让想法成为系统，让经验成为方法。"
+intro = "智能体系统 · 生成式建模 · 医疗 AI"
 caption = "南洋理工大学 · 人工智能硕士在读"
 github = "https://github.com/mryu888-plus"
 email = "aolianjijuzi@gmail.com"
@@ -74,6 +74,4 @@ name = "ICM"
 result = "Successful Participant"
 +++
 
-我关注智能体如何组织和复用经验，也研究生成式模型在医疗影像中的应用。现在在南洋理工大学攻读人工智能硕士，此前毕业于悉尼大学，获得高级计算一等荣誉学位。
-
-这个博客用来记录论文阅读、系统实践和还没想明白的问题。写下来，是为了把想法讲清楚，也为下一次思考留个起点。
+我在南洋理工大学读人工智能硕士，本科毕业于悉尼大学，获得高级计算一等荣誉学位。研究方向包括智能体技能图谱、生成式建模和医疗影像。

@@ -13,7 +13,6 @@
 .art-mark { stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; }
 .art-point { fill: var(--accent); }
 .art-point-secondary { fill: var(--text-muted); }
-.art-caption { font-size: .6875rem; letter-spacing: .13em; }
 .profile-section { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 3rem; padding: 2.8rem 0; border-top: 1px solid var(--surface-3); }
 .profile-section-label > span { display: block; font: .6875rem/1.5 var(--font-mono); color: var(--accent); margin-bottom: .65rem; }
 .profile-section-label h2 { font-size: .9375rem; font-weight: 500; letter-spacing: .025em; }
