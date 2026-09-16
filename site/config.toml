@@ -1,6 +1,6 @@
 base_url = "https://mryu888-plus.github.io/research-blog/"
 title = "Research Blog"
-description = "于嘉澄的个人博客：智能体系统、生成式建模与医疗 AI。"
+description = "于嘉澄的个人博客：Agent、技能图谱、DB for AI、知识抽取与表示。"
 default_language = "zh"
 
 compile_sass = true

@@ -26,5 +26,16 @@
       </svg>
     </div>
   </header>
+  <section class="profile-work" aria-labelledby="profile-work-title">
+    <h2 id="profile-work-title">部分工作</h2>
+    <div class="profile-work-list">
+    {% for work in page.extra.work %}
+      <article class="profile-work-entry">
+        <h3>{{ work.title }}</h3>
+        <p>{{ work.summary }}</p>
+      </article>
+    {% endfor %}
+    </div>
+  </section>
 </article>
 {% endblock content %}
