@@ -55,7 +55,7 @@ button { transition: color 160ms ease, border-color 160ms ease, background-color
 .nav-title { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 600; letter-spacing: -.045em; gap: .8rem; white-space: nowrap; }
 .brand-mark { font: 400 1.7rem var(--font-mono); color: var(--accent); }
 .nav-links { gap: 1.4rem; font-size: .875rem; }
-.nav-links > a { position: relative; display: inline-flex; align-items: center; min-height: 40px; gap: .3rem; }
+.nav-links > a { position: relative; display: inline-flex; align-items: center; min-height: 40px; gap: .3rem; white-space: nowrap; flex-shrink: 0; }
 .nav-links > a::after { content: ""; position: absolute; bottom: 1px; left: .8rem; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 180ms ease; }
 .nav-links > a[aria-current="page"] { color: var(--text-primary); }
 .nav-links > a[aria-current="page"]::after, .nav-links > a:hover::after { transform: scaleX(1); }
@@ -77,17 +77,15 @@ button { transition: color 160ms ease, border-color 160ms ease, background-color
 .accent-mark { color: var(--accent); font-family: var(--font-mono); font-weight: 400; }
 .eyebrow .accent-mark { margin-right: .35rem; }
 .home-intro { position: relative; isolation: isolate; text-align: center; padding: 4.4rem 0 4.6rem; margin-bottom: 2.8rem; }
-.home-intro .home-description { margin-inline: auto; }
+.home-intro-copy { width: fit-content; max-width: 100%; margin-inline: auto; }
 .home-intro::before, .home-intro::after { content: ""; position: absolute; pointer-events: none; z-index: -1; }
 .home-intro::before { inset: -3rem -2rem -1rem; background: radial-gradient(ellipse at 50% 45%, var(--halo), transparent 66%); }
 .home-intro::after { inset: 0; background: repeating-linear-gradient(0deg, transparent 0 3px, var(--scanline) 3px 4px); mask-image: radial-gradient(ellipse at center, #000, transparent 68%); }
 .title-period { color: var(--accent); }
-.motto-line { display: block; }
-.home-author { display: inline-flex; align-items: center; gap: .7rem; margin-top: 2rem; padding: .4rem .6rem; color: var(--text-secondary); text-decoration: none; font-size: .8125rem; }
-.author-seal { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--surface-4); border-radius: 50%; font: 1rem var(--font-mono); color: var(--accent); }
-.home-author-en { margin-left: .7rem; color: var(--text-muted); font: .6875rem var(--font-mono); }
-.home-author-arrow { margin-left: .2rem; color: var(--text-muted); transition: transform 180ms ease; }
-.home-author:hover .home-author-arrow { transform: translate(2px, -2px); color: var(--accent); }
+.motto-line { display: grid; grid-template-columns: minmax(0, 1fr) 1em; }
+.home-author { display: inline-flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: .25rem .8rem; margin-top: 1.8rem; color: var(--text-secondary); text-decoration: none; font-family: var(--font-sans); font-size: .9375rem; font-weight: 400; line-height: 1.6; letter-spacing: normal; }
+.home-author-en { color: inherit; font: inherit; }
+.home-author:hover { text-decoration: underline; }
 .text-link { display: inline-flex; align-items: center; gap: .8rem; font-size: .875rem; text-decoration: none; border-bottom: 1px solid var(--surface-4); padding-bottom: .3rem; overflow-wrap: anywhere; }
 .text-link > span { color: var(--accent); transition: transform 180ms ease; }
 .text-link:hover > span { transform: translate(2px, -2px); }
@@ -189,7 +187,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(8px); }
   .nav-content { min-height: 0; padding: .9rem 1.25rem .7rem; flex-wrap: wrap; gap: .35rem; }
   .nav-title { font-size: 1rem; gap: .65rem; }
   .brand-mark { display: inline; font-size: 1.35rem; }
-  .nav-links { width: 100%; gap: 1.3rem; justify-content: flex-start; font-size: .875rem; }
+  .nav-links { width: 100%; gap: .9rem; justify-content: flex-start; font-size: .875rem; }
   .nav-tools { margin-left: auto; gap: .25rem; }
   .nav-tools kbd { display: none; }
   .main { padding: 1.8rem 1.25rem 4rem; }
