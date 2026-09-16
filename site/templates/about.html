@@ -9,6 +9,7 @@
       <h1>{{ page.extra.display_name }}</h1>
       <p class="profile-english">{{ page.extra.english_name }}</p>
       <p class="profile-lead">{{ page.extra.intro }}</p>
+      <p class="profile-interests">{{ page.extra.research_interests }}</p>
       <div class="profile-links">
         <a class="text-link" href="mailto:{{ page.extra.email }}">邮件联系 <span aria-hidden="true">↗</span></a>
         <a class="text-link" href="{{ page.extra.github }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
@@ -33,6 +34,12 @@
       <article class="profile-work-entry">
         <h3>{{ work.title }}</h3>
         <p>{{ work.summary }}</p>
+        {% if work.paper_url %}
+        <div class="profile-paper">
+          <span class="profile-paper-meta">{{ work.publication }}</span>
+          <a class="profile-paper-title" href="{{ work.paper_url }}" lang="en">{{ work.paper_title }} <span class="profile-paper-source">arXiv <span aria-hidden="true">↗</span></span></a>
+        </div>
+        {% endif %}
       </article>
     {% endfor %}
     </div>
