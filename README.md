@@ -141,3 +141,7 @@ Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径
 完整示例、配置表、升级和排错步骤见 [插件使用说明](extensions/research-blog/README.md)，版本变化见 [更新记录](extensions/research-blog/CHANGELOG.md)。源码随仓库管理，安装包通过 GitHub Releases 分发；尚未发布到 VS Code Marketplace。
 
 开发者在插件目录运行 `npm ci --ignore-scripts`、`npm run build`、`npm test` 和 `npm run package` 可生成 `.vsix`。`.github/workflows/vscode-extension.yml` 会在 Windows 和 Linux 上构建、测试并保存安装包；下载入口位于对应 Actions 运行的 Artifacts。
+
+## 个人页
+
+导航“关于”打开 `/about/`。姓名、简介、联系邮箱、教育经历、研究工作与论文状态统一在 `site/content/about.md` 编辑，正文支持 Markdown。最近笔记从已发布文章自动读取；简历原始 PDF 和手机号码不随网站发布。页面样式在 `site/static/about.css`，公共外观仍由 `apollo.css` 管理。
