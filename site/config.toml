@@ -1,6 +1,6 @@
 base_url = "https://mryu888-plus.github.io/research-blog/"
 title = "Research Blog"
-description = "记下尚未解开的疑问，也记下渐渐清晰的答案。"
+description = "于嘉澄的个人博客：智能体系统、生成式建模与医疗 AI。"
 default_language = "zh"
 
 compile_sass = true
@@ -32,6 +32,3 @@ skill-discovery = "技能发现"
 behavioral-equivalence = "行为等价"
 
 [extra.tag_descriptions]
-reinforcement-learning = "从试错中学习，在行动中接近答案。"
-skill-discovery = "从一次次经历中，寻找可以复用的经验。"
-behavioral-equivalence = "越过表象的差异，辨认行为的共同之处。"

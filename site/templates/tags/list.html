@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}按主题翻阅 · {{ config.title }}{% endblock title %}
 {% block content %}
-<header class="home-header page-header"><h1>按主题翻阅</h1><p class="home-description">挑一个感兴趣的主题，慢慢读。</p></header>
+<header class="home-header page-header"><h1>按主题翻阅</h1></header>
 <section class="topics-browser" data-topics data-topic-tree="{{ config.extra.topic_tree | default(value=[]) | json_encode() }}" aria-label="按主题浏览文章">
   <div class="topics-fallback">
   {% for term in terms %}
@@ -17,7 +17,7 @@
     {% endfor %}
     </ol>
   </details>
-  {% else %}<p class="topics-empty">还没有整理好的主题，过些日子再来看看。</p>{% endfor %}
+  {% else %}<p class="topics-empty">暂无主题。</p>{% endfor %}
   </div>
 </section>
 {% endblock content %}

@@ -1,5 +1,5 @@
 +++
 title = "笔记之间"
-description = "顺着文章间的引用，接着往下读。"
+description = "文章引用关系图。"
 template = "graph.html"
 +++
