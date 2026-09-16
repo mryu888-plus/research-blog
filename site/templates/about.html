@@ -9,7 +9,6 @@
       <h1>{{ page.extra.display_name }}</h1>
       <p class="profile-english">{{ page.extra.english_name }}</p>
       <p class="profile-lead">{{ page.extra.intro }}</p>
-      <p class="profile-caption">{{ page.extra.caption }}</p>
       <div class="profile-links">
         <a class="text-link" href="mailto:{{ page.extra.email }}">邮件联系 <span aria-hidden="true">↗</span></a>
         <a class="text-link" href="{{ page.extra.github }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
@@ -27,40 +26,5 @@
       </svg>
     </div>
   </header>
-  <section class="profile-section" aria-labelledby="profile-writing">
-    <div class="profile-section-label"><span aria-hidden="true">01 /</span><h2 id="profile-writing">关于我</h2></div>
-    <div><div class="profile-prose">{{ page.content | safe }}</div><ul class="profile-keywords" aria-label="研究方向">{% for interest in page.extra.interests %}<li>{{ interest }}</li>{% endfor %}</ul></div>
-  </section>
-  <section class="profile-section" aria-labelledby="profile-research">
-    <div class="profile-section-label"><span aria-hidden="true">02 /</span><h2 id="profile-research">研究与实践</h2></div>
-    <div class="profile-research">
-    {% for work in page.extra.research %}
-      <article class="research-entry">
-        <div class="research-meta"><span>{{ work.organization }}</span><span class="publication-status{% if work.accepted %} is-accepted{% endif %}">{{ work.venue }} · {{ work.status }}</span></div>
-        <h3>{{ work.title }}</h3><p class="research-subtitle" lang="{% if loop.index == 3 %}zh{% else %}en{% endif %}">{{ work.subtitle }}</p>
-        <div class="research-role"><span>{{ work.role }}</span><span>{{ work.period }}</span></div>
-        <p class="research-summary">{{ work.summary }}</p>
-      </article>
-    {% endfor %}
-    </div>
-  </section>
-  <section class="profile-section" aria-labelledby="profile-education">
-    <div class="profile-section-label"><span aria-hidden="true">03 /</span><h2 id="profile-education">教育经历</h2></div>
-    <div>{% for school in page.extra.education %}<article class="education-entry"><div class="education-heading"><h3>{{ school.school }}</h3><span>{{ school.period }}</span></div><p class="education-degree">{{ school.degree }}</p><p class="education-detail">{{ school.detail }}</p></article>{% endfor %}</div>
-  </section>
-  <section class="profile-section" aria-labelledby="profile-honors">
-    <div class="profile-section-label"><span aria-hidden="true">04 /</span><h2 id="profile-honors">竞赛经历</h2></div>
-    <ul class="profile-honors">{% for honor in page.extra.honors %}<li><span>{{ honor.year }}</span><span>{{ honor.name }}</span><span>{{ honor.result }}</span></li>{% endfor %}</ul>
-  </section>
-  {% set posts = get_section(path="posts/_index.md") %}
-  <section class="profile-section" aria-labelledby="profile-notes">
-    <div class="profile-section-label"><span aria-hidden="true">05 /</span><h2 id="profile-notes">最近文章</h2></div>
-    <div class="profile-notes">
-    {% for post in posts.pages %}{% if loop.index <= 3 %}
-      <a class="profile-note" href="{{ post.permalink }}"><time datetime="{{ post.date }}">{{ post.date | date(format="%Y.%m.%d") }}</time><span>{{ post.title }}</span><span aria-hidden="true">↗</span></a>
-    {% endif %}{% else %}<p>暂无文章。</p>{% endfor %}
-    </div>
-  </section>
-  <div class="profile-closing"><p>联系</p><a class="text-link" href="mailto:{{ page.extra.email }}">{{ page.extra.email }} <span aria-hidden="true">↗</span></a></div>
 </article>
 {% endblock content %}
