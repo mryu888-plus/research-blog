@@ -6,7 +6,27 @@
 {% if section.path == "/" %}
   {% set profile = load_data(path="data/profile.json") %}
   <div class="home-intro-copy">
-    <h1><span class="motto-line"><span>我们应当知道</span><span>，</span></span><span class="motto-line"><span>我们必将知道</span><span class="title-period">。</span></span></h1>
+    <h1 class="home-theorem-title">
+      <math class="home-theorem-formula" display="block" aria-label="伽马语义蕴涵斐，当且仅当伽马能够形式推导出斐">
+        <mrow>
+          <mi mathvariant="normal">Γ</mi><mo>⊨</mo><mi>φ</mi>
+          <mspace width=".4em"/><mo class="theorem-equivalence">⟺</mo><mspace width=".4em"/>
+          <mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>φ</mi>
+        </mrow>
+      </math>
+    </h1>
+    <details class="home-theorem-note">
+      <summary><span lang="de">Wir müssen wissen. Wir werden wissen.</span> <span class="theorem-note-toggle" aria-hidden="true">+</span></summary>
+      <div class="theorem-explanation">
+        <p>在经典一阶逻辑中，Γ 是一组前提句，φ 是同一语言中的一个句子。</p>
+        <dl>
+          <div><dt>Γ ⊨ φ</dt><dd>每个满足 Γ 的模型，也满足 φ。</dd></div>
+          <div><dt>Γ ⊢ φ</dt><dd>在标准的一阶逻辑证明系统中，能从 Γ 给出 φ 的有限证明。</dd></div>
+        </dl>
+        <p>从左到右是<strong>完备性</strong>，从右到左是<strong>可靠性</strong>。这里的“真”是对所有满足前提的模型而言。</p>
+        <p class="theorem-reference">完备性定理：<a href="https://link.springer.com/article/10.1007/BF01696781">Gödel，1930 <span aria-hidden="true">↗</span></a><a href="https://avigad.github.io/logic_and_proof/semantics_of_first_order_logic.html#soundness-and-completeness">定义与定理 <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </details>
     <a class="home-author" href="{{ get_url(path='@/about.md') }}" aria-label="关于{{ profile.display_name }}"><span>{{ profile.display_name }}</span> <span class="home-author-en">{{ profile.english_name }}</span></a>
   </div>
 {% else %}<h1>研究手记</h1>{% endif %}

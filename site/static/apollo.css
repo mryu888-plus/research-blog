@@ -81,8 +81,25 @@ button { transition: color 160ms ease, border-color 160ms ease, background-color
 .home-intro::before, .home-intro::after { content: ""; position: absolute; pointer-events: none; z-index: -1; }
 .home-intro::before { inset: -3rem -2rem -1rem; background: radial-gradient(ellipse at 50% 45%, var(--halo), transparent 66%); }
 .home-intro::after { inset: 0; background: repeating-linear-gradient(0deg, transparent 0 3px, var(--scanline) 3px 4px); mask-image: radial-gradient(ellipse at center, #000, transparent 68%); }
-.title-period { color: var(--accent); }
-.motto-line { display: grid; grid-template-columns: minmax(0, 1fr) 1em; }
+.home-intro .home-theorem-title { margin: 0; font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 400; line-height: 1.5; letter-spacing: normal; }
+.home-theorem-formula { margin: 0; padding: .35em 0; font-family: "Cambria Math", "STIX Two Math", math; font-size: 1em; font-weight: 400; }
+.theorem-equivalence { color: var(--accent); }
+.home-theorem-note { width: min(34rem, 100%); margin: 1.3rem auto 0; }
+.home-theorem-note > summary { width: fit-content; margin-inline: auto; padding: .4rem .25rem; color: var(--text-muted); font-size: .75rem; line-height: 1.8; letter-spacing: .07em; list-style: none; cursor: pointer; }
+.home-theorem-note > summary::-webkit-details-marker { display: none; }
+.home-theorem-note > summary:hover, .home-theorem-note[open] > summary { color: var(--text-secondary); }
+.theorem-note-toggle { display: inline-block; margin-left: .55rem; color: var(--accent); font: .8rem var(--font-mono); transition: transform 160ms ease; }
+.home-theorem-note[open] .theorem-note-toggle { transform: rotate(45deg); }
+.theorem-explanation { margin-top: 1rem; padding: 1.25rem 0 .3rem; border-top: 1px solid var(--surface-3); text-align: left; color: var(--text-secondary); font-size: .8125rem; line-height: 1.9; letter-spacing: normal; }
+.theorem-explanation p { margin: 0; }
+.theorem-explanation dl { margin: 1rem 0; }
+.theorem-explanation dl > div { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: .75rem; }
+.theorem-explanation dl > div + div { margin-top: .65rem; }
+.theorem-explanation dt { color: var(--text-primary); font-family: "Cambria Math", "STIX Two Math", math; font-size: 1rem; white-space: nowrap; }
+.theorem-explanation dd { margin: 0; }
+.theorem-explanation strong { color: var(--text-primary); font-weight: 500; }
+.theorem-explanation .theorem-reference { margin-top: 1rem; color: var(--text-muted); font-size: .75rem; }
+.theorem-reference a { margin-left: .35rem; color: inherit; }
 .home-author { display: inline-flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: .25rem .8rem; margin-top: 1.8rem; color: var(--text-secondary); text-decoration: none; font-family: var(--font-sans); font-size: .9375rem; font-weight: 400; line-height: 1.6; letter-spacing: normal; }
 .home-author-en { color: inherit; font: inherit; }
 .home-author:hover { text-decoration: underline; }

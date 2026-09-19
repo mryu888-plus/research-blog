@@ -11,14 +11,22 @@
 .profile-links .text-link { min-height: 2.5rem; }
 .profile-download { border-bottom-color: var(--text-primary); font-weight: 550; }
 .profile-download:hover > span { transform: translateY(2px); }
-.profile-art { position: relative; color: var(--text-muted); text-align: center; background: radial-gradient(ellipse at center, var(--halo), transparent 68%); }
-.profile-art svg { display: block; width: 100%; height: auto; }
+.profile-art { --art-energy: 0; position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 50%; color: var(--text-muted); text-align: center; background: radial-gradient(ellipse at center, var(--halo), transparent 68%); touch-action: manipulation; }
+.profile-art:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
+.profile-art svg { display: block; width: 100%; height: auto; overflow: visible; pointer-events: none; }
+.art-system { transform-origin: 160px 160px; transform: perspective(650px) rotateX(var(--art-tilt-x, 0deg)) rotateY(var(--art-tilt-y, 0deg)); }
 .art-grid { stroke: var(--surface-3); stroke-width: .6; opacity: .6; }
-.art-orbit { stroke: var(--text-muted); stroke-width: .8; opacity: .5; }
+.art-orbit { stroke: var(--text-muted); stroke-width: .8; opacity: calc(.5 + var(--art-energy) * .25); }
 .art-axis { stroke: var(--text-muted); stroke-width: .8; opacity: .4; }
-.art-mark { stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; }
+.art-mark { stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; transform-origin: 160px 160px; transform: translate(var(--art-shift-x, 0px), var(--art-shift-y, 0px)) rotate(var(--art-mark-turn, 0deg)); }
 .art-point { fill: var(--accent); }
 .art-point-secondary { fill: var(--text-muted); }
+.art-point-halo { fill: var(--accent); opacity: calc(var(--art-energy) * .14); }
+.profile-art:active .art-point-primary { r: 5; }
+@media (prefers-reduced-motion: reduce) {
+  .profile-art .art-system, .profile-art .art-mark { transform: none; }
+  .profile-art:hover .art-orbit, .profile-art:focus-visible .art-orbit { opacity: .8; }
+}
 .profile-section { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 3rem; border-top: 1px solid var(--surface-3); padding-top: 2.5rem; }
 .profile-section + .profile-section { margin-top: 3rem; }
 .profile-section > h2 { font-size: .9375rem; font-weight: 400; color: var(--text-muted); line-height: 1.8; }
