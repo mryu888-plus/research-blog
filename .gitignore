@@ -10,7 +10,8 @@ output/
 !.env.example
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/tasks.json
 .idea/
 *.swp
 *.swo
@@ -37,3 +38,9 @@ site/content/**/article-manifest.json
 # Python task helpers
 __pycache__/
 *.pyc
+
+# Personal profile: source is tracked, generated output and private contact are not.
+site/data/profile.json
+site/static/resume.pdf
+profile/contact.local.json
+profile/*.pdf

@@ -1,0 +1,86 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "博客：新建文章",
+      "type": "process",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/scripts/editor.py",
+        "new",
+        "${input:articleSlug}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "博客：预览网站（含草稿）",
+      "type": "process",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/scripts/editor.py",
+        "preview"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "博客：生成个人介绍与简历",
+      "type": "process",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/scripts/editor.py",
+        "resume"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "博客：构建并检查",
+      "type": "process",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/scripts/editor.py",
+        "check"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "articleSlug",
+      "type": "promptString",
+      "description": "文章标题：支持中文、空格和标点，例如 一些可爱的测试"
+    }
+  ]
+}

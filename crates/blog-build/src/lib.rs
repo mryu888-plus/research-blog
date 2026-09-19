@@ -181,6 +181,22 @@ impl Builder {
 
     /// 调用 Zola 构建
     pub fn build_zola(&self) -> Result<()> {
+        // Reuse the same profile export as the editor and Pages build. Resolve
+        // from the selected site, not the caller's working directory.
+        let site = self.site_dir.canonicalize()?;
+        if let Some(root) = site.parent() {
+            if root.join("profile/cv.typ").is_file() {
+                let python = std::env::var("PYTHON").unwrap_or_else(|_| {
+                    if cfg!(windows) { "python" } else { "python3" }.to_owned()
+                });
+                let status = Command::new(python)
+                    .arg(root.join("scripts/build_profile.py"))
+                    .current_dir(root)
+                    .status()
+                    .context("Could not run the profile exporter; install Python 3.11+")?;
+                anyhow::ensure!(status.success(), "Profile export failed; Zola was not run");
+            }
+        }
         tracing::info!("Running Zola build");
 
         let output = Command::new("zola")

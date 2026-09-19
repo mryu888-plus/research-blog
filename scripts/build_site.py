@@ -6,11 +6,13 @@ import re
 import shutil
 import subprocess
 import tomllib
+from build_profile import build_profile
 
 ROOT = Path(__file__).resolve().parents[1]
 
 def build(base_url=None):
     site = ROOT / 'site'
+    build_profile(root=ROOT)
     for article in sorted((site / 'content' / 'posts').rglob('index.md')):
         text = article.read_text(encoding='utf-8-sig')
         metadata = tomllib.loads(text.split('+++', 2)[1])

@@ -1,5 +1,6 @@
 """Validate built links, anchors, search data and public-only assets."""
 from html.parser import HTMLParser
+from html import unescape
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit, unquote
 import json
@@ -54,6 +55,14 @@ assert '从轨迹中提取可复用技能' in (PUBLIC / 'index.html').read_text(
 assert (PUBLIC / 'atom.xml').is_file() and (PUBLIC / 'sitemap.xml').is_file()
 assert (PUBLIC / '404.html').is_file()
 assert (PUBLIC / 'graph' / 'index.html').is_file()
+profile = json.loads((ROOT / 'site/data/profile.json').read_text(encoding='utf-8'))
+about = pages[PUBLIC / 'about/index.html']
+assert any(urlsplit(link).path.endswith('/resume.pdf') for link in about.links), 'Profile must link to the public resume'
+assert (PUBLIC / 'resume.pdf').read_bytes().startswith(b'%PDF-'), 'Public resume must be a PDF'
+assert profile['display_name'] in unescape((PUBLIC / 'about/index.html').read_text(encoding='utf-8'))
+assert not list(PUBLIC.rglob('contact.local.json'))
+assert not list(PUBLIC.rglob('resume-public.pdf'))
+assert not (PUBLIC / 'profile').exists(), 'Resume source and private contact must stay outside published files'
 graph = json.loads((PUBLIC / 'graph-data' / 'index.html').read_text(encoding='utf-8-sig'))
 assert isinstance(graph, list) and len({post['id'] for post in graph}) == len(graph)
 for post in graph:

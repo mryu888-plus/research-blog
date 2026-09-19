@@ -28,7 +28,7 @@ def probe_rebuilds(writes=40, interval_ms=20, debounce_ms=1):
             raise RuntimeError('Probe directory escaped the project scratch directory')
         site = directory / 'site'
         site.mkdir()
-        for name in ('content', 'templates', 'static', 'sass'):
+        for name in ('content', 'templates', 'static', 'sass', 'data'):
             source = ROOT / 'site' / name
             if source.exists():
                 shutil.copytree(source, site / name)

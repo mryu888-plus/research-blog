@@ -4,10 +4,10 @@
 {% set posts = get_section(path="posts/_index.md") %}
 <header class="home-header{% if section.path == '/' %} home-intro{% endif %}">
 {% if section.path == "/" %}
-  {% set profile = get_page(path="about.md") %}
+  {% set profile = load_data(path="data/profile.json") %}
   <div class="home-intro-copy">
     <h1><span class="motto-line"><span>我们应当知道</span><span>，</span></span><span class="motto-line"><span>我们必将知道</span><span class="title-period">。</span></span></h1>
-    <a class="home-author" href="{{ profile.permalink }}" aria-label="关于{{ profile.extra.display_name }}"><span>{{ profile.extra.display_name }}</span> <span class="home-author-en">{{ profile.extra.english_name }}</span></a>
+    <a class="home-author" href="{{ get_url(path='@/about.md') }}" aria-label="关于{{ profile.display_name }}"><span>{{ profile.display_name }}</span> <span class="home-author-en">{{ profile.english_name }}</span></a>
   </div>
 {% else %}<h1>研究手记</h1>{% endif %}
 </header>

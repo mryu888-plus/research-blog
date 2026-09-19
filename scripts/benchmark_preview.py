@@ -18,7 +18,7 @@ def measure(debounce, fast=False, samples=20):
         directory = Path(temporary)
         site = directory / 'site'
         site.mkdir()
-        for name in ['content', 'templates', 'static', 'sass']:
+        for name in ['content', 'templates', 'static', 'sass', 'data']:
             if (ROOT / 'site' / name).exists():
                 shutil.copytree(ROOT / 'site' / name, site / name)
         shutil.copy(ROOT / 'site/config.toml', site / 'config.toml')

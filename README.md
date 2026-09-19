@@ -13,10 +13,10 @@
 ```powershell
 python scripts/build_site.py
 python scripts/check_site.py
-zola --root site serve --interface 127.0.0.1 --port 1111
+python scripts/editor.py preview
 ```
 
-访问终端打印的本地地址。Windows 项目内安装的 Zola 可用 `.tools/zola/zola.exe` 替代 `zola`。静态输出位于 `site/public/`。
+访问终端打印的本地地址。预览命令会先生成个人介绍、简历和文章图形，再启动包含草稿的网站；保存源文件后自动更新。静态输出位于 `site/public/`。可用环境变量 `ZOLA`、`TYPST` 指定对应程序的完整路径。
 
 ## 外观
 
@@ -59,7 +59,7 @@ author = "你的名字"
 
 ## GitHub Pages
 
-`.github/workflows/pages.yml` 在推送到 `main` 时执行前端测试、编译图形、构建 Zola、检查站内链接与搜索索引，然后发布 `site/public/`。PR 只构建检查，不发布。仓库的 Settings → Pages → Source 应为 **GitHub Actions**。
+`.github/workflows/pages.yml` 在推送到 `main` 时执行前端与个人资料导出测试，编译个人介绍、公开简历和文章图形，构建 Zola，检查站内链接与搜索索引，然后发布 `site/public/`。PR 只构建检查，不发布。仓库的 Settings → Pages → Source 应为 **GitHub Actions**。
 
 日常发布：修改文章 → 提交并推送 `main` → 等待 Actions 成功。修改仓库名或自定义域名时，更新 `site/config.toml` 的 `base_url`；所有站内资源均使用该地址生成，支持 Pages 子路径。
 
@@ -89,6 +89,7 @@ cargo fmt --all -- --check
 cargo test --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
 node --test tests/*.test.cjs
+python -m unittest discover -s tests -p 'test_profile.py'
 python scripts/build_site.py
 python scripts/check_site.py
 ```
@@ -104,6 +105,8 @@ Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径
 | `crates/blog-agent` | Axum API、检索与 LLM 流式调用 |
 | `crates/blogctl` | 创建文章、构建、索引和启动 API |
 | `site/content` | 文章源文件 |
+| `profile/cv.typ` | 个人介绍与简历的统一源文件 |
+| `output/pdf` | 本地简历与公开简历的生成结果 |
 | `site/templates`、`site/static` | 模板、样式与交互 |
 | `scripts`、`tests` | 静态构建与验证 |
 | `extensions/research-blog` | VS Code 插件源码、LSP、AI 补全与使用文档 |
@@ -112,7 +115,7 @@ Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径
 
 ## VS Code 实时写作预览
 
-运行 `python scripts/editor.py preview`，在本地网页查看包含草稿的实际排版。项目 VS Code 配置使用 25 ms 自动保存；Zola 监听等待缩短到 1 ms，保持完整站点重建以同步文章列表、主题与搜索。浏览器通过仅在本地 serve 模式加载的 `preview.js` 更新正文，复用 KaTeX、保留滚动位置。重建期间的短暂 404、网络中断或格式错误会保留上一版页面并自动重试；持续失败时显示提示，可点击重试或继续保存恢复。Typst 由常驻 watch 进程编译。
+运行 `python scripts/editor.py preview`，在本地网页查看包含草稿的实际排版。项目 VS Code 配置使用 25 ms 自动保存；Zola 监听等待缩短到 1 ms，保持完整站点重建以同步文章列表、主题与搜索。浏览器通过仅在本地 serve 模式加载的 `preview.js` 更新正文，复用 KaTeX、保留滚动位置。重建期间的短暂 404、网络中断或格式错误会保留上一版页面并自动重试；持续失败时显示提示，可点击重试或继续保存恢复。文章 Typst 图形由常驻 watch 进程编译；`profile/` 中的个人资料、导入文件和素材在保存稳定约 0.4 秒后重新生成个人页与简历。个人资料编译失败时保留上一版产物，修正并保存后自动恢复。
 
 性能复测：`python scripts/benchmark_preview.py` 在项目临时目录复制真实网站，测量写文件到新 HTML 可读取的耗时，不修改文章。2026-09-12 的 20 次样本：监听等待 200 ms 时中位数 261.51 ms，等待 1 ms 时 47.67 ms、P95 50.01 ms。浏览器实测正文和公式局部更新约 2.6–3.5 ms；这些是分段测量，不代表完整按键到屏幕延迟。
 
@@ -142,6 +145,32 @@ Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径
 
 开发者在插件目录运行 `npm ci --ignore-scripts`、`npm run build`、`npm test` 和 `npm run package` 可生成 `.vsix`。`.github/workflows/vscode-extension.yml` 会在 Windows 和 Linux 上构建、测试并保存安装包；下载入口位于对应 Actions 运行的 Artifacts。
 
-## 个人页
+## 一份 Typst，同时维护个人介绍与简历
 
-导航“关于”打开 `/about/`。姓名、简介、联系邮箱、教育经历、研究工作与论文状态统一在 `site/content/about.md` 编辑，正文支持 Markdown。最近笔记从已发布文章自动读取；简历原始 PDF 和手机号码不随网站发布。页面样式在 `site/static/about.css`，公共外观仍由 `apollo.css` 管理。
+日常只编辑 `profile/cv.typ`：姓名、简介、教育经历、项目、论文及其状态都从这里生成。导航“关于”打开 `/about/`，页面中的下载入口提供同一份资料生成的公开 PDF。原有个人介绍和简历中的经历日期已保留，后续以文件里的明确日期为准，不会按构建时间自动改写。
+
+```powershell
+# 生成个人介绍数据、本地简历和公开简历
+python scripts/editor.py resume
+
+# 边写边看 /about/，保存后自动更新网页和 PDF
+python scripts/editor.py preview
+
+# 生成并检查完整网站
+python scripts/editor.py check
+```
+
+VS Code 的“终端 → 运行任务”中也有“博客：生成个人介绍与简历”“博客：预览网站（含草稿）”和“博客：构建并检查”。打开 `profile/cv.typ` 可继续使用 Tinymist 编辑和预览排版；网站预览由上面的博客任务启动。
+
+| 产物 | 用途 |
+| --- | --- |
+| `output/pdf/resume.pdf` | 本地投递用简历，可包含本机的联系信息 |
+| `output/pdf/resume-public.pdf` | 公开简历的本地副本 |
+| `site/static/resume.pdf` | 构建时复制到网站、供访客下载的公开简历 |
+| `site/data/profile.json` | 给个人页模板读取的生成数据 |
+
+本机电话号码放在 `profile/contact.local.json`，格式为 `{"phone": "你的电话号码"}`；只支持 `phone` 字段。该文件及生成产物都由 Git 忽略，公开网页和公开 PDF 不读取本机电话。GitHub Actions 根据提交的 Typst 源文件重新生成公开产物，无需手工上传 PDF。`resume` 命令只生成资料与 PDF，完整 HTML 在预览或网站构建时生成。
+
+`site/content/about.md` 现在只保留页面路由和模板设置，个人资料无需再编辑这份 Markdown，也不要手改生成的 JSON 或 PDF。首页署名同样从 Typst 读取；页面样式在 `site/static/about.css`，公共外观由 `apollo.css` 管理。实时预览输出到 `.tools/site-preview`，不会把草稿混入 `site/public` 的发布产物。
+
+`cargo run -p blogctl -- build` 也会在运行 Zola 前调用同一份导出脚本，因此 Rust 完整构建还需要 Python 3.11+；可用 `PYTHON` 环境变量指定解释器。字体优先使用 Noto CJK，本机没有安装时自动使用微软雅黑／宋体；CI 安装 Noto CJK。`layout.typ` 只负责排版，平时无需修改。
