@@ -181,7 +181,7 @@ impl Builder {
 
     /// 调用 Zola 构建
     pub fn build_zola(&self) -> Result<()> {
-        // Reuse the same profile export as the editor and Pages build. Resolve
+        // Reuse math preparation and profile export from the Pages build. Resolve
         // from the selected site, not the caller's working directory.
         let site = self.site_dir.canonicalize()?;
         if let Some(root) = site.parent() {
@@ -190,11 +190,13 @@ impl Builder {
                     if cfg!(windows) { "python" } else { "python3" }.to_owned()
                 });
                 let status = Command::new(python)
-                    .arg(root.join("scripts/build_profile.py"))
+                    .arg(root.join("scripts/build_site.py"))
+                    .arg("--skip-figures")
                     .current_dir(root)
                     .status()
-                    .context("Could not run the profile exporter; install Python 3.11+")?;
-                anyhow::ensure!(status.success(), "Profile export failed; Zola was not run");
+                    .context("Could not run the static site builder; install Python 3.11+")?;
+                anyhow::ensure!(status.success(), "Static site build failed");
+                return Ok(());
             }
         }
         tracing::info!("Running Zola build");

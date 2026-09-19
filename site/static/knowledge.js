@@ -6,7 +6,7 @@
   let controller;
   let graphCleanup;
   let graphState;
-  const excluded = 'a,code,pre,script,style,textarea,math,.katex';
+  const excluded = 'a,code,pre,script,style,textarea,math,.katex,.math-source';
 
   function references(text) {
     const math = Array.from(text.matchAll(/(?<!\\)\$\$[\s\S]*?\$\$|(?<!\\)\$[^\n$]*?\$/g));

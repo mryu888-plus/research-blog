@@ -10,8 +10,10 @@ import subprocess
 import sys
 import socket
 import time
+import tempfile
 from build_site import ROOT, build
 from build_profile import build_profile
+from prepare_site import PreparedSite
 
 
 def zola():
@@ -110,6 +112,7 @@ def preview(open_browser=True):
         raise RuntimeError('本地预览端口 1111–1120 均被占用，请停止之前的预览任务。')
     watchers = {}
     server = None
+    prepared_directory = None
     typst = os.environ.get('TYPST', 'typst')
 
     def refresh_profile():
@@ -147,10 +150,18 @@ def preview(open_browser=True):
         preview_output = (ROOT / '.tools/site-preview').resolve()
         if not preview_output.is_relative_to((ROOT / '.tools').resolve()):
             raise RuntimeError('预览输出目录必须位于博客的 .tools 目录内。')
-        command = [zola(), '--root', str(ROOT / 'site'), 'serve', '--drafts', '--output-dir', str(preview_output), '--force', '--interface', '127.0.0.1', '--port', str(port), '--debounce', '1']
+        scratch = ROOT / '.tools'
+        scratch.mkdir(exist_ok=True)
+        prepared_directory = tempfile.TemporaryDirectory(prefix='math-preview-', dir=scratch)
+        if not Path(prepared_directory.name).resolve().is_relative_to(scratch.resolve()):
+            raise RuntimeError('预览输入目录必须位于博客的 .tools 目录内。')
+        prepared = PreparedSite(ROOT / 'site', Path(prepared_directory.name) / 'site')
+        prepared.sync()
+        command = [zola(), '--root', str(prepared.target), 'serve', '--drafts', '--output-dir', str(preview_output), '--force', '--interface', '127.0.0.1', '--port', str(port), '--debounce', '1']
         if open_browser:
             command.append('--open')
         server = subprocess.Popen(command, cwd=ROOT)
+        last_sync_error = None
         while server.poll() is None:
             sync_figures()
             current_profile = profile_snapshot()
@@ -160,7 +171,19 @@ def preview(open_browser=True):
             elif profile_changed_at is not None and time.monotonic() - profile_changed_at >= 0.4:
                 refresh_profile()
                 profile_changed_at = None
-            time.sleep(0.2)
+            try:
+                changed = prepared.sync()
+                # load_data inputs may not be watched by Zola itself.
+                if any(path.parts[0] == 'data' for path in changed):
+                    (prepared.target / 'content/about.md').touch()
+                last_sync_error = None
+            except (OSError, ValueError) as error:
+                # An editor can atomically replace a file during our scan.
+                # Retry next tick, retaining the last valid preview meanwhile.
+                if str(error) != last_sync_error:
+                    print(f'预览更新暂缓：{error}', file=sys.stderr, flush=True)
+                    last_sync_error = str(error)
+            time.sleep(0.1)
         if server.returncode:
             raise RuntimeError(f'网页预览退出，错误码 {server.returncode}，请查看上面的编译错误。')
     except KeyboardInterrupt:
@@ -176,6 +199,8 @@ def preview(open_browser=True):
             except subprocess.TimeoutExpired:
                 child.kill()
                 child.wait()
+        if prepared_directory is not None:
+            prepared_directory.cleanup()
 
 
 def main():

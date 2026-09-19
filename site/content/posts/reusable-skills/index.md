@@ -21,11 +21,9 @@ author = "Researcher"
 
 给定一个 MDP $\mathcal{M} = (S, A, P, R, \gamma)$ 和轨迹集合 $\mathcal{D}$，我们定义两个子轨迹 $\tau_1, \tau_2$ 行为等价，当且仅当：
 
-<div class="math-block">
 $$
 \forall s \in S: Q^*_{\mathcal{M}}(s, \tau_1) = Q^*_{\mathcal{M}}(s, \tau_2)
 $$
-</div>
 
 这里 $Q^*$ 是最优 Q 函数，$\tau$ 被视为从状态 $s$ 开始执行的宏动作。
 
@@ -33,11 +31,9 @@ $$
 
 通过这个等价关系，我们可以将原始轨迹空间 $\mathcal{T}$ 划分为等价类：
 
-<div class="math-block">
 $$
 [\tau] = \{ \tau' \in \mathcal{T} : \tau' \sim \tau \}
 $$
-</div>
 
 商空间 $\mathcal{T} / \sim$ 即为技能空间，每个等价类对应一个可复用的抽象技能。
 
@@ -47,11 +43,9 @@ $$
 
 等价关系必须对**顺序组合**封闭，即如果 $\tau_1 \sim \tau_1'$ 且 $\tau_2 \sim \tau_2'$，则：
 
-<div class="math-block">
 $$
 \tau_1; \tau_2 \sim \tau_1'; \tau_2'
 $$
-</div>
 
 这保证了学到的技能可以自由组合而不破坏行为语义。不满足此性质的"伪技能"在实际使用中会失效。
 
@@ -77,11 +71,9 @@ def cluster_trajectories(trajectories, distance_fn, threshold):
 
 实际实现中，我们用基于后继状态分布的度量函数近似行为等价：
 
-<div class="math-block">
 $$
 d(\tau_1, \tau_2) = \mathbb{E}_{s \sim \rho_0} \| \phi(s_{\tau_1}) - \phi(s_{\tau_2}) \|
 $$
-</div>
 
 其中 $\phi$ 是学习到的状态表示，$s_{\tau}$ 是执行轨迹 $\tau$ 后到达的状态。
 

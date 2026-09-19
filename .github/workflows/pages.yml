@@ -35,8 +35,8 @@ jobs:
           sudo apt-get install -y fonts-noto-cjk
       - name: Test frontend
         run: node --test tests/*.test.cjs
-      - name: Test profile export
-        run: python -m unittest discover -s tests -p 'test_profile.py'
+      - name: Test math preparation and profile export
+        run: python -m unittest discover -s tests -p 'test_*.py'
       - name: Build static blog
         run: python scripts/build_site.py
       - name: Verify public links and content

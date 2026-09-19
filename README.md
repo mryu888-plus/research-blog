@@ -45,9 +45,17 @@ author = "你的名字"
 +++
 ```
 
-正文使用 Markdown；公式支持 `$x^2$` 和 `$$ ... $$`。
+正文使用普通 Markdown；行内公式写 `$x_i^2$`，独立公式直接写：
 
-包含下划线、星号或转义括号的独立公式，请在 `$$` 块外包一层 `<div class="math-block">` 和 `</div>`（各占一行，内部不留空行），防止 Markdown 在公式渲染前改变 TeX。现有示例文章包含完整写法。
+```latex
+$$
+\forall s \in S: Q^*_{\mathcal{M}}(s, \tau_1) = Q^*_{\mathcal{M}}(s, \tau_2)
+$$
+```
+
+不需要 HTML 包装，也不需要把 `_`、`*` 再转义。`\(...\)` 和 `\[...\]` 同样支持；矩阵或 `aligned` 中的 `\\` 保持原样。代码块、行内代码中的公式示例不会被渲染。普通价格使用 `\$` 表示字面美元符号。
+
+使用上面的 Python 构建/预览入口（Rust 完整构建也会复用它）：它们只在临时构建副本中保护公式，原始 Markdown 不会被改写。直接运行原生 `zola build/serve` 会绕过这一步。旧的 `math-block` 包装仍然兼容。
 
 在文章目录的 `figures/` 下放置 `.typ` 文件，并使用 Zola 组件引用：
 
@@ -89,7 +97,7 @@ cargo fmt --all -- --check
 cargo test --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
 node --test tests/*.test.cjs
-python -m unittest discover -s tests -p 'test_profile.py'
+python -m unittest discover -s tests -p 'test_*.py'
 python scripts/build_site.py
 python scripts/check_site.py
 ```
@@ -115,7 +123,7 @@ Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径
 
 ## VS Code 实时写作预览
 
-运行 `python scripts/editor.py preview`，在本地网页查看包含草稿的实际排版。项目 VS Code 配置使用 25 ms 自动保存；Zola 监听等待缩短到 1 ms，保持完整站点重建以同步文章列表、主题与搜索。浏览器通过仅在本地 serve 模式加载的 `preview.js` 更新正文，复用 KaTeX、保留滚动位置。重建期间的短暂 404、网络中断或格式错误会保留上一版页面并自动重试；持续失败时显示提示，可点击重试或继续保存恢复。文章 Typst 图形由常驻 watch 进程编译；`profile/` 中的个人资料、导入文件和素材在保存稳定约 0.4 秒后重新生成个人页与简历。个人资料编译失败时保留上一版产物，修正并保存后自动恢复。
+运行 `python scripts/editor.py preview`，在本地网页查看包含草稿的实际排版。项目 VS Code 配置使用 25 ms 自动保存；预览每 100 ms 同步源文件到包含公式保护的构建副本，Zola 监听等待为 1 ms，保持完整站点重建以同步文章列表、主题与搜索。浏览器通过仅在本地 serve 模式加载的 `preview.js` 更新正文，复用 KaTeX、保留滚动位置。重建期间的短暂 404、网络中断或格式错误会保留上一版页面并自动重试；持续失败时显示提示，可点击重试或继续保存恢复。文章 Typst 图形由常驻 watch 进程编译；`profile/` 中的个人资料、导入文件和素材在保存稳定约 0.4 秒后重新生成个人页与简历。个人资料编译失败时保留上一版产物，修正并保存后自动恢复。
 
 性能复测：`python scripts/benchmark_preview.py` 在项目临时目录复制真实网站，测量写文件到新 HTML 可读取的耗时，不修改文章。2026-09-12 的 20 次样本：监听等待 200 ms 时中位数 261.51 ms，等待 1 ms 时 47.67 ms、P95 50.01 ms。浏览器实测正文和公式局部更新约 2.6–3.5 ms；这些是分段测量，不代表完整按键到屏幕延迟。
 

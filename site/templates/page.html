@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
 {% block content %}
+{% set reading_sources = load_data(path="data/original-bodies.json") %}
 <a class="back-link" href="{{ get_url(path='@/_index.md') }}#notes">← 返回首页</a>
 <article class="article" data-article-id="{{ page.slug }}" data-note-id="{{ page.relative_path }}">
-<header class="article-header"><h1>{{ page.title }}</h1><p class="article-description">{{ page.description | default(value="") }}</p><div class="article-meta"><time datetime="{{ page.date }}">{{ page.date | date(format="%Y.%m.%d") }}</time><span>{{ page.reading_time }} 分钟阅读</span><span>{{ page.extra.author | default(value=config.extra.author) }}</span></div>
+<header class="article-header"><h1>{{ page.title }}</h1><p class="article-description">{{ page.description | default(value="") }}</p><div class="article-meta"><time datetime="{{ page.date }}">{{ page.date | date(format="%Y.%m.%d") }}</time><span>{% set reading_page = page %}{% include "reading-time.html" %} 分钟阅读</span><span>{{ page.extra.author | default(value=config.extra.author) }}</span></div>
 <div class="tags">{% if page.taxonomies.tags %}{% for tag in page.taxonomies.tags %}<a class="tag" href="{{ get_taxonomy_url(kind='tags', term=tag) }}">{{ config.extra.tag_labels | get(key=tag, default=tag) }}</a>{% endfor %}{% endif %}</div>
 {% if config.extra.agent_endpoint %}<button id="ask-article">询问文章助手</button>{% endif %}</header>
-<div class="reading-layout"><div class="article-content">{{ page.content | safe }}</div>
+<div class="reading-layout"><div class="article-content"{% if page.relative_path in reading_sources %} data-math-prepared="true"{% endif %}>{{ page.content | safe }}</div>
 {% if page.toc %}<aside class="toc"><details open><summary>本文目录</summary><nav aria-label="文章目录"><ol>{% for heading in page.toc %}<li><a href="{{ heading.permalink }}">{{ heading.title }}</a>{% if heading.children %}<ol>{% for child in heading.children %}<li><a href="{{ child.permalink }}">{{ child.title }}</a></li>{% endfor %}</ol>{% endif %}</li>{% endfor %}</ol></nav></details></aside>{% endif %}</div>
 <section class="article-connections" id="article-connections" aria-label="文章双链">
 <div class="connections-heading"><h2>关联笔记</h2><a href="{{ get_url(path='graph/') }}?focus={{ page.relative_path | urlencode }}">在图谱中查看 →</a></div>

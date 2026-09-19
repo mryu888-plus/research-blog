@@ -1,0 +1,8 @@
+{# Match Zola 0.23.4's zh count: Unicode Alphabetic outside alternate ``` chunks. #}
+{%- if reading_page.relative_path in reading_sources and (reading_page.lang | split(pat="-") | first) == "zh" -%}
+  {%- set body = reading_sources | get(key=reading_page.relative_path) -%}
+  {%- set count = body | regex_replace(pattern="(?s)```.*?(?:```|$)", rep="") | regex_replace(pattern="\\P{Alphabetic}", rep="") | regex_replace(pattern="\\p{Alphabetic}", rep="x") | length -%}
+  {{- (count / 439) | round(method="ceil") | int -}}
+{%- else -%}
+  {{- reading_page.reading_time -}}
+{%- endif -%}

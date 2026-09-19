@@ -2,6 +2,7 @@
 {% block title %}{% if section.path == "/" %}{{ config.title }}{% else %}研究手记 · {{ config.title }}{% endif %}{% endblock title %}
 {% block content %}
 {% set posts = get_section(path="posts/_index.md") %}
+{% set reading_sources = load_data(path="data/original-bodies.json") %}
 <header class="home-header{% if section.path == '/' %} home-intro{% endif %}">
 {% if section.path == "/" %}
   {% set profile = load_data(path="data/profile.json") %}
@@ -34,7 +35,7 @@
 <div class="section-heading" id="notes"><h2><span class="accent-mark" aria-hidden="true">#</span> 研究笔记</h2><span>{{ posts.pages | length }} 篇文章</span></div>
 <div class="posts-list">
 {% for post in posts.pages %}
-<article class="post-item"><div class="post-date"><time datetime="{{ post.date }}">{{ post.date | date(format="%Y.%m.%d") }}</time><span>{{ post.reading_time }} 分钟阅读</span></div>
+<article class="post-item"><div class="post-date"><time datetime="{{ post.date }}">{{ post.date | date(format="%Y.%m.%d") }}</time><span>{% set reading_page = post %}{% include "reading-time.html" %} 分钟阅读</span></div>
 <div class="post-info"><h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2><p>{{ post.description | default(value="") }}</p><div class="tags">{% if post.taxonomies.tags %}{% for tag in post.taxonomies.tags %}<a class="tag" href="{{ get_taxonomy_url(kind='tags', term=tag) }}">{{ config.extra.tag_labels | get(key=tag, default=tag) }}</a>{% endfor %}{% endif %}</div></div><a class="post-arrow" href="{{ post.permalink }}" aria-label="阅读 {{ post.title }}">↗</a></article>
 {% else %}<p>暂无文章。</p>{% endfor %}
 </div>

@@ -176,6 +176,13 @@ body {
   color: var(--text-primary);
 }
 
+.math-source[data-math-display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  text-align: center;
+}
+
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;

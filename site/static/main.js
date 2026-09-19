@@ -26,6 +26,16 @@ function parseSearchIndex(text) {
   const payload = text.split(/\r?\n<script>window\.LiveReloadOptions=/, 1)[0];
   const posts = JSON.parse(payload);
   if (!Array.isArray(posts)) throw new Error("Invalid search index");
+  for (const post of posts) {
+    if (!post || typeof post.body !== "string") continue;
+    // striptags leaves the protected formulas' numeric HTML references intact.
+    // Decode once as text; named references and other metadata stay unchanged.
+    post.body = post.body.replace(/&#(?:([0-9]+)|[xX]([0-9a-fA-F]+));/g, (reference, decimal, hex) => {
+      const codepoint = Number.parseInt(decimal ?? hex, decimal === undefined ? 16 : 10);
+      if (codepoint < 1 || codepoint > 0x10ffff || (codepoint >= 0xd800 && codepoint <= 0xdfff)) return reference;
+      return String.fromCodePoint(codepoint);
+    });
+  }
   return posts;
 }
 
@@ -40,7 +50,42 @@ function searchPosts(posts, query) {
   }).filter(item => item.score).sort((a, b) => b.score - a.score).slice(0, 30).map(item => item.post);
 }
 
-if (typeof module !== "undefined") module.exports = { createSseParser, searchPosts, parseSearchIndex };
+function renderArticleMath(content, renderer = globalThis.katex, autoRender = globalThis.renderMathInElement) {
+  if (!content) return;
+  if (typeof renderer?.render === "function") {
+    content.querySelectorAll(".math-source[data-math-tex]").forEach(node => {
+      if (node.dataset.mathRendered === "true") return;
+      const fallback = node.textContent;
+      try {
+        // The DOM has already decoded the source's HTML entities. Do not read
+        // the fallback: Markdown or an earlier render may have changed it.
+        renderer.render(node.dataset.mathTex, node, {
+          displayMode: node.dataset.mathDisplay === "true", throwOnError: false,
+        });
+        node.dataset.mathRendered = "true";
+      } catch (_) {
+        // Retain readable source even if a renderer fails after clearing the node.
+        node.textContent = fallback;
+      }
+    });
+  }
+  // Prepared pages already distinguish math from escaped dollars, prices and
+  // code. Re-scanning their rendered text would undo those distinctions.
+  if (typeof autoRender === "function" && content.dataset?.mathPrepared !== "true") {
+    autoRender(content, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true },
+      ],
+      ignoredClasses: ["math-source", "katex"],
+      throwOnError: false,
+    });
+  }
+}
+
+if (typeof module !== "undefined") module.exports = { createSseParser, searchPosts, parseSearchIndex, renderArticleMath };
 if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("theme-toggle").onclick = () => {
     const theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
@@ -102,12 +147,7 @@ function initArticleContent() {
     };
     code.parentElement.appendChild(button);
   });
-  if (typeof renderMathInElement === "function") {
-    const content = document.querySelector(".article-content");
-    if (content) renderMathInElement(content, { delimiters: [
-      { left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false },
-    ], throwOnError: false });
-  }
+  renderArticleMath(document.querySelector(".article-content"));
   const article = document.querySelector(".article");
   if (article && document.body.dataset.agentEndpoint) {
     currentArticleId = article.dataset.articleId;
