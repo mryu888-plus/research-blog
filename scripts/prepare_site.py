@@ -182,9 +182,14 @@ class PreparedSite:
             data = original_data if relative == ORIGINAL_BODIES else (self.source / relative).read_bytes()
             if relative.parts[0] == 'content' and relative.suffix.lower() == '.md':
                 data = protect_math(data.decode('utf-8')).encode('utf-8')
+            # Zola 0.23.4 ignores paired Linux rename events. Stage writes in an
+            # unwatched child of its non-recursive root watch, so publishing
+            # produces a supported RenameMode::To while remaining atomic.
+            write_directory = self._destination(Path('.prepare-tmp'))
+            write_directory.mkdir(exist_ok=True)
             temporary = None
             try:
-                with tempfile.NamedTemporaryFile(dir=destination.parent,
+                with tempfile.NamedTemporaryFile(dir=write_directory,
                                                  prefix='.prepare-', delete=False) as output:
                     temporary = Path(output.name)
                     output.write(data)
