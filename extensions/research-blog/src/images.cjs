@@ -14,10 +14,10 @@ function registerImages(context) {
     const config = vscode.workspace.getConfiguration('researchBlog.images', uri);
     const ai = vscode.workspace.getConfiguration('researchBlog.ai', uri);
     return { baseUrl: config.get('baseUrl', '').trim() || ai.get('baseUrl', 'https://api.openai.com/v1'),
-      model: config.get('model', '').trim(), style: artDirection(config.get('appearance', 'paper'), config.get('composition', 'concept'), config.get('styleInstructions', '')),
-      useStyleReference: config.get('useStyleReference', false),
+      model: config.get('model', '').trim(), style: artDirection(config.get('appearance', 'graphite'), config.get('composition', 'editorial'), config.get('styleInstructions', '')),
+      useStyleReference: config.get('useStyleReference', true),
       size: config.get('size', '1536x1024'), quality: config.get('quality', 'auto'), timeoutSeconds: config.get('timeoutSeconds', 180), aiBase: ai.get('baseUrl', 'https://api.openai.com/v1'),
-      aiModel: ai.get('model', '').trim(), aiTokenParameter: ai.get('tokenParameter'), preparePrompt: config.get('preparePrompt', false) };
+      aiModel: ai.get('model', '').trim(), aiTokenParameter: ai.get('tokenParameter'), preparePrompt: config.get('preparePrompt', true) };
   };
   const command = (name, action) => context.subscriptions.push(vscode.commands.registerCommand(name, async () => {
     try { trusted(); return await action(); }
@@ -25,9 +25,9 @@ function registerImages(context) {
   }));
   command('researchBlog.images.chooseStyle', async () => {
     const composition = await vscode.window.showQuickPick([
-      { label: '概念示意图', description: '形象、分组和必要箭头，直观说明关系', value: 'concept' },
-      { label: '正文配图', description: '围绕主题自由构图，少量标签', value: 'editorial' },
-      { label: '系列封面', description: '主题鲜明，为标题保留空间', value: 'cover' },
+      { label: "正文配图", description: "一个视觉隐喻，细密线场与留白", value: "editorial" },
+      { label: "概念图", description: "至多三个主体，表达清楚的关系", value: "concept" },
+      { label: "系列封面", description: "右侧强轮廓，左侧留白", value: "cover" }
     ], { title: '选择配图用途' });
     if (!composition) return;
     const appearance = await vscode.window.showQuickPick([
@@ -120,7 +120,7 @@ function registerImages(context) {
             o.prompt = await core.requestIllustrationPrompt({ baseUrl: o.aiBase, model: o.aiModel, key: aiKey, style: o.style, tokenParameter: o.aiTokenParameter }, selection, controller.signal);
           }
           if (controller.signal.aborted) return;
-          progress.report({ message: '绘制正文示意图…' });
+          progress.report({ message: "使用统一研究插图风格…" });
           if (o.useStyleReference && url.hostname === new URL(core.TOKEN_PLAN_BASE).hostname && context.asAbsolutePath) {
             const reference = context.asAbsolutePath('assets/editorial-reference.png');
             if (fs.existsSync(reference)) o.referenceImage = fs.readFileSync(reference);
