@@ -4,7 +4,7 @@
 
 - 网站：https://mryu888-plus.github.io/research-blog/
 - 源码：https://github.com/mryu888-plus/research-blog
-- VS Code 插件：[下载 v0.1.0 安装包](https://github.com/mryu888-plus/research-blog/releases/download/vscode-v0.1.0/research-blog-0.1.0.vsix) · [使用说明](extensions/research-blog/README.md)
+- VS Code 插件：[使用与升级说明](extensions/research-blog/README.md) · 本地新版 v0.2.4 · [旧版 v0.1.0 发布包](https://github.com/mryu888-plus/research-blog/releases/download/vscode-v0.1.0/research-blog-0.1.0.vsix)
 
 ## 本地构建与预览
 
@@ -13,6 +13,9 @@
 ```powershell
 python scripts/build_site.py
 python scripts/check_site.py
+# 首次从源码使用预览：需要 Node.js，并构建本地编辑服务
+npm --prefix extensions/research-blog ci
+npm --prefix extensions/research-blog run build
 python scripts/editor.py preview
 ```
 
@@ -23,6 +26,10 @@ python scripts/editor.py preview
 当前外观参考 [Apollo](https://github.com/not-matthias/apollo) 的极简排版，在现有模板上定制，保留搜索、双链、图谱和实时预览。样式集中在 `site/static/apollo.css`，加载于原有基础样式之后；默认深色，明暗选择保存在浏览器中。首页扫描线和光晕均为静态背景，不覆盖文章正文。调整 `--halo`、`--scanline` 可以控制效果强度，设为 `transparent` 即关闭。
 
 ## 写文章
+
+安装本地新版 `extensions/research-blog/research-blog-0.2.4.vsix` 并重载 VS Code 后，可在命令面板搜索 `Research Blog`：**新建系列 → 新建文章**，需要分章节时再建组。侧栏文章右键可移动到系列或组，并上下调整阅读顺序。运行本地预览，打开“系列”页后也可直接拖动文章排序、移动归属，修改会保存到 `site/data/collections.json`。文章文件与网址不变；正式发布自动排除草稿和预览编辑入口。
+
+选中文章内容后，右键 **AI 根据选中文字生成配图**，可生成黑白实验出版物风格的抽象线条插图，保存到文章 `assets/` 并插入链接。百炼套餐用户运行 **配置百炼 Token Plan 生图**，填写套餐 Key 即可使用 Qwen Image 3.0 Pro；文字模型可以继续使用硅基流动。其他服务运行 **配置 AI 生图接口**。详见[新版写作功能说明](extensions/research-blog/README.md)。
 
 主题页通过左侧多级目录切换分类，支持逐层展开收起，选择“全部”恢复完整列表。在 `site/config.toml` 的 `[extra]` 中编辑 `topic_tree`：每项可设置 `id`、`label`、`tag` 和递归的 `children`。父分类汇总子分类文章并去重；未配置的标签仍会保留。`tag_labels` 设置中文名称，`tag_descriptions` 设置分类描述。关闭 JavaScript 后仍可展开各主题并阅读文章。
 

@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{{ get_url(path='graph.css', cachebust=true) }}">
 <link rel="stylesheet" href="{{ get_url(path='apollo.css', cachebust=true) }}">
 <link rel="stylesheet" href="{{ get_url(path='topics.css', cachebust=true) }}">
+<link rel="stylesheet" href="{{ get_url(path='series.css', cachebust=true) }}">
 {% block extra_styles %}{% endblock extra_styles %}
 {% if config.extra.enable_katex %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -27,7 +28,7 @@
 {% set nav_path = current_path | default(value="/") %}
 <nav class="nav" aria-label="主导航"><div class="nav-content">
 <a class="nav-title" href="{{ get_url(path='@/_index.md') }}"><span class="brand-mark" aria-hidden="true">/</span>{{ config.title }}</a>
-<div class="nav-links"><a href="{{ get_url(path='tags/') }}"{% if nav_path == "/tags/" or term %} aria-current="page"{% endif %}><span aria-hidden="true">/</span>主题</a><a href="{{ get_url(path='graph/') }}"{% if nav_path == "/graph/" %} aria-current="page"{% endif %}><span aria-hidden="true">/</span>图谱</a><a href="{{ get_url(path='@/about.md') }}"{% if nav_path == "/about/" %} aria-current="page"{% endif %}><span aria-hidden="true">/</span>关于</a><span class="nav-tools"><button id="search-toggle" aria-label="搜索文章" title="搜索文章（/）"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><kbd>/</kbd></button><button id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题"><svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg><svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.1A8.7 8.7 0 0 1 10.9 3.4 8.8 8.8 0 1 0 20.6 13.1Z"/></svg></button></span></div>
+<div class="nav-links"><a href="{{ get_url(path='series/') }}"{% if nav_path == "/series/" %} aria-current="page"{% endif %}><span aria-hidden="true">/</span>系列</a><a href="{{ get_url(path='graph/') }}"{% if nav_path == "/graph/" %} aria-current="page"{% endif %}><span aria-hidden="true">/</span>图谱</a><a href="{{ get_url(path='@/about.md') }}"{% if nav_path == "/about/" %} aria-current="page"{% endif %}><span aria-hidden="true">/</span>关于</a><span class="nav-tools"><button id="search-toggle" aria-label="搜索文章" title="搜索文章（/）"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><kbd>/</kbd></button><button id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题"><svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg><svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.1A8.7 8.7 0 0 1 10.9 3.4 8.8 8.8 0 1 0 20.6 13.1Z"/></svg></button></span></div>
 </div></nav>
 <main id="main" class="main" tabindex="-1">{% block content %}{% endblock content %}</main>
 <footer class="site-footer"><span>{{ config.title }} · 研究与记录</span><a id="rss-toggle" href="{{ get_url(path='atom.xml') }}" aria-haspopup="dialog" aria-controls="rss-dialog">RSS 订阅</a></footer>
@@ -57,5 +58,5 @@
 <script defer src="{{ get_url(path='knowledge-core.js') }}"></script>
 <script defer src="{{ get_url(path='graph.js') }}"></script>
 <script defer src="{{ get_url(path='knowledge.js') }}"></script>
-{% if config.mode == 'serve' %}<script src="{{ get_url(path='preview.js') }}"></script>{% endif %}
+{% if config.mode == 'serve' %}<script src="{{ get_url(path='preview.js') }}"></script><script defer id="series-editor-script" src="{{ get_url(path='series-editor.js') }}" data-config-url="{{ get_url(path='preview-editor.json') }}"></script>{% endif %}
 </body></html>

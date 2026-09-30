@@ -9,6 +9,7 @@
 {% if config.extra.agent_endpoint %}<button id="ask-article">询问文章助手</button>{% endif %}</header>
 <div class="reading-layout"><div class="article-content"{% if page.relative_path in reading_sources %} data-math-prepared="true"{% endif %}>{{ page.content | safe }}</div>
 {% if page.toc %}<aside class="toc"><details open><summary>本文目录</summary><nav aria-label="文章目录"><ol>{% for heading in page.toc %}<li><a href="{{ heading.permalink }}">{{ heading.title }}</a>{% if heading.children %}<ol>{% for child in heading.children %}<li><a href="{{ child.permalink }}">{{ child.title }}</a></li>{% endfor %}</ol>{% endif %}</li>{% endfor %}</ol></nav></details></aside>{% endif %}</div>
+{% include "article-series.html" %}
 <section class="article-connections" id="article-connections" aria-label="文章双链">
 <div class="connections-heading"><h2>关联笔记</h2><a href="{{ get_url(path='graph/') }}?focus={{ page.relative_path | urlencode }}">在图谱中查看 →</a></div>
 <p data-knowledge-status role="status">正在读取关联笔记…</p>

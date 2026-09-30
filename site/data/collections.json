@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "series": [
+    {
+      "id": "s-a0f31b3b",
+      "title": "计算机是如何理解语言的",
+      "description": "",
+      "groups": []
+    },
+    {
+      "id": "s-b1751370",
+      "title": "杂谈",
+      "description": "",
+      "groups": []
+    },
+    {
+      "id": "s-b6bd7d2c",
+      "title": "技术杂谈",
+      "description": "",
+      "groups": []
+    }
+  ]
+}

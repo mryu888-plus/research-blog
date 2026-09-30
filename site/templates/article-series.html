@@ -1,0 +1,16 @@
+{% set catalog = load_data(path="data/collections.json", required=false) %}
+{% if catalog and catalog.series %}
+{% set series_posts = get_section(path="posts/_index.md") %}
+{% for series in catalog.series %}{% set containers = [series, ...series.groups] %}{% for group in containers %}{% set keys = group.articles | default(value=[]) %}{% if page.relative_path in keys %}
+{% set_global ordered_notes = [] %}
+{% for key in keys %}{% for note in series_posts.pages %}{% if note.relative_path == key %}{% set_global ordered_notes = [...ordered_notes, note] %}{% endif %}{% endfor %}{% endfor %}
+<nav class="article-series" aria-label="系列阅读导航">
+<div class="article-series-heading"><span class="accent-mark" aria-hidden="true">/</span><a href="{{ get_url(path='series/') }}#{{ series.id }}">{{ series.title }}</a>{% if group.id != series.id %}<span aria-hidden="true">›</span><a href="{{ get_url(path='series/') }}#{{ group.id }}">{{ group.title }}</a>{% endif %}</div>
+<details><summary>{% if group.id == series.id %}本系列目录{% else %}本组目录{% endif %} · {{ ordered_notes | length }} 篇</summary><ol>{% for note in ordered_notes %}<li><a href="{{ note.permalink }}"{% if note.relative_path == page.relative_path %} aria-current="page"{% endif %}>{{ note.title }}</a></li>{% endfor %}</ol></details>
+<div class="series-pagination">
+{% for note in ordered_notes %}{% if note.relative_path == page.relative_path %}
+{% if not loop.first %}{% set previous_index = loop.index0 - 1 %}{% set previous = ordered_notes | nth(n=previous_index) %}<a rel="prev" href="{{ previous.permalink }}"><span>← 上一篇</span>{{ previous.title }}</a>{% endif %}
+{% if not loop.last %}{% set next_index = loop.index0 + 1 %}{% set next = ordered_notes | nth(n=next_index) %}<a rel="next" href="{{ next.permalink }}"><span>下一篇 →</span>{{ next.title }}</a>{% endif %}
+{% endif %}{% endfor %}
+</div></nav>
+{% endif %}{% endfor %}{% endfor %}{% endif %}

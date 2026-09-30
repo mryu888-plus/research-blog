@@ -1,8 +1,8 @@
 {
   "name": "research-blog",
   "displayName": "Research Blog Language Tools",
-  "description": "Zola 研究博客：双链、章节、TOML 元数据和 Typst 图形的语言服务。",
-  "version": "0.1.0",
+  "description": "研究博客写作：系列与组、文章管理、统一风格 AI 配图、双链、元数据和 Typst。",
+  "version": "0.2.4",
   "publisher": "mryu888-plus",
   "license": "MIT",
   "repository": {
@@ -19,7 +19,9 @@
   "main": "./dist/extension.cjs",
   "activationEvents": [
     "onLanguage:markdown",
-    "onLanguage:typst"
+    "onLanguage:typst",
+    "onView:researchBlog.library",
+    "workspaceContains:site/config.toml"
   ],
   "extensionPack": [
     "myriad-dreamin.tinymist"
@@ -32,6 +34,21 @@
   },
   "contributes": {
     "commands": [
+      { "command": "researchBlog.newSeries", "title": "Research Blog: 新建系列", "icon": "$(library)", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.newGroup", "title": "Research Blog: 新建组", "icon": "$(new-folder)", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.newArticle", "title": "Research Blog: 新建文章", "icon": "$(new-file)", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.assignGroup", "title": "Research Blog: 移动文章到系列或组", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.moveArticleUp", "title": "Research Blog: 文章上移", "icon": "$(arrow-up)", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.moveArticleDown", "title": "Research Blog: 文章下移", "icon": "$(arrow-down)", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.refreshLibrary", "title": "Research Blog: 刷新系列目录", "icon": "$(refresh)" },
+      { "command": "researchBlog.editCollections", "title": "Research Blog: 编辑系列目录", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.preview", "title": "Research Blog: 预览网站（含草稿）", "icon": "$(preview)", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.check", "title": "Research Blog: 构建并检查", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.images.generate", "title": "Research Blog: AI 根据选中文字生成配图", "enablement": "isWorkspaceTrusted && editorLangId == markdown && editorHasSelection" },
+      { "command": "researchBlog.images.configure", "title": "Research Blog: 配置 AI 生图接口", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.images.configureTokenPlan", "title": "Research Blog: 配置百炼 Token Plan 生图", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.images.chooseStyle", "title": "Research Blog: 选择配图用途与底色", "enablement": "isWorkspaceTrusted" },
+      { "command": "researchBlog.images.clearKey", "title": "Research Blog: 删除 AI 生图专用密钥", "enablement": "isWorkspaceTrusted" },
       {
         "command": "researchBlog.restartServer",
         "title": "Research Blog: 重启语言服务"
@@ -53,9 +70,80 @@
         "title": "Research Blog: 打开 Tinymist Typst 语言支持"
       }
     ],
+    "views": {
+      "explorer": [{ "id": "researchBlog.library", "name": "研究手记", "contextualTitle": "系列与文章" }]
+    },
+    "viewsWelcome": [{ "view": "researchBlog.library", "contents": "文章可直接加入系列，也可按需分组。\n[新建系列](command:researchBlog.newSeries)\n[新建文章](command:researchBlog.newArticle)\n请打开博客根目录。" }],
+    "menus": {
+      "view/title": [
+        { "command": "researchBlog.newSeries", "when": "view == researchBlog.library", "group": "navigation@1" },
+        { "command": "researchBlog.newGroup", "when": "view == researchBlog.library", "group": "navigation@2" },
+        { "command": "researchBlog.newArticle", "when": "view == researchBlog.library", "group": "navigation@3" },
+        { "command": "researchBlog.preview", "when": "view == researchBlog.library", "group": "navigation@4" },
+        { "command": "researchBlog.refreshLibrary", "when": "view == researchBlog.library", "group": "navigation@5" },
+        { "command": "researchBlog.editCollections", "when": "view == researchBlog.library", "group": "1_manage" }
+      ],
+      "view/item/context": [
+        { "command": "researchBlog.newGroup", "when": "view == researchBlog.library && viewItem == series", "group": "inline" },
+        { "command": "researchBlog.newArticle", "when": "view == researchBlog.library && (viewItem == series || viewItem == group)", "group": "inline" },
+        { "command": "researchBlog.assignGroup", "when": "view == researchBlog.library && viewItem == article", "group": "1_manage" },
+        { "command": "researchBlog.moveArticleUp", "when": "view == researchBlog.library && viewItem == article", "group": "2_order@1" },
+        { "command": "researchBlog.moveArticleDown", "when": "view == researchBlog.library && viewItem == article", "group": "2_order@2" }
+      ],
+      "editor/context": [
+        { "command": "researchBlog.images.generate", "when": "editorLangId == markdown && editorHasSelection", "group": "researchBlog@1" },
+        { "command": "researchBlog.assignGroup", "when": "editorLangId == markdown", "group": "researchBlog@2" }
+      ],
+      "commandPalette": [
+        { "command": "researchBlog.moveArticleUp", "when": "false" },
+        { "command": "researchBlog.moveArticleDown", "when": "false" }
+      ]
+    },
     "configuration": {
       "title": "Research Blog",
       "properties": {
+        "researchBlog.images.appearance": {
+          "type": "string", "default": "graphite", "enum": ["graphite", "paper"],
+          "enumDescriptions": ["石墨黑：象牙白线条与少量陶土红。", "暖纸白：石墨线条与少量深红。"],
+          "description": "研究手记配图底色，与博客深浅两套配色对应。"
+        },
+        "researchBlog.images.composition": {
+          "type": "string", "default": "editorial", "enum": ["editorial", "concept", "cover"],
+          "enumDescriptions": ["正文配图：一个视觉隐喻，疏密对照。", "概念图：至多三个主体，表达明确关系。", "系列封面：右侧主图，左侧留白。"],
+          "description": "统一风格下的配图用途。"
+        },
+        "researchBlog.images.useStyleReference": {
+          "type": "boolean", "default": true,
+          "description": "百炼 Token Plan 生图时携带内置风格参考图，以约束细线、几何和灰阶风格。参考图会计入套餐输入图像用量。"
+        },
+        "researchBlog.images.baseUrl": {
+          "type": "string", "default": "", "scope": "machine",
+          "description": "生图 API 基础地址（含 /v1）；支持 OpenAI Images、硅基流动和百炼 Token Plan 专用生图接口。留空使用 AI 补全地址。"
+        },
+        "researchBlog.images.model": {
+          "type": "string", "default": "", "scope": "machine",
+          "description": "接口支持的图像生成模型 ID，需显式填写。"
+        },
+        "researchBlog.images.size": {
+          "type": "string", "default": "1536x1024", "enum": ["auto", "1024x1024", "1536x1024", "1024x1536", "2048x2048", "2048x1536", "1536x2048", "1328x1328", "1664x928", "928x1664", "1472x1140", "1140x1472", "1584x1056", "1056x1584", "960x1280", "768x1024", "720x1440", "720x1280"],
+          "description": "配图尺寸，需选择模型支持的值。百炼 Qwen Image 3.0 Pro 的 1536x1024 属于 1K 档，2048x1536 或 2048x2048 属于 2K 档。auto 由接口选择。"
+        },
+        "researchBlog.images.quality": {
+          "type": "string", "default": "auto", "enum": ["auto", "low", "medium", "high"],
+          "description": "生图质量；auto 使用服务默认值。模型需要支持所选参数。"
+        },
+        "researchBlog.images.timeoutSeconds": {
+          "type": "integer", "default": 180, "minimum": 30, "maximum": 600,
+          "description": "生图请求最长等待秒数，可在进度通知中取消。"
+        },
+        "researchBlog.images.styleInstructions": {
+          "type": "string", "default": "", "maxLength": 6000, "scope": "resource",
+          "description": "在黑白实验出版物风格上追加的要求。默认使用精密线条、抽象几何和少量陶土红；用途与底色由独立设置控制。模型输出仍需人工检查。"
+        },
+        "researchBlog.images.preparePrompt": {
+          "type": "boolean", "default": true,
+          "description": "先整理配图构思：已配置文字模型时，先将选区和风格说明交给该文字模型整理画面，再调用生图模型。关闭后直接发送原选区和风格。"
+        },
         "researchBlog.contentPath": {
           "type": "string",
           "default": "site/content",
@@ -133,7 +221,7 @@
     "build": "node scripts/build.cjs",
     "test": "node --test test/*.test.cjs",
     "vscode:prepublish": "npm run build",
-    "package": "vsce package --no-dependencies --baseContentUrl https://github.com/mryu888-plus/research-blog/blob/main/extensions/research-blog --out research-blog-0.1.0.vsix"
+    "package": "vsce package --no-dependencies --baseContentUrl https://github.com/mryu888-plus/research-blog/blob/main/extensions/research-blog"
   },
   "dependencies": {
     "markdown-it": "14.3.1",

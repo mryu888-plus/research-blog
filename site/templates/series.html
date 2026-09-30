@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block content %}
+{% set catalog = load_data(path="data/collections.json", required=false) %}
+{% set posts = get_section(path="posts/_index.md") %}
+<header class="home-header page-header"><h1>{{ page.title }}</h1></header>
+<div class="series-index" data-series-view>
+{% if catalog and catalog.series %}
+<nav class="series-directory" aria-label="系列目录"><p class="eyebrow">系列目录</p><ol>{% for series in catalog.series %}<li><a href="#{{ series.id }}">{{ series.title }}</a></li>{% endfor %}</ol></nav>
+<div class="series-collections">
+{% for series in catalog.series %}
+<section class="series-collection" id="{{ series.id }}" aria-labelledby="title-{{ series.id }}">
+<header class="series-heading"><p class="eyebrow"><span class="accent-mark" aria-hidden="true">/</span> 系列 {{ loop.index }}</p><h2 id="title-{{ series.id }}">{{ series.title }}</h2>{% if series.description %}<p>{{ series.description }}</p>{% endif %}</header>
+{% set_global direct_notes = [] %}
+{% for key in series.articles | default(value=[]) %}{% for note in posts.pages %}{% if note.relative_path == key %}{% set_global direct_notes = [...direct_notes, note] %}{% endif %}{% endfor %}{% endfor %}
+{% if direct_notes %}
+<ol class="series-articles">
+{% for note in direct_notes %}
+<li><span class="series-number" aria-hidden="true">{{ loop.index }}</span><div><h3><a href="{{ note.permalink }}">{{ note.title }}</a>{% if note.draft %}<span class="series-draft">草稿</span>{% endif %}</h3>{% if note.description %}<p>{{ note.description }}</p>{% endif %}</div></li>
+{% endfor %}
+</ol>
+{% endif %}
+{% for group in series.groups %}
+{% set_global group_notes = [] %}
+{% for key in group.articles %}{% for note in posts.pages %}{% if note.relative_path == key %}{% set_global group_notes = [...group_notes, note] %}{% endif %}{% endfor %}{% endfor %}
+<details class="series-group" id="{{ group.id }}" open>
+<summary><span>{{ group.title }}</span><span class="series-count">{{ group_notes | length }} 篇 <span class="series-chevron" aria-hidden="true">⌄</span></span></summary>
+{% if group.description %}<p class="series-group-description">{{ group.description }}</p>{% endif %}
+<ol class="series-articles">
+{% for note in group_notes %}
+<li><span class="series-number" aria-hidden="true">{{ loop.index }}</span><div><h3><a href="{{ note.permalink }}">{{ note.title }}</a>{% if note.draft %}<span class="series-draft">草稿</span>{% endif %}</h3>{% if note.description %}<p>{{ note.description }}</p>{% endif %}</div></li>
+{% else %}<li class="series-empty">这一组还没有可阅读的文章。</li>{% endfor %}
+</ol></details>
+{% endfor %}
+{% if not direct_notes and not series.groups %}<p class="series-empty">这个系列正在整理中。</p>{% endif %}
+</section>
+{% endfor %}
+</div>
+{% else %}<p class="series-empty">系列正在整理中，可以先<a href="{{ get_url(path='@/_index.md') }}#notes">翻阅研究笔记</a>。</p>{% endif %}
+</div>
+{% if config.mode == 'serve' %}<template id="series-preview-links">{% for note in posts.pages %}<a data-note-key="{{ note.relative_path }}" href="{{ note.permalink }}">{{ note.title }}</a>{% endfor %}</template>{% endif %}
+{% endblock content %}

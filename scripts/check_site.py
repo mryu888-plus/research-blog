@@ -63,6 +63,7 @@ assert profile['display_name'] in unescape((PUBLIC / 'about/index.html').read_te
 assert not list(PUBLIC.rglob('contact.local.json'))
 assert not list(PUBLIC.rglob('resume-public.pdf'))
 assert not (PUBLIC / 'profile').exists(), 'Resume source and private contact must stay outside published files'
+assert not (PUBLIC / 'preview-editor.json').exists(), 'Local editor credentials must never be published'
 graph = json.loads((PUBLIC / 'graph-data' / 'index.html').read_text(encoding='utf-8-sig'))
 assert isinstance(graph, list) and len({post['id'] for post in graph}) == len(graph)
 for post in graph:
@@ -78,6 +79,7 @@ assert not list(PUBLIC.rglob('article-manifest.json'))
 assert not list(PUBLIC.rglob('.env*'))
 for path in pages:
     text = path.read_text(encoding='utf-8')
+    assert 'id="series-editor-script"' not in text, 'Local editing must not be enabled on the public site'
     assert 'http://localhost' not in text and 'http://127.0.0.1' not in text
     if not config['extra']['agent_endpoint']:
         assert 'id="agent-panel"' not in text

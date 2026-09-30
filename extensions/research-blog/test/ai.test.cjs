@@ -34,3 +34,14 @@ test('AI requests can be aborted and do not expose response bodies on failures',
   await assert.rejects(requestCompletion({ baseUrl: 'https://example.test/v1' }, {}, undefined,
     async () => ({ ok: false, status: 401 })), /HTTP 401/);
 });
+test('a code model closing fence is removed without changing the completion text', async () => {
+  for (const content of ['a + b\n```', 'a + b\r\n~~~\n']) {
+    const result = await requestCompletion({ baseUrl: 'https://api.siliconflow.cn/v1', model: 'coder', maxTokens: 96, tokenParameter: 'max_tokens' }, { suffix: '\n' }, undefined,
+      async (_url, init) => {
+        assert.equal(JSON.parse(init.body).max_tokens, 96);
+        assert.equal(JSON.parse(init.body).enable_thinking, false);
+        return { ok: true, json: async () => ({ choices: [{ message: { content } }] }) };
+      });
+    assert.equal(result, 'a + b');
+  }
+});

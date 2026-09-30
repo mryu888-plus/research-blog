@@ -1,3 +1,10 @@
+.post-filter-heading { flex-wrap: wrap; gap: .8rem 1.5rem; }
+.post-filter-controls { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem 1.25rem; min-width: 0; }
+.post-topic-filter { display: flex; align-items: center; gap: .6rem; min-width: 0; color: var(--text-muted); font-size: .8125rem; }
+.post-topic-filter select { min-width: 0; width: 11rem; max-width: 55vw; min-height: 40px; padding: .4rem .6rem; border: 1px solid var(--surface-3); border-radius: 4px; color: var(--text-secondary); background: var(--surface-0); font-size: .8125rem; cursor: pointer; }
+.post-topic-filter select:hover { border-color: var(--surface-4); }
+.post-filter-controls [data-post-count] { color: var(--text-muted); font: .75rem var(--font-mono); white-space: nowrap; }
+[data-post-filter] [hidden] { display: none !important; }
 .topics-browser { min-width: 0; }
 .topics-browser [hidden] { display: none !important; }
 .topics-workspace { display: grid; grid-template-columns: 225px minmax(0, 1fr); gap: 3.2rem; padding: .5rem 0 2rem; align-items: start; }

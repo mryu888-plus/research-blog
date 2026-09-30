@@ -6,7 +6,7 @@ const root = path.resolve(__dirname, '..');
 async function build() {
   await esbuild.build({
     absWorkingDir: root,
-    entryPoints: { extension: 'src/extension.cjs', server: 'src/server.cjs' },
+    entryPoints: { extension: 'src/extension.cjs', server: 'src/server.cjs', 'preview-server': 'src/preview-server.cjs' },
     outdir: 'dist', outExtension: { '.js': '.cjs' },
     bundle: true, platform: 'node', format: 'cjs', target: 'node18',
     external: ['vscode'], legalComments: 'linked', metafile: true,

@@ -3,6 +3,8 @@ const vscode = require('vscode');
 const path = require('node:path');
 const { LanguageClient, TransportKind } = require('vscode-languageclient/node');
 const { registerAI } = require('./ai.cjs');
+const { registerWriting } = require('./writing.cjs');
+const { registerImages } = require('./images.cjs');
 const clients = new Map();
 let extensionContext;
 async function start(folder) {
@@ -40,6 +42,8 @@ async function stop(key) {
 async function activate(context) {
   extensionContext = context;
   registerAI(context);
+  registerWriting(context);
+  registerImages(context);
   context.subscriptions.push(vscode.commands.registerCommand('researchBlog.typst', () =>
     vscode.commands.executeCommand('extension.open', 'myriad-dreamin.tinymist')));
   context.subscriptions.push(vscode.commands.registerCommand('researchBlog.restartServer', async () => {

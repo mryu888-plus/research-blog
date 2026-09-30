@@ -32,11 +32,19 @@
   </div>
 {% else %}<h1>研究手记</h1>{% endif %}
 </header>
-<div class="section-heading" id="notes"><h2><span class="accent-mark" aria-hidden="true">#</span> 研究笔记</h2><span>{{ posts.pages | length }} 篇文章</span></div>
-<div class="posts-list">
+<section data-post-filter data-topic-tree="{{ config.extra.topic_tree | default(value=[]) | json_encode() }}" aria-labelledby="notes-title">
+<div class="section-heading post-filter-heading" id="notes">
+  <h2 id="notes-title"><span class="accent-mark" aria-hidden="true">#</span> 研究笔记</h2>
+  <div class="post-filter-controls">
+    <label class="post-topic-filter" data-topic-control hidden>主题<select aria-label="筛选文章主题" aria-controls="notes-list"><option value="">全部主题</option></select></label>
+    <span data-post-count role="status" aria-live="polite">{{ posts.pages | length }} 篇文章</span>
+  </div>
+</div>
+<div class="posts-list" id="notes-list">
 {% for post in posts.pages %}
 <article class="post-item"><div class="post-date"><time datetime="{{ post.date }}">{{ post.date | date(format="%Y.%m.%d") }}</time><span>{% set reading_page = post %}{% include "reading-time.html" %} 分钟阅读</span></div>
-<div class="post-info"><h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2><p>{{ post.description | default(value="") }}</p><div class="tags">{% if post.taxonomies.tags %}{% for tag in post.taxonomies.tags %}<a class="tag" href="{{ get_taxonomy_url(kind='tags', term=tag) }}">{{ config.extra.tag_labels | get(key=tag, default=tag) }}</a>{% endfor %}{% endif %}</div></div><a class="post-arrow" href="{{ post.permalink }}" aria-label="阅读 {{ post.title }}">↗</a></article>
+<div class="post-info"><h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2><p>{{ post.description | default(value="") }}</p><div class="tags">{% if post.taxonomies.tags %}{% for tag in post.taxonomies.tags %}<a class="tag" data-post-tag="{{ tag }}" href="{{ get_taxonomy_url(kind='tags', term=tag) }}">{{ config.extra.tag_labels | get(key=tag, default=tag) }}</a>{% endfor %}{% endif %}</div></div><a class="post-arrow" href="{{ post.permalink }}" aria-label="阅读 {{ post.title }}">↗</a></article>
 {% else %}<p>暂无文章。</p>{% endfor %}
 </div>
+</section>
 {% endblock content %}

@@ -1,6 +1,50 @@
 # Research Blog Language Tools
 
-面向 [Research Blog 主题](https://github.com/mryu888-plus/research-blog)的 VS Code 写作插件：补全文章双链、章节和 tags，检查 TOML 元数据与失效引用，通过 Tinymist 编辑 Typst 图形，并可选启用公式和代码的 AI 行内补全。Markdown 文件保持原语言模式。
+面向 [Research Blog 主题](https://github.com/mryu888-plus/research-blog)的 VS Code 写作插件：系列和组、统一风格配图、双链与 tags、元数据检查、Typst 图形，以及可选的公式和代码 AI 补全。
+
+## 系列、组与 AI 配图（v0.2.4）
+
+安装本地构建的 `research-blog-0.2.4.vsix` 后重载窗口。此版本尚未发布到 GitHub Release；下方 v0.1.0 下载链接是旧版语言工具，不含这些新功能。
+
+按 `Ctrl+Shift+P` 搜索 `Research Blog`，可直接运行 **新建系列**、**新建组**、**新建文章**、**预览网站（含草稿）**、**构建并检查**。资源管理器中也会出现 **研究手记** 侧栏。
+
+1. **新建系列**：填写名称和可选简介，可直接放文章。
+2. **新建文章**：选择系列、可选分组，或暂不加入系列。系列和组名旁的“新建文章”会直接使用该位置。
+3. **新建组**：需要细分章节时再创建，分组不是添加文章的前提。
+4. **整理已有文章**：打开文章后运行“移动文章到系列或组”，或使用文章的右键菜单。选择“暂不加入系列”可移出目录。
+5. **调整顺序**：右键系列或组内的文章，选择“文章上移／文章下移”。文章底部目录和前后篇使用所在列表的顺序。
+
+运行 **预览网站（含草稿）** 后打开“系列”页。拖动文章左边的 `⋮⋮`，可在列表中调整顺序，也可移入其他系列、分组或“未加入系列”。空系列同样支持投放。手机或键盘可使用每篇文章的“移动”菜单与上移／下移按钮。修改自动保存，失败时会提示；若目录被其他窗口修改，会刷新并要求重试，不覆盖新内容。正式发布的网站不提供编辑入口。
+
+关系保存在 `site/data/collections.json`（与配置的 contentPath 同级的 `data/collections.json`）。系列用 `articles` 数组保存直属文章，`groups` 保存可选分组；旧目录可继续使用。移动只改变目录归属与顺序，不移动文章文件或改变网址。每篇文章最多出现在一个系列或组中，tags 可独立跨主题使用。名称、简介或系列/组顺序可用“编辑系列目录”修改，保留稳定 `id` 即可。
+
+正式构建过滤草稿和已删除的文章引用；本地预览显示并标记草稿。旧的“博客：新建文章”任务创建的文章默认未加入系列。
+
+### 按选中文字生成配图
+
+使用百炼套餐时，运行 **Research Blog: 配置百炼 Token Plan 生图**，输入以 `sk-sp-` 开头的套餐专属 Key。插件预设 `qwen-image-3.0-pro`、1536×1024 横图（1K 档），通过 [Token Plan 专用多模态接口](https://help.aliyun.com/zh/model-studio/token-plan-multimodal-gen)调用；文字模型与密钥保持原配置，可继续使用硅基流动 GLM 整理配图构思。生图失败或套餐用尽时不切换到其他收费接口。实际 Credits 消耗以百炼套餐用量记录为准。
+
+其他服务运行 **Research Blog: 配置 AI 生图接口**，填写基础地址、图像模型 ID 和 API Key。支持硅基流动原生生图格式或 [OpenAI Images API 的 `/images/generations`](https://developers.openai.com/api/docs/guides/image-generation)。保存配置不会请求生图；仅手动执行生图命令时发起生成。
+
+打开文章，选中一段文字，右键 → **AI 根据选中文字生成配图**。默认使用黑白实验出版物风格：石墨黑底、象牙白细线、抽象几何与少量陶土红。运行 **Research Blog: 选择配图用途与底色**，可切换正文配图、概念图、系列封面，以及石墨黑 / 暖纸白。百炼生图默认携带内置风格参考图（会计入输入图像用量），可关闭 `researchBlog.images.useStyleReference`。仅发送选中的文字（最多 12000 字符）和固定风格说明，不上传整篇文章。风格由提示词约束，模型输出仍可能存在差异。
+
+图片以唯一文件名保存到文章的 `assets/` 下，并在选中文段后插入 Markdown 链接、保存文章。选中代码或块级公式时，会放在闭合代码／公式块后。如果生成期间文章改变，或代码／公式块未闭合，则仅保存图片，提供“复制图片链接”和“查看图片”。取消和失败不会插入半成品。
+
+API Key 保存在 SecretStorage。未设置生图专用 Key 时，仅当基础地址与 AI 补全接口完全一致才复用其 Key；下载接口返回的图片 URL 时不携带 Key。生图无需开启 AI 行内补全。
+
+| 设置 | 默认值 | 用途 |
+| --- | --- | --- |
+| `researchBlog.images.appearance` | `graphite` | 石墨黑 / 暖纸白（`paper`） |
+| `researchBlog.images.composition` | `editorial` | 正文 / 概念（`concept`）/ 封面（`cover`） |
+| `researchBlog.images.useStyleReference` | `true` | 百炼生图携带内置参考图 |
+| `researchBlog.images.baseUrl` | 空 | 复用 AI 地址，也可单独设置 |
+| `researchBlog.images.model` | 空 | 显式填写图像模型 ID |
+| `researchBlog.images.size` | `1536x1024` | 横向；不支持时选 `auto` |
+| `researchBlog.images.quality` | `auto` | 服务默认质量 |
+| `researchBlog.images.timeoutSeconds` | `180` | 超时，支持 30–600 秒；请求可取消 |
+| `researchBlog.images.styleInstructions` | 空 | 使用统一博客风格；可在工作区中统一自定义 |
+
+写入和 AI 功能需要受信任的本地工作区。预览与构建调用 `scripts/editor.py`，需要完整博客仓库和 Python、Zola、Typst、Node.js 环境。首次从源码使用预览时，先执行 `npm --prefix extensions/research-blog ci` 和 `npm --prefix extensions/research-blog run build`，生成本地编辑服务。
 
 ## 下载、安装和升级
 
@@ -153,6 +197,12 @@ AI 默认关闭。在命令面板打开 **Preferences: Open User Settings (JSON)
 AI 请求流程已通过本机 HTTP 模拟接口验证，尚未完成真实模型端到端验证；建议质量和延迟取决于所配服务。实际写作中需自行检查生成的公式和代码。
 
 ## 全部配置
+
+硅基流动可同时用于文字补全和生图。在用户设置中将 `researchBlog.ai.baseUrl` 与 `researchBlog.images.baseUrl` 设为 `https://api.siliconflow.cn/v1`，文字模型可用 `zai-org/GLM-5.3`，`researchBlog.ai.tokenParameter` 设为 `max_tokens`。生图模型 `baidu/ERNIE-Image-Turbo` 可配合 `researchBlog.images.size: "1536x1024"` 使用。模型以账号实际可用列表为准。
+
+运行 **Research Blog: 设置 AI API Key** 保存密钥；当两处接口地址相同时，生图会复用文字补全密钥。不要把密钥写进 JSON 设置或文章。插件自动适配硅基流动的 `image_size` 和 `images[].url`，下载后保存在文章目录。ERNIE-Image-Turbo 使用 8 步；硅基流动文字行内补全关闭深度思考以控制延迟，风格由统一提示词约束。
+
+已配置文字模型时，生成配图默认先把选区和统一风格交给文字模型整理为画面构思，再发送给生图接口，因此会调用两次 API。`researchBlog.images.preparePrompt` 可关闭此步骤；未配置文字模型时可直接生图。文字补全与构思使用同一文字模型。
 
 在设置界面搜索 `@ext:mryu888-plus.research-blog`，或编辑相应的 JSON 设置。机器级选项请放在**用户设置**中；其余选项可按工作区覆盖。
 

@@ -112,6 +112,7 @@ def preview(open_browser=True):
         raise RuntimeError('本地预览端口 1111–1120 均被占用，请停止之前的预览任务。')
     watchers = {}
     server = None
+    editor_server = None
     prepared_directory = None
     typst = os.environ.get('TYPST', 'typst')
 
@@ -157,6 +158,20 @@ def preview(open_browser=True):
             raise RuntimeError('预览输入目录必须位于博客的 .tools 目录内。')
         prepared = PreparedSite(ROOT / 'site', Path(prepared_directory.name) / 'site')
         prepared.sync()
+        editor_entry = ROOT / 'extensions/research-blog/dist/preview-server.cjs'
+        if not editor_entry.is_file():
+            raise RuntimeError('请先运行 npm --prefix extensions/research-blog run build，生成预览编辑服务。')
+        editor_server = subprocess.Popen(
+            [os.environ.get('NODE') or shutil.which('node') or 'node', str(editor_entry),
+             str(ROOT / 'site/content'), f'http://127.0.0.1:{port}'],
+            cwd=ROOT, stdout=subprocess.PIPE, text=True, encoding='utf-8')
+        editor_config = editor_server.stdout.readline()
+        if not editor_config:
+            raise RuntimeError('本地系列编辑服务未能启动，请查看上面的错误。')
+        # Session credentials exist only in the private serve input, never in
+        # site/static or the public build. PreparedSite leaves unmanaged files alone.
+        (prepared.target / 'static/preview-editor.json').write_text(
+            json.dumps(json.loads(editor_config)), encoding='utf-8')
         command = [zola(), '--root', str(prepared.target), 'serve', '--drafts', '--output-dir', str(preview_output), '--force', '--interface', '127.0.0.1', '--port', str(port), '--debounce', '1']
         if open_browser:
             command.append('--open')
@@ -189,7 +204,7 @@ def preview(open_browser=True):
     except KeyboardInterrupt:
         pass
     finally:
-        children = list(watchers.values()) + ([server] if server else [])
+        children = list(watchers.values()) + ([server] if server else []) + ([editor_server] if editor_server else [])
         for child in children:
             if child.poll() is None:
                 child.terminate()

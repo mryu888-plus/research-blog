@@ -51,6 +51,50 @@
     if (text != null) node.textContent = text;
     return node;
   }
+  const filterStates = new Map();
+  function initPostFilter() {
+    const host = document.querySelector('[data-post-filter]');
+    if (!host || host.dataset.enhanced) return;
+    const control = host.querySelector('[data-topic-control]');
+    const select = control.querySelector('select'), count = host.querySelector('[data-post-count]');
+    const groups = new Map();
+    const articles = [...host.querySelectorAll('.post-item')].map(article => {
+      const link = article.querySelector('.post-info h2 a');
+      const post = { url: link.href, title: link.textContent, date: article.querySelector('time').dateTime };
+      article.querySelectorAll('[data-post-tag]').forEach(tag => {
+        const id = tag.dataset.postTag;
+        if (!groups.has(id)) groups.set(id, { id, label: tag.textContent, posts: [] });
+        groups.get(id).posts.push(post);
+      });
+      return { article, post };
+    });
+    let definitions;
+    try { definitions = JSON.parse(host.dataset.topicTree || '[]'); } catch (_) { definitions = []; }
+    const { tree } = buildTopics([...groups.values()], definitions);
+    if (!tree.length) return;
+    function addOptions(nodes, depth = 0) {
+      for (const node of nodes) {
+        const option = element('option', '', `${'\u00a0\u00a0'.repeat(depth)}${node.label} · ${node.posts.length}`);
+        option.value = node.id; select.append(option);
+        addOptions(node.children, depth + 1);
+      }
+    }
+    addOptions(tree);
+    select.value = findTopic(tree, filterStates.get(location.pathname))?.id || '';
+    function update() {
+      const selected = findTopic(tree, select.value);
+      const urls = selected ? new Set(selected.posts.map(post => post.url)) : null;
+      let visible = 0;
+      for (const { article, post } of articles) {
+        article.hidden = urls !== null && !urls.has(post.url);
+        if (!article.hidden) visible++;
+      }
+      count.textContent = `${visible} 篇文章`;
+      filterStates.set(location.pathname, select.value);
+    }
+    select.addEventListener('change', update);
+    host.dataset.enhanced = 'true'; control.hidden = false; update();
+  }
   function init() {
     const host = document.querySelector('[data-topics]');
     if (!host || host.dataset.enhanced) return;
@@ -148,4 +192,6 @@
   }
   document.addEventListener('DOMContentLoaded', init);
   document.addEventListener('blog:preview-updated', init);
+  document.addEventListener('DOMContentLoaded', initPostFilter);
+  document.addEventListener('blog:preview-updated', initPostFilter);
 })();
