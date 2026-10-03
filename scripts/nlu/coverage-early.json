@@ -1,0 +1,2442 @@
+{
+  "knowledgePoints": [
+    {
+      "id": "early-001",
+      "titleZh": "数据与模型的互补作用",
+      "pages": [
+        7
+      ],
+      "questionIds": [
+        "ds-data-01"
+      ]
+    },
+    {
+      "id": "early-002",
+      "titleZh": "数据流速度与处理需求",
+      "pages": [
+        10
+      ],
+      "questionIds": [
+        "ds-data-02"
+      ]
+    },
+    {
+      "id": "early-003",
+      "titleZh": "DIKW的层次",
+      "pages": [
+        9
+      ],
+      "questionIds": [
+        "ds-data-03"
+      ]
+    },
+    {
+      "id": "early-004",
+      "titleZh": "大数据四个V",
+      "pages": [
+        10
+      ],
+      "questionIds": [
+        "ds-data-04"
+      ]
+    },
+    {
+      "id": "early-005",
+      "titleZh": "文本数值化服务计算",
+      "pages": [
+        11,
+        12
+      ],
+      "questionIds": [
+        "ds-data-05"
+      ]
+    },
+    {
+      "id": "early-006",
+      "titleZh": "多源数据质量的识别",
+      "pages": [
+        10,
+        11,
+        12
+      ],
+      "questionIds": [
+        "ds-data-06"
+      ]
+    },
+    {
+      "id": "early-007",
+      "titleZh": "三种表征分别保留什么",
+      "pages": [
+        13,
+        16
+      ],
+      "questionIds": [
+        "ds-encoding-01"
+      ]
+    },
+    {
+      "id": "early-008",
+      "titleZh": "布尔文档向量与one-hot",
+      "pages": [
+        14,
+        17
+      ],
+      "questionIds": [
+        "ds-encoding-02"
+      ]
+    },
+    {
+      "id": "early-009",
+      "titleZh": "对数TF与IDF变量定义",
+      "pages": [
+        15,
+        32
+      ],
+      "questionIds": [
+        "ds-encoding-03"
+      ]
+    },
+    {
+      "id": "early-010",
+      "titleZh": "词频矩阵的行列含义",
+      "pages": [
+        17,
+        18
+      ],
+      "questionIds": [
+        "ds-encoding-04"
+      ]
+    },
+    {
+      "id": "early-011",
+      "titleZh": "IDF降低无区分力高频词的权重",
+      "pages": [
+        15,
+        19,
+        32
+      ],
+      "questionIds": [
+        "ds-encoding-05"
+      ]
+    },
+    {
+      "id": "early-012",
+      "titleZh": "领域目标改变happy/sad关系与CBOW纠错",
+      "pages": [
+        16,
+        110
+      ],
+      "questionIds": [
+        "ds-encoding-06"
+      ]
+    },
+    {
+      "id": "early-013",
+      "titleZh": "词为轴、文档为点",
+      "pages": [
+        20
+      ],
+      "questionIds": [
+        "ds-similarity-01"
+      ]
+    },
+    {
+      "id": "early-014",
+      "titleZh": "语义关系与词项独立轴的区别",
+      "pages": [
+        21
+      ],
+      "questionIds": [
+        "ds-similarity-02"
+      ]
+    },
+    {
+      "id": "early-015",
+      "titleZh": "欧氏距离受文档长度影响",
+      "pages": [
+        22
+      ],
+      "questionIds": [
+        "ds-similarity-03"
+      ]
+    },
+    {
+      "id": "early-016",
+      "titleZh": "文档复制后的角度与距离",
+      "pages": [
+        23
+      ],
+      "questionIds": [
+        "ds-similarity-04"
+      ]
+    },
+    {
+      "id": "early-017",
+      "titleZh": "余弦的点积和范数",
+      "pages": [
+        24
+      ],
+      "questionIds": [
+        "ds-similarity-05"
+      ]
+    },
+    {
+      "id": "early-018",
+      "titleZh": "单位向量上的余弦及距离",
+      "pages": [
+        24,
+        32
+      ],
+      "questionIds": [
+        "ds-similarity-06"
+      ]
+    },
+    {
+      "id": "early-019",
+      "titleZh": "稀疏高维问题和三个降维路线",
+      "pages": [
+        25
+      ],
+      "questionIds": [
+        "ds-reduction-01"
+      ]
+    },
+    {
+      "id": "early-020",
+      "titleZh": "SVD因子分解步骤",
+      "pages": [
+        26
+      ],
+      "questionIds": [
+        "ds-reduction-02"
+      ]
+    },
+    {
+      "id": "early-021",
+      "titleZh": "截断与矩阵形状",
+      "pages": [
+        26,
+        27
+      ],
+      "questionIds": [
+        "ds-reduction-03"
+      ]
+    },
+    {
+      "id": "early-022",
+      "titleZh": "低维几何只可能近似保留",
+      "pages": [
+        27
+      ],
+      "questionIds": [
+        "ds-reduction-04"
+      ]
+    },
+    {
+      "id": "early-023",
+      "titleZh": "截断秩与压缩保真度",
+      "pages": [
+        28
+      ],
+      "questionIds": [
+        "ds-reduction-05"
+      ]
+    },
+    {
+      "id": "early-024",
+      "titleZh": "可视化邻近不等于语义定论",
+      "pages": [
+        29
+      ],
+      "questionIds": [
+        "ds-reduction-06"
+      ]
+    },
+    {
+      "id": "early-025",
+      "titleZh": "监督分类的输入输出",
+      "pages": [
+        30
+      ],
+      "questionIds": [
+        "ds-classification-01"
+      ]
+    },
+    {
+      "id": "early-026",
+      "titleZh": "类别质心公式",
+      "pages": [
+        31,
+        32
+      ],
+      "questionIds": [
+        "ds-classification-02"
+      ]
+    },
+    {
+      "id": "early-027",
+      "titleZh": "最小二乘目标",
+      "pages": [
+        33,
+        34
+      ],
+      "questionIds": [
+        "ds-classification-03"
+      ]
+    },
+    {
+      "id": "early-028",
+      "titleZh": "判别投影",
+      "pages": [
+        35
+      ],
+      "questionIds": [
+        "ds-classification-04"
+      ]
+    },
+    {
+      "id": "early-029",
+      "titleZh": "原型分类",
+      "pages": [
+        36
+      ],
+      "questionIds": [
+        "ds-classification-05"
+      ]
+    },
+    {
+      "id": "early-030",
+      "titleZh": "支持向量决定分隔",
+      "pages": [
+        37
+      ],
+      "questionIds": [
+        "ds-classification-06"
+      ]
+    },
+    {
+      "id": "early-031",
+      "titleZh": "ROC视角的阈值与错误权衡",
+      "pages": [
+        38
+      ],
+      "questionIds": [
+        "ds-classification-07"
+      ]
+    },
+    {
+      "id": "early-032",
+      "titleZh": "概率与似然视角",
+      "pages": [
+        39
+      ],
+      "questionIds": [
+        "ds-classification-08"
+      ]
+    },
+    {
+      "id": "early-033",
+      "titleZh": "MAP分类目标",
+      "pages": [
+        40
+      ],
+      "questionIds": [
+        "ds-bayes-01"
+      ]
+    },
+    {
+      "id": "early-034",
+      "titleZh": "贝叶斯分母为何能省略",
+      "pages": [
+        40
+      ],
+      "questionIds": [
+        "ds-bayes-02"
+      ]
+    },
+    {
+      "id": "early-035",
+      "titleZh": "朴素假设是给定类别的条件独立",
+      "pages": [
+        41
+      ],
+      "questionIds": [
+        "ds-bayes-03"
+      ]
+    },
+    {
+      "id": "early-036",
+      "titleZh": "类别先验估计",
+      "pages": [
+        41
+      ],
+      "questionIds": [
+        "ds-bayes-04"
+      ]
+    },
+    {
+      "id": "early-037",
+      "titleZh": "加一平滑的分母含义",
+      "pages": [
+        41
+      ],
+      "questionIds": [
+        "ds-bayes-05"
+      ]
+    },
+    {
+      "id": "early-038",
+      "titleZh": "先验与似然共同决定分类",
+      "pages": [
+        40,
+        41
+      ],
+      "questionIds": [
+        "ds-bayes-06"
+      ]
+    },
+    {
+      "id": "early-039",
+      "titleZh": "kNN的完整流程",
+      "pages": [
+        42
+      ],
+      "questionIds": [
+        "ds-neighbors-01"
+      ]
+    },
+    {
+      "id": "early-040",
+      "titleZh": "邻域投票与经验比例",
+      "pages": [
+        42,
+        43
+      ],
+      "questionIds": [
+        "ds-neighbors-02"
+      ]
+    },
+    {
+      "id": "early-041",
+      "titleZh": "近邻数影响决策平滑性",
+      "pages": [
+        42,
+        44,
+        45
+      ],
+      "questionIds": [
+        "ds-neighbors-03"
+      ]
+    },
+    {
+      "id": "early-042",
+      "titleZh": "模型约束与偏差方差",
+      "pages": [
+        44,
+        45
+      ],
+      "questionIds": [
+        "ds-neighbors-04"
+      ]
+    },
+    {
+      "id": "early-043",
+      "titleZh": "训练好而测试差的过拟合",
+      "pages": [
+        45,
+        46
+      ],
+      "questionIds": [
+        "ds-neighbors-05"
+      ]
+    },
+    {
+      "id": "early-044",
+      "titleZh": "偏差方差权衡与泛化",
+      "pages": [
+        46
+      ],
+      "questionIds": [
+        "ds-neighbors-06"
+      ]
+    },
+    {
+      "id": "early-045",
+      "titleZh": "线性可分与超平面",
+      "pages": [
+        47,
+        48
+      ],
+      "questionIds": [
+        "ds-svm-01"
+      ]
+    },
+    {
+      "id": "early-046",
+      "titleZh": "可分性与最优性不同",
+      "pages": [
+        49
+      ],
+      "questionIds": [
+        "ds-svm-02"
+      ]
+    },
+    {
+      "id": "early-047",
+      "titleZh": "哪些样本影响最优分隔",
+      "pages": [
+        50
+      ],
+      "questionIds": [
+        "ds-svm-03"
+      ]
+    },
+    {
+      "id": "early-048",
+      "titleZh": "胖分隔带与大间隔",
+      "pages": [
+        51,
+        52
+      ],
+      "questionIds": [
+        "ds-svm-04"
+      ]
+    },
+    {
+      "id": "early-049",
+      "titleZh": "SVM的QP目标与可行性区别",
+      "pages": [
+        47,
+        52
+      ],
+      "questionIds": [
+        "ds-svm-05"
+      ]
+    },
+    {
+      "id": "early-050",
+      "titleZh": "几何间隔2除以范数",
+      "pages": [
+        53
+      ],
+      "questionIds": [
+        "ds-svm-06"
+      ]
+    },
+    {
+      "id": "early-051",
+      "titleZh": "正类不等式与原图错误",
+      "pages": [
+        53
+      ],
+      "questionIds": [
+        "ds-svm-07"
+      ]
+    },
+    {
+      "id": "early-052",
+      "titleZh": "one-versus-all多分类",
+      "pages": [
+        54
+      ],
+      "questionIds": [
+        "ds-svm-08"
+      ]
+    },
+    {
+      "id": "early-053",
+      "titleZh": "无标签时的聚类目标",
+      "pages": [
+        55
+      ],
+      "questionIds": [
+        "ds-clusters-01"
+      ]
+    },
+    {
+      "id": "early-054",
+      "titleZh": "K-means交替步骤",
+      "pages": [
+        56
+      ],
+      "questionIds": [
+        "ds-clusters-02"
+      ]
+    },
+    {
+      "id": "early-055",
+      "titleZh": "K-means平方距离目标",
+      "pages": [
+        58
+      ],
+      "questionIds": [
+        "ds-clusters-03"
+      ]
+    },
+    {
+      "id": "early-056",
+      "titleZh": "单调下降不是全局最优保证",
+      "pages": [
+        58
+      ],
+      "questionIds": [
+        "ds-clusters-04"
+      ]
+    },
+    {
+      "id": "early-057",
+      "titleZh": "多维聚类路由与k-medoids",
+      "pages": [
+        57,
+        58
+      ],
+      "questionIds": [
+        "ds-clusters-05"
+      ]
+    },
+    {
+      "id": "early-058",
+      "titleZh": "聚类仍含人为设计",
+      "pages": [
+        59
+      ],
+      "questionIds": [
+        "ds-clusters-06"
+      ]
+    },
+    {
+      "id": "early-059",
+      "titleZh": "自动化收益与问责风险",
+      "pages": [
+        61
+      ],
+      "questionIds": [
+        "ai-impact-01"
+      ]
+    },
+    {
+      "id": "early-060",
+      "titleZh": "AI暴露与互补性不是失业率",
+      "pages": [
+        62
+      ],
+      "questionIds": [
+        "ai-impact-02"
+      ]
+    },
+    {
+      "id": "early-061",
+      "titleZh": "群体关联不是个体或因果保证",
+      "pages": [
+        62
+      ],
+      "questionIds": [
+        "ai-impact-03"
+      ]
+    },
+    {
+      "id": "early-062",
+      "titleZh": "生成内容的来源与核验",
+      "pages": [
+        63,
+        65,
+        66
+      ],
+      "questionIds": [
+        "ai-impact-04"
+      ]
+    },
+    {
+      "id": "early-063",
+      "titleZh": "文本变长不等于增加信息",
+      "pages": [
+        64
+      ],
+      "questionIds": [
+        "ai-impact-05"
+      ]
+    },
+    {
+      "id": "early-064",
+      "titleZh": "人工复核与生成痕迹",
+      "pages": [
+        65,
+        66
+      ],
+      "questionIds": [
+        "ai-impact-06"
+      ]
+    },
+    {
+      "id": "early-065",
+      "titleZh": "AI、ML、DL的包含图",
+      "pages": [
+        67,
+        68,
+        73
+      ],
+      "questionIds": [
+        "ai-intelligence-01"
+      ]
+    },
+    {
+      "id": "early-066",
+      "titleZh": "人际与自我理解的区别",
+      "pages": [
+        69,
+        70
+      ],
+      "questionIds": [
+        "ai-intelligence-02"
+      ]
+    },
+    {
+      "id": "early-067",
+      "titleZh": "黑箱与机制未知",
+      "pages": [
+        71,
+        72
+      ],
+      "questionIds": [
+        "ai-intelligence-03"
+      ]
+    },
+    {
+      "id": "early-068",
+      "titleZh": "拟人线索不是理解证据",
+      "pages": [
+        74,
+        75
+      ],
+      "questionIds": [
+        "ai-intelligence-04"
+      ]
+    },
+    {
+      "id": "early-069",
+      "titleZh": "部分识别不等于完整理解",
+      "pages": [
+        76,
+        79
+      ],
+      "questionIds": [
+        "ai-intelligence-05"
+      ]
+    },
+    {
+      "id": "early-070",
+      "titleZh": "翻译机器与中文房间式符号操作",
+      "pages": [
+        77
+      ],
+      "questionIds": [
+        "ai-intelligence-06"
+      ]
+    },
+    {
+      "id": "early-071",
+      "titleZh": "专家系统与模仿智能行为",
+      "pages": [
+        78,
+        79
+      ],
+      "questionIds": [
+        "ai-intelligence-07"
+      ]
+    },
+    {
+      "id": "early-072",
+      "titleZh": "对抗扰动与模型置信度",
+      "pages": [
+        80
+      ],
+      "questionIds": [
+        "ai-intelligence-08"
+      ]
+    },
+    {
+      "id": "early-073",
+      "titleZh": "可靠性问题的不同层次",
+      "pages": [
+        81
+      ],
+      "questionIds": [
+        "ai-limits-01"
+      ]
+    },
+    {
+      "id": "early-074",
+      "titleZh": "领域变化、tank问题与Norman截图",
+      "pages": [
+        82
+      ],
+      "questionIds": [
+        "ai-limits-02"
+      ]
+    },
+    {
+      "id": "early-075",
+      "titleZh": "一致性与反复调参择优",
+      "pages": [
+        83
+      ],
+      "questionIds": [
+        "ai-limits-03"
+      ]
+    },
+    {
+      "id": "early-076",
+      "titleZh": "比较方法时控制计算预算",
+      "pages": [
+        84
+      ],
+      "questionIds": [
+        "ai-limits-04"
+      ]
+    },
+    {
+      "id": "early-077",
+      "titleZh": "透明性与学习特征",
+      "pages": [
+        85
+      ],
+      "questionIds": [
+        "ai-limits-05"
+      ]
+    },
+    {
+      "id": "early-078",
+      "titleZh": "历史决策与无关特征两种偏差",
+      "pages": [
+        100
+      ],
+      "questionIds": [
+        "ai-limits-06"
+      ]
+    },
+    {
+      "id": "early-079",
+      "titleZh": "输入层隐藏层输出层",
+      "pages": [
+        87
+      ],
+      "questionIds": [
+        "ai-neuron-01"
+      ]
+    },
+    {
+      "id": "early-080",
+      "titleZh": "全连接参数数量的补充推导",
+      "pages": [
+        87
+      ],
+      "questionIds": [
+        "ai-neuron-02"
+      ]
+    },
+    {
+      "id": "early-081",
+      "titleZh": "神经元决策所需条件",
+      "pages": [
+        88,
+        89
+      ],
+      "questionIds": [
+        "ai-neuron-03"
+      ]
+    },
+    {
+      "id": "early-082",
+      "titleZh": "加权和与激活的矩阵形式",
+      "pages": [
+        89
+      ],
+      "questionIds": [
+        "ai-neuron-04"
+      ]
+    },
+    {
+      "id": "early-083",
+      "titleZh": "权重下标与偏置常数",
+      "pages": [
+        89
+      ],
+      "questionIds": [
+        "ai-neuron-05"
+      ]
+    },
+    {
+      "id": "early-084",
+      "titleZh": "二维嵌入三维不会凭空增加信息",
+      "pages": [
+        90
+      ],
+      "questionIds": [
+        "ai-neuron-06"
+      ]
+    },
+    {
+      "id": "early-085",
+      "titleZh": "前馈映射与状态依赖",
+      "pages": [
+        91,
+        92,
+        94
+      ],
+      "questionIds": [
+        "ai-food-01"
+      ]
+    },
+    {
+      "id": "early-086",
+      "titleZh": "类别独热编码的维度",
+      "pages": [
+        93
+      ],
+      "questionIds": [
+        "ai-food-02"
+      ]
+    },
+    {
+      "id": "early-087",
+      "titleZh": "独热输入选择矩阵的一列",
+      "pages": [
+        95,
+        96,
+        97
+      ],
+      "questionIds": [
+        "ai-food-03"
+      ]
+    },
+    {
+      "id": "early-088",
+      "titleZh": "参数与激活的区别",
+      "pages": [
+        96,
+        97
+      ],
+      "questionIds": [
+        "ai-food-04"
+      ]
+    },
+    {
+      "id": "early-089",
+      "titleZh": "前向演示与训练证据不同",
+      "pages": [
+        95,
+        96,
+        97
+      ],
+      "questionIds": [
+        "ai-food-05"
+      ]
+    },
+    {
+      "id": "early-090",
+      "titleZh": "端到端学习表示与分类器",
+      "pages": [
+        99
+      ],
+      "questionIds": [
+        "ai-food-06"
+      ]
+    },
+    {
+      "id": "early-091",
+      "titleZh": "词序表示与网络训练问题的区别",
+      "pages": [
+        101
+      ],
+      "questionIds": [
+        "ai-convolution-01"
+      ]
+    },
+    {
+      "id": "early-092",
+      "titleZh": "二维卷积核的局部乘加",
+      "pages": [
+        102
+      ],
+      "questionIds": [
+        "ai-convolution-02"
+      ]
+    },
+    {
+      "id": "early-093",
+      "titleZh": "文本窗口拼接及核维度",
+      "pages": [
+        103
+      ],
+      "questionIds": [
+        "ai-convolution-03"
+      ]
+    },
+    {
+      "id": "early-094",
+      "titleZh": "文本卷积窗口数",
+      "pages": [
+        103
+      ],
+      "questionIds": [
+        "ai-convolution-04"
+      ]
+    },
+    {
+      "id": "early-095",
+      "titleZh": "最大池化的保留与丢失",
+      "pages": [
+        103,
+        104
+      ],
+      "questionIds": [
+        "ai-convolution-05"
+      ]
+    },
+    {
+      "id": "early-096",
+      "titleZh": "窄卷积宽卷积与边界",
+      "pages": [
+        104
+      ],
+      "questionIds": [
+        "ai-convolution-06"
+      ]
+    },
+    {
+      "id": "early-097",
+      "titleZh": "k-max保留多个响应",
+      "pages": [
+        104
+      ],
+      "questionIds": [
+        "ai-convolution-07"
+      ]
+    },
+    {
+      "id": "early-098",
+      "titleZh": "显著性不是因果证明",
+      "pages": [
+        105
+      ],
+      "questionIds": [
+        "ai-convolution-08"
+      ]
+    },
+    {
+      "id": "early-099",
+      "titleZh": "共享嵌入需要共享模型",
+      "pages": [
+        106
+      ],
+      "questionIds": [
+        "ai-embedding-01"
+      ]
+    },
+    {
+      "id": "early-100",
+      "titleZh": "上下文窗口如何移动",
+      "pages": [
+        106
+      ],
+      "questionIds": [
+        "ai-embedding-02"
+      ]
+    },
+    {
+      "id": "early-101",
+      "titleZh": "共现与单词边际频率的区别",
+      "pages": [
+        107
+      ],
+      "questionIds": [
+        "ai-embedding-03"
+      ]
+    },
+    {
+      "id": "early-102",
+      "titleZh": "计数模型与预测式目标",
+      "pages": [
+        107,
+        108
+      ],
+      "questionIds": [
+        "ai-embedding-04"
+      ]
+    },
+    {
+      "id": "early-103",
+      "titleZh": "Skip-gram窗口排除中心",
+      "pages": [
+        107
+      ],
+      "questionIds": [
+        "ai-embedding-05"
+      ]
+    },
+    {
+      "id": "early-104",
+      "titleZh": "词向量类比的含义",
+      "pages": [
+        108
+      ],
+      "questionIds": [
+        "ai-embedding-06"
+      ]
+    },
+    {
+      "id": "early-105",
+      "titleZh": "静态与上下文化词嵌入",
+      "pages": [
+        109,
+        113
+      ],
+      "questionIds": [
+        "ai-embedding-types-01"
+      ]
+    },
+    {
+      "id": "early-106",
+      "titleZh": "CBOW与Skip-gram方向",
+      "pages": [
+        110
+      ],
+      "questionIds": [
+        "ai-embedding-types-02"
+      ]
+    },
+    {
+      "id": "early-107",
+      "titleZh": "GloVe强调全局共现信息",
+      "pages": [
+        111
+      ],
+      "questionIds": [
+        "ai-embedding-types-03"
+      ]
+    },
+    {
+      "id": "early-108",
+      "titleZh": "FastText子词与未知词",
+      "pages": [
+        112
+      ],
+      "questionIds": [
+        "ai-embedding-types-04"
+      ]
+    },
+    {
+      "id": "early-109",
+      "titleZh": "多义词需要上下文",
+      "pages": [
+        113
+      ],
+      "questionIds": [
+        "ai-embedding-types-05"
+      ]
+    },
+    {
+      "id": "early-110",
+      "titleZh": "ELMo的双向LSTM动态表征",
+      "pages": [
+        113
+      ],
+      "questionIds": [
+        "ai-embedding-types-06"
+      ]
+    },
+    {
+      "id": "early-111",
+      "titleZh": "BERT双向Transformer与masking",
+      "pages": [
+        114
+      ],
+      "questionIds": [
+        "ai-embedding-types-07"
+      ]
+    },
+    {
+      "id": "early-112",
+      "titleZh": "跨模态模型的输入目标",
+      "pages": [
+        115
+      ],
+      "questionIds": [
+        "ai-embedding-types-08"
+      ]
+    },
+    {
+      "id": "early-113",
+      "titleZh": "RNN隐状态更新",
+      "pages": [
+        116
+      ],
+      "questionIds": [
+        "ai-recurrent-01"
+      ]
+    },
+    {
+      "id": "early-114",
+      "titleZh": "下一个词概率的条件历史",
+      "pages": [
+        116
+      ],
+      "questionIds": [
+        "ai-recurrent-02"
+      ]
+    },
+    {
+      "id": "early-115",
+      "titleZh": "时序状态而非独立预测",
+      "pages": [
+        117,
+        121,
+        122
+      ],
+      "questionIds": [
+        "ai-recurrent-03"
+      ]
+    },
+    {
+      "id": "early-116",
+      "titleZh": "循环状态的矩阵运算",
+      "pages": [
+        118,
+        119,
+        120
+      ],
+      "questionIds": [
+        "ai-recurrent-04"
+      ]
+    },
+    {
+      "id": "early-117",
+      "titleZh": "从矩阵乘法到反馈连线",
+      "pages": [
+        121,
+        122
+      ],
+      "questionIds": [
+        "ai-recurrent-05"
+      ]
+    },
+    {
+      "id": "early-118",
+      "titleZh": "多步状态转移",
+      "pages": [
+        118,
+        119,
+        120,
+        122
+      ],
+      "questionIds": [
+        "ai-recurrent-06"
+      ]
+    },
+    {
+      "id": "early-119",
+      "titleZh": "当前输入与历史状态共同决定更新",
+      "pages": [
+        123
+      ],
+      "questionIds": [
+        "ai-recurrent-context-01"
+      ]
+    },
+    {
+      "id": "early-120",
+      "titleZh": "块矩阵构建候选状态",
+      "pages": [
+        124,
+        125,
+        126
+      ],
+      "questionIds": [
+        "ai-recurrent-context-02"
+      ]
+    },
+    {
+      "id": "early-121",
+      "titleZh": "控制信号的广播",
+      "pages": [
+        127,
+        128
+      ],
+      "questionIds": [
+        "ai-recurrent-context-03"
+      ]
+    },
+    {
+      "id": "early-122",
+      "titleZh": "多路输入的逐元素合并",
+      "pages": [
+        129,
+        130
+      ],
+      "questionIds": [
+        "ai-recurrent-context-04"
+      ]
+    },
+    {
+      "id": "early-123",
+      "titleZh": "阈值激活筛选共同支持",
+      "pages": [
+        131,
+        132
+      ],
+      "questionIds": [
+        "ai-recurrent-context-05"
+      ]
+    },
+    {
+      "id": "early-124",
+      "titleZh": "相同输入不同历史的输出",
+      "pages": [
+        123,
+        125,
+        126,
+        128,
+        132
+      ],
+      "questionIds": [
+        "ai-recurrent-context-06"
+      ]
+    },
+    {
+      "id": "early-125",
+      "titleZh": "RNN长期依赖与梯度消失",
+      "pages": [
+        133
+      ],
+      "questionIds": [
+        "ai-recurrent-context-07"
+      ]
+    },
+    {
+      "id": "early-126",
+      "titleZh": "时序依赖限制并行而非所有并行不可能",
+      "pages": [
+        133
+      ],
+      "questionIds": [
+        "ai-recurrent-context-08"
+      ]
+    },
+    {
+      "id": "early-127",
+      "titleZh": "梯度消失与梯度爆炸的区别",
+      "pages": [
+        101,
+        133
+      ],
+      "questionIds": [
+        "ai-neuron-07"
+      ]
+    }
+  ],
+  "pageAudit": [
+    {
+      "page": 1,
+      "kind": "section",
+      "summaryZh": "封面：作者Erik Cambria与SenticNet相关站点/渠道；非算法页。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 2,
+      "kind": "resource",
+      "summaryZh": "团队照片与sentic.net/team资源。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 3,
+      "kind": "section",
+      "summaryZh": "五讲课程目录及每讲三项子主题。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 4,
+      "kind": "resource",
+      "summaryZh": "教材封面、书名与Springer ISBN链接。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 5,
+      "kind": "resource",
+      "summaryZh": "教材用途及教材内部视频/作业/Quiz页码，不能混同PDF页序。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 6,
+      "kind": "section",
+      "summaryZh": "Lecture1 Data Science章节封面。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 7,
+      "kind": "content",
+      "summaryZh": "Data is the new oil与AI is the new engine配图。",
+      "knowledgePointIds": [
+        "early-001"
+      ]
+    },
+    {
+      "page": 8,
+      "kind": "context",
+      "summaryZh": "BEFORE分享数据不分享代码；NOW相反的趋势示意。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 9,
+      "kind": "content",
+      "summaryZh": "DIKW金字塔、DNA/设备存储图与2017年存储论文。",
+      "knowledgePointIds": [
+        "early-003"
+      ]
+    },
+    {
+      "page": 10,
+      "kind": "content",
+      "summaryZh": "四V图：Volume/Velocity/Variety/Veracity。历史数据量、设备/人口、社交媒体、数据质量与岗位预测仅作背景，不考数值记忆，也不视为当前统计。",
+      "knowledgePointIds": [
+        "early-002",
+        "early-004",
+        "early-006"
+      ]
+    },
+    {
+      "page": 11,
+      "kind": "content",
+      "summaryZh": "传统统计、测量与财务数字。",
+      "knowledgePointIds": [
+        "early-005",
+        "early-006"
+      ]
+    },
+    {
+      "page": 12,
+      "kind": "content",
+      "summaryZh": "文本变数值、比特串及时频表示示意。",
+      "knowledgePointIds": [
+        "early-005",
+        "early-006"
+      ]
+    },
+    {
+      "page": 13,
+      "kind": "content",
+      "summaryZh": "presence/frequency/context三类表示。",
+      "knowledgePointIds": [
+        "early-007"
+      ]
+    },
+    {
+      "page": 14,
+      "kind": "content",
+      "summaryZh": "19词词表；原打印向量长度错误，multi-hot术语纠正。",
+      "knowledgePointIds": [
+        "early-008"
+      ]
+    },
+    {
+      "page": 15,
+      "kind": "content",
+      "summaryZh": "log TF/IDF公式，需定义变量并处理零频；BOW不必只用TF-IDF。",
+      "knowledgePointIds": [
+        "early-009",
+        "early-011"
+      ]
+    },
+    {
+      "page": 16,
+      "kind": "content",
+      "summaryZh": "d维嵌入、通用/情感目标与happy/sad；CBOW方向错误由110页纠正。",
+      "knowledgePointIds": [
+        "early-007",
+        "early-012"
+      ]
+    },
+    {
+      "page": 17,
+      "kind": "content",
+      "summaryZh": "莎剧7词×6文档布尔矩阵，含与后表不一致单元格。",
+      "knowledgePointIds": [
+        "early-008",
+        "early-010"
+      ]
+    },
+    {
+      "page": 18,
+      "kind": "content",
+      "summaryZh": "莎剧计数表，Julius Caesar列73/157/227/10/0/0/0。",
+      "knowledgePointIds": [
+        "early-010"
+      ]
+    },
+    {
+      "page": 19,
+      "kind": "content",
+      "summaryZh": "实值权重表，与计数表并非完整一致的可复算数据。",
+      "knowledgePointIds": [
+        "early-011"
+      ]
+    },
+    {
+      "page": 20,
+      "kind": "content",
+      "summaryZh": "词为轴文档为点；词表维度1/2/3到数千万。",
+      "knowledgePointIds": [
+        "early-013"
+      ]
+    },
+    {
+      "page": 21,
+      "kind": "content",
+      "summaryZh": "颜色/运动/车辆语义空间，停用词、同义和屈折示意。",
+      "knowledgePointIds": [
+        "early-014"
+      ]
+    },
+    {
+      "page": 22,
+      "kind": "content",
+      "summaryZh": "q与d2方向近但欧氏距离大的例子，轴GOSSIP/JEALOUS。",
+      "knowledgePointIds": [
+        "early-015"
+      ]
+    },
+    {
+      "page": 23,
+      "kind": "content",
+      "summaryZh": "文档复制与夹角；等比例结论需原始词频等假设。",
+      "knowledgePointIds": [
+        "early-016"
+      ]
+    },
+    {
+      "page": 24,
+      "kind": "content",
+      "summaryZh": "余弦点积范数公式与归一化形式。",
+      "knowledgePointIds": [
+        "early-017",
+        "early-018"
+      ]
+    },
+    {
+      "page": 25,
+      "kind": "content",
+      "summaryZh": "稀疏/过大/过高矩阵与三条降维路线。",
+      "knowledgePointIds": [
+        "early-019"
+      ]
+    },
+    {
+      "page": 26,
+      "kind": "content",
+      "summaryZh": "SVD X=UΣVᵀ及分解-截断-重建步骤。",
+      "knowledgePointIds": [
+        "early-020",
+        "early-021"
+      ]
+    },
+    {
+      "page": 27,
+      "kind": "content",
+      "summaryZh": "3D到2D投影，距离角度保留只能近似理解。",
+      "knowledgePointIds": [
+        "early-021",
+        "early-022"
+      ]
+    },
+    {
+      "page": 28,
+      "kind": "content",
+      "summaryZh": "k=512/256/128/64/32/16六幅图像压缩对照。",
+      "knowledgePointIds": [
+        "early-023"
+      ]
+    },
+    {
+      "page": 29,
+      "kind": "content",
+      "summaryZh": "词汇语义星空散点，邻域可视化不等于全空间精确几何。",
+      "knowledgePointIds": [
+        "early-024"
+      ]
+    },
+    {
+      "page": 30,
+      "kind": "content",
+      "summaryZh": "Environment/Social/Governance分类边界与查询点。",
+      "knowledgePointIds": [
+        "early-025"
+      ]
+    },
+    {
+      "page": 31,
+      "kind": "content",
+      "summaryZh": "类别均值质心公式。",
+      "knowledgePointIds": [
+        "early-026"
+      ]
+    },
+    {
+      "page": 32,
+      "kind": "content",
+      "summaryZh": "欧氏距离与TF-IDF余弦；明确N/df的IDF。",
+      "knowledgePointIds": [
+        "early-009",
+        "early-011",
+        "early-018",
+        "early-026"
+      ]
+    },
+    {
+      "page": 33,
+      "kind": "content",
+      "summaryZh": "六种分类视角清单及两类点基础图。",
+      "knowledgePointIds": [
+        "early-027"
+      ]
+    },
+    {
+      "page": 34,
+      "kind": "content",
+      "summaryZh": "新增回归/最小二乘视角及图示，不是重复页。",
+      "knowledgePointIds": [
+        "early-027"
+      ]
+    },
+    {
+      "page": 35,
+      "kind": "content",
+      "summaryZh": "新增判别方向投影视角。",
+      "knowledgePointIds": [
+        "early-028"
+      ]
+    },
+    {
+      "page": 36,
+      "kind": "content",
+      "summaryZh": "新增原型方块和连接关系。",
+      "knowledgePointIds": [
+        "early-029"
+      ]
+    },
+    {
+      "page": 37,
+      "kind": "content",
+      "summaryZh": "新增支持向量和分隔带。",
+      "knowledgePointIds": [
+        "early-030"
+      ]
+    },
+    {
+      "page": 38,
+      "kind": "content",
+      "summaryZh": "新增ROC/阈值分类边界视角；非实际ROC曲线图。",
+      "knowledgePointIds": [
+        "early-031"
+      ]
+    },
+    {
+      "page": 39,
+      "kind": "content",
+      "summaryZh": "新增概率/似然分布轮廓。",
+      "knowledgePointIds": [
+        "early-032"
+      ]
+    },
+    {
+      "page": 40,
+      "kind": "content",
+      "summaryZh": "MAP、贝叶斯公式与共同证据分母消去。",
+      "knowledgePointIds": [
+        "early-033",
+        "early-034",
+        "early-038"
+      ]
+    },
+    {
+      "page": 41,
+      "kind": "content",
+      "summaryZh": "条件独立因子分解、先验和加一平滑公式。",
+      "knowledgePointIds": [
+        "early-035",
+        "early-036",
+        "early-037",
+        "early-038"
+      ]
+    },
+    {
+      "page": 42,
+      "kind": "content",
+      "summaryZh": "k邻域、i/k经验类别比例、多数票。",
+      "knowledgePointIds": [
+        "early-039",
+        "early-040",
+        "early-041"
+      ]
+    },
+    {
+      "page": 43,
+      "kind": "content",
+      "summaryZh": "6NN圈内5红1蓝0黑，黄色菱形不计。",
+      "knowledgePointIds": [
+        "early-040"
+      ]
+    },
+    {
+      "page": 44,
+      "kind": "content",
+      "summaryZh": "弯曲kNN边界与简单NB边界图。",
+      "knowledgePointIds": [
+        "early-041",
+        "early-042"
+      ]
+    },
+    {
+      "page": 45,
+      "kind": "content",
+      "summaryZh": "kNN/NB典型偏差方差对比及植物学家类比。",
+      "knowledgePointIds": [
+        "early-041",
+        "early-042",
+        "early-043"
+      ]
+    },
+    {
+      "page": 46,
+      "kind": "content",
+      "summaryZh": "欠拟合/过拟合/折中、复杂度与误差曲线。",
+      "knowledgePointIds": [
+        "early-043",
+        "early-044"
+      ]
+    },
+    {
+      "page": 47,
+      "kind": "content",
+      "summaryZh": "线性可分、二维线与高维超平面、可行性问题。",
+      "knowledgePointIds": [
+        "early-045",
+        "early-049"
+      ]
+    },
+    {
+      "page": 48,
+      "kind": "content",
+      "summaryZh": "红蓝两侧ax+by大于/小于c。",
+      "knowledgePointIds": [
+        "early-045"
+      ]
+    },
+    {
+      "page": 49,
+      "kind": "content",
+      "summaryZh": "两条均可分线说明多解。",
+      "knowledgePointIds": [
+        "early-046"
+      ]
+    },
+    {
+      "page": 50,
+      "kind": "content",
+      "summaryZh": "困难边界点与整体统计视角区别。",
+      "knowledgePointIds": [
+        "early-047"
+      ]
+    },
+    {
+      "page": 51,
+      "kind": "content",
+      "summaryZh": "胖绿色分隔带的间隔直觉。",
+      "knowledgePointIds": [
+        "early-048"
+      ]
+    },
+    {
+      "page": 52,
+      "kind": "content",
+      "summaryZh": "大间隔、支持向量、二次规划；性能赞誉仅作者历史表述。",
+      "knowledgePointIds": [
+        "early-048",
+        "early-049"
+      ]
+    },
+    {
+      "page": 53,
+      "kind": "content",
+      "summaryZh": "wᵀx+b=0/±1，规范化尺度、ρ=2/||w||，正类不等式原图印错。",
+      "knowledgePointIds": [
+        "early-050",
+        "early-051"
+      ]
+    },
+    {
+      "page": 54,
+      "kind": "resource",
+      "summaryZh": "教程、SVM-Light、LIBSVM、Matlab工具与one-versus-all。",
+      "knowledgePointIds": [
+        "early-052"
+      ]
+    },
+    {
+      "page": 55,
+      "kind": "content",
+      "summaryZh": "无标签三簇示例引入centroids。",
+      "knowledgePointIds": [
+        "early-053"
+      ]
+    },
+    {
+      "page": 56,
+      "kind": "content",
+      "summaryZh": "K=2种子-分配-均值反复，汇聚图。",
+      "knowledgePointIds": [
+        "early-054"
+      ]
+    },
+    {
+      "page": 57,
+      "kind": "content",
+      "summaryZh": "多维聚类及context只比较所选簇response documents的路由示意。",
+      "knowledgePointIds": [
+        "early-057"
+      ]
+    },
+    {
+      "page": 58,
+      "kind": "content",
+      "summaryZh": "簇内平方和/总目标、非增收敛、medoid实样本区别。",
+      "knowledgePointIds": [
+        "early-055",
+        "early-056",
+        "early-057"
+      ]
+    },
+    {
+      "page": 59,
+      "kind": "content",
+      "summaryZh": "监督分类与无监督聚类，以及K/相似度人为选择。",
+      "knowledgePointIds": [
+        "early-058"
+      ]
+    },
+    {
+      "page": 60,
+      "kind": "section",
+      "summaryZh": "Lecture2 AI Basics章节封面。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 61,
+      "kind": "content",
+      "summaryZh": "四类工作应用、四类长期影响与plumber观点配图。",
+      "knowledgePointIds": [
+        "early-059"
+      ]
+    },
+    {
+      "page": 62,
+      "kind": "content",
+      "summaryZh": "IMF暴露/互补柱图，准备度散点，32+56+37=125经济体与来源/中位线。",
+      "knowledgePointIds": [
+        "early-060",
+        "early-061"
+      ]
+    },
+    {
+      "page": 63,
+      "kind": "resource",
+      "summaryZh": "plagiarism-singularity-conjecture链接；页内没有样本统计。",
+      "knowledgePointIds": [
+        "early-062"
+      ]
+    },
+    {
+      "page": 64,
+      "kind": "content",
+      "summaryZh": "AI扩写邮件与摘要回单条要点漫画。",
+      "knowledgePointIds": [
+        "early-063"
+      ]
+    },
+    {
+      "page": 65,
+      "kind": "content",
+      "summaryZh": "邮件与显示器好评残留AI提示的两个不同例子。",
+      "knowledgePointIds": [
+        "early-062",
+        "early-064"
+      ]
+    },
+    {
+      "page": 66,
+      "kind": "content",
+      "summaryZh": "酒吧招聘广告与报纸文章残留AI提示的两个不同例子。",
+      "knowledgePointIds": [
+        "early-062",
+        "early-064"
+      ]
+    },
+    {
+      "page": 67,
+      "kind": "content",
+      "summaryZh": "AI包含ML包含DL历史示意图。",
+      "knowledgePointIds": [
+        "early-065"
+      ]
+    },
+    {
+      "page": 68,
+      "kind": "context",
+      "summaryZh": "Artificial Intelligence下划线强调Intelligence。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 69,
+      "kind": "content",
+      "summaryZh": "九种智能轮盘、Davis1996资源。",
+      "knowledgePointIds": [
+        "early-066"
+      ]
+    },
+    {
+      "page": 70,
+      "kind": "context",
+      "summaryZh": "leet文字表达适应变化的能力，引用归属未做权威认证。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 71,
+      "kind": "content",
+      "summaryZh": "行为主义黑箱输入/输出与未知内部。",
+      "knowledgePointIds": [
+        "early-067"
+      ]
+    },
+    {
+      "page": 72,
+      "kind": "context",
+      "summaryZh": "三位署名引语谈理解机制困难，不当作实验证据。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 73,
+      "kind": "context",
+      "summaryZh": "同一短语改为强调Artificial，新增修辞重点。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 74,
+      "kind": "content",
+      "summaryZh": "Siri多个机智/不当回答截图与拟人智能投射。",
+      "knowledgePointIds": [
+        "early-068"
+      ]
+    },
+    {
+      "page": 75,
+      "kind": "content",
+      "summaryZh": "Sophia/合影图提醒外观不证明理解。",
+      "knowledgePointIds": [
+        "early-068"
+      ]
+    },
+    {
+      "page": 76,
+      "kind": "content",
+      "summaryZh": "Ginger狗听句子片段漫画与评价者投射。",
+      "knowledgePointIds": [
+        "early-069"
+      ]
+    },
+    {
+      "page": 77,
+      "kind": "content",
+      "summaryZh": "翻译机器、中文房间规则簿及网页资源。",
+      "knowledgePointIds": [
+        "early-070"
+      ]
+    },
+    {
+      "page": 78,
+      "kind": "content",
+      "summaryZh": "McDermott1976论文资源、专用专家与智能关系。",
+      "knowledgePointIds": [
+        "early-071"
+      ]
+    },
+    {
+      "page": 79,
+      "kind": "content",
+      "summaryZh": "模仿智能行为与机制复现不同，作者批评论述。",
+      "knowledgePointIds": [
+        "early-069",
+        "early-071"
+      ]
+    },
+    {
+      "page": 80,
+      "kind": "content",
+      "summaryZh": "贴片、校车、交通标志、熊猫四类对抗例；57.7/99.3是confidence；2023资源。",
+      "knowledgePointIds": [
+        "early-072"
+      ]
+    },
+    {
+      "page": 81,
+      "kind": "content",
+      "summaryZh": "依赖、一致、复现、透明四局限。",
+      "knowledgePointIds": [
+        "early-073"
+      ]
+    },
+    {
+      "page": 82,
+      "kind": "content",
+      "summaryZh": "分布变化、tank轶事、Norman偏差报道。",
+      "knowledgePointIds": [
+        "early-074"
+      ]
+    },
+    {
+      "page": 83,
+      "kind": "content",
+      "summaryZh": "反复调参择优与一致性漫画。",
+      "knowledgePointIds": [
+        "early-075"
+      ]
+    },
+    {
+      "page": 84,
+      "kind": "content",
+      "summaryZh": "WIRED复现危机/Anna Rogers及模型与预算优越区别。",
+      "knowledgePointIds": [
+        "early-076"
+      ]
+    },
+    {
+      "page": 85,
+      "kind": "content",
+      "summaryZh": "学习特征难解释的透明性问题。",
+      "knowledgePointIds": [
+        "early-077"
+      ]
+    },
+    {
+      "page": 86,
+      "kind": "section",
+      "summaryZh": "幕布图过渡到网络内部，没有独立公式。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 87,
+      "kind": "content",
+      "summaryZh": "3输入-4隐藏-4隐藏-1输出网络。",
+      "knowledgePointIds": [
+        "early-079",
+        "early-080"
+      ]
+    },
+    {
+      "page": 88,
+      "kind": "content",
+      "summaryZh": "5维数值输入与ACTIVE/INACTIVE空间示意，未给足权重。",
+      "knowledgePointIds": [
+        "early-081"
+      ]
+    },
+    {
+      "page": 89,
+      "kind": "content",
+      "summaryZh": "逐神经元和矩阵公式、W下标及偏置常数1。",
+      "knowledgePointIds": [
+        "early-081",
+        "early-082",
+        "early-083"
+      ]
+    },
+    {
+      "page": 90,
+      "kind": "content",
+      "summaryZh": "3×2稀疏矩阵把二维映到三维平面。",
+      "knowledgePointIds": [
+        "early-084"
+      ]
+    },
+    {
+      "page": 91,
+      "kind": "content",
+      "summaryZh": "厨师与三种食物背景，尚未给规则。",
+      "knowledgePointIds": [
+        "early-085"
+      ]
+    },
+    {
+      "page": 92,
+      "kind": "content",
+      "summaryZh": "晴披萨/雨汉堡条件规则新增。",
+      "knowledgePointIds": [
+        "early-085"
+      ]
+    },
+    {
+      "page": 93,
+      "kind": "content",
+      "summaryZh": "3维食物和2维天气独热标识新增。",
+      "knowledgePointIds": [
+        "early-086"
+      ]
+    },
+    {
+      "page": 94,
+      "kind": "content",
+      "summaryZh": "先以NN黑箱表达两个输入输出映射。",
+      "knowledgePointIds": [
+        "early-085"
+      ]
+    },
+    {
+      "page": 95,
+      "kind": "content",
+      "summaryZh": "揭示黑箱的3×2矩阵乘法。",
+      "knowledgePointIds": [
+        "early-087",
+        "early-089"
+      ]
+    },
+    {
+      "page": 96,
+      "kind": "content",
+      "summaryZh": "晴输入的逐边和节点激活计算。",
+      "knowledgePointIds": [
+        "early-087",
+        "early-088",
+        "early-089"
+      ]
+    },
+    {
+      "page": 97,
+      "kind": "content",
+      "summaryZh": "同权重雨输入的不同激活计算。",
+      "knowledgePointIds": [
+        "early-087",
+        "early-088",
+        "early-089"
+      ]
+    },
+    {
+      "page": 98,
+      "kind": "context",
+      "summaryZh": "早期神经网络思想与今日差异的过渡提问。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 99,
+      "kind": "content",
+      "summaryZh": "手工特征/分类分离与深度联合特征学习汽车示例。",
+      "knowledgePointIds": [
+        "early-090"
+      ]
+    },
+    {
+      "page": 100,
+      "kind": "content",
+      "summaryZh": "历史决策/无关特征偏差及O’Neil2016资源。",
+      "knowledgePointIds": [
+        "early-078"
+      ]
+    },
+    {
+      "page": 101,
+      "kind": "content",
+      "summaryZh": "消失/爆炸梯度，FFNN与BOW上下文限制需区分。",
+      "knowledgePointIds": [
+        "early-091",
+        "early-127"
+      ]
+    },
+    {
+      "page": 102,
+      "kind": "content",
+      "summaryZh": "局部连接/二维核乘加图及需谨慎解读的历史简化。",
+      "knowledgePointIds": [
+        "early-092"
+      ]
+    },
+    {
+      "page": 103,
+      "kind": "content",
+      "summaryZh": "词向量拼接、h=3、n-h+1、响应与max；五词数值及未可复算1.1。",
+      "knowledgePointIds": [
+        "early-093",
+        "early-094",
+        "early-095"
+      ]
+    },
+    {
+      "page": 104,
+      "kind": "content",
+      "summaryZh": "宽窄卷积、精确2×2池化表、七词动态k-max/folding结构图。",
+      "knowledgePointIds": [
+        "early-095",
+        "early-096",
+        "early-097"
+      ]
+    },
+    {
+      "page": 105,
+      "kind": "content",
+      "summaryZh": "分层显著性与Sofa/Clock/Bouquet/Girl原始百分数，定义不足。",
+      "knowledgePointIds": [
+        "early-098"
+      ]
+    },
+    {
+      "page": 106,
+      "kind": "content",
+      "summaryZh": "burger共享嵌入数值、左右上下文与滑动窗口。",
+      "knowledgePointIds": [
+        "early-099",
+        "early-100"
+      ]
+    },
+    {
+      "page": 107,
+      "kind": "content",
+      "summaryZh": "banking语境、小语料共现矩阵、into半径2窗口和概率目标。",
+      "knowledgePointIds": [
+        "early-101",
+        "early-102",
+        "early-103"
+      ]
+    },
+    {
+      "page": 108,
+      "kind": "content",
+      "summaryZh": "稠密向量、预测语境、King-Man+Woman类比。",
+      "knowledgePointIds": [
+        "early-102",
+        "early-104"
+      ]
+    },
+    {
+      "page": 109,
+      "kind": "content",
+      "summaryZh": "Word2Vec/GloVe/FastText/ELMo/BERT年份和全称。",
+      "knowledgePointIds": [
+        "early-105"
+      ]
+    },
+    {
+      "page": 110,
+      "kind": "content",
+      "summaryZh": "CBOW/Skip-gram相反方向、cat/dog可替代语境。",
+      "knowledgePointIds": [
+        "early-012",
+        "early-106"
+      ]
+    },
+    {
+      "page": 111,
+      "kind": "content",
+      "summaryZh": "GloVe共现与Word2Vec对照，频率完全忽略的原文需纠正。",
+      "knowledgePointIds": [
+        "early-107"
+      ]
+    },
+    {
+      "page": 112,
+      "kind": "content",
+      "summaryZh": "FastText形态/子词、trust词族、未知词泛化。",
+      "knowledgePointIds": [
+        "early-108"
+      ]
+    },
+    {
+      "page": 113,
+      "kind": "content",
+      "summaryZh": "twister多义、静态嵌入与ELMo双向LSTM动态表征。",
+      "knowledgePointIds": [
+        "early-105",
+        "early-109",
+        "early-110"
+      ]
+    },
+    {
+      "page": 114,
+      "kind": "content",
+      "summaryZh": "BERT双向Transformer及masking动机。",
+      "knowledgePointIds": [
+        "early-111"
+      ]
+    },
+    {
+      "page": 115,
+      "kind": "content",
+      "summaryZh": "BERT家族资源图：跨语言、多任务/蒸馏、生成、跨度/全词mask、训练规模与数据、知识图谱、跨模态等扩展；具体型号和分支连线仅索引，不要求背诵。",
+      "knowledgePointIds": [
+        "early-112"
+      ]
+    },
+    {
+      "page": 116,
+      "kind": "content",
+      "summaryZh": "RNN状态递推、反馈环、下词概率；CNN不能处理序列措辞过强。",
+      "knowledgePointIds": [
+        "early-113",
+        "early-114"
+      ]
+    },
+    {
+      "page": 117,
+      "kind": "content",
+      "summaryZh": "六天pizza/burger/sushi周期。",
+      "knowledgePointIds": [
+        "early-115"
+      ]
+    },
+    {
+      "page": 118,
+      "kind": "content",
+      "summaryZh": "P作用披萨得到汉堡。",
+      "knowledgePointIds": [
+        "early-116",
+        "early-118"
+      ]
+    },
+    {
+      "page": 119,
+      "kind": "content",
+      "summaryZh": "同矩阵作用汉堡得到寿司，新增案例。",
+      "knowledgePointIds": [
+        "early-116",
+        "early-118"
+      ]
+    },
+    {
+      "page": 120,
+      "kind": "content",
+      "summaryZh": "同矩阵作用寿司回披萨，新增案例。",
+      "knowledgePointIds": [
+        "early-116",
+        "early-118"
+      ]
+    },
+    {
+      "page": 121,
+      "kind": "content",
+      "summaryZh": "把矩阵展开成三节点连接。",
+      "knowledgePointIds": [
+        "early-115",
+        "early-117"
+      ]
+    },
+    {
+      "page": 122,
+      "kind": "content",
+      "summaryZh": "引入状态反馈环。",
+      "knowledgePointIds": [
+        "early-115",
+        "early-117",
+        "early-118"
+      ]
+    },
+    {
+      "page": 123,
+      "kind": "content",
+      "summaryZh": "晴保持雨前进的条件、六天序列，需注明天气与日索引。",
+      "knowledgePointIds": [
+        "early-119",
+        "early-124"
+      ]
+    },
+    {
+      "page": 124,
+      "kind": "content",
+      "summaryZh": "突出6×3食物矩阵[I;P]。",
+      "knowledgePointIds": [
+        "early-120"
+      ]
+    },
+    {
+      "page": 125,
+      "kind": "content",
+      "summaryZh": "披萨状态两候选输出。",
+      "knowledgePointIds": [
+        "early-120",
+        "early-124"
+      ]
+    },
+    {
+      "page": 126,
+      "kind": "content",
+      "summaryZh": "汉堡状态两候选输出。",
+      "knowledgePointIds": [
+        "early-120",
+        "early-124"
+      ]
+    },
+    {
+      "page": 127,
+      "kind": "content",
+      "summaryZh": "突出6×2天气矩阵。",
+      "knowledgePointIds": [
+        "early-121"
+      ]
+    },
+    {
+      "page": 128,
+      "kind": "content",
+      "summaryZh": "雨输入映为上0下1广播。",
+      "knowledgePointIds": [
+        "early-121",
+        "early-124"
+      ]
+    },
+    {
+      "page": 129,
+      "kind": "content",
+      "summaryZh": "突出Add，非纯重复。",
+      "knowledgePointIds": [
+        "early-122"
+      ]
+    },
+    {
+      "page": 130,
+      "kind": "content",
+      "summaryZh": "昨披萨今雨的6维向量相加得到1,0,0,1,2,1。",
+      "knowledgePointIds": [
+        "early-122"
+      ]
+    },
+    {
+      "page": 131,
+      "kind": "content",
+      "summaryZh": "突出Merge，非纯重复。",
+      "knowledgePointIds": [
+        "early-123"
+      ]
+    },
+    {
+      "page": 132,
+      "kind": "content",
+      "summaryZh": "非线性只保留第五维，再合并成汉堡；未指明完整激活函数。",
+      "knowledgePointIds": [
+        "early-123",
+        "early-124"
+      ]
+    },
+    {
+      "page": 133,
+      "kind": "content",
+      "summaryZh": "长期梯度/主语性别遗忘和逐时依赖并行限制，RNN/LSTM/GRU图。",
+      "knowledgePointIds": [
+        "early-125",
+        "early-126",
+        "early-127"
+      ]
+    }
+  ]
+}

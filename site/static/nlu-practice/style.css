@@ -17,7 +17,7 @@
 .nlu-topline > span:last-child { color: var(--nlu-muted); }
 .nlu-intro-note, .nlu-muted, .nlu-footnote, .nlu-provenance { font-size: 12px; line-height: 1.8; color: var(--nlu-muted); }
 .nlu-intro-note { margin: 12px 0 20px; }
-.nlu-controls { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; margin-top: 20px; }
+.nlu-controls { display: grid; grid-template-columns: 1fr 1.5fr .8fr; gap: 16px; margin-top: 20px; }
 .nlu-controls label { display: grid; gap: 8px; font-size: 12px; color: var(--nlu-muted); min-width: 0; }
 .nlu-controls select { width: 100%; max-width: 100%; text-overflow: ellipsis; font-size: 14px; }
 .nlu-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
@@ -74,7 +74,7 @@
 .nlu-navigator > summary, .nlu-coverage > summary { cursor: pointer; font-size: 14px; padding: 8px 0; }
 .nlu-nav-filters { display: flex; gap: 8px; margin: 16px 0; }.nlu-nav-filters button { font-size: 12px; padding: 6px 12px; min-height: 36px; }
 .nlu-nav-filters [aria-pressed=true] { border-color: var(--nlu-ink); }
-.nlu-number-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 8px; }
+.nlu-number-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 8px; max-height: 350px; overflow: auto; padding: 4px; }
 .nlu-number-grid button { font: 12px var(--font-mono, monospace); min-height: 44px; padding: 8px 4px; position: relative; }
 .nlu-number-grid .is-done { background: var(--nlu-raised); }.nlu-number-grid [aria-current=step] { outline: 2px solid var(--nlu-ink); outline-offset: 2px; }
 .nlu-number-grid .is-correct::after { content: '✓'; position: absolute; right: 3px; top: 2px; font-size: 9px; }.nlu-number-grid .is-wrong::after { content: '×'; position: absolute; right: 3px; top: 2px; font-size: 11px; color: var(--nlu-accent); }
@@ -83,6 +83,18 @@
 .nlu-coverage > p { font-size: 12px; color: var(--nlu-muted); }.nlu-topic-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }.nlu-topic-list section { padding: 20px 0; border-bottom: 1px solid var(--nlu-border); min-width: 0; }
 .nlu-topic-list h3 { margin: 0; }.nlu-topic-list h3 button { background: transparent; padding: 0; text-align: left; border: 0; min-height: 0; font-size: 15px; line-height: 1.8; }.nlu-topic-list h3 span { display: block; color: var(--nlu-muted); font-size: 12px; font-weight: 400; }.nlu-topic-list p { font-size: 12px; margin: 10px 0; }
 .nlu-footnote { margin: 32px 0 0; }
+.nlu-lecture-group, .nlu-page-explorer { border-bottom: 1px solid var(--nlu-border); padding: 16px 0; }
+.nlu-lecture-group > summary, .nlu-page-explorer > summary { cursor: pointer; font-size: 14px; line-height: 1.8; }
+.nlu-lecture-group > summary span { color: var(--nlu-muted); font-size: 12px; margin-left: 12px; display: inline-block; }
+.nlu-page-explorer label { display: inline-block; font-size: 13px; margin: 20px 12px 12px 0; }
+.nlu-page-explorer input { width: 90px; color: var(--nlu-ink); background: var(--nlu-panel); border: 1px solid var(--nlu-border); padding: 10px; border-radius: 4px; font: inherit; }
+.nlu-page-heading { display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; margin-top: 16px; font-size: 13px; }
+.nlu-page-heading > span { color: var(--nlu-muted); }
+#nlu-page-result > p { font-size: 13px; line-height: 1.8; }
+.nlu-point-list { list-style: none; padding: 0; }
+.nlu-point-list li { padding: 12px 0; font-size: 13px; border-top: 1px solid var(--nlu-border); }
+.nlu-point-list li > div { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.nlu-point-list button { font-size: 12px; padding: 6px 10px; }
 .nlu-app .nlu-confirm { width: min(480px, calc(100vw - 40px)); max-height: calc(100dvh - 48px); overflow: auto; margin: auto; padding: 28px; border: 1px solid var(--nlu-border); border-radius: 6px; background: var(--nlu-panel); color: var(--nlu-ink); box-shadow: 0 24px 80px rgb(0 0 0 / .3); }
 .nlu-confirm::backdrop { background: rgb(0 0 0 / .65); }
 .nlu-confirm h2 { font-size: 20px; font-weight: 550; line-height: 1.4; margin: 0 0 16px; letter-spacing: -.02em; }

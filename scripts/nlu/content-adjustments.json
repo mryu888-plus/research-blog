@@ -1,0 +1,25 @@
+{
+  "topics": [],
+  "questions": [
+    {
+      "id": "anaphora-07", "topic": "anaphora", "form": "scenario",
+      "prompt": "The notebook would not fit into the envelope because it was too wide. Which referent for 'it' best explains the failed fit?",
+      "options": ["The notebook", "The envelope, solely because it is the nearest noun", "Both objects must be the referent at the same time", "No referent can be inferred because both nouns are singular"], "answer": 0,
+      "explanationZh": "笔记本太宽会导致它装不进信封。句法距离和单复数一致性只能提供部分线索，这里还需要利用物体大小与容纳关系的常识。",
+      "distractorsZh": ["", "最近名词是信封，但信封太宽通常不会解释笔记本装不进去；距离规则需要结合语义检验。", "本句中的单数代词指向造成装不下这一结果的物体，无须同时指两个物体。", "单复数一致性无法区分两个候选时，仍可利用因果关系和常识。"],
+      "terms": [{"en":"Antecedent","zh":"先行词"},{"en":"Commonsense reasoning","zh":"常识推理"}],
+      "refs": [{"page":252,"reasonZh":"指代消解与先行词选择；此题给出一个自编容纳关系情境。"}],
+      "sourceQuestions": [], "difficulty": "应用"
+    },
+    {
+      "id": "primenet-07", "topic": "primenet", "form": "scenario",
+      "prompt": "A knowledge system maps 'is carrying', 'carries', and 'is holding while moving' to a shared relation label when they express the same relation. What is the main benefit?",
+      "options": ["Facts expressed in different words can be matched and queried through a common relation", "Every relation between the same two objects becomes identical", "The system no longer needs the identities of the participating objects", "The normalization guarantees that every input claim is factually true"], "answer": 0,
+      "explanationZh": "关系归一化把语义一致的自然语言关系映射到共享标签，便于跨表述匹配、检索和推理。归并仍需检查语义，参与关系的实体、方向以及事实真假都需要单独处理。",
+      "distractorsZh": ["", "同一对对象之间可以有多种不同关系，不能只因对象相同就合并。", "关系的参与者属于事实的一部分，仍需保留。", "统一表达形式并不能验证事实真实性。"],
+      "terms": [{"en":"Relation normalization","zh":"关系归一化"},{"en":"Canonical relation","zh":"规范关系"}],
+      "refs": [{"page":318,"reasonZh":"自然语言关系经归一化形成共享关系集合。"}],
+      "sourceQuestions": [], "difficulty": "应用"
+    }
+  ]
+}

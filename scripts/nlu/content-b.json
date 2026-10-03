@@ -1,0 +1,407 @@
+{
+  "topics": [
+    {"id":"anaphora","nameZh":"指代消解","nameEn":"Anaphora Resolution","originalQuestions":[52,53,54,55,56],"pages":[252,253,254],"focusZh":"先行词、数与性一致、模型与共指语料；不要把指代消解等同于NER。"},
+    {"id":"subjectivity","nameZh":"主观性检测","nameEn":"Subjectivity Detection","originalQuestions":[57,58,59,60],"pages":[255,256,257,258,259],"focusZh":"主客观分类、矛盾情感与中性、POS特征、语料与词典、F1。"},
+    {"id":"metaphor","nameZh":"隐喻理解","nameEn":"Metaphor Understanding","originalQuestions":[61,62,63,64,65],"pages":[263,264,265,266],"focusZh":"源域与目标域、词义与语义角色、文化知识、多词表达及资源。"},
+    {"id":"sarcasm","nameZh":"反讽检测","nameEn":"Sarcasm Detection","originalQuestions":[66,67,68,69,70,71],"pages":[267,268,269,270],"focusZh":"字面情感与意图冲突、内容与上下文建模、情感知识、多模态数据。"},
+    {"id":"personality","nameZh":"人格识别","nameEn":"Personality Recognition","originalQuestions":[72,73,74,75,76,77],"pages":[271,272,273,274,275,276],"focusZh":"OCEAN、MBTI、BFI/TIPI及反向计分、带人格标签语料、模型边界。"},
+    {"id":"aspect","nameZh":"方面抽取","nameEn":"Aspect Extraction","originalQuestions":[78,79,80,81,82],"pages":[277,278,279,280,281,302],"focusZh":"评价对象与情感区分、主题模型、BIOES、方面级比较、Sentic GCN。"},
+    {"id":"polarity","nameZh":"极性检测","nameEn":"Polarity Detection","originalQuestions":[83,84,85,86,87,88,89,90],"pages":[282,283,284],"focusZh":"方向与强度、词典与知识库、上下文与否定、分类评估及任务边界。"},
+    {"id":"kr","nameZh":"知识表示","nameEn":"Knowledge Representation","originalQuestions":[91,92,93,94,95,98,99,100],"pages":[297,317,318],"focusZh":"语义网络、本体、框架、知识图谱、概念层级、规则、不确定性、神经符号结合；部分定义直接见Mock答案页。"},
+    {"id":"primenet","nameZh":"PrimeNet与概念基元","nameEn":"PrimeNet and Conceptual Primitives","originalQuestions":[96,97],"pages":[317,318,319,320],"focusZh":"基元—概念—实体三层、34类关系、动词基元与状态变化、句式归一化。"}
+  ],
+  "questions": [
+    {
+      "id":"anaphora-01","topic":"anaphora","form":"scenario","prompt":"In 'Nora bought a laptop. It was very light', which expression is the antecedent of 'It'?",
+      "options":["Nora","a laptop","very light","bought"],"answer":1,
+      "explanationZh":"先行词（antecedent）是指代表达所回指的对象。这里It回指a laptop，very light描述这台电脑的属性。",
+      "distractorsZh":["Nora是人名，但不是此处It的先行词。","","very light描述属性，不是被回指的实体。","bought是动作词，不是此处的先行词。"],
+      "terms":[{"en":"antecedent","zh":"先行词"},{"en":"anaphoric expression","zh":"指代表达"}],"refs":[{"page":252,"reasonZh":"指代的定义与示例"}],"sourceQuestions":[52,54],"difficulty":"基础"
+    },
+    {
+      "id":"anaphora-02","topic":"anaphora","form":"challenge","prompt":"Two plural noun phrases both precede 'they'. What can number agreement establish on its own?",
+      "options":["The nearest noun phrase must be correct","Every named entity must be excluded","The pronoun has no antecedent","Both candidates may remain possible"],"answer":3,
+      "explanationZh":"数一致可以过滤单数候选。两个复数候选都符合they的数要求，进一步选择需要语义、语篇或常识线索。",
+      "distractorsZh":["距离近是线索，不是保证。","命名实体也可能是先行词。","存在歧义不等于没有先行词。",""],
+      "terms":[{"en":"number agreement","zh":"数一致"},{"en":"ambiguity","zh":"歧义"}],"refs":[{"page":252,"reasonZh":"讲义列出的性与数一致线索"}],"sourceQuestions":[54],"difficulty":"应用"
+    },
+    {
+      "id":"anaphora-03","topic":"anaphora","form":"resource","prompt":"Which resource provides annotated examples for training and evaluating coreference-resolution systems?",
+      "options":["OntoNotes","WordNet","SenticNet","ConceptNet"],"answer":0,
+      "explanationZh":"253页的数据集表列出OntoNotes、4,560个样本。知识库表则列出WordNet与SenticNet：前者提供词汇知识，后者提供情感知识。",
+      "distractorsZh":["","WordNet在该页属于词汇知识库。","SenticNet在该页属于情感知识库。","ConceptNet不是这道题所指的共指标注数据集。"],
+      "terms":[{"en":"coreference annotation","zh":"共指标注"},{"en":"knowledge base","zh":"知识库"}],"refs":[{"page":253,"reasonZh":"表3.15数据集与表3.16知识库并列对照"}],"sourceQuestions":[56],"difficulty":"基础","noteZh":"Mock拼作OntoNote；资源常用名称为OntoNotes。"
+    },
+    {
+      "id":"anaphora-04","topic":"anaphora","form":"method","prompt":"A structured NLP model directly learns P(y | x) and includes dependencies between neighboring output labels. Which model fits this description?",
+      "options":["A hidden Markov model","A multinomial Naive Bayes classifier","A linear-chain conditional random field","K-means clustering"],"answer":2,
+      "explanationZh":"线性链CRF直接建模给定输入x时标签序列y的条件概率，并通过相邻标签间的因子建模输出依赖。HMM则建模观测与隐藏状态的联合分布。",
+      "distractorsZh":["HMM采用生成式联合概率建模。","多项式朴素贝叶斯通常用于文档分类，不建模相邻输出标签依赖。","","K-means按距离聚类，不学习带标签序列的条件分布。"],
+      "terms":[{"en":"Conditional Random Field (CRF)","zh":"条件随机场"}],"refs":[{"page":254,"reasonZh":"指代消解技术趋势背景；具体答案来自Mock Q55"}],"sourceQuestions":[55],"sourceQuizPage":111,"difficulty":"基础","noteZh":"课程答案：Mock Q55选C。"
+    },
+    {
+      "id":"anaphora-05","topic":"anaphora","form":"definition","prompt":"Why is named entity recognition not sufficient to resolve every anaphoric reference?",
+      "options":["Pronouns always refer to punctuation","An antecedent can be a common noun phrase, and choosing it requires context","NER already resolves every pronoun by definition","Anaphora only occurs inside proper names"],"answer":1,
+      "explanationZh":"指代对象包括a laptop、the dog等普通名词短语。NER提供命名实体线索，指代消解还要结合上下文选择先行词。",
+      "distractorsZh":["代词通常指实体、事件等，不是总指标点。","","NER识别实体类别，任务定义不包含解决全部回指。","指代不限于专有名词内部。"],
+      "terms":[{"en":"named entity recognition","zh":"命名实体识别"},{"en":"noun phrase","zh":"名词短语"}],"refs":[{"page":252,"reasonZh":"指代定义与普通对象回指例图"}],"sourceQuestions":[53,54],"difficulty":"应用","noteZh":"Mock Q53把NER列为相关任务。"
+    },
+    {
+      "id":"anaphora-06","topic":"anaphora","form":"resource","prompt":"Which manually written resource tests pronoun resolution through Winograd-style sentence pairs?",
+      "options":["GAP","ACE","MUC","WSC"],"answer":3,
+      "explanationZh":"253页表3.15的WSC行写明Manually Written、285。同表列出GAP 4,454、ACE 1,800、MUC 200。以上均为讲义所列版本的规模。",
+      "distractorsZh":["GAP来源为Wikipedia，该表列4,454。","ACE来源为News，该表列1,800。","MUC来源为WSJ，该表列200。",""],
+      "terms":[{"en":"Winograd Schema Challenge (WSC)","zh":"Winograd模式挑战"}],"refs":[{"page":253,"reasonZh":"表3.15的来源与样本量列"}],"sourceQuestions":[56],"difficulty":"基础"
+    },
+    {
+      "id":"subjectivity-01","topic":"subjectivity","form":"definition","prompt":"Which distinction is the direct target of subjectivity detection?",
+      "options":["Objective statements versus subjective statements","Positive opinions versus negative opinions","Literal word senses versus metaphorical word senses","References to the same entity versus different entities"],"answer":0,
+      "explanationZh":"255页将主观性检测表述为objective与subjective的二分类。正面和负面意见都属于主观表达，极性进一步区分意见的方向。",
+      "distractorsZh":["","这是极性区别；正面与负面意见都可能是主观的。","这是词义与隐喻相关的区分。","这是共指关系相关的区分。"],
+      "terms":[{"en":"subjective","zh":"主观的"},{"en":"objective","zh":"客观的"}],"refs":[{"page":255,"reasonZh":"主观性检测定义"}],"sourceQuestions":[57,59],"difficulty":"基础"
+    },
+    {
+      "id":"subjectivity-02","topic":"subjectivity","form":"scenario","prompt":"A reviewer strongly likes a film's acting but strongly dislikes its plot. What best describes this combined attitude?",
+      "options":["Neutrality, because positive and negative cancel completely","Objectivity, because two aspects are mentioned","Ambivalence, because positive and negative feelings coexist","No sentiment, because the review is contradictory"],"answer":2,
+      "explanationZh":"255页把positivity和negativity画成两个独立方向。两者都高对应ambivalence；两者都低才接近neutral。把正负相加为零会丢掉这种区别。",
+      "distractorsZh":["情感并存不等于没有情感。","提到多个方面不使意见自动变客观。","","矛盾情感仍然包含情感。"],
+      "terms":[{"en":"ambivalence","zh":"矛盾情感／爱恨交织"},{"en":"neutrality","zh":"中性"}],"refs":[{"page":255,"reasonZh":"正向与负向情感二维图"}],"sourceQuestions":[58],"difficulty":"应用"
+    },
+    {
+      "id":"subjectivity-03","topic":"subjectivity","form":"method","prompt":"A feature extractor counts adjectives, adverbs, and modal verbs. Which type of feature is it most directly using?",
+      "options":["TF-IDF weights without grammatical categories","POS-based features","Lexicon polarity scores without grammatical categories","Edit distances between normalized word forms"],"answer":1,
+      "explanationZh":"形容词、副词、情态动词属于词性类别，因此这里使用POS-based features。它们可帮助识别评价、强调和态度表达，亦可与TF-IDF等特征结合。",
+      "distractorsZh":["TF-IDF直接加权词频，不直接标出形容词、副词等类别。","","情感分值并非这里计数的词性类别。","编辑距离比较字符串变换，不是词性特征。"],
+      "terms":[{"en":"part-of-speech (POS)","zh":"词性"},{"en":"modal verb","zh":"情态动词"}],"refs":[{"page":258,"reasonZh":"主观性检测技术趋势；本题POS解释见Mock Q59"}],"sourceQuestions":[59],"sourceQuizPage":119,"difficulty":"基础"
+    },
+    {
+      "id":"subjectivity-04","topic":"subjectivity","form":"resource","prompt":"Which subjectivity resource provides English news texts annotated for opinions and private states?",
+      "options":["WordNet-Affect","The General Inquirer","SenticNet","MPQA"],"answer":3,
+      "explanationZh":"256页表3.19的MPQA行列出English news articles、9,700，并标记ISD/CDSD任务。其余选项是257页列出的知识库或词典，而非这一行的数据集。",
+      "distractorsZh":["WordNet-Affect位于知识库表，不是这行新闻语料。","The General Inquirer是情感标签资源。","SenticNet是概念情感知识库。",""],
+      "terms":[{"en":"MPQA","zh":"主观性与观点分析语料资源"},{"en":"ISD","zh":"独立主观性检测"}],"refs":[{"page":256,"reasonZh":"表3.19的MPQA来源与样本量"},{"page":257,"reasonZh":"与主观性知识库表对照"}],"sourceQuestions":[57,59],"difficulty":"基础"
+    },
+    {
+      "id":"subjectivity-05","topic":"subjectivity","form":"evaluation","prompt":"For the subjective class, precision is 0.80 and recall is 0.50. What is F1, rounded to two decimal places?",
+      "options":["0.62","0.65","0.30","1.30"],"answer":0,
+      "explanationZh":"F1=2PR/(P+R)=2×0.80×0.50/1.30≈0.6154，四舍五入为0.62。F1采用调和平均，选项0.65则是算术平均。",
+      "distractorsZh":["","0.65是算术平均，不是F1。","0.30是两数之差。","1.30是P+R，且超出F1的0到1范围。"],
+      "terms":[{"en":"precision","zh":"精确率"},{"en":"recall","zh":"召回率"},{"en":"F1 score","zh":"F1分数"}],"refs":[{"page":258,"reasonZh":"主观性检测技术表的F1评估背景"}],"sourceQuestions":[60],"sourceQuizPage":121,"difficulty":"应用"
+    },
+    {
+      "id":"subjectivity-06","topic":"subjectivity","form":"resource","prompt":"What distinguishes the MPQA Subjectivity Lexicon from a corpus of individually labeled documents?",
+      "options":["It must contain only videos","It cannot be used by classifiers","It provides subjectivity clues as lexical entries, not one label for every input document","It guarantees that every occurrence of a listed word is subjective"],"answer":2,
+      "explanationZh":"257页将MPQA Subjectivity Lexicon描述为Subjectivity clues、8,000、List。词典给出词项层面的线索，带标签语料提供样本级监督；词在具体句子中的作用仍取决于上下文。",
+      "distractorsZh":["该资源是词汇线索列表，不是视频集。","词典线索可以成为分类特征。","","词典先验不能替代上下文判断。"],
+      "terms":[{"en":"subjectivity lexicon","zh":"主观性词典"},{"en":"lexical clue","zh":"词汇线索"}],"refs":[{"page":257,"reasonZh":"表3.20的MPQA Subjectivity Lexicon行"}],"sourceQuestions":[59,60],"difficulty":"应用"
+    },
+    {
+      "id":"metaphor-01","topic":"metaphor","form":"scenario","prompt":"In the metaphor 'Time is money', which pairing correctly identifies the source and target domains?",
+      "options":["Source: time; target: money","Source: money; target: time","Source: grammar; target: spelling","Source and target: both pronunciation"],"answer":1,
+      "explanationZh":"源域提供理解框架，目标域是被解释的概念。这里借金钱的价值、花费等结构理解时间，所以source=money，target=time。",
+      "distractorsZh":["把源域和目标域颠倒了。","","这里是概念映射，不是语法到拼写。","发音不是这句隐喻的映射域。"],
+      "terms":[{"en":"source domain","zh":"源域"},{"en":"target domain","zh":"目标域"}],"refs":[{"page":263,"reasonZh":"隐喻理解流程背景；源域例子见Mock Q62"}],"sourceQuestions":[62],"sourceQuizPage":125,"difficulty":"基础"
+    },
+    {
+      "id":"metaphor-02","topic":"metaphor","form":"method","prompt":"Why can word sense disambiguation support metaphor understanding?",
+      "options":["It eliminates all figurative language from a corpus","It assigns a sentiment score to every speaker","It requires every word to keep its most frequent literal sense","It helps distinguish contextually intended senses from an inappropriate literal reading"],"answer":3,
+      "explanationZh":"隐喻用法可能偏离常见字面义。WSD结合上下文选择词义，为后续的概念映射和隐喻解释提供信息。",
+      "distractorsZh":["WSD不是删除修辞的操作。","给说话者情感打分不是WSD定义。","强行选择最常见字面义恰好会漏掉隐喻。",""],
+      "terms":[{"en":"word sense disambiguation (WSD)","zh":"词义消歧"},{"en":"literal meaning","zh":"字面义"}],"refs":[{"page":263,"reasonZh":"Sense pairing与解释流程"}],"sourceQuestions":[61],"difficulty":"基础"
+    },
+    {
+      "id":"metaphor-03","topic":"metaphor","form":"method","prompt":"Which technique directly identifies semantic participant roles, such as who does an action and who is affected, to support an interpretation?",
+      "options":["Semantic role labeling","Named entity typing","Word sense disambiguation alone","Part-of-speech tagging"],"answer":0,
+      "explanationZh":"SRL标记谓词与论元的语义角色，例如施事、受事等。明确谁做了什么、谁受到影响，有助于解释隐喻中的关系。Mock Q64选SRL。",
+      "distractorsZh":["","实体类型如Person不直接说明它是该事件的施事还是受事。","WSD选词义，不直接输出谓词论元角色。","POS给名词、动词等语法类别，不等于语义角色。"],
+      "terms":[{"en":"semantic role labeling (SRL)","zh":"语义角色标注"},{"en":"agent","zh":"施事"}],"refs":[{"page":263,"reasonZh":"隐喻解释背景；SRL考点来自Mock Q64"}],"sourceQuestions":[64],"sourceQuizPage":129,"difficulty":"基础"
+    },
+    {
+      "id":"metaphor-04","topic":"metaphor","form":"challenge","prompt":"A metaphor is easy for one community to interpret but opaque to readers without its shared background. Which limitation is most relevant?",
+      "options":["The need to preserve the exact capitalization of every word","The requirement to assign one universal literal sense to every metaphor","Dependence on cultural and commonsense knowledge","The need to replace all metaphorical expressions with proper names"],"answer":2,
+      "explanationZh":"隐喻常依赖文化约定与共同经验。仅识别词形和句法仍可能不知道为什么某个源域会传达特定含义。Mock Q63把文化特定隐喻列为理解难点。",
+      "distractorsZh":["大小写可能是线索，但不是题目中社区理解差异的关键。","隐喻不必对应一个跨文化通用的字面解释。","","理解隐喻不要求把表达改成人名等专有名称。"],
+      "terms":[{"en":"culturally specific metaphor","zh":"文化特定隐喻"},{"en":"commonsense knowledge","zh":"常识知识"}],"refs":[{"page":263,"reasonZh":"隐喻理解主题与图示"},{"page":264,"reasonZh":"辅助解释的知识库资源"}],"sourceQuestions":[63],"difficulty":"应用"
+    },
+    {
+      "id":"metaphor-05","topic":"metaphor","form":"resource","prompt":"Which pair of lexical resources can supply word-sense and frame-semantic knowledge for metaphor understanding?",
+      "options":["LexNorm and MIMIC","WordNet and FrameNet","Penn Treebank and GAP","WSC and Kaggle MBTI"],"answer":1,
+      "explanationZh":"264页表4.3将WordNet和FrameNet列为Structured lexicon。同表还列出ConceptNet、SenticNet、Wiktionary与MWD。",
+      "distractorsZh":["这不是该页列出的隐喻知识库组合。","","这两个名称并非该表的结构化词汇知识库组合。","WSC与MBTI语料分别关联指代与人格任务。"],
+      "terms":[{"en":"FrameNet","zh":"框架语义词汇资源"},{"en":"structured lexicon","zh":"结构化词汇资源"}],"refs":[{"page":264,"reasonZh":"表4.3的知识库名称与类型"}],"sourceQuestions":[65],"difficulty":"基础","noteZh":"Mock Q65答案为OntoNote；其“包含隐喻标注”的解释存疑。此题依据讲义表4.3。"
+    },
+    {
+      "id":"metaphor-06","topic":"metaphor","form":"workflow","prompt":"Why is identifying multiword expressions useful before assigning meanings to phrases such as 'red letter day'?",
+      "options":["It forces every word to be interpreted independently","It replaces all semantic analysis with POS tags","It removes all idiomatic phrases","It allows a phrase such as 'red letter day' to be interpreted as a unit"],"answer":3,
+      "explanationZh":"263页流程把MWE identification与sense pairing连接。red letter day的整体含义是重要或特殊的日子，逐字组合red、letter、day会遗漏其约定表达义。",
+      "distractorsZh":["MWE识别恰好避免只做逐词解释。","词性不足以解释固定表达的意义。","识别多词表达不是删除它。",""],
+      "terms":[{"en":"multiword expression (MWE)","zh":"多词表达"},{"en":"sense pairing","zh":"词义配对"}],"refs":[{"page":263,"reasonZh":"red letter day、MWE识别及sense pairing流程"}],"sourceQuestions":[61,64],"difficulty":"应用"
+    },
+    {
+      "id":"sarcasm-01","topic":"sarcasm","form":"scenario","prompt":"After a server loses an unsaved report, its author says, 'Wonderful, exactly what I needed.' Which evidence most strongly supports a sarcastic reading?",
+      "options":["Positive wording conflicts with a clearly unwanted event","The sentence contains an adverb","The report is a named entity","Every positive adjective is always sarcastic"],"answer":0,
+      "explanationZh":"支持反讽判断的是积极字面表达与负面情境的冲突。单看Wonderful不足以确定反讽，必须结合报告丢失这个上下文。",
+      "distractorsZh":["","词性本身不能确定反讽意图。","是否命名实体不是关键。","正面形容词也可以表达真诚赞美。"],
+      "terms":[{"en":"sarcasm","zh":"反讽"},{"en":"sentiment incongruity","zh":"情感不一致"}],"refs":[{"page":267,"reasonZh":"内容与上下文联合建模"}],"sourceQuestions":[66,67,68],"difficulty":"应用"
+    },
+    {
+      "id":"sarcasm-02","topic":"sarcasm","form":"workflow","prompt":"Which contextual information can help a sarcasm detector account for both the speaker and the surrounding conversation?",
+      "options":["A POS-tag sequence alone, with no speaker or discourse information","Only an aggregate polarity score from a lexicon","User embeddings and discourse features","Only the nearest named entity and its entity type"],"answer":2,
+      "explanationZh":"267页图中Content Modeling得到评论表示，Context Modeling提供user embedding和discourse feature vector，分类器将内容、说话者与语篇线索结合。",
+      "distractorsZh":["图中的Context Modeling明确还有用户和语篇表示。","图中的上下文信息不只是一项词典总分。","","命名实体信息不是该图标出的两种上下文输入。"],
+      "terms":[{"en":"user embedding","zh":"用户嵌入"},{"en":"discourse feature","zh":"语篇特征"}],"refs":[{"page":267,"reasonZh":"Content Modeling、Context Modeling与Classification示意图"}],"sourceQuestions":[68,69],"difficulty":"基础"
+    },
+    {
+      "id":"sarcasm-03","topic":"sarcasm","form":"resource","prompt":"How can SenticNet assist a sarcasm detector?",
+      "options":["By guaranteeing the speaker's intention from a single word","By supplying concept-level semantic and affective knowledge","By providing a gold sarcasm label for every new sentence","By replacing all contextual reasoning with sentence length"],"answer":1,
+      "explanationZh":"SenticNet提供概念的语义和情感先验，帮助发现字面情感与情境的冲突。训练语料则提供句子级反讽标签。Mock Q71选择SenticNet。",
+      "distractorsZh":["一个词不能保证恢复说话者意图。","","知识库不是任意新句子的标准答案表。","句长不能替代上下文推断。"],
+      "terms":[{"en":"affective knowledge","zh":"情感知识"},{"en":"gold label","zh":"标准标注"}],"refs":[{"page":270,"reasonZh":"反讽技术表中SenticNet与Memory Network的组合"},{"page":394,"reasonZh":"资源页明确将SenticNet标为知识库"}],"sourceQuestions":[71],"sourceQuizPage":143,"difficulty":"应用"
+    },
+    {
+      "id":"sarcasm-04","topic":"sarcasm","form":"method","prompt":"Which capability explains why an RNN can be used in a text-based sarcasm detector?",
+      "options":["It guarantees perfect knowledge of all cultures","It ignores word order by definition","It requires no training data for any task","It models information across an ordered sequence of words"],"answer":3,
+      "explanationZh":"RNN维护随序列更新的状态，可以学习词序和上下文依赖，因此能够用于反讽检测。长程依赖与意图理解仍是建模难点。",
+      "distractorsZh":["序列模型不自动拥有全部文化知识。","RNN正是面向有序序列的模型。","监督检测通常仍需要训练信号。",""],
+      "terms":[{"en":"recurrent neural network (RNN)","zh":"循环神经网络"},{"en":"sequence","zh":"序列"}],"refs":[{"page":116,"reasonZh":"RNN反馈与序列建模机制"},{"page":267,"reasonZh":"反讽检测需要内容与上下文信息"}],"sourceQuestions":[69],"difficulty":"基础","noteZh":"Mock Q69选RNN；实际方法还包括其他分类模型。"
+    },
+    {
+      "id":"sarcasm-05","topic":"sarcasm","form":"challenge","prompt":"Why might a bag-of-positive-words classifier mislabel 'Great, another three-hour delay' as positive?",
+      "options":["It may ignore the contrast between literal wording and intended meaning","It has already solved sarcasm perfectly","The word 'delay' must be a personal name","Sarcasm is identical to sentence segmentation"],"answer":0,
+      "explanationZh":"简单累加正负词可能放大Great，却忽略长时间延误这一负面情境。结合上下文，才能判断这句积极措辞是否在表达不满。",
+      "distractorsZh":["","误判恰好说明没有解决上下文与意图问题。","delay不是必须按人名解释。","反讽是语用理解，分句是边界任务。"],
+      "terms":[{"en":"intended meaning","zh":"意图含义"},{"en":"literal sentiment","zh":"字面情感"}],"refs":[{"page":267,"reasonZh":"反讽的上下文建模需求"}],"sourceQuestions":[68,70],"difficulty":"应用"
+    },
+    {
+      "id":"sarcasm-06","topic":"sarcasm","form":"resource","prompt":"Which description matches the original MUStARD dataset?",
+      "options":["A POS-only corpus of newspaper tokens","A word-sense dictionary with no examples","A multimodal sarcasm dataset from TV shows, containing 690 samples","A morphology benchmark of inflection rules"],"answer":2,
+      "explanationZh":"268页表4.6的Castro et al. (2019)行列出Binary/Multimodal、TV shows、690；下方图4.3说明是MUStARD示例，并展示上下文视频帧与目标反讽话语。规模按该讲义表格口径。",
+      "distractorsZh":["该例是反讽而非POS任务。","它包含多模态样本，不是纯词典。","","形态变化不是MUStARD的任务。"],
+      "terms":[{"en":"multimodal sarcasm detection","zh":"多模态反讽检测"},{"en":"target utterance","zh":"目标话语"}],"refs":[{"page":268,"reasonZh":"表4.6与MUStARD图4.3"}],"sourceQuestions":[71],"difficulty":"基础"
+    },
+    {
+      "id":"personality-01","topic":"personality","form":"definition","prompt":"Which list expands OCEAN in the Big Five personality model?",
+      "options":["Objectivity, clarity, empathy, accuracy, neutrality","Openness, conscientiousness, extraversion, agreeableness, neuroticism","Ontology, coreference, entity, aspect, normalization","Observation, creativity, emotion, attention, negation"],"answer":1,
+      "explanationZh":"272页表4.9将Big Five标为OCEAN，对应开放性、尽责性、外向性、宜人性、神经质五个人格维度。",
+      "distractorsZh":["这不是讲义定义的五因素名称。","","这些是混合的NLU术语，不是人格五因素。","这些词不能展开Big Five的OCEAN。"],
+      "terms":[{"en":"Big Five / OCEAN","zh":"人格大五模型"},{"en":"conscientiousness","zh":"尽责性"}],"refs":[{"page":272,"reasonZh":"表4.9的五因素名称与描述"}],"sourceQuestions":[73],"difficulty":"基础"
+    },
+    {
+      "id":"personality-02","topic":"personality","form":"definition","prompt":"Which pair is one of the four MBTI dichotomies?",
+      "options":["Emotional stability versus neuroticism","Conscientious versus careless","Agreeable versus disagreeable","Judging versus perceiving"],"answer":3,
+      "explanationZh":"273页列出MBTI的E/I、S/N、T/F、J/P四组二分。Judging/Perceiving描述对计划与定案、灵活与开放的不同处事倾向。",
+      "distractorsZh":["这对应大五中神经质／情绪稳定方向，不是MBTI四组名称。","这涉及大五尽责性，不是MBTI的正式二分名称。","这涉及大五宜人性，不是MBTI的正式二分名称。",""],
+      "terms":[{"en":"MBTI dichotomy","zh":"MBTI二分维度"},{"en":"judging / perceiving","zh":"判断／知觉"}],"refs":[{"page":273,"reasonZh":"表4.10的四组MBTI二分"}],"sourceQuestions":[73,77],"difficulty":"基础"
+    },
+    {
+      "id":"personality-03","topic":"personality","form":"evaluation","prompt":"A BFI item uses a 1-to-5 response scale and is marked R. Under standard reverse scoring on this scale, what is the reversed score of a response of 2?",
+      "options":["4","2","5","-2"],"answer":0,
+      "explanationZh":"274页说明BFI采用1到5等级，R表示反向计分。反向公式为6−x，所以2变成4，让不同措辞方向的题目在同一维度上对齐。",
+      "distractorsZh":["","直接保留2没有执行反向计分。","5对应原始1的反向值。","反向计分不是把数字乘以−1。"],
+      "terms":[{"en":"reverse-scored item","zh":"反向计分题目"},{"en":"Big Five Inventory (BFI)","zh":"大五人格量表"}],"refs":[{"page":274,"reasonZh":"BFI的1到5量表及R反向题说明"}],"sourceQuestions":[73,77],"difficulty":"应用"
+    },
+    {
+      "id":"personality-04","topic":"personality","form":"resource","prompt":"Which description matches the TIPI personality questionnaire?",
+      "options":["Forty-four items rated on a 1-to-5 agreement scale","Four dichotomies producing an MBTI type","Ten items rated on a 1-to-7 agreement scale","Ten items rated on a 1-to-5 agreement scale"],"answer":2,
+      "explanationZh":"275页表4.13展示TIPI的10项描述，要求按1到7的同意程度评分；表4.14给出各人格维度对应的题目及反向计分项。",
+      "distractorsZh":["这接近前页BFI的形式，不是本页TIPI。","这描述MBTI，不是TIPI的条目量表。","","条目数对了，但该页TIPI使用1到7，而非1到5。"],
+      "terms":[{"en":"Ten-Item Personality Inventory (TIPI)","zh":"十项人格量表"}],"refs":[{"page":275,"reasonZh":"表4.13与4.14的TIPI条目和评分"}],"sourceQuestions":[77],"difficulty":"基础"
+    },
+    {
+      "id":"personality-05","topic":"personality","form":"resource","prompt":"Which resource pairs essays with Big Five personality labels?",
+      "options":["LexNorm: normalized tweets","Pennebaker and King (1999): 2,479 essays","WordNet: synsets","WSC: manually written coreference problems"],"answer":1,
+      "explanationZh":"275页表4.15把Pennebaker and King (1999)列为Big Five、Essays、2,479 essays。文本与人格标签的对应关系可用于训练和评估人格预测模型。",
+      "distractorsZh":["LexNorm用于文本规范化，不直接提供该人格标签。","","WordNet的词义集合不是人格标注作文。","WSC考指代常识，不是大五标签作文。"],
+      "terms":[{"en":"personality-labeled dataset","zh":"带人格标签的数据集"},{"en":"essay corpus","zh":"作文语料库"}],"refs":[{"page":275,"reasonZh":"表4.15的任务、来源与样本量"}],"sourceQuestions":[77],"difficulty":"基础"
+    },
+    {
+      "id":"personality-06","topic":"personality","form":"method","prompt":"Several models can predict personality traits from text. Which statement is correct?",
+      "options":["SVM can be used only when the text representation has exactly two dimensions","Neural models can extract text features but cannot predict personality labels","A prediction from one sentence is a direct, error-free measurement of personality","SVM, CNNs, and RNNs are possible choices, depending on the task and data"],"answer":3,
+      "explanationZh":"Mock Q72选SVM。271页展示卷积结构，276页还列出CNN、RNN、BiLSTM等方法。模型依据文本与测量标签估计人格特征，结论受样本量与测量质量影响。",
+      "distractorsZh":["SVM能够使用高维文本表示。","神经模型可以结合预测层输出人格标签。","有限文本下的预测存在测量误差与不确定性。",""],
+      "terms":[{"en":"support vector machine (SVM)","zh":"支持向量机"},{"en":"user profiling","zh":"用户画像"}],"refs":[{"page":271,"reasonZh":"用户相关情感分析与卷积模型图"},{"page":276,"reasonZh":"人格识别多类模型技术表"}],"sourceQuestions":[72,74,75,76],"difficulty":"应用","noteZh":"实时反馈能力取决于具体模型和部署方式。"
+    },
+    {
+      "id":"aspect-01","topic":"aspect","form":"scenario","prompt":"In 'The touchscreen is excellent, but the battery life is poor', which output separates aspects from their polarities?",
+      "options":["touchscreen → positive; battery life → negative","excellent → touchscreen; poor → battery life, with no target distinction","the whole sentence → only positive","the whole sentence → no opinion"],"answer":0,
+      "explanationZh":"277页例子说明一句话可以对不同方面表达不同情感。touchscreen和battery life是被评价的方面，positive/negative是相应极性；仅给整句一个标签会丢失目标对应关系。",
+      "distractorsZh":["","这没有按题目要求明确方面到极性的输出。","整句只标正面会丢掉电池的负面评价。","句子明确含有评价。"],
+      "terms":[{"en":"aspect","zh":"方面／评价对象"},{"en":"aspect polarity","zh":"方面情感极性"}],"refs":[{"page":277,"reasonZh":"touchscreen与battery的相反情感示例"}],"sourceQuestions":[78,79],"difficulty":"基础"
+    },
+    {
+      "id":"aspect-02","topic":"aspect","form":"method","prompt":"Which method models a document as a mixture of latent topics and can help discover review themes that may be interpreted as aspects?",
+      "options":["A hidden Markov model used for token-level sequence tagging","A conditional random field used for BIO labeling","Latent Dirichlet allocation (LDA)","A sentiment-lexicon lookup with no latent topics"],"answer":2,
+      "explanationZh":"LDA是主题模型，利用词的共现模式发现潜在主题；这些主题可以辅助发现产品评价方面。主题不一定自动等于人工方面标签，还需要解释、对齐或约束。Mock Q78/Q80考这一关联。",
+      "distractorsZh":["序列标注HMM不直接对应题述的文档主题混合。","BIO序列CRF预测片段标签，不直接对应文档潜在主题混合。","","词典查表不学习潜在主题。"],
+      "terms":[{"en":"latent Dirichlet allocation (LDA)","zh":"潜在狄利克雷分配"},{"en":"topic modeling","zh":"主题建模"}],"refs":[{"page":281,"reasonZh":"表4.21的方面抽取技术中包含SVM、LDA框架；LDA说明见Mock Q80"}],"sourceQuestions":[78,80],"sourceQuizPage":161,"difficulty":"基础"
+    },
+    {
+      "id":"aspect-03","topic":"aspect","form":"workflow","prompt":"Under BIOES tagging, how is a one-token aspect such as 'price' tagged when it forms an entire aspect span by itself?",
+      "options":["O","S","I","E followed by B on the same token"],"answer":1,
+      "explanationZh":"BIOES中的S表示single-token span。279页表4.18把单词price标成S；多词方面则可用B开头、I内部、E结尾，非方面词为O。",
+      "distractorsZh":["O表示不属于方面片段。","","I表示片段内部，不用于孤立的完整单词方面。","单个token在该序列标注方案中只需要一个S标签。"],
+      "terms":[{"en":"BIOES","zh":"开始—内部—外部—结束—单独标签方案"},{"en":"span","zh":"文本片段"}],"refs":[{"page":279,"reasonZh":"表4.18的IO、BIO、BIOES对照及price示例"}],"sourceQuestions":[79,81],"difficulty":"应用"
+    },
+    {
+      "id":"aspect-04","topic":"aspect","form":"method","prompt":"Which approach describes Sentic GCN for aspect-based sentiment analysis?",
+      "options":["A sentiment classifier that represents only linear word sequences and uses no graph","A topic model that discovers aspects solely from word co-occurrence counts","A graph method whose only output is aspect boundaries, with no sentiment classification","An affective-knowledge-enhanced graph convolutional approach to aspect-based sentiment analysis"],"answer":3,
+      "explanationZh":"302页引用的题名是Aspect-Based Sentiment Analysis via Affective Knowledge Enhanced Graph Convolutional Networks。重点是用情感知识增强图卷积做ABSA；“抽取方面”和“判断给定方面的情感”不是同一子任务。",
+      "distractorsZh":["题名明确包含Graph Convolutional Networks，不能省掉图建模。","这更接近无监督主题发现，忽略了情感知识增强图卷积。","原题名指向ABSA，不应缩减为仅输出方面边界。",""],
+      "terms":[{"en":"aspect-based sentiment analysis (ABSA)","zh":"方面级情感分析"},{"en":"graph convolutional network (GCN)","zh":"图卷积网络"}],"refs":[{"page":302,"reasonZh":"Symbolic for Subsymbolic方法图及原论文标题"},{"page":279,"reasonZh":"AE、ATP等方面子任务缩写对照"}],"sourceQuestions":[82],"difficulty":"应用","noteZh":"Mock Q82选B，措辞概括为图模型抽取方面；理解时应保留ABSA与纯方面抽取的区别。"
+    },
+    {
+      "id":"aspect-05","topic":"aspect","form":"scenario","prompt":"What is the benefit of comparing two cameras separately on picture quality, battery, zoom, size, and weight?",
+      "options":["Aspect-level summaries preserve differences that one overall sentiment score can hide","A camera must have the same sentiment on every aspect","Aspect extraction removes the need to read any review","Positive and negative evidence must never coexist"],"answer":0,
+      "explanationZh":"278页按Picture、Battery、Zoom、Size、Weight分别比较两台相机。某产品可能画质好但重量差，整体平均分不能完整表达这种权衡。",
+      "distractorsZh":["","不同方面可以拥有不同评价方向。","方面结果仍来自评论分析，需要数据证据。","同一产品的不同方面可存在正负评价。"],
+      "terms":[{"en":"aspect-level summary","zh":"方面级摘要"},{"en":"trade-off","zh":"权衡"}],"refs":[{"page":278,"reasonZh":"两台数码相机的分方面评价图"}],"sourceQuestions":[79,82],"difficulty":"应用"
+    },
+    {
+      "id":"aspect-06","topic":"aspect","form":"resource","prompt":"Which source-and-size pairing describes the aspect-based sentiment dataset introduced by Pontiki et al. (2014)?",
+      "options":["Medical records; 285 samples","TV shows; 690 samples","Laptop and restaurant reviews; 6,000 sentences","Personality essays; 2,479 essays"],"answer":2,
+      "explanationZh":"279页表4.19的Pontiki et al. (2014)行列出笔记本电脑与餐馆评论，共6,000个句子，覆盖AE、AC、ATP、ACP。样本量单位为句子。",
+      "distractorsZh":["来源和样本量均不是该行。","这是另一任务资源的描述。","","这是人格识别表中的另一资源。"],
+      "terms":[{"en":"aspect extraction (AE)","zh":"方面抽取"},{"en":"aspect category detection (AC)","zh":"方面类别检测"}],"refs":[{"page":279,"reasonZh":"表4.19的2014行及任务缩写说明"}],"sourceQuestions":[78,79],"difficulty":"基础"
+    },
+    {
+      "id":"polarity-01","topic":"polarity","form":"definition","prompt":"What changes when polarity is represented as a continuous intensity rather than a binary label?",
+      "options":["Polarity intensity is identical to confidence in a positive class prediction","A model may output a real-valued sentiment score in [-1, +1] instead of only positive/negative labels","Every task must discard neutral or mixed attitudes","The absolute intensity alone is enough to identify positive versus negative polarity"],"answer":1,
+      "explanationZh":"282页对比早期pos vs neg分类与区间[-1,+1]中的浮点强度。分数的符号表达方向，绝对值表达程度；评估指标随离散分类或连续预测任务而定。",
+      "distractorsZh":["预测置信度和被表达的情感强度不是同一概念。","","分类方案依任务而定，不能据此要求所有任务丢掉中性或混合情感。","绝对值会丢失正负方向。"],
+      "terms":[{"en":"polarity intensity","zh":"极性强度"},{"en":"binary classification","zh":"二分类"}],"refs":[{"page":282,"reasonZh":"二分类与[-1,+1]连续强度说明"}],"sourceQuestions":[83],"difficulty":"基础"
+    },
+    {
+      "id":"polarity-02","topic":"polarity","form":"definition","prompt":"Which distinction between polarity detection and spam filtering is correct?",
+      "options":["Positive always means spam, and negative always means legitimate","Both tasks have identical labels by definition","A neutral email can never be spam","Polarity concerns sentiment; spam filtering concerns unwanted messages, though sentiment may be a feature"],"answer":3,
+      "explanationZh":"极性检测预测positive/negative等情感方向；垃圾邮件过滤预测spam/ham。情感分数可作为垃圾邮件分类器的一项辅助特征。",
+      "distractorsZh":["垃圾邮件可以有各种情感，不能按正负等同划分。","两个任务的目标标签不同。","中性措辞也可能出现在垃圾邮件中。",""],
+      "terms":[{"en":"spam / ham","zh":"垃圾邮件／非垃圾邮件"},{"en":"polarity detection","zh":"极性检测"}],"refs":[{"page":282,"reasonZh":"极性检测的定义"},{"page":284,"reasonZh":"讲义列出的下游应用示例"}],"sourceQuestions":[84],"sourceQuizPage":169,"difficulty":"应用","noteZh":"Mock Q84给定答案：Spam email filtering。"
+    },
+    {
+      "id":"polarity-03","topic":"polarity","form":"resource","prompt":"What does a sentiment lexicon typically provide to a polarity system?",
+      "options":["Words or concepts associated with prior sentiment values","A complete parse tree for every possible sentence","The true intention of every author with certainty","A guarantee that context can be discarded"],"answer":0,
+      "explanationZh":"情感词典/概念资源给出词项或概念的情感先验，可用作特征或评分依据。否定、反讽与目标差异仍会改变句子的实际情感，因此先验不等于最终句级答案。",
+      "distractorsZh":["","情感词典不穷举所有句子的句法树。","词典不能保证知道每位作者的真实意图。","上下文会影响词项情感的实际作用。"],
+      "terms":[{"en":"sentiment lexicon","zh":"情感词典"},{"en":"prior sentiment","zh":"先验情感"}],"refs":[{"page":283,"reasonZh":"极性技术表中的Lexicon类特征与方法"}],"sourceQuestions":[89,90],"difficulty":"基础"
+    },
+    {
+      "id":"polarity-04","topic":"polarity","form":"evaluation","prompt":"A binary sentiment classifier has class-wise F1 scores of 0.90 and 0.50. What is its macro-F1?",
+      "options":["0.90","0.45","0.70","1.40"],"answer":2,
+      "explanationZh":"Macro-F1先分别计算各类F1，再对类别做等权平均：(0.90+0.50)/2=0.70。各类权重相同，283页多项实验采用这一指标。",
+      "distractorsZh":["这是第一类F1，忽略了第二类。","这是两数相乘，不是宏平均。","","这是总和，尚未除以类别数。"],
+      "terms":[{"en":"macro-F1","zh":"各类别F1的宏平均"},{"en":"class-wise","zh":"逐类别的"}],"refs":[{"page":283,"reasonZh":"极性检测技术表的Macro-F1指标"}],"sourceQuestions":[88],"difficulty":"应用"
+    },
+    {
+      "id":"polarity-05","topic":"polarity","form":"challenge","prompt":"Why should a system not classify 'The service was not good' using only the positive lexicon entry for 'good'?",
+      "options":["Every negated sentence is grammatically invalid","The negation changes how the sentiment word contributes in context","The sentence contains no sentiment-bearing word","The word 'service' must always make a sentence positive"],"answer":1,
+      "explanationZh":"not作用于good，改变它在此处的情感贡献。词典提供局部先验，句子极性还需要分析否定范围和上下文。",
+      "distractorsZh":["否定句可以完全合语法。","","good是情感词，但受到否定影响。","service是被评价对象，不能单独决定极性。"],
+      "terms":[{"en":"negation","zh":"否定"},{"en":"compositionality","zh":"组合性"}],"refs":[{"page":282,"reasonZh":"极性判断任务背景"},{"page":283,"reasonZh":"词典、句法与上下文模型等技术对照"}],"sourceQuestions":[86,89],"difficulty":"应用"
+    },
+    {
+      "id":"polarity-06","topic":"polarity","form":"resource","prompt":"Which statement about using SenticNet for polarity detection is the most precise?",
+      "options":["It is identical to a held-out set of labeled product reviews","It supplies the correct label for any arbitrary input paragraph","It prevents every possible sarcasm error","It provides concept-level affective knowledge that can augment a model; labeled evaluation data are a separate resource"],"answer":3,
+      "explanationZh":"SenticNet提供概念级情感知识，用于增强模型。独立的带标签测试集则用于衡量预测效果，两类资源承担不同作用。",
+      "distractorsZh":["知识库与留出的评论测试集不是同一个概念。","它不是对任意段落提供金标准标签的表。","情感知识不能保证解决所有反讽。",""],
+      "terms":[{"en":"affective knowledge base","zh":"情感知识库"},{"en":"held-out evaluation set","zh":"留出的评测集"}],"refs":[{"page":288,"reasonZh":"SenticNet框架与归一化背景"},{"page":394,"reasonZh":"下载页明确区分SenticNet知识库等资源类型"}],"sourceQuestions":[90],"difficulty":"应用"
+    },
+    {
+      "id":"kr-01","topic":"kr","form":"definition","prompt":"In a semantic network, what do nodes and labeled edges most directly encode?",
+      "options":["Concepts or entities, and their relations","Only the execution time of an algorithm","Only pixels and RGB values","Random file identifiers with no semantics"],"answer":0,
+      "explanationZh":"语义网络用节点表示概念/实体，用带语义的边表示关系。318页PrimeNet图就以概念节点和自然语言关系边展示知识；Mock Q91/Q94直接考这种表示。",
+      "distractorsZh":["","运行时间是性能统计，不是语义网络的核心结构。","图像可以用图表示，但这里谈的是知识语义关系。","关键在于可解释关系，不是无意义随机编号。"],
+      "terms":[{"en":"semantic network","zh":"语义网络"},{"en":"labeled edge","zh":"带标签的边"}],"refs":[{"page":318,"reasonZh":"概念节点与关系边的具体知识图示例"}],"sourceQuestions":[91,94],"difficulty":"基础"
+    },
+    {
+      "id":"kr-02","topic":"kr","form":"definition","prompt":"Which artifact is best described as an ontology for a university domain?",
+      "options":["Only a list of observed student names, with no classes or relation definitions","Only a dense embedding vector for each word, with no explicit schema","A formal specification of classes such as Student and Course, their properties, relations, and constraints","Only raw course reviews, with no conceptual schema"],"answer":2,
+      "explanationZh":"本体为领域提供形式化概念、关系及约束，例如Student、Course与enrolledIn。这套共同规范帮助系统解释数据并进行推理。",
+      "distractorsZh":["实例名单不等于领域的形式概念与关系规范。","分布式向量可能编码关系，但不等同于显式本体规范。","","原始语料不自动构成形式化本体。"],
+      "terms":[{"en":"ontology","zh":"本体"},{"en":"constraint","zh":"约束"}],"refs":[{"page":317,"reasonZh":"相关背景：概念、实体和层级组织；本体定义见Mock Q92"}],"sourceQuestions":[92],"sourceQuizPage":185,"difficulty":"基础","noteZh":"定义见Mock Q92答案页（p185）；讲义p317提供分层知识表示背景。"
+    },
+    {
+      "id":"kr-03","topic":"kr","form":"scenario","prompt":"A knowledge representation stores Car with slots make=Toyota, color=red, and seats=5. Which representation is most directly illustrated?",
+      "options":["A taxonomy specifying only subclass relations","A frame with slot-value pairs","A production rule with an if-condition and then-conclusion","An unstructured text corpus without named attributes"],"answer":1,
+      "explanationZh":"Frame将对象的属性组织成槽位与值。例如Car框架包含make、color、seats等槽位，分别存放Toyota、red、5。",
+      "distractorsZh":["这里给的是对象属性槽，而不仅是子类关系。","","这里没有if-then推理规则结构。","题目明确列出了命名属性和值，不是无结构文本。"],
+      "terms":[{"en":"frame","zh":"框架（知识表示）"},{"en":"slot-value pair","zh":"槽位—值对"}],"refs":[{"page":317,"reasonZh":"相关背景：知识表示层级；frame的直接定义在Mock Q93"}],"sourceQuestions":[93],"sourceQuizPage":187,"difficulty":"基础","noteZh":"定义见Mock Q93答案页（p187）；讲义p317提供分层知识表示背景。"
+    },
+    {
+      "id":"kr-04","topic":"kr","form":"scenario","prompt":"Using a subject-relation-object convention, which knowledge-graph triple states that Alice is enrolled in NLU101?",
+      "options":["(NLU101, enrolledIn, Alice)","(Alice, teaches, NLU101)","(Alice, prerequisiteOf, NLU101)","(Alice, enrolledIn, NLU101)"],"answer":3,
+      "explanationZh":"主体Alice通过有方向的enrolledIn关系连接客体课程NLU101。知识图中的边不仅表示两个节点相关，还应保留具体关系类型与方向。",
+      "distractorsZh":["倒转了enrolledIn关系的主体与客体。","teaches表示授课，不是选课。","prerequisiteOf表示先修关系，不是学生选课。",""],
+      "terms":[{"en":"knowledge graph","zh":"知识图谱"},{"en":"triple","zh":"三元组"}],"refs":[{"page":318,"reasonZh":"知识图中的概念节点与语义关系边"}],"sourceQuestions":[95],"difficulty":"应用"
+    },
+    {
+      "id":"kr-05","topic":"kr","form":"definition","prompt":"Which sequence is a concept hierarchy ordered from more general to more specific?",
+      "options":["Animal → Mammal → Dog","Dog → Animal → Mammal","Animal → Dog → Mammal","Mammal → Dog → Animal"],"answer":0,
+      "explanationZh":"概念层级按一般到特殊组织类别，Dog是Mammal的子类，Mammal是Animal的子类。317页PrimeNet的Tool—Hammer—具体锤子同样体现抽象层级，但其三层术语另有明确设计。",
+      "distractorsZh":["","Dog到Animal变一般，之后再变具体，不是统一的从一般到特殊。","Dog到Mammal又变一般，方向不一致。","末尾Dog到Animal变一般，方向不一致。"],
+      "terms":[{"en":"concept hierarchy","zh":"概念层级"},{"en":"taxonomy","zh":"分类体系"}],"refs":[{"page":317,"reasonZh":"Tool、Hammer与具体实体的抽象层次图"}],"sourceQuestions":[100],"difficulty":"基础"
+    },
+    {
+      "id":"kr-06","topic":"kr","form":"workflow","prompt":"Given the fact Dog(Fido) and the rule Dog(x) → Mammal(x), what conclusion follows by applying the rule?",
+      "options":["Every mammal is a dog","Fido is not a mammal","Mammal(Fido)","Dog(x) is false for every x"],"answer":2,
+      "explanationZh":"把x替换为Fido，前件Dog(Fido)成立，因此推出Mammal(Fido)。推理方向由蕴涵决定；反向的Mammal→Dog需要额外前提。",
+      "distractorsZh":["这是未经许可的反向推理。","与该规则推出的结论相反。","","给定事实已经说明至少Fido是狗。"],
+      "terms":[{"en":"rule-based reasoning","zh":"基于规则的推理"},{"en":"implication","zh":"蕴涵"}],"refs":[{"page":297,"reasonZh":"Symbolic AI使用形式规则推理"}],"sourceQuestions":[98],"difficulty":"应用"
+    },
+    {
+      "id":"kr-07","topic":"kr","form":"challenge","prompt":"What is a limitation of an ordinary two-valued classical-logic model when uncertain evidence must be represented directly?",
+      "options":["All logical statements are uninterpretable","True/false values alone do not express graded uncertainty without additional machinery","It cannot represent any relation","Every form of logic, including probabilistic extensions, forbids uncertainty"],"answer":1,
+      "explanationZh":"普通二值经典逻辑以真/假为核心。表达概率或置信度需要附加机制，例如概率逻辑；模糊逻辑则可表达真值程度。",
+      "distractorsZh":["显式逻辑往往具有可解释性。","","逻辑可以表示关系与规则。","存在处理不确定性的扩展，不能作此全称判断。"],
+      "terms":[{"en":"two-valued logic","zh":"二值逻辑"},{"en":"uncertainty","zh":"不确定性"}],"refs":[{"page":297,"reasonZh":"形式规则与数据学习的对照背景；限制定义见Mock Q99"}],"sourceQuestions":[99],"sourceQuizPage":199,"difficulty":"应用","noteZh":"Mock Q99选A，此处限定为普通二值经典逻辑。"
+    },
+    {
+      "id":"kr-08","topic":"kr","form":"definition","prompt":"What is the central idea of neurosymbolic AI?",
+      "options":["Only symbolic rules, with all learning excluded","Only deep neural networks, with explicit knowledge excluded","Two unrelated sentiment dictionaries","Data-driven neural learning combined with symbolic knowledge or reasoning"],"answer":3,
+      "explanationZh":"297页将第一波的形式规则、第二波的深度神经网络与第三波的两者结合并列。神经符号AI结合数据驱动学习与显式知识或推理。",
+      "distractorsZh":["这只描述符号侧。","这只描述次符号侧。","简单放置两份词典不构成该定义的结合。",""],
+      "terms":[{"en":"neurosymbolic AI","zh":"神经符号人工智能"},{"en":"subsymbolic","zh":"次符号的"}],"refs":[{"page":297,"reasonZh":"三波AI与combined approaches说明"},{"page":302,"reasonZh":"情感知识增强图神经模型的结合实例"}],"sourceQuestions":[91,98,99],"difficulty":"基础"
+    },
+    {
+      "id":"primenet-01","topic":"primenet","form":"definition","prompt":"In PrimeNet, which ordering goes from the most abstract layer to the most specific layer?",
+      "options":["Primitives → concepts → entities","Entities → concepts → primitives","Concepts → primitives → entities","Primitives → entities → concepts"],"answer":0,
+      "explanationZh":"317页给出superordinate primitive、basic-level concept、subordinate entity三层。例如Tool → Hammer → 具体锤子，依次从抽象到具体。",
+      "distractorsZh":["","这是从具体到抽象，与题目方向相反。","把概念层放在比基元更抽象的位置了。","实体应比概念更具体，而不是居中。"],
+      "terms":[{"en":"conceptual primitive","zh":"概念基元"},{"en":"entity layer","zh":"实体层"}],"refs":[{"page":317,"reasonZh":"图5.2的三层结构及层级定义"}],"sourceQuestions":[96,97],"difficulty":"基础"
+    },
+    {
+      "id":"primenet-02","topic":"primenet","form":"scenario","prompt":"Which statement expresses hammer-related commonsense at the basic concept level?",
+      "options":["Only one particular claw hammer can ever drive nails","A tool always drives every nail into every material","A hammer can be used to drive nails into wood","No concept can connect tools, nails, and wood"],"answer":2,
+      "explanationZh":"317页图5.1选择hammer作为描述常识的合适粒度：claw hammer过于具体，tool又过于抽象。基本层概念兼顾概括能力和功能特征。",
+      "distractorsZh":["把常识过度限定到单一具体对象。","把锤子的能力过度泛化到所有工具。","","讲义正是通过这些概念描述常识关系。"],
+      "terms":[{"en":"basic-level concept","zh":"基本层概念"},{"en":"granularity","zh":"粒度"}],"refs":[{"page":317,"reasonZh":"图5.1中claw hammer、hammer、tool的对照"}],"sourceQuestions":[96,97],"difficulty":"应用"
+    },
+    {
+      "id":"primenet-03","topic":"primenet","form":"workflow","prompt":"How many relation types does PrimeNet use in its normalized knowledge graph?",
+      "options":["3","34","400","Exactly one relation for every input word"],"answer":1,
+      "explanationZh":"318页图5.3说明初始图收集训练数据中的自然语言关系，经多轮normalization后，最终图只使用34种关系。3是三层知识结构的层数，不能与关系种类数混淆。",
+      "distractorsZh":["3对应前页的层数，不是这里的关系数。","","400是本讲义总页数，不是关系数。","归一化正是把多样表达组织为有限关系集合。"],
+      "terms":[{"en":"relation normalization","zh":"关系归一化"}],"refs":[{"page":318,"reasonZh":"图5.3图注明确写出final graph的34种关系"}],"sourceQuestions":[96,97],"difficulty":"基础"
+    },
+    {
+      "id":"primenet-04","topic":"primenet","form":"scenario","prompt":"In the PrimeNet verb-primitive examples, what abstract operation corresponds to 'cut budget'?",
+      "options":["GENERATE(budget)","KILL(budget)","ACCELERATE(budget)","DECREASE(budget)"],"answer":3,
+      "explanationZh":"319页表5.1将cut budget映射为DECREASE(budget)，用budget--表示减少。动词的基元解释取决于对象和语境。",
+      "distractorsZh":["GENERATE表示生成，不是削减预算。","KILL不是该行对cut budget的解释。","ACCELERATE表示加速，不是减少数量。",""],
+      "terms":[{"en":"verb primitive","zh":"动词基元"},{"en":"state change","zh":"状态变化"}],"refs":[{"page":319,"reasonZh":"表5.1中cut budget与DECREASE的映射"}],"sourceQuestions":[96,97],"difficulty":"应用"
+    },
+    {
+      "id":"primenet-05","topic":"primenet","form":"workflow","prompt":"What does mapping both 'the device is heating up' and 'the temperature of the device increased' to device.temperature++ illustrate?",
+      "options":["Generalizing surface variants into a shared conceptual representation","Keeping a completely separate meaning for every wording","Predicting only the next punctuation mark","Discarding the direction of the temperature change"],"answer":0,
+      "explanationZh":"320页将多种语序、时态与同义表达归并为device.temperature++，共同保留设备温度增加这一抽象变化。",
+      "distractorsZh":["","图中恰好将多种表达归并。","这个表示表达语义状态变化，不是标点预测。","++保留了增加这一方向。"],
+      "terms":[{"en":"conceptual representation","zh":"概念表示"},{"en":"surface variation","zh":"表面表达变体"}],"refs":[{"page":320,"reasonZh":"图5.4的多句式到device.temperature++归纳"}],"sourceQuestions":[96,97],"difficulty":"应用"
+    },
+    {
+      "id":"primenet-06","topic":"primenet","form":"definition","prompt":"How does PrimeNet represent and normalize knowledge?",
+      "options":["PrimeNet organizes only surface word forms and does not represent abstraction levels","PrimeNet treats primitives, concepts, and entities as interchangeable names for one flat layer","PrimeNet organizes knowledge hierarchically and abstracts expressions using primitives","PrimeNet is defined solely as a deep-learning model for semantic role labeling"],"answer":2,
+      "explanationZh":"317–320页展示PrimeNet的三层知识组织、关系归一化和基元表达，并将多种句式归并为共同的概念变化。",
+      "distractorsZh":["三层结构与句式归一化都明确涉及抽象，而非只记录词形。","317页明确区分三层，不是同一平层的三个别名。","","这是Mock解释中的额外说法，不是本题限定讲义页直接支持的定位。"],
+      "terms":[{"en":"hierarchical knowledge representation","zh":"层次化知识表示"},{"en":"semantic role labeling (SRL)","zh":"语义角色标注"}],"refs":[{"page":317,"reasonZh":"三层知识表示"},{"page":319,"reasonZh":"动词基元表"},{"page":320,"reasonZh":"抽象概念表示"}],"sourceQuestions":[96,97],"difficulty":"应用","noteZh":"Mock Q96答案为B；其解释中“专为SRL设计”的定位未见于这组讲义页。"
+    }
+  ]
+}

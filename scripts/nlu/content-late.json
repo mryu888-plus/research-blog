@@ -1,0 +1,5146 @@
+{
+  "topics": [
+    {
+      "id": "sentic-normalization",
+      "nameZh": "归一化与语言表示",
+      "nameEn": "Normalization and Representation",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        286,
+        287,
+        288,
+        289,
+        295,
+        296
+      ],
+      "focusZh": "三层处理、表示路线、同义和多语言归一化"
+    },
+    {
+      "id": "sentic-transactions",
+      "nameZh": "交易基元与时间位移",
+      "nameEn": "Transaction Primitives",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        290,
+        291,
+        292,
+        293,
+        294
+      ],
+      "focusZh": "BARTER、GET/GIVE、BORROW/LEND、BUY/SELL、RENT/LEASE"
+    },
+    {
+      "id": "ns-fusion",
+      "nameZh": "神经符号双向融合",
+      "nameEn": "Neurosymbolic Fusion",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304
+      ],
+      "focusZh": "符号与次符号、图卷积、张量融合、四层抽象"
+    },
+    {
+      "id": "ns-grounding",
+      "nameZh": "嵌入、符号接地与常识",
+      "nameEn": "Grounding and Commonsense",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        305,
+        306,
+        307,
+        308,
+        309,
+        310
+      ],
+      "focusZh": "相似性、定义循环、符号三角、icon/index/symbol、常识"
+    },
+    {
+      "id": "ns-ambiguity",
+      "nameZh": "歧义与常识推理",
+      "nameEn": "Ambiguity and Reasoning",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        311,
+        312,
+        313,
+        314,
+        315,
+        316
+      ],
+      "focusZh": "介词附着、工具义、saw与kid的多义性"
+    },
+    {
+      "id": "ns-evaluation",
+      "nameZh": "PrimeNet扩展与推理评估",
+      "nameEn": "PrimeNet and Reasoning Evaluation",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324
+      ],
+      "focusZh": "动词基元、常识QA、双系统、功能推理、NeuLR"
+    },
+    {
+      "id": "ns-adoption",
+      "nameZh": "AI采纳与数据质量",
+      "nameEn": "Adoption and Data Quality",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        325,
+        326,
+        327,
+        328,
+        329,
+        330
+      ],
+      "focusZh": "BI五阶段、隐私、全面性、均衡性与偏见"
+    },
+    {
+      "id": "ns-future",
+      "nameZh": "AI前景与情感模型基础",
+      "nameEn": "AI Prospects and Emotion Models",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        331,
+        332,
+        334,
+        335,
+        336,
+        337,
+        338
+      ],
+      "focusZh": "预测与职业、情感计算层次、早期情感模型"
+    },
+    {
+      "id": "emotion-hourglass",
+      "nameZh": "Hourglass维度与修订",
+      "nameEn": "Hourglass Dimensions",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348
+      ],
+      "focusZh": "新旧情感维度、强度、对立关系与新增情绪"
+    },
+    {
+      "id": "emotion-attitude",
+      "nameZh": "自我与他人的态度",
+      "nameEn": "Attitude toward Self and Others",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        349,
+        350
+      ],
+      "focusZh": "态度的方向、强度、自我与他人目标，以及道德情感"
+    },
+    {
+      "id": "emotion-neutral",
+      "nameZh": "惊讶与情感组合",
+      "nameEn": "Surprise and Affective Composition",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        351,
+        352,
+        353,
+        354
+      ],
+      "focusZh": "面部表情、惊讶、正负组合"
+    },
+    {
+      "id": "emotion-scoring",
+      "nameZh": "复合情感与极性公式",
+      "nameEn": "Compound Emotions and Polarity",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        355,
+        356,
+        357
+      ],
+      "focusZh": "旧公式、稀释问题、非零维度平均与复合词表"
+    },
+    {
+      "id": "emotion-history",
+      "nameZh": "情感分析演进",
+      "nameEn": "Sentiment Analysis Approaches",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        366
+      ],
+      "focusZh": "规则、统计、可解释、个性化和预测式阶段"
+    },
+    {
+      "id": "emotion-personal",
+      "nameZh": "个性化与认知建模",
+      "nameEn": "Personalization and Cognitive Modeling",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        365,
+        367,
+        368,
+        369,
+        373,
+        378
+      ],
+      "focusZh": "用户因素、appraisal、ICS、Jaccard与认知模拟"
+    },
+    {
+      "id": "sentic-umbrella",
+      "nameZh": "Sentic Computing与解释",
+      "nameEn": "Sentic Computing and Explanations",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        370,
+        371,
+        372,
+        374
+      ],
+      "focusZh": "交叉领域、七个方向、解释评估与多模态融合"
+    },
+    {
+      "id": "sentic-multix",
+      "nameZh": "多语言、多任务与会话",
+      "nameEn": "Multilingual, Multitask and Conversational",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        375,
+        376,
+        377,
+        378
+      ],
+      "focusZh": "语义对齐、LGDS、跨任务共享、情感对与强化学习"
+    },
+    {
+      "id": "sentic-projects",
+      "nameZh": "XAI领域应用一",
+      "nameEn": "XAI Application Studies I",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        379,
+        380,
+        381,
+        382,
+        383
+      ],
+      "focusZh": "商业、气候、教育与科学发现"
+    },
+    {
+      "id": "sentic-applied",
+      "nameZh": "XAI领域应用二",
+      "nameEn": "XAI Application Studies II",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        384,
+        385,
+        386
+      ],
+      "focusZh": "MEGACare、评论毒性、金融情感"
+    },
+    {
+      "id": "emotion-atlas",
+      "nameZh": "行为图谱与标注",
+      "nameEn": "Behavior Atlas and Labeling",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        387,
+        388,
+        389
+      ],
+      "focusZh": "数据标准化、模态/时长分布、情感标签局限"
+    },
+    {
+      "id": "sentic-resources",
+      "nameZh": "知识资源与工具",
+      "nameEn": "Resources and Demonstrations",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        400
+      ],
+      "focusZh": "学术资源、知识库/本体/嵌入、实现代码、区域语言模型与隐喻工具"
+    },
+    {
+      "id": "sentic-api",
+      "nameZh": "Sentic API输出",
+      "nameEn": "Sentic API Outputs",
+      "lecture": 5,
+      "originalQuestions": [],
+      "pages": [
+        398,
+        399,
+        400
+      ],
+      "focusZh": "八项核心功能、强度、方面、人格与附加指标"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sentic-normalization-01",
+      "topic": "sentic-normalization",
+      "form": "workflow",
+      "prompt": "Which sequence follows the Suitcase Model from lower-level processing toward contextual understanding?",
+      "options": [
+        "Pragmatics → syntax → semantics",
+        "Syntax → semantics → pragmatics",
+        "Semantics → morphology → syntax",
+        "Pragmatics → semantics → syntax"
+      ],
+      "answer": 1,
+      "explanationZh": "Suitcase模型依次组织Syntactics、Semantics、Pragmatics。第一层含microtext normalization、SBD、POS、chunking、lemmatization；第二层含WSD、NER、concept extraction、anaphora、subjectivity；第三层含metaphor、sarcasm、personality、aspect与下游任务。",
+      "distractorsZh": [
+        "起点和层次顺序相反。",
+        "",
+        "混入词法子任务，未给出三层顺序。",
+        "这是从高层倒向低层。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual normalization",
+          "zh": "概念归一化"
+        },
+        {
+          "en": "pragmatics",
+          "zh": "语用学"
+        }
+      ],
+      "refs": [
+        {
+          "page": 286,
+          "reasonZh": "语言理解三层"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-normalization-03",
+      "topic": "sentic-normalization",
+      "form": "workflow",
+      "prompt": "Which pipeline explicitly performs syntactic, semantic, and pragmatic normalization?",
+      "options": [
+        "TF-IDF → scaling → SVM",
+        "Word2Vec → average pooling → SVM",
+        "SenticNet's normalization pipeline",
+        "Subword encoding → RoBERTa → pooling → MLP"
+      ],
+      "answer": 2,
+      "explanationZh": "SenticNet路线按syntactic、semantic、pragmatic normalization处理输入。对照路线分别是问题构造→ChatGPT→标签解析；subword→RoBERTa→pooling→MLP；word encoding→Word2Vec→average pooling→SVM；word encoding→TF-IDF→scaling→SVM。",
+      "distractorsZh": [
+        "这是特征加权与分类路线。",
+        "这是词向量平均池化路线。",
+        "",
+        "这是预训练编码器分类路线。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual normalization",
+          "zh": "概念归一化"
+        },
+        {
+          "en": "pragmatics",
+          "zh": "语用学"
+        }
+      ],
+      "refs": [
+        {
+          "page": 288,
+          "reasonZh": "归一化流水线"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-normalization-04",
+      "topic": "sentic-normalization",
+      "form": "scenario",
+      "prompt": "Why can 'buy a cookie', 'pay for a cookie', and 'purchase a cookie' be mapped to a common transaction representation?",
+      "options": [
+        "Their character strings are identical",
+        "They share a more abstract action-object meaning",
+        "They must have the same POS-tag sequence",
+        "They all mention the same named person"
+      ],
+      "answer": 1,
+      "explanationZh": "这些短语使用不同动作表达与饼干子类，却可归纳到BUY(COOKIE)。页面先把buyin/bought/buys等词形规范化，再把snickerdoodle、shortbread、macaron等归入共同概念，最后用交换饼干与金钱的场景表示语用意义。",
+      "distractorsZh": [
+        "表面字符串明显不同。",
+        "",
+        "相同句法不能单独保证意义相同。",
+        "例子没有共同人名这一要求。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual normalization",
+          "zh": "概念归一化"
+        },
+        {
+          "en": "pragmatics",
+          "zh": "语用学"
+        }
+      ],
+      "refs": [
+        {
+          "page": 289,
+          "reasonZh": "同义交易表达"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-normalization-05",
+      "topic": "sentic-normalization",
+      "form": "scenario",
+      "prompt": "Which pair describes the same cookie transaction from opposite participant perspectives?",
+      "options": [
+        "The girl buys from the boy; the boy buys from the girl",
+        "The girl sells to the boy; the boy sells to the girl",
+        "The girl receives a cookie for free; she pays for it",
+        "The girl buys a cookie from the boy; the boy sells it to the girl"
+      ],
+      "answer": 3,
+      "explanationZh": "买与卖可以是同一事件的角色反转。图中还用purchase、acquire for money、give/provide in exchange for cash、trade、enable the girl to have a cookie，以及not give for free描述同一交易。",
+      "distractorsZh": [
+        "两句的买方交换了，形成不同事件。",
+        "两句的卖方交换了。",
+        "免费获得与付费交易条件不同。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "conceptual normalization",
+          "zh": "概念归一化"
+        },
+        {
+          "en": "pragmatics",
+          "zh": "语用学"
+        }
+      ],
+      "refs": [
+        {
+          "page": 295,
+          "reasonZh": "参与者视角"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-normalization-06",
+      "topic": "sentic-normalization",
+      "form": "scenario",
+      "prompt": "What should multilingual conceptual normalization preserve when the same purchase is described in different languages?",
+      "options": [
+        "The exact word order of English",
+        "The original number of characters",
+        "The participants and action-object relations",
+        "Only the language identifier"
+      ],
+      "answer": 2,
+      "explanationZh": "多语言表达可以共享女孩、男孩、饼干与金钱交换的事件结构。示例包含中文、意大利语、西班牙语、阿拉伯语、俄语、希腊语、日语、芬兰语与泰米尔语。",
+      "distractorsZh": [
+        "不同语言允许不同语序。",
+        "字数随语言改变。",
+        "",
+        "语言标识本身不表达事件含义。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual normalization",
+          "zh": "概念归一化"
+        },
+        {
+          "en": "pragmatics",
+          "zh": "语用学"
+        }
+      ],
+      "refs": [
+        {
+          "page": 296,
+          "reasonZh": "跨语言角色保留"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-transactions-01",
+      "topic": "sentic-transactions",
+      "form": "definition",
+      "prompt": "Which primitive most directly represents exchanging one item for another?",
+      "options": [
+        "BORROW",
+        "GET",
+        "BARTER",
+        "GIVE"
+      ],
+      "answer": 2,
+      "explanationZh": "BARTER表示交换，图中X与Y处于交换符号两端，并借助t−1的先前状态表示变化。页脚引用Konrad Lorenz把思考比作在想象空间中行动，强调状态模拟的视角。",
+      "distractorsZh": [
+        "借入包含归还的时间结构。",
+        "GET强调获得一侧。",
+        "",
+        "GIVE强调给予一侧。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual primitive",
+          "zh": "概念基元"
+        },
+        {
+          "en": "temporal relation",
+          "zh": "时间关系"
+        }
+      ],
+      "refs": [
+        {
+          "page": 290,
+          "reasonZh": "交换基元"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-transactions-02",
+      "topic": "sentic-transactions",
+      "form": "definition",
+      "prompt": "Which pair describes receiving and giving as complementary directions of a transfer?",
+      "options": [
+        "GET and GIVE",
+        "BUY and BORROW",
+        "RENT and GET",
+        "BARTER and DECREASE"
+      ],
+      "answer": 0,
+      "explanationZh": "GET与GIVE分别突出获得方和给予方。图中二者都使用t−1先前状态，一侧保留X或Y，另一侧为空，表示转移视角。",
+      "distractorsZh": [
+        "",
+        "购买与借入的交换条件不同。",
+        "租入与获得的时间、付费条件不同。",
+        "DECREASE描述数量下降。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual primitive",
+          "zh": "概念基元"
+        },
+        {
+          "en": "temporal relation",
+          "zh": "时间关系"
+        }
+      ],
+      "refs": [
+        {
+          "page": 291,
+          "reasonZh": "转移的互补方向"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-transactions-03",
+      "topic": "sentic-transactions",
+      "form": "definition",
+      "prompt": "Why does representing borrowing require more temporal information than representing a simple transfer?",
+      "options": [
+        "Borrowing removes the recipient from the event",
+        "Borrowing includes temporary possession and an expected return",
+        "Giving always involves payment",
+        "Borrowing has no resulting state"
+      ],
+      "answer": 1,
+      "explanationZh": "借入与借出需要表示暂时占有及归还关系。GET/GIVE强调获得或给予；BORROW/LEND增加借还的时间结构。",
+      "distractorsZh": [
+        "借入者仍是参与者。",
+        "",
+        "给予可以不涉及付款。",
+        "借入会改变物品占有状态。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual primitive",
+          "zh": "概念基元"
+        },
+        {
+          "en": "temporal relation",
+          "zh": "时间关系"
+        }
+      ],
+      "refs": [
+        {
+          "page": 291,
+          "reasonZh": "借贷的时间关系"
+        },
+        {
+          "page": 292,
+          "reasonZh": "借贷的时间关系"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-transactions-04",
+      "topic": "sentic-transactions",
+      "form": "definition",
+      "prompt": "Which feature distinguishes BUY/SELL from a transfer with no payment?",
+      "options": [
+        "Removal of the transferred object",
+        "Replacing participants with POS tags",
+        "Reversing every temporal arrow",
+        "Money participates in the exchange"
+      ],
+      "answer": 3,
+      "explanationZh": "BUY与SELL图把金钱加入交换：BUY突出获得物品并付钱，SELL突出给出物品并获得钱；两者标记t−1。",
+      "distractorsZh": [
+        "物品仍然存在于交换中。",
+        "POS标签不描述交易条件。",
+        "图中重点是金钱和参与者视角。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "conceptual primitive",
+          "zh": "概念基元"
+        },
+        {
+          "en": "temporal relation",
+          "zh": "时间关系"
+        }
+      ],
+      "refs": [
+        {
+          "page": 293,
+          "reasonZh": "交易中的支付"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-transactions-05",
+      "topic": "sentic-transactions",
+      "form": "definition",
+      "prompt": "What distinguishes renting an item from buying it?",
+      "options": [
+        "Renting never involves payment",
+        "Renting typically involves temporary paid use rather than permanent ownership transfer",
+        "Renting has no object",
+        "Renting requires the payer and owner to be identical"
+      ],
+      "answer": 1,
+      "explanationZh": "租赁通常包含付费使用与使用期结束后的返回安排；购买则通常转移所有权。RENT/LEASE从租入与租出两方表达同一类事件。",
+      "distractorsZh": [
+        "付费正是该事件的一部分。",
+        "",
+        "租赁需要被使用的物品或服务。",
+        "支付者与所有者通常是不同参与者。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual primitive",
+          "zh": "概念基元"
+        },
+        {
+          "en": "temporal relation",
+          "zh": "时间关系"
+        }
+      ],
+      "refs": [
+        {
+          "page": 293,
+          "reasonZh": "租赁与购买"
+        },
+        {
+          "page": 294,
+          "reasonZh": "租赁与购买"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-transactions-06",
+      "topic": "sentic-transactions",
+      "form": "scenario",
+      "prompt": "A temporary transfer involves payment for use. Which complementary pair captures both the payment and temporary-use aspects?",
+      "options": [
+        "GET / GIVE",
+        "BUY / SELL",
+        "RENT / LEASE",
+        "BORROW / LEND"
+      ],
+      "answer": 2,
+      "explanationZh": "RENT/LEASE同时包含付费与时间结构。BORROW/LEND图具有t−2结构但没有金钱图标；BUY/SELL有金钱而使用t−1；GET/GIVE表示较基本的单向转移。",
+      "distractorsZh": [
+        "缺少临时付费结构。",
+        "有付费但不是临时使用的那一组。",
+        "",
+        "具有借还时间结构，图中未加入金钱。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual primitive",
+          "zh": "概念基元"
+        },
+        {
+          "en": "temporal relation",
+          "zh": "时间关系"
+        }
+      ],
+      "refs": [
+        {
+          "page": 292,
+          "reasonZh": "有偿临时使用"
+        },
+        {
+          "page": 294,
+          "reasonZh": "有偿临时使用"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-fusion-01",
+      "topic": "ns-fusion",
+      "form": "definition",
+      "prompt": "What roles are combined in a neurosymbolic system?",
+      "options": [
+        "Formal knowledge and reasoning with learned neural representations",
+        "Only two independently trained neural classifiers",
+        "Only a larger hand-written dictionary",
+        "Only a faster statistical optimizer"
+      ],
+      "answer": 0,
+      "explanationZh": "神经符号系统结合形式知识、规则或推理，与数据驱动的神经表示学习。两者分别提供显式结构和从数据中学习模式的能力。",
+      "distractorsZh": [
+        "",
+        "两个神经分类器未必引入显式符号知识。",
+        "字典本身缺少神经学习侧。",
+        "优化速度不是这种结合的定义。"
+      ],
+      "terms": [
+        {
+          "en": "neurosymbolic AI",
+          "zh": "神经符号人工智能"
+        },
+        {
+          "en": "abstraction",
+          "zh": "抽象"
+        }
+      ],
+      "refs": [
+        {
+          "page": 297,
+          "reasonZh": "符号与神经互补"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "ns-fusion-02",
+      "topic": "ns-fusion",
+      "form": "workflow",
+      "prompt": "In graph-based aspect sentiment analysis, how can affective knowledge complement syntactic dependencies?",
+      "options": [
+        "By assigning one sentiment to every word regardless of context",
+        "By contributing semantic-affective relations to the graph alongside dependency and aspect information",
+        "By treating aspect targets as unrelated to sentiment",
+        "By discarding the dependency structure entirely"
+      ],
+      "answer": 1,
+      "explanationZh": "图中Dependency Tree、SenticNet affective信息与Aspect共同构造图表示；Embedding Module进入LSTM，GCN层建模图关系，再经aspect-specific masking与attention得到final representation。",
+      "distractorsZh": [
+        "上下文仍然决定词语和情感关系的解释。",
+        "",
+        "方面目标与评价之间的关系是建模核心。",
+        "知识与句法结构在此形成互补。"
+      ],
+      "terms": [
+        {
+          "en": "neurosymbolic AI",
+          "zh": "神经符号人工智能"
+        },
+        {
+          "en": "abstraction",
+          "zh": "抽象"
+        }
+      ],
+      "refs": [
+        {
+          "page": 302,
+          "reasonZh": "情感知识与图结构"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-fusion-03",
+      "topic": "ns-fusion",
+      "form": "workflow",
+      "prompt": "A context model must infer the intended meaning of a word in the middle of a sentence. Which design can use evidence from both sides?",
+      "options": [
+        "Using only the first word of the sentence",
+        "Looking up the target word in isolation",
+        "Encoding left and right contexts and combining their representations",
+        "Replacing all neighboring words with the same constant"
+      ],
+      "answer": 2,
+      "explanationZh": "左右上下文能提供互补线索。SenticNet 6示例以LSTM/biLSTM注意力表示两侧文本，经tensor fusion形成上下文表示，再用于训练目标概念表示。",
+      "distractorsZh": [
+        "单个首词会遗漏大量相关线索。",
+        "孤立查表无法区分上下文义项。",
+        "",
+        "常量替换抹除了上下文信息。"
+      ],
+      "terms": [
+        {
+          "en": "neurosymbolic AI",
+          "zh": "神经符号人工智能"
+        },
+        {
+          "en": "abstraction",
+          "zh": "抽象"
+        }
+      ],
+      "refs": [
+        {
+          "page": 303,
+          "reasonZh": "左右上下文融合"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-fusion-04",
+      "topic": "ns-fusion",
+      "form": "definition",
+      "prompt": "Which ordering matches the four abstraction levels used in the SenticNet 6 hierarchy?",
+      "options": [
+        "Primitives → entities → concepts → superprimitives",
+        "Concepts → entities → superprimitives → primitives",
+        "Entities → superprimitives → concepts → primitives",
+        "Named entities → concepts → primitives → superprimitives"
+      ],
+      "answer": 3,
+      "explanationZh": "从具体到抽象的层次是Named entities→Concepts→Primitives→Superprimitives，逐级减少表述中的个别细节并保留共有语义。",
+      "distractorsZh": [
+        "层次顺序错误。",
+        "实体与概念顺序错误，基元位置也不对。",
+        "超基元应处于最抽象层。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "neurosymbolic AI",
+          "zh": "神经符号人工智能"
+        },
+        {
+          "en": "abstraction",
+          "zh": "抽象"
+        }
+      ],
+      "refs": [
+        {
+          "page": 304,
+          "reasonZh": "抽象层级"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "ns-fusion-06",
+      "topic": "ns-fusion",
+      "form": "scenario",
+      "prompt": "What state transition does a GENERATE operation represent?",
+      "options": [
+        "An entity changes from non-existence to existence",
+        "An existing entity changes from good to bad",
+        "An attribute increases without creating an entity",
+        "An entity is moved from one location to another"
+      ],
+      "answer": 0,
+      "explanationZh": "GENERATE对应从不存在到存在，即!EXIST→EXIST；TERMINATE描述相反方向。把动作表达为状态变化有助于跨表述归一化。",
+      "distractorsZh": [
+        "",
+        "好坏变化描述属性或质量变化。",
+        "数量增加与实体生成是不同操作。",
+        "位置变化不一定改变存在状态。"
+      ],
+      "terms": [
+        {
+          "en": "neurosymbolic AI",
+          "zh": "神经符号人工智能"
+        },
+        {
+          "en": "abstraction",
+          "zh": "抽象"
+        }
+      ],
+      "refs": [
+        {
+          "page": 304,
+          "reasonZh": "生成的状态变化"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-grounding-01",
+      "topic": "ns-grounding",
+      "form": "definition",
+      "prompt": "What can geometrical relationships in word embeddings reveal?",
+      "options": [
+        "A complete grounding of every word in physical experience",
+        "Distributional similarities and patterns such as gender, tense, and capital relations",
+        "A guaranteed causal explanation of every sentence",
+        "The truth of every statement containing nearby words"
+      ],
+      "answer": 1,
+      "explanationZh": "图中以cat/kitten/dog、man/woman、king/queen及male–female、verb tense、country–capital展示相似性与关系方向。词向量能捕捉这些分布式规律，意义与外部世界的联系仍需额外机制。",
+      "distractorsZh": [
+        "相似几何本身未解决接地。",
+        "",
+        "相关表示不自动给出因果解释。",
+        "向量距离不验证事实真假。"
+      ],
+      "terms": [
+        {
+          "en": "symbol grounding",
+          "zh": "符号接地"
+        },
+        {
+          "en": "commonsense",
+          "zh": "常识"
+        }
+      ],
+      "refs": [
+        {
+          "page": 305,
+          "reasonZh": "嵌入几何关系"
+        },
+        {
+          "page": 306,
+          "reasonZh": "嵌入几何关系"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "ns-grounding-02",
+      "topic": "ns-grounding",
+      "form": "challenge",
+      "prompt": "Why does defining BUY through MONEY and MONEY through BUY illustrate a grounding difficulty?",
+      "options": [
+        "Each definition is written in a different alphabet",
+        "The words have incompatible POS tags",
+        "The explanations form a loop among symbols",
+        "Money cannot occur in a dictionary"
+      ],
+      "answer": 2,
+      "explanationZh": "BUY被解释为用钱做的事，MONEY又被解释为用于购买的东西，形成定义循环。页面以“这不是一支烟斗”的图示进一步提示：符号和现实指称对象需要区分。",
+      "distractorsZh": [
+        "两定义的循环与字母体系无关。",
+        "词性兼容不能消除定义循环。",
+        "",
+        "词典当然可以收录money。"
+      ],
+      "terms": [
+        {
+          "en": "symbol grounding",
+          "zh": "符号接地"
+        },
+        {
+          "en": "commonsense",
+          "zh": "常识"
+        }
+      ],
+      "refs": [
+        {
+          "page": 307,
+          "reasonZh": "定义循环与接地"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-grounding-03",
+      "topic": "ns-grounding",
+      "form": "definition",
+      "prompt": "In a semiotic triangle, what is the referent of the written word 'lion'?",
+      "options": [
+        "The written letters themselves",
+        "The reader's mental interpretation",
+        "A synonym in another dictionary",
+        "The actual object or kind of object represented"
+      ],
+      "answer": 3,
+      "explanationZh": "三角的signifier/representamen是说出、写下或画出的符号形式；signified/interpretant是理解与意义；object/referent是符号所指对象。",
+      "distractorsZh": [
+        "字形属于signifier。",
+        "心理解释属于interpretant。",
+        "同义词仍然是另一个符号。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "symbol grounding",
+          "zh": "符号接地"
+        },
+        {
+          "en": "commonsense",
+          "zh": "常识"
+        }
+      ],
+      "refs": [
+        {
+          "page": 308,
+          "reasonZh": "符号的指称对象"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "ns-grounding-04",
+      "topic": "ns-grounding",
+      "form": "scenario",
+      "prompt": "Which ordering correctly matches a lion drawing, a paw print, and a conventional zodiac sign?",
+      "options": [
+        "Icon, index, symbol",
+        "Symbol, icon, index",
+        "Index, symbol, icon",
+        "Icon, symbol, index"
+      ],
+      "answer": 0,
+      "explanationZh": "Icon依据相似性；index依据指示或关联，如足迹；symbol依据约定，如星座符号。图中分别用狮子图、爪印和约定符号演示。",
+      "distractorsZh": [
+        "",
+        "绘画依相似性，不是此例的约定符号。",
+        "爪印是指示，图画是相似。",
+        "把爪印与约定符号的机制颠倒。"
+      ],
+      "terms": [
+        {
+          "en": "symbol grounding",
+          "zh": "符号接地"
+        },
+        {
+          "en": "commonsense",
+          "zh": "常识"
+        }
+      ],
+      "refs": [
+        {
+          "page": 308,
+          "reasonZh": "像似指示与约定"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-grounding-05",
+      "topic": "ns-grounding",
+      "form": "challenge",
+      "prompt": "A chess system chooses an excellent move while ignoring a fire in the room. What limitation does this illustrate?",
+      "options": [
+        "Low accuracy in chess move prediction",
+        "Missing broader commonsense relevance and situational priorities",
+        "Incorrect character tokenization",
+        "Too many sentiment categories"
+      ],
+      "answer": 1,
+      "explanationZh": "例子强调局部任务能力与整体情境理解的差距：面对火灾，安全与行动优先级超出棋局目标，需要常识和场景判断。",
+      "distractorsZh": [
+        "棋步可以非常正确。",
+        "",
+        "问题发生在任务与现实情境的关系。",
+        "情感标签数不是关键。"
+      ],
+      "terms": [
+        {
+          "en": "symbol grounding",
+          "zh": "符号接地"
+        },
+        {
+          "en": "commonsense",
+          "zh": "常识"
+        }
+      ],
+      "refs": [
+        {
+          "page": 309,
+          "reasonZh": "常识与情境相关性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-grounding-06",
+      "topic": "ns-grounding",
+      "form": "scenario",
+      "prompt": "Why can a sign saying 'This product contains peanuts' beside a pile of peanuts seem unnecessary to a human?",
+      "options": [
+        "The sentence lacks a verb",
+        "Peanuts cannot be recognized visually",
+        "The warning states information already supplied by ordinary world knowledge and context",
+        "The statement is necessarily false"
+      ],
+      "answer": 2,
+      "explanationZh": "常识帮助读者补出显然信息。拼图中的例子还包括不要坐栅栏、热狗照片不是实际尺寸、不要在水下呼吸、树不会移动、阳台不在地面高度，展示很多知识通常不会在每次交流中明说。",
+      "distractorsZh": [
+        "句子有contains。",
+        "人可结合视觉与物体知识。",
+        "",
+        "信息可真实却显得冗余。"
+      ],
+      "terms": [
+        {
+          "en": "symbol grounding",
+          "zh": "符号接地"
+        },
+        {
+          "en": "commonsense",
+          "zh": "常识"
+        }
+      ],
+      "refs": [
+        {
+          "page": 310,
+          "reasonZh": "共享常识与冗余告示"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-ambiguity-01",
+      "topic": "ns-ambiguity",
+      "form": "scenario",
+      "prompt": "What does commonsense favor in 'I saw the Coliseum flying from Rome to Genoa'?",
+      "options": [
+        "The Coliseum was flying",
+        "Rome and Genoa are the same place",
+        "Flying describes the Coliseum's material",
+        "The speaker was traveling by air"
+      ],
+      "answer": 3,
+      "explanationZh": "句法允许对修饰关系产生疑问，但建筑不会自行飞行的常识支持“我乘机从罗马飞向热那亚时看见斗兽场”的解释。",
+      "distractorsZh": [
+        "建筑物飞行缺少合理场景支持。",
+        "两地不同。",
+        "flying表达动作或状态，不是建筑材料。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "attachment ambiguity",
+          "zh": "附着歧义"
+        },
+        {
+          "en": "lexical ambiguity",
+          "zh": "词汇歧义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 311,
+          "reasonZh": "常识辅助附着"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-ambiguity-02",
+      "topic": "ns-ambiguity",
+      "form": "scenario",
+      "prompt": "In the reading where the child is holding a cat, how is 'with a cat' attached in 'I saw a kid with a cat'?",
+      "options": [
+        "To the noun phrase referring to the kid",
+        "To a missing future-tense auxiliary",
+        "To the cat's color adjective",
+        "Only to the subject 'I'"
+      ],
+      "answer": 0,
+      "explanationZh": "这一读法表示see(I,kid:PAST)与with(kid,cat)。saw取see的过去式，kid取child，with表达together。",
+      "distractorsZh": [
+        "",
+        "句中没有该助动词。",
+        "没有猫颜色的修饰词。",
+        "这里的猫与孩子关联。"
+      ],
+      "terms": [
+        {
+          "en": "attachment ambiguity",
+          "zh": "附着歧义"
+        },
+        {
+          "en": "lexical ambiguity",
+          "zh": "词汇歧义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 312,
+          "reasonZh": "名词短语附着"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-ambiguity-03",
+      "topic": "ns-ambiguity",
+      "form": "scenario",
+      "prompt": "In 'I saw a kid with a cat', if the observer ('I') rather than the child is accompanied by the cat, which relation is intended?",
+      "options": [
+        "with(kid,cat)",
+        "with(I,cat)",
+        "cat(I,kid)",
+        "see(cat,I)"
+      ],
+      "answer": 1,
+      "explanationZh": "另一种附着方式令with a cat关联观察者，表示see(I,kid:PAST)和with(I,cat)。词汇义仍是see、child、together，变化的是关系结构。",
+      "distractorsZh": [
+        "这是猫陪伴孩子的读法。",
+        "",
+        "cat不作该关系谓词。",
+        "改变了看见事件的主语。"
+      ],
+      "terms": [
+        {
+          "en": "attachment ambiguity",
+          "zh": "附着歧义"
+        },
+        {
+          "en": "lexical ambiguity",
+          "zh": "词汇歧义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 313,
+          "reasonZh": "观察者伴随关系"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-ambiguity-04",
+      "topic": "ns-ambiguity",
+      "form": "scenario",
+      "prompt": "Which interpretation treats 'with a cat' as an instrument rather than companionship?",
+      "options": [
+        "The child stands beside a cat",
+        "The observer owns a cat",
+        "The observer uses a cat as a means of seeing",
+        "The cat is a synonym of 'child'"
+      ],
+      "answer": 2,
+      "explanationZh": "图中PP标为instrument，将猫放在观察者与视线之间，示意工具读法。这个刻意古怪的解释说明：合法的结构组合仍需常识筛选。",
+      "distractorsZh": [
+        "这是together读法。",
+        "拥有关系不等于工具关系。",
+        "",
+        "改变词义不能解释介词的工具角色。"
+      ],
+      "terms": [
+        {
+          "en": "attachment ambiguity",
+          "zh": "附着歧义"
+        },
+        {
+          "en": "lexical ambiguity",
+          "zh": "词汇歧义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 314,
+          "reasonZh": "工具义解释"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-ambiguity-05",
+      "topic": "ns-ambiguity",
+      "form": "scenario",
+      "prompt": "Which ambiguity changes when 'saw' is read as a present-tense cutting verb rather than the past tense of 'see'?",
+      "options": [
+        "Only punctuation",
+        "Only whether the cat is named",
+        "Only the child's gender",
+        "The predicate's lexical sense and tense"
+      ],
+      "answer": 3,
+      "explanationZh": "315页把saw解析为cut且标PRES，kid仍取child，with仍取together。与see的过去式相比，动作含义和时态都改变。",
+      "distractorsZh": [
+        "变化属于词义与时态。",
+        "猫是否有名字不相关。",
+        "性别不是这一处歧义。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "attachment ambiguity",
+          "zh": "附着歧义"
+        },
+        {
+          "en": "lexical ambiguity",
+          "zh": "词汇歧义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 315,
+          "reasonZh": "动词词义歧义"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-ambiguity-06",
+      "topic": "ns-ambiguity",
+      "form": "scenario",
+      "prompt": "What additional lexical ambiguity is activated when 'kid' is interpreted as a young goat?",
+      "options": [
+        "The object changes from a child to a young goat",
+        "The cat becomes a punctuation mark",
+        "The verb necessarily returns to past-tense 'see'",
+        "The sentence loses all participants"
+      ],
+      "answer": 0,
+      "explanationZh": "316页在saw=cut的现在时读法上，把kid由child改为young goat，with(I,cat)表示观察者与猫共同参与场景。连续图示分别改变附着、介词角色、动词义和名词义。",
+      "distractorsZh": [
+        "",
+        "猫仍是场景参与者。",
+        "该图保留cut的读法。",
+        "不同义项仍具有参与者。"
+      ],
+      "terms": [
+        {
+          "en": "attachment ambiguity",
+          "zh": "附着歧义"
+        },
+        {
+          "en": "lexical ambiguity",
+          "zh": "词汇歧义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 316,
+          "reasonZh": "名词词义歧义"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-evaluation-01",
+      "topic": "ns-evaluation",
+      "form": "scenario",
+      "prompt": "A system maps 'repair the draft' to a primitive that changes the draft from a bad state to a good state. Which operation best captures this?",
+      "options": [
+        "INCREASE(draft)",
+        "FIX(draft)",
+        "TERMINATE(draft)",
+        "ACCELERATE(draft)"
+      ],
+      "answer": 1,
+      "explanationZh": "FIX可表示对象状态由BAD变为GOOD。其他基元例子包括DEACTIVATE（关灯）、INCREASE（加薪）、DECREASE（减预算）、ACCELERATE（加速）、GENERATE（造房）、KILL/TERMINATE(LIFE)与SIMPLIFY（降低理解难度）。",
+      "distractorsZh": [
+        "增加数量没有表达修复状态。",
+        "",
+        "终止对象与改善对象不同。",
+        "加速对应速率变化。"
+      ],
+      "terms": [
+        {
+          "en": "reasoning evaluation",
+          "zh": "推理评估"
+        },
+        {
+          "en": "affordance",
+          "zh": "可供性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 319,
+          "reasonZh": "状态修复基元"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-evaluation-02",
+      "topic": "ns-evaluation",
+      "form": "evaluation",
+      "prompt": "Why should a supervised QA result and a zero-shot QA result be reported with their training conditions?",
+      "options": [
+        "The training conditions change the meaning of the comparison",
+        "Every zero-shot score is necessarily higher",
+        "A score becomes independent of the dataset",
+        "Supervision affects only the model's spelling"
+      ],
+      "answer": 0,
+      "explanationZh": "使用监督标签和零样本推断所获得的信息不同。比较知识增强方法时应固定骨干模型、任务与训练条件；该常识QA表用星号区分监督RoBERTa-large与其余零样本结果。",
+      "distractorsZh": [
+        "",
+        "没有这种必然排序。",
+        "数据集仍影响得分。",
+        "监督信号影响学习条件。"
+      ],
+      "terms": [
+        {
+          "en": "reasoning evaluation",
+          "zh": "推理评估"
+        },
+        {
+          "en": "affordance",
+          "zh": "可供性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 321,
+          "reasonZh": "监督与零样本比较"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-evaluation-03",
+      "topic": "ns-evaluation",
+      "form": "evaluation",
+      "prompt": "System A scores 72 on physical reasoning and 64 on social reasoning; System B scores 72 and 60. What follows?",
+      "options": [
+        "A is better on every possible NLU task",
+        "The systems are identical because one score ties",
+        "A ties B on the first task and exceeds it on the second",
+        "B must have better explanations"
+      ],
+      "answer": 2,
+      "explanationZh": "结论应限于已测任务：第一项持平，第二项A高4分。常识评测可涵盖aNLI、CQA、PIQA、SIQA、WG等不同能力；知识增强系统可能在部分任务持平、在另一些任务改善。",
+      "distractorsZh": [
+        "两项结果不足以推出全部任务表现。",
+        "一项持平不代表整体完全一致。",
+        "",
+        "未提供解释质量指标。"
+      ],
+      "terms": [
+        {
+          "en": "reasoning evaluation",
+          "zh": "推理评估"
+        },
+        {
+          "en": "affordance",
+          "zh": "可供性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 321,
+          "reasonZh": "逐任务结果解读"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-evaluation-04",
+      "topic": "ns-evaluation",
+      "form": "definition",
+      "prompt": "Which contrast best captures the System 1 / System 2 distinction used in reasoning discussions?",
+      "options": [
+        "Language versus vision",
+        "Training data versus test data",
+        "Positive sentiment versus negative sentiment",
+        "Fast automatic responses versus slower deliberate processing"
+      ],
+      "answer": 3,
+      "explanationZh": "System 1强调快速、潜意识、自动化与日常决策；System 2强调缓慢、有意识、费力与复杂决策。这是理解认知机制的简化对照。",
+      "distractorsZh": [
+        "两种系统可作用于不同模态。",
+        "这不是数据划分方法。",
+        "它区分处理方式而非情感方向。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "reasoning evaluation",
+          "zh": "推理评估"
+        },
+        {
+          "en": "affordance",
+          "zh": "可供性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 322,
+          "reasonZh": "双系统推理"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "ns-evaluation-05",
+      "topic": "ns-evaluation",
+      "form": "workflow",
+      "prompt": "A robot hears 'pour some water' and sees a hammer, cup, and camera. What reasoning step supports choosing the cup?",
+      "options": [
+        "Match the instruction to object affordances",
+        "Select the visually largest object regardless of function",
+        "Choose the object whose name has the most letters",
+        "Treat speech recognition as the completed physical action"
+      ],
+      "answer": 0,
+      "explanationZh": "机器人先识别语音指令，再检测物体，结合常识推断哪些对象适合承载或倾倒水，最后执行行动。Affordance指物体可支持的行动功能。",
+      "distractorsZh": [
+        "",
+        "大小不直接决定适用功能。",
+        "词长与盛水能力无关。",
+        "识别指令之后仍需推断和执行。"
+      ],
+      "terms": [
+        {
+          "en": "reasoning evaluation",
+          "zh": "推理评估"
+        },
+        {
+          "en": "affordance",
+          "zh": "可供性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 323,
+          "reasonZh": "物体功能推理"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-evaluation-06",
+      "topic": "ns-evaluation",
+      "form": "evaluation",
+      "prompt": "A model gives the correct final answer but omits a necessary reasoning step. Which evaluation dimension detects this omission?",
+      "options": [
+        "Only answer correctness",
+        "Explanation completeness",
+        "Only token count",
+        "Only label balance"
+      ],
+      "answer": 1,
+      "explanationZh": "答案正确性与解释完整性可以分别评估。NeuLR框架还区分explanation correctness与redundancy，并分别考查deductive、inductive、abductive和mixed-form推理。",
+      "distractorsZh": [
+        "最终答案正确不能显示遗漏步骤。",
+        "",
+        "长度可能相关，但不是完整性的定义。",
+        "类别比例不能定位推理缺口。"
+      ],
+      "terms": [
+        {
+          "en": "reasoning evaluation",
+          "zh": "推理评估"
+        },
+        {
+          "en": "affordance",
+          "zh": "可供性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 324,
+          "reasonZh": "解释完整性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-evaluation-07",
+      "topic": "ns-evaluation",
+      "form": "evaluation",
+      "prompt": "An explanation invents a premise absent from the problem. Which error category is most directly implicated?",
+      "options": [
+        "Correct deduction",
+        "Useful redundancy",
+        "Hallucination",
+        "Class imbalance"
+      ],
+      "answer": 2,
+      "explanationZh": "虚构前提属于hallucination。解释评估还可以分别检查选择、视角、步骤和完整性，避免只根据最终答案判断推理质量。",
+      "distractorsZh": [
+        "前提虚构破坏了推理依据。",
+        "凭空添加事实不只是多写几句。",
+        "",
+        "数据分布不能描述这处解释错误。"
+      ],
+      "terms": [
+        {
+          "en": "reasoning evaluation",
+          "zh": "推理评估"
+        },
+        {
+          "en": "affordance",
+          "zh": "可供性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 324,
+          "reasonZh": "推理中的虚构前提"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-adoption-01",
+      "topic": "ns-adoption",
+      "form": "challenge",
+      "prompt": "A small company can afford an AI service but lacks staff able to integrate and maintain it. What adoption barrier is most relevant?",
+      "options": [
+        "Lack of technical expertise",
+        "An unavoidable need for a larger label set",
+        "A failure of sentiment transfer between domains",
+        "Inadequate token-level normalization"
+      ],
+      "answer": 0,
+      "explanationZh": "AI采纳除了成本，还受到技术专长影响。把模型接入工作流程、理解输出、维护数据和评估风险，都需要相应能力。",
+      "distractorsZh": [
+        "",
+        "题设障碍发生在集成与维护，而非分类标签设计。",
+        "并未提供跨领域预测下降的信息。",
+        "基础文本处理不能补足部署与维护能力。"
+      ],
+      "terms": [
+        {
+          "en": "data coverage",
+          "zh": "数据覆盖"
+        },
+        {
+          "en": "responsible AI",
+          "zh": "负责任人工智能"
+        }
+      ],
+      "refs": [
+        {
+          "page": 325,
+          "reasonZh": "AI技术专长障碍"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-adoption-02",
+      "topic": "ns-adoption",
+      "form": "definition",
+      "prompt": "What does a human-centered AI adoption strategy add beyond obtaining accurate model outputs?",
+      "options": [
+        "It removes the user from every decision",
+        "Interpretability, explanation, trust, and interaction with users",
+        "It requires all AI to be outsourced forever",
+        "It evaluates only runtime speed"
+      ],
+      "answer": 1,
+      "explanationZh": "AI for BI路线从外包AIS/AIaaS，发展到内部AI与interpretability，再加入explainability、trust（utility/robustness/faithfulness），最终加入interactivity，形成human-centered AI。",
+      "distractorsZh": [
+        "以人为中心强调人的参与。",
+        "",
+        "路线包含内部能力建设。",
+        "性能之外还有可理解与可信使用。"
+      ],
+      "terms": [
+        {
+          "en": "data coverage",
+          "zh": "数据覆盖"
+        },
+        {
+          "en": "responsible AI",
+          "zh": "负责任人工智能"
+        }
+      ],
+      "refs": [
+        {
+          "page": 326,
+          "reasonZh": "以人为中心的采纳"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "ns-adoption-03",
+      "topic": "ns-adoption",
+      "form": "workflow",
+      "prompt": "Which sequence supports responsible handling of sensitive training data?",
+      "options": [
+        "Collect everything → publish everything → assess risks later",
+        "Encrypt once → stop monitoring permanently",
+        "Understand data and risks → apply controls → communicate clearly → monitor and improve",
+        "Replace a privacy notice with a higher accuracy score"
+      ],
+      "answer": 2,
+      "explanationZh": "隐私工作包括识别收集内容、存放位置与访问者；采用加密、访问控制和认证；清楚说明用途并了解用户偏好；持续评估风险、更新措施与培训。",
+      "distractorsZh": [
+        "应在处理过程中评估和控制风险。",
+        "持续监测是必要环节。",
+        "",
+        "准确率不替代透明沟通。"
+      ],
+      "terms": [
+        {
+          "en": "data coverage",
+          "zh": "数据覆盖"
+        },
+        {
+          "en": "responsible AI",
+          "zh": "负责任人工智能"
+        }
+      ],
+      "refs": [
+        {
+          "page": 327,
+          "reasonZh": "隐私处理流程"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-adoption-04",
+      "topic": "ns-adoption",
+      "form": "challenge",
+      "prompt": "A product-review model is trained only on one company's flagship product. What would most improve coverage for competitor comparison?",
+      "options": [
+        "More copies of the same flagship reviews",
+        "Only reviews mentioning the CEO",
+        "Only positive feedback about the existing product",
+        "Examples across the company's, competitors', and comparable products and their aspects"
+      ],
+      "answer": 3,
+      "explanationZh": "全面性涉及本公司产品/服务、竞品、同类替代品，以及各自的特征和评价方面。覆盖对象与覆盖方面需要同时考虑。",
+      "distractorsZh": [
+        "重复样本无法补足缺失对象。",
+        "CEO文本不能覆盖产品比较范围。",
+        "只留正面反馈还会引入分布偏差。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "data coverage",
+          "zh": "数据覆盖"
+        },
+        {
+          "en": "responsible AI",
+          "zh": "负责任人工智能"
+        }
+      ],
+      "refs": [
+        {
+          "page": 328,
+          "reasonZh": "数据全面性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-adoption-05",
+      "topic": "ns-adoption",
+      "form": "evaluation",
+      "prompt": "A study has 1,200 relevant texts, including 800 subjective texts. The subjective texts are equally distributed across all eight aspect–polarity combinations formed by four aspects and two polarities. How many belong to each combination?",
+      "options": [
+        "100",
+        "200",
+        "400",
+        "800"
+      ],
+      "answer": 0,
+      "explanationZh": "题设明确八个方面–极性组合等量，每格800/8=100。分别保证方面与极性的边际均衡，并不足以保证每个组合都等量。",
+      "distractorsZh": [
+        "",
+        "200是一个方面的正负合计。",
+        "400是一种极性在全部方面的合计。",
+        "800是全部主观样本。"
+      ],
+      "terms": [
+        {
+          "en": "data coverage",
+          "zh": "数据覆盖"
+        },
+        {
+          "en": "responsible AI",
+          "zh": "负责任人工智能"
+        }
+      ],
+      "refs": [
+        {
+          "page": 329,
+          "reasonZh": "分层均衡计算"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-adoption-06",
+      "topic": "ns-adoption",
+      "form": "challenge",
+      "prompt": "A vision-language model systematically associates a nationality or gender with a narrow set of appearances and occupations. What issue should be audited?",
+      "options": [
+        "Sentence-boundary detection error",
+        "Representational and social bias",
+        "Morphological ambiguity",
+        "A mismatch between BIO tagging schemes"
+      ],
+      "answer": 1,
+      "explanationZh": "民族外貌、街景、性格词和职业关联可能携带刻板印象。偏见审计应检查训练数据及模型输出在不同群体和语境中的差异。",
+      "distractorsZh": [
+        "题设是系统性群体关联，而非断句。",
+        "",
+        "形态歧义不解释这一群体刻板印象。",
+        "BIO格式针对序列标注，与该问题不同。"
+      ],
+      "terms": [
+        {
+          "en": "data coverage",
+          "zh": "数据覆盖"
+        },
+        {
+          "en": "responsible AI",
+          "zh": "负责任人工智能"
+        }
+      ],
+      "refs": [
+        {
+          "page": 330,
+          "reasonZh": "表征与社会偏见"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-future-01",
+      "topic": "ns-future",
+      "form": "evaluation",
+      "prompt": "How should a forecast timeline about future AI capabilities be interpreted?",
+      "options": [
+        "As a guarantee that each task will be solved on that date",
+        "As a report of already completed experiments",
+        "As an uncertain projection based on assumptions and expert judgments",
+        "As a replacement for evaluating actual systems"
+      ],
+      "answer": 2,
+      "explanationZh": "能力时间线属于预测，需要区分假设、预测区间与已经发生的结果。它适合用于讨论未来可能性，不能直接当作某系统已具备能力的证据。",
+      "distractorsZh": [
+        "预测日期不是保证。",
+        "未来投射不是完成记录。",
+        "",
+        "实际能力仍需测试。"
+      ],
+      "terms": [
+        {
+          "en": "appraisal",
+          "zh": "认知评价"
+        },
+        {
+          "en": "affective computing",
+          "zh": "情感计算"
+        }
+      ],
+      "refs": [
+        {
+          "page": 331,
+          "reasonZh": "能力预测的不确定性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-future-02",
+      "topic": "ns-future",
+      "form": "scenario",
+      "prompt": "An AI team needs someone to evaluate social impacts, governance, and responsible deployment. Which role most directly matches this need?",
+      "options": [
+        "Computer vision engineer",
+        "Robotics engineer",
+        "NLP engineer",
+        "AI ethics consultant"
+      ],
+      "answer": 3,
+      "explanationZh": "AI ethics consultant关注伦理与治理。职业图还列出machine learning engineer、computer vision engineer、NLP engineer、AI research scientist、robotics engineer、AI product manager与AI architect/strategist，体现技术和组织职能的分工。",
+      "distractorsZh": [
+        "视觉工程主要负责视觉模型与系统。",
+        "机器人岗位侧重感知和行动系统。",
+        "NLP岗位主要负责语言处理能力。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "appraisal",
+          "zh": "认知评价"
+        },
+        {
+          "en": "affective computing",
+          "zh": "情感计算"
+        }
+      ],
+      "refs": [
+        {
+          "page": 332,
+          "reasonZh": "伦理治理职责"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-future-03",
+      "topic": "ns-future",
+      "form": "challenge",
+      "prompt": "Why might modeling human irrationality help an AI assistant cooperate with people?",
+      "options": [
+        "Human choices can differ from the assistant's idealized rational policy",
+        "People always choose the mathematically optimal action",
+        "Every human error should be copied blindly",
+        "Cooperation only requires a larger model"
+      ],
+      "answer": 0,
+      "explanationZh": "人类的实际行为会受到有限信息、习惯与认知方式影响。理解这些偏离有助于预测人的行动并改善协作；页面以围棋反过来启发人类和建模非理性行为的报道引出这一方向。",
+      "distractorsZh": [
+        "",
+        "人类行为未必符合单一最优模型。",
+        "理解行为不是盲目复制错误。",
+        "参数规模不直接解决行为建模。"
+      ],
+      "terms": [
+        {
+          "en": "appraisal",
+          "zh": "认知评价"
+        },
+        {
+          "en": "affective computing",
+          "zh": "情感计算"
+        }
+      ],
+      "refs": [
+        {
+          "page": 334,
+          "reasonZh": "合作中的人类行为模型"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "ns-future-04",
+      "topic": "ns-future",
+      "form": "definition",
+      "prompt": "Which relationship best places sentiment analysis within broader AI research?",
+      "options": [
+        "AI is a subset of sentiment analysis",
+        "Sentiment analysis lies within affective computing, which lies within AI",
+        "Affective computing is unrelated to language",
+        "Emotional intelligence concerns only arithmetic"
+      ],
+      "answer": 1,
+      "explanationZh": "层次图把sentiment analysis置于affective computing内，后者属于AI；相关方向还包括面部表情、语音音调与情绪分类。IQ/EQ冰山图强调情感能力在智能讨论中的重要性。",
+      "distractorsZh": [
+        "包含关系颠倒。",
+        "",
+        "情感计算包括语言与多模态信息。",
+        "EQ涉及情感与社会理解。"
+      ],
+      "terms": [
+        {
+          "en": "appraisal",
+          "zh": "认知评价"
+        },
+        {
+          "en": "affective computing",
+          "zh": "情感计算"
+        }
+      ],
+      "refs": [
+        {
+          "page": 335,
+          "reasonZh": "情感计算的研究层次"
+        },
+        {
+          "page": 336,
+          "reasonZh": "情感计算的研究层次"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "ns-future-05",
+      "topic": "ns-future",
+      "form": "definition",
+      "prompt": "Which approach explains emotions through appraisals of events, agents' actions, and objects?",
+      "options": [
+        "A valence-arousal coordinate system alone",
+        "A purely distributional word-similarity model",
+        "The OCC appraisal model",
+        "A basic-emotion list without appraisal conditions"
+      ],
+      "answer": 2,
+      "explanationZh": "OCC把情感联系事件后果、行动者行为和对象方面。不同对象的评价条件会产生不同类型的情绪。",
+      "distractorsZh": [
+        "坐标系描述状态位置，不直接给出事件、行为和对象的评价条件。",
+        "词相似模型不直接定义情感生成的评价结构。",
+        "",
+        "类别列表与评价条件模型不同。"
+      ],
+      "terms": [
+        {
+          "en": "appraisal",
+          "zh": "认知评价"
+        },
+        {
+          "en": "affective computing",
+          "zh": "情感计算"
+        }
+      ],
+      "refs": [
+        {
+          "page": 338,
+          "reasonZh": "OCC评价机制"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "ns-future-06",
+      "topic": "ns-future",
+      "form": "definition",
+      "prompt": "How does a valence-arousal representation differ from a list of basic emotion categories?",
+      "options": [
+        "It replaces all emotion values with person names",
+        "It uses only grammatical features",
+        "It requires every emotion to be either anger or fear",
+        "It locates emotions along dimensions such as pleasantness and activation"
+      ],
+      "answer": 3,
+      "explanationZh": "维度模型用连续轴表示情感，类别模型使用joy、anger、fear等离散类别。效价/唤醒描述体验的位置，基础情绪分类描述体验类型，二者保留的信息不同。",
+      "distractorsZh": [
+        "人物名称不是情感坐标。",
+        "情感维度并非纯语法特征。",
+        "类别模型也包含更多类别。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "appraisal",
+          "zh": "认知评价"
+        },
+        {
+          "en": "affective computing",
+          "zh": "情感计算"
+        }
+      ],
+      "refs": [
+        {
+          "page": 338,
+          "reasonZh": "维度与类别模型"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-hourglass-01",
+      "topic": "emotion-hourglass",
+      "form": "definition",
+      "prompt": "What does representing emotions along several dimensions with intensity levels allow?",
+      "options": [
+        "Distinguishing both the kind and the strength of an affective state",
+        "Treating all negative emotions as identical",
+        "Replacing sentiment analysis with token counting",
+        "Assigning exactly one universal meaning to each facial expression"
+      ],
+      "answer": 0,
+      "explanationZh": "多维表示保留不同情感倾向，强度层级保留同类情感的程度。旧Hourglass以Pleasantness、Attention、Sensitivity和Aptitude组织这些信息。",
+      "distractorsZh": [
+        "",
+        "多维模型保留类别与程度差异。",
+        "词数不能表达这些情感差异。",
+        "表达与内在感受的对应需要语境。"
+      ],
+      "terms": [
+        {
+          "en": "Hourglass",
+          "zh": "沙漏情感模型"
+        },
+        {
+          "en": "intensity",
+          "zh": "强度"
+        }
+      ],
+      "refs": [
+        {
+          "page": 339,
+          "reasonZh": "情感维度与强度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-hourglass-02",
+      "topic": "emotion-hourglass",
+      "form": "scenario",
+      "prompt": "A description moves from serenity to calmness to bliss. What aspect of an emotion representation is changing?",
+      "options": [
+        "A switch from self-focused to other-focused attitude",
+        "Intensity within the positive side of a dimension",
+        "A switch from objective to subjective language",
+        "Confidence in the classifier's prediction"
+      ],
+      "answer": 1,
+      "explanationZh": "在修订Hourglass中，serenity、calmness、bliss属于Temper正向的不同强度。情感强度与分类器置信度是不同量。",
+      "distractorsZh": [
+        "这里变化的是程度而非评价对象。",
+        "",
+        "这些词都描述情感体验。",
+        "置信度描述模型确信程度，而非人体验的强度。"
+      ],
+      "terms": [
+        {
+          "en": "Hourglass",
+          "zh": "沙漏情感模型"
+        },
+        {
+          "en": "intensity",
+          "zh": "强度"
+        }
+      ],
+      "refs": [
+        {
+          "page": 340,
+          "reasonZh": "平静维度的强度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-hourglass-04",
+      "topic": "emotion-hourglass",
+      "form": "definition",
+      "prompt": "Why is anger versus calmness a more coherent opposition than anger versus fear for a single temper dimension?",
+      "options": [
+        "Anger and fear always cancel to neutrality",
+        "Calmness is merely another spelling of anger",
+        "Calmness contrasts with anger, while fear describes a different affective tendency",
+        "Fear cannot coexist with anger"
+      ],
+      "answer": 2,
+      "explanationZh": "修订模型把Temper的平静/愤怒对照，与Sensitivity的热情/恐惧对照分开。原图把anger与fear放在同一对立轴上，连续页面以comfort/discomfort引出对立关系的重新检查。",
+      "distractorsZh": [
+        "两种负面情绪可并存。",
+        "两者具有相反体验方向。",
+        "",
+        "愤怒与恐惧能够同时出现。"
+      ],
+      "terms": [
+        {
+          "en": "Hourglass",
+          "zh": "沙漏情感模型"
+        },
+        {
+          "en": "intensity",
+          "zh": "强度"
+        }
+      ],
+      "refs": [
+        {
+          "page": 343,
+          "reasonZh": "情感对立关系"
+        },
+        {
+          "page": 344,
+          "reasonZh": "情感对立关系"
+        },
+        {
+          "page": 345,
+          "reasonZh": "情感对立关系"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-hourglass-05",
+      "topic": "emotion-hourglass",
+      "form": "scenario",
+      "prompt": "A person feels eager to volunteer and enthusiastic about a goal. What problem would a label set cause if it omitted these states?",
+      "options": [
+        "It would always classify the person as objective",
+        "It would solve all neutral-emotion ambiguity",
+        "It would make tokenization impossible",
+        "It would lose meaningful distinctions among positive emotional experiences"
+      ],
+      "answer": 3,
+      "explanationZh": "标签缺失会让不同正面情感被迫并入其他类别。完善taxonomy的目标是保留有意义的体验差异，而非只增加标签数量。",
+      "distractorsZh": [
+        "标签缺失不必然等于客观文本。",
+        "这是正面情感覆盖问题。",
+        "分词仍可进行。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "Hourglass",
+          "zh": "沙漏情感模型"
+        },
+        {
+          "en": "intensity",
+          "zh": "强度"
+        }
+      ],
+      "refs": [
+        {
+          "page": 346,
+          "reasonZh": "正面情绪类别覆盖"
+        },
+        {
+          "page": 347,
+          "reasonZh": "正面情绪类别覆盖"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-hourglass-06",
+      "topic": "emotion-hourglass",
+      "form": "definition",
+      "prompt": "Why preserve both a mild response and strong enthusiasm within a sensitivity dimension?",
+      "options": [
+        "They encode different intensity levels of a related affective tendency",
+        "They must be different languages",
+        "They determine the same fixed personality type",
+        "They are interchangeable with sentiment confidence"
+      ],
+      "answer": 0,
+      "explanationZh": "Sensitivity正向从responsiveness，经eagerness到enthusiasm；保留强度层次能区分轻微响应与强烈投入。Temper中serenity、calmness、bliss也形成对应的强度序列。",
+      "distractorsZh": [
+        "",
+        "情感强度与语言身份不同。",
+        "短时情绪不能直接确定固定人格。",
+        "情感强度与模型置信度不同。"
+      ],
+      "terms": [
+        {
+          "en": "Hourglass",
+          "zh": "沙漏情感模型"
+        },
+        {
+          "en": "intensity",
+          "zh": "强度"
+        }
+      ],
+      "refs": [
+        {
+          "page": 348,
+          "reasonZh": "敏感维度的程度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-attitude-01",
+      "topic": "emotion-attitude",
+      "form": "scenario",
+      "prompt": "A person feels proud of their own achievement. Which perspective is central?",
+      "options": [
+        "Attitude toward an external object only",
+        "Attitude toward self",
+        "Only the temporal order of actions",
+        "Only physiological arousal without appraisal"
+      ],
+      "answer": 1,
+      "explanationZh": "pride涉及对自我成就的评价。模型需要同时识别态度方向和目标，区分自我评价与对他人的评价。",
+      "distractorsZh": [
+        "评价目标在此是自身。",
+        "",
+        "时间顺序不足以解释自豪。",
+        "自豪包含自我评价。"
+      ],
+      "terms": [
+        {
+          "en": "self-conscious emotion",
+          "zh": "自我意识情感"
+        },
+        {
+          "en": "attitude target",
+          "zh": "态度目标"
+        }
+      ],
+      "refs": [
+        {
+          "page": 349,
+          "reasonZh": "自我评价"
+        },
+        {
+          "page": 350,
+          "reasonZh": "自我评价"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-attitude-02",
+      "topic": "emotion-attitude",
+      "form": "scenario",
+      "prompt": "Which distinction helps separate self-confidence from sympathy toward another person?",
+      "options": [
+        "Whether the sentence has a noun",
+        "Whether both words have the same length",
+        "The target of the attitude: self versus others",
+        "Whether a classifier uses batches"
+      ],
+      "answer": 2,
+      "explanationZh": "self-confidence的评价目标是自身，sympathy的目标是他人。相似的情感方向可以对应不同的关系结构。",
+      "distractorsZh": [
+        "两者都可用名词表达。",
+        "词长不决定评价对象。",
+        "",
+        "训练批次不定义情感目标。"
+      ],
+      "terms": [
+        {
+          "en": "self-conscious emotion",
+          "zh": "自我意识情感"
+        },
+        {
+          "en": "attitude target",
+          "zh": "态度目标"
+        }
+      ],
+      "refs": [
+        {
+          "page": 350,
+          "reasonZh": "自我与他人目标"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-attitude-03",
+      "topic": "emotion-attitude",
+      "form": "scenario",
+      "prompt": "A person feels embarrassed and insecure about themselves. Which interpretation best captures these states?",
+      "options": [
+        "A positive evaluation of all other people",
+        "A statement with no evaluation",
+        "An increase in physical speed",
+        "A negative self-directed attitude"
+      ],
+      "answer": 3,
+      "explanationZh": "embarrassment和insecurity表达负向的自我评价。细分标签可以区分不安、羞耻、自责等体验。",
+      "distractorsZh": [
+        "评价对象和方向都不同。",
+        "这些词明确带有自我评价。",
+        "它们描述心理评价而非运动变化。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "self-conscious emotion",
+          "zh": "自我意识情感"
+        },
+        {
+          "en": "attitude target",
+          "zh": "态度目标"
+        }
+      ],
+      "refs": [
+        {
+          "page": 350,
+          "reasonZh": "负向自我态度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-attitude-04",
+      "topic": "emotion-attitude",
+      "form": "scenario",
+      "prompt": "A passage emphasizes generosity, self-sacrifice, and kindness toward other people. Which target should an attitude model represent?",
+      "options": [
+        "Other people",
+        "The number of characters",
+        "The text's file format",
+        "Only the speaker's self-image"
+      ],
+      "answer": 0,
+      "explanationZh": "generosity与self-sacrifice强调对待他人的方式。目标信息让模型知道积极态度指向谁。",
+      "distractorsZh": [
+        "",
+        "字符数不是评价对象。",
+        "文件格式不表示态度对象。",
+        "题目明确强调对待他人。"
+      ],
+      "terms": [
+        {
+          "en": "self-conscious emotion",
+          "zh": "自我意识情感"
+        },
+        {
+          "en": "attitude target",
+          "zh": "态度目标"
+        }
+      ],
+      "refs": [
+        {
+          "page": 350,
+          "reasonZh": "积极对人态度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-attitude-05",
+      "topic": "emotion-attitude",
+      "form": "scenario",
+      "prompt": "A statement conveys prejudice and hostility toward others. What information is needed beyond a single negative score?",
+      "options": [
+        "Only the speaker's age",
+        "The attitude's target and type",
+        "Only sentence length",
+        "Only whether the final token is punctuation"
+      ],
+      "answer": 1,
+      "explanationZh": "prejudice与hostility不仅有负面方向，还涉及对他人的评价和关系。保留目标与类型有助于区别不同负面态度。",
+      "distractorsZh": [
+        "年龄不能替代目标与态度类别。",
+        "",
+        "长度不说明负面评价性质。",
+        "标点不能确定其对象与类型。"
+      ],
+      "terms": [
+        {
+          "en": "self-conscious emotion",
+          "zh": "自我意识情感"
+        },
+        {
+          "en": "attitude target",
+          "zh": "态度目标"
+        }
+      ],
+      "refs": [
+        {
+          "page": 350,
+          "reasonZh": "负向态度的对象"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-attitude-06",
+      "topic": "emotion-attitude",
+      "form": "challenge",
+      "prompt": "Why should an emotion taxonomy include self-conscious and moral emotions such as pride, shame, and guilt?",
+      "options": [
+        "They are identical to all positive and negative words",
+        "They require deleting every basic emotion",
+        "They capture evaluations of self, conduct, and social relationships",
+        "They can be inferred with certainty from a single facial muscle"
+      ],
+      "answer": 2,
+      "explanationZh": "自我意识与道德情感涉及行为规范、自我评价和社会关系。pride、shame、guilt等类别补充了基础情绪的表达范围。",
+      "distractorsZh": [
+        "这些情感有更具体的评价结构。",
+        "扩展分类可与基础情感并存。",
+        "",
+        "单一表情线索不足以作确定推断。"
+      ],
+      "terms": [
+        {
+          "en": "self-conscious emotion",
+          "zh": "自我意识情感"
+        },
+        {
+          "en": "attitude target",
+          "zh": "态度目标"
+        }
+      ],
+      "refs": [
+        {
+          "page": 349,
+          "reasonZh": "道德与自我意识情感"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-neutral-01",
+      "topic": "emotion-neutral",
+      "form": "challenge",
+      "prompt": "Why can surprise alone be insufficient to determine positive or negative sentiment?",
+      "options": [
+        "Surprise always means joy",
+        "An unexpected event can be welcome or unwelcome",
+        "Surprise always means anger",
+        "Every surprised expression is neutral in every context"
+      ],
+      "answer": 1,
+      "explanationZh": "惊讶首先提示预期被打破；事情是否令人愉快还取决于事件和评价。面部表情类别与情感极性需要分别建模。",
+      "distractorsZh": [
+        "令人不快的事件也会引发惊讶。",
+        "",
+        "惊讶并不总含愤怒。",
+        "后续评价可能具有明确正负方向。"
+      ],
+      "terms": [
+        {
+          "en": "surprise",
+          "zh": "惊讶"
+        },
+        {
+          "en": "polarity",
+          "zh": "极性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 351,
+          "reasonZh": "惊讶与极性"
+        },
+        {
+          "page": 352,
+          "reasonZh": "惊讶与极性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-neutral-02",
+      "topic": "emotion-neutral",
+      "form": "scenario",
+      "prompt": "Someone unexpectedly receives good news and feels pleasantly amazed. What combination best explains the response?",
+      "options": [
+        "Surprise with a positive appraisal",
+        "Anger without any unexpected event",
+        "A neutral factual statement only",
+        "A fixed personality diagnosis"
+      ],
+      "answer": 0,
+      "explanationZh": "积极的意外可把surprise与pleasantness结合，形成amazement。理解组合需要同时保留出乎意料和愉快的成分。",
+      "distractorsZh": [
+        "",
+        "题设的主要评价是积极的。",
+        "叙述明确表达情感。",
+        "一次反应不足以判断固定人格。"
+      ],
+      "terms": [
+        {
+          "en": "surprise",
+          "zh": "惊讶"
+        },
+        {
+          "en": "polarity",
+          "zh": "极性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 353,
+          "reasonZh": "积极意外"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-neutral-03",
+      "topic": "emotion-neutral",
+      "form": "scenario",
+      "prompt": "Someone discovers an unexpected betrayal and reacts with shock and anger. Which interpretation is most appropriate?",
+      "options": [
+        "The presence of surprise makes the event positive",
+        "The response contains no appraisal",
+        "Unexpectedness combines with a negative appraisal",
+        "The response must be purely objective"
+      ],
+      "answer": 2,
+      "explanationZh": "意外事件与anger结合可以表达负面的shock。相同的surprise成分在不同评价背景下可形成不同极性。",
+      "distractorsZh": [
+        "意外性不决定正面方向。",
+        "愤怒体现对事件的评价。",
+        "",
+        "情绪反应属于主观体验。"
+      ],
+      "terms": [
+        {
+          "en": "surprise",
+          "zh": "惊讶"
+        },
+        {
+          "en": "polarity",
+          "zh": "极性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 354,
+          "reasonZh": "消极意外"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-neutral-04",
+      "topic": "emotion-neutral",
+      "form": "definition",
+      "prompt": "Which distinction separates an emotion category from sentiment polarity?",
+      "options": [
+        "A category is always numeric and polarity is always a noun",
+        "They are identical for every emotion",
+        "Polarity contains all information about an emotion",
+        "A category describes the kind of experience, while polarity describes its evaluative direction"
+      ],
+      "answer": 3,
+      "explanationZh": "anger、fear、sadness等类别可以具有相同负向极性却表达不同体验；surprise的极性尤其依赖与何种评价结合。",
+      "distractorsZh": [
+        "表示形式不是两者的本质区别。",
+        "多个类别可共享一种极性。",
+        "单一正负分数会丢掉情绪类型信息。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "surprise",
+          "zh": "惊讶"
+        },
+        {
+          "en": "polarity",
+          "zh": "极性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 351,
+          "reasonZh": "类别与评价方向"
+        },
+        {
+          "page": 353,
+          "reasonZh": "类别与评价方向"
+        },
+        {
+          "page": 354,
+          "reasonZh": "类别与评价方向"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-neutral-05",
+      "topic": "emotion-neutral",
+      "form": "scenario",
+      "prompt": "A face looks surprised, but the event causing the reaction is unknown. What is the most defensible next step for sentiment inference?",
+      "options": [
+        "Assign the strongest positive label immediately",
+        "Seek contextual evidence about the event and the person's appraisal",
+        "Infer a permanent personality trait",
+        "Delete the possibility of a negative reaction"
+      ],
+      "answer": 1,
+      "explanationZh": "观察到表情后，仍需要事件和个体评价来判断情感方向。表情类别可作为线索，与语境共同参与推断。",
+      "distractorsZh": [
+        "缺少支持积极评价的证据。",
+        "",
+        "短暂表情不等于人格。",
+        "负面的惊讶仍然可能发生。"
+      ],
+      "terms": [
+        {
+          "en": "surprise",
+          "zh": "惊讶"
+        },
+        {
+          "en": "polarity",
+          "zh": "极性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 351,
+          "reasonZh": "表情判断需要上下文"
+        },
+        {
+          "page": 352,
+          "reasonZh": "表情判断需要上下文"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-scoring-01",
+      "topic": "emotion-scoring",
+      "form": "evaluation",
+      "prompt": "A polarity rule divides a single active score of 0.9 by 3, while all other dimensions are zero. What score does it return?",
+      "options": [
+        "0.9",
+        "0.6",
+        "0.3",
+        "3.0"
+      ],
+      "answer": 2,
+      "explanationZh": "0.9/3=0.3。固定分母会让单维度的强情感被稀释；这是旧Hourglass极性聚合讨论中的一个问题。",
+      "distractorsZh": [
+        "未执行给定除法。",
+        "不是0.9除以3的结果。",
+        "",
+        "将除法反向计算。"
+      ],
+      "terms": [
+        {
+          "en": "compound emotion",
+          "zh": "复合情感"
+        },
+        {
+          "en": "nonzero-dimension averaging",
+          "zh": "非零维度平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 355,
+          "reasonZh": "固定分母稀释"
+        },
+        {
+          "page": 356,
+          "reasonZh": "固定分母稀释"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-scoring-02",
+      "topic": "emotion-scoring",
+      "form": "evaluation",
+      "prompt": "Let p=(I+T+A+S)/m, where m is the number of nonzero dimensions. For I=0.6, T=0, A=0.2, S=0, what is p?",
+      "options": [
+        "0.4",
+        "0.2",
+        "0.8",
+        "0.0"
+      ],
+      "answer": 0,
+      "explanationZh": "非零维度有2个，所以p=(0.6+0.2)/2=0.4。公式分母Σ|sgn(x)|计算参与聚合的非零维度数。",
+      "distractorsZh": [
+        "",
+        "这是错误地除以4。",
+        "0.8是分子，尚未平均。",
+        "存在非零情感值。"
+      ],
+      "terms": [
+        {
+          "en": "compound emotion",
+          "zh": "复合情感"
+        },
+        {
+          "en": "nonzero-dimension averaging",
+          "zh": "非零维度平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 357,
+          "reasonZh": "非零平均计算"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-scoring-03",
+      "topic": "emotion-scoring",
+      "form": "definition",
+      "prompt": "In a denominator made from |sgn(I)|+|sgn(T)|+|sgn(A)|+|sgn(S)|, what does each nonzero dimension contribute?",
+      "options": [
+        "Its raw magnitude",
+        "One",
+        "Its squared magnitude",
+        "Minus one"
+      ],
+      "answer": 1,
+      "explanationZh": "sgn(x)对正数为1、负数为−1、零为0；取绝对值后，所有非零维度各贡献1。I/T/A/S分别表示Introspection、Temper、Attitude、Sensitivity。",
+      "distractorsZh": [
+        "符号函数不保留幅度。",
+        "",
+        "公式没有平方操作。",
+        "绝对值会把负数的符号−1转为1。"
+      ],
+      "terms": [
+        {
+          "en": "compound emotion",
+          "zh": "复合情感"
+        },
+        {
+          "en": "nonzero-dimension averaging",
+          "zh": "非零维度平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 357,
+          "reasonZh": "符号函数计数"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-scoring-04",
+      "topic": "emotion-scoring",
+      "form": "evaluation",
+      "prompt": "Under nonzero-dimension averaging, what should an implementation do when I=T=A=S=0?",
+      "options": [
+        "Divide zero by zero and accept any value",
+        "Treat the denominator as four without documenting it",
+        "Always output the strongest negative sentiment",
+        "Handle the zero-denominator case explicitly"
+      ],
+      "answer": 3,
+      "explanationZh": "四维全零使分子、分母都为0，原式未定义。实现应约定中性、缺失值或其他明确策略，并记录这一边界处理。",
+      "distractorsZh": [
+        "0/0是未定义形式。",
+        "改变分母等于改变规则，需要明确约定。",
+        "全零不支持最强负面结论。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "compound emotion",
+          "zh": "复合情感"
+        },
+        {
+          "en": "nonzero-dimension averaging",
+          "zh": "非零维度平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 357,
+          "reasonZh": "全零边界处理"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-scoring-05",
+      "topic": "emotion-scoring",
+      "form": "evaluation",
+      "prompt": "A representation has I=0, T=-0.8, A=0, S=-0.6. Using the average of nonzero dimensions, what is its polarity?",
+      "options": [
+        "-0.35",
+        "0.7",
+        "-0.7",
+        "-1.4"
+      ],
+      "answer": 2,
+      "explanationZh": "两个非零维度均为负，p=(-0.8-0.6)/2=-0.7。若固定除以4会得到−0.35，削弱复合负面情绪的强度。",
+      "distractorsZh": [
+        "这是固定除以4的结果。",
+        "丢掉了负号。",
+        "",
+        "这是未归一化的分子。"
+      ],
+      "terms": [
+        {
+          "en": "compound emotion",
+          "zh": "复合情感"
+        },
+        {
+          "en": "nonzero-dimension averaging",
+          "zh": "非零维度平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 356,
+          "reasonZh": "负向聚合计算"
+        },
+        {
+          "page": 357,
+          "reasonZh": "负向聚合计算"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-scoring-06",
+      "topic": "emotion-scoring",
+      "form": "challenge",
+      "prompt": "Why can a single aggregate sentiment score hide meaningful compound emotions?",
+      "options": [
+        "Different combinations can yield the same aggregate value",
+        "Every aggregate score reveals every active dimension",
+        "Emotion dimensions cannot coexist",
+        "Positive and negative contributions are always equal"
+      ],
+      "answer": 0,
+      "explanationZh": "joy、anger、fear等可组合成不同体验。聚合适合概括方向，但若要解释love、envy、shock等复合情感，还需要保留各维度和组合信息。",
+      "distractorsZh": [
+        "",
+        "从总分通常无法唯一恢复组成。",
+        "多个情感维度可以同时活跃。",
+        "贡献大小取决于具体状态。"
+      ],
+      "terms": [
+        {
+          "en": "compound emotion",
+          "zh": "复合情感"
+        },
+        {
+          "en": "nonzero-dimension averaging",
+          "zh": "非零维度平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 355,
+          "reasonZh": "聚合与信息损失"
+        },
+        {
+          "page": 356,
+          "reasonZh": "聚合与信息损失"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-scoring-07",
+      "topic": "emotion-scoring",
+      "form": "scenario",
+      "prompt": "A system retains both joy and pleasantness as active components instead of replacing them with a positive label. What information does this preserve?",
+      "options": [
+        "Only the sentence's grammatical tense",
+        "The composition of the emotional state",
+        "Only the number of named entities",
+        "The certainty that all readers feel the same emotion"
+      ],
+      "answer": 1,
+      "explanationZh": "复合情感表示保留组成。例如模型把joy与pleasantness关联到love、enjoyment、amusement等词，展示相同正向极性下仍有细分体验。",
+      "distractorsZh": [
+        "组成情感与时态不同。",
+        "",
+        "这不是实体计数。",
+        "个体与语境差异仍然存在。"
+      ],
+      "terms": [
+        {
+          "en": "compound emotion",
+          "zh": "复合情感"
+        },
+        {
+          "en": "nonzero-dimension averaging",
+          "zh": "非零维度平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 355,
+          "reasonZh": "复合情感成分"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-scoring-08",
+      "topic": "emotion-scoring",
+      "form": "challenge",
+      "prompt": "Two equally negative emotional components become weakly negative only because several inactive dimensions were included in the divisor. Which change directly addresses this dilution?",
+      "options": [
+        "Remove all negative signs",
+        "Increase the number of inactive dimensions",
+        "Count only the strongest word and discard all other evidence",
+        "Normalize by the active dimensions under a clearly specified rule"
+      ],
+      "answer": 3,
+      "explanationZh": "按非零维度数归一化，可避免未激活维度把强度机械地稀释。仍需明确值域、组合方式与全零情况下的策略。",
+      "distractorsZh": [
+        "去负号改变了情感方向。",
+        "加入更多零维度会进一步稀释。",
+        "丢掉其他活跃成分不是这个公式的修订。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "compound emotion",
+          "zh": "复合情感"
+        },
+        {
+          "en": "nonzero-dimension averaging",
+          "zh": "非零维度平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 356,
+          "reasonZh": "改进有效维度平均"
+        },
+        {
+          "page": 357,
+          "reasonZh": "改进有效维度平均"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-history-01",
+      "topic": "emotion-history",
+      "form": "method",
+      "prompt": "Which system is most clearly rule-based sentiment analysis?",
+      "options": [
+        "A random split of documents",
+        "A model with no input representation",
+        "A set of explicit if-then rules linking linguistic cues to sentiment labels",
+        "A PCA projection without a decision rule"
+      ],
+      "answer": 2,
+      "explanationZh": "规则式方法显式描述线索及其判定关系。早期研究可围绕叙述视角与情感表达设计规则，讲义以Tracking Point of View in Narrative和Affective Computing作历史节点。",
+      "distractorsZh": [
+        "数据划分不是分类方法。",
+        "缺乏表示不能定义规则式系统。",
+        "",
+        "降维本身不输出情感规则。"
+      ],
+      "terms": [
+        {
+          "en": "personalized sentiment analysis",
+          "zh": "个性化情感分析"
+        },
+        {
+          "en": "predictive sentiment analysis",
+          "zh": "预测式情感分析"
+        }
+      ],
+      "refs": [
+        {
+          "page": 358,
+          "reasonZh": "规则式情感分析"
+        },
+        {
+          "page": 359,
+          "reasonZh": "规则式情感分析"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-history-02",
+      "topic": "emotion-history",
+      "form": "method",
+      "prompt": "What changes when a sentiment system learns decision patterns from labeled reviews instead of relying entirely on hand-written rules?",
+      "options": [
+        "It becomes a statistical learning approach",
+        "It no longer needs evaluation",
+        "It can only recognize proper names",
+        "It must ignore every word in the reviews"
+      ],
+      "answer": 0,
+      "explanationZh": "统计学习利用样本估计决策规律。客户评论挖掘与摘要是这一阶段的重要场景，页面以Mining and Summarizing Customer Reviews和The Emotion Machine介绍背景。",
+      "distractorsZh": [
+        "",
+        "学习系统同样需要评估。",
+        "训练目标可以是情感等多类任务。",
+        "文本特征仍是学习依据。"
+      ],
+      "terms": [
+        {
+          "en": "personalized sentiment analysis",
+          "zh": "个性化情感分析"
+        },
+        {
+          "en": "predictive sentiment analysis",
+          "zh": "预测式情感分析"
+        }
+      ],
+      "refs": [
+        {
+          "page": 360,
+          "reasonZh": "统计学习"
+        },
+        {
+          "page": 361,
+          "reasonZh": "统计学习"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-history-03",
+      "topic": "emotion-history",
+      "form": "resource",
+      "prompt": "Why can a sentiment lexicon support explanation of a prediction?",
+      "options": [
+        "It proves the prediction is always correct",
+        "It exposes identifiable lexical or conceptual evidence used by the system",
+        "It hides all intermediate representations",
+        "It assigns the same score to every text"
+      ],
+      "answer": 1,
+      "explanationZh": "词典可提供可检查的线索与情感值。相关资源包括WordNet-Affect、SentiWordNet、SenticNet、MPQA、SentiStrength、VADER、SO-CAL；可检查证据仍需结合上下文和真实决策过程。",
+      "distractorsZh": [
+        "透明线索并不保证正确。",
+        "",
+        "可解释线索有助于查看依据。",
+        "词条和输入不同可产生不同结果。"
+      ],
+      "terms": [
+        {
+          "en": "personalized sentiment analysis",
+          "zh": "个性化情感分析"
+        },
+        {
+          "en": "predictive sentiment analysis",
+          "zh": "预测式情感分析"
+        }
+      ],
+      "refs": [
+        {
+          "page": 362,
+          "reasonZh": "可检查的词典证据"
+        },
+        {
+          "page": 363,
+          "reasonZh": "可检查的词典证据"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-history-04",
+      "topic": "emotion-history",
+      "form": "scenario",
+      "prompt": "Two users evaluate the same phrase differently because of their personal backgrounds. Which development most directly addresses this?",
+      "options": [
+        "Only increasing the number of POS labels",
+        "Removing all user context",
+        "Replacing sentiment with word counts",
+        "Personalized sentiment analysis"
+      ],
+      "answer": 3,
+      "explanationZh": "个性化分析把使用者背景纳入解释。相同语言可能因人格、价值观或文化等因素产生不同评价，因此模型需要表示与用户相关的条件。",
+      "distractorsZh": [
+        "增加词性标签未提供用户背景。",
+        "移除背景会丢掉题目中的关键差异。",
+        "词数无法解释个人差异。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "personalized sentiment analysis",
+          "zh": "个性化情感分析"
+        },
+        {
+          "en": "predictive sentiment analysis",
+          "zh": "预测式情感分析"
+        }
+      ],
+      "refs": [
+        {
+          "page": 364,
+          "reasonZh": "个性化解释"
+        },
+        {
+          "page": 365,
+          "reasonZh": "个性化解释"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-history-06",
+      "topic": "emotion-history",
+      "form": "definition",
+      "prompt": "What makes predictive sentiment analysis different from recognizing a current emotional state?",
+      "options": [
+        "It labels only punctuation",
+        "It requires every future event to be known exactly",
+        "It models how emotion may change after expectations and events are appraised",
+        "It predicts the exact next word only"
+      ],
+      "answer": 2,
+      "explanationZh": "识别偏重当前状态，预测式分析关注动态转变：dialogue input经expectation modeling和appraisal evaluation，得到emotion transition。",
+      "distractorsZh": [
+        "标点不能定义情感预测任务。",
+        "预测可以在不确定条件下进行。",
+        "",
+        "情感变化与逐词续写是不同目标。"
+      ],
+      "terms": [
+        {
+          "en": "personalized sentiment analysis",
+          "zh": "个性化情感分析"
+        },
+        {
+          "en": "predictive sentiment analysis",
+          "zh": "预测式情感分析"
+        }
+      ],
+      "refs": [
+        {
+          "page": 366,
+          "reasonZh": "识别与预测"
+        },
+        {
+          "page": 367,
+          "reasonZh": "识别与预测"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-personal-01",
+      "topic": "emotion-personal",
+      "form": "definition",
+      "prompt": "Which set of factors can condition a personalized sentiment interpretation?",
+      "options": [
+        "Only the document's overall polarity",
+        "Personality, ideology, vocation, religion, culture, and the individual context",
+        "Only the topic-independent frequency of each word",
+        "Only the most common sentiment in the population"
+      ],
+      "answer": 1,
+      "explanationZh": "个性化分析可纳入personality、ideology、vocation、religion、culture等背景与个体信息，帮助解释不同使用者对同一文本的不同评价。",
+      "distractorsZh": [
+        "同一总体极性仍可能对应不同个人解释。",
+        "",
+        "词频无法充分表示个人背景。",
+        "群体平均会遮蔽个体差异。"
+      ],
+      "terms": [
+        {
+          "en": "persona",
+          "zh": "个体画像"
+        },
+        {
+          "en": "cognitive modeling",
+          "zh": "认知建模"
+        }
+      ],
+      "refs": [
+        {
+          "page": 365,
+          "reasonZh": "个体背景条件"
+        },
+        {
+          "page": 373,
+          "reasonZh": "个体背景条件"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-personal-02",
+      "topic": "emotion-personal",
+      "form": "workflow",
+      "prompt": "Which sequence supports predicting an emotional response to a dialogue event?",
+      "options": [
+        "Dialogue → final emotion with no event interpretation",
+        "Emotion label → delete context → random transition",
+        "Dialogue → expectation modeling → appraisal evaluation → emotion transition",
+        "POS count → language identifier → file checksum"
+      ],
+      "answer": 2,
+      "explanationZh": "评价理论启发的预测链先建模预期，再评价事件相对预期的意义，推断情感如何变化。当前状态识别的semantic understanding→classification→emotion label可作为相关基础。",
+      "distractorsZh": [
+        "跳过评价过程不足以解释情感变化。",
+        "删除语境会破坏变化依据。",
+        "",
+        "这些输出没有表示预期与评价。"
+      ],
+      "terms": [
+        {
+          "en": "persona",
+          "zh": "个体画像"
+        },
+        {
+          "en": "cognitive modeling",
+          "zh": "认知建模"
+        }
+      ],
+      "refs": [
+        {
+          "page": 367,
+          "reasonZh": "预期与评价链"
+        },
+        {
+          "page": 378,
+          "reasonZh": "预期与评价链"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-personal-03",
+      "topic": "emotion-personal",
+      "form": "evaluation",
+      "prompt": "Why combine automatic filtering, model-based judgment, and human ratings when evaluating individualized text generation?",
+      "options": [
+        "They guarantee every stage measures exactly the same property",
+        "They eliminate the need to define similarity",
+        "They turn all subjective judgments into certainty",
+        "They assess different aspects and provide complementary checks"
+      ],
+      "answer": 3,
+      "explanationZh": "ICS流程从文本语境、语言/概念特征与作者画像生成候选，先用BLEU过滤，再以LLM判断语言和结构相似性，最后由人评估语言、结构与整体相似性。各环节对应不同检查角度。",
+      "distractorsZh": [
+        "不同评估方式关注点不同。",
+        "必须先明确评估维度。",
+        "多层评估仍存在局限。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "persona",
+          "zh": "个体画像"
+        },
+        {
+          "en": "cognitive modeling",
+          "zh": "认知建模"
+        }
+      ],
+      "refs": [
+        {
+          "page": 368,
+          "reasonZh": "生成内容分层评价"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-personal-04",
+      "topic": "emotion-personal",
+      "form": "evaluation",
+      "prompt": "For concept sets A={x,y,z} and B={y,z,w}, what is their Jaccard similarity?",
+      "options": [
+        "1/2",
+        "2/3",
+        "3/4",
+        "1"
+      ],
+      "answer": 0,
+      "explanationZh": "J(A,B)=|A∩B|/|A∪B|=2/4=1/2。认知表征比较可分别检查concept mappings、target concepts与source concepts的重合，而不仅比较字面相似度。",
+      "distractorsZh": [
+        "",
+        "分母应是并集4。",
+        "交集只有2个元素。",
+        "两集合并不相同。"
+      ],
+      "terms": [
+        {
+          "en": "persona",
+          "zh": "个体画像"
+        },
+        {
+          "en": "cognitive modeling",
+          "zh": "认知建模"
+        }
+      ],
+      "refs": [
+        {
+          "page": 368,
+          "reasonZh": "Jaccard相似度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-personal-05",
+      "topic": "emotion-personal",
+      "form": "challenge",
+      "prompt": "Two generated texts use similar words but connect concepts differently. Which evaluation would most directly reveal the difference?",
+      "options": [
+        "Only the overall positive-versus-negative label",
+        "Only the number of shared word forms",
+        "Comparison of concept mappings or relational structure",
+        "Only the average word-embedding similarity"
+      ],
+      "answer": 2,
+      "explanationZh": "词汇重合与概念关系相似是不同维度。ICS展示概念映射、目标概念和源概念的比较，帮助分析人物表征在不同文本或时期的变化。",
+      "distractorsZh": [
+        "总体极性不能区分概念如何连接。",
+        "相同词语可以形成不同关系。",
+        "",
+        "平均向量可能丢失关系结构。"
+      ],
+      "terms": [
+        {
+          "en": "persona",
+          "zh": "个体画像"
+        },
+        {
+          "en": "cognitive modeling",
+          "zh": "认知建模"
+        }
+      ],
+      "refs": [
+        {
+          "page": 368,
+          "reasonZh": "概念关系比较"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-personal-06",
+      "topic": "emotion-personal",
+      "form": "scenario",
+      "prompt": "In a word-association interaction, why might responses be informative for cognitive modeling?",
+      "options": [
+        "Each response directly reveals a complete brain state",
+        "Associations provide observable clues about how a person links concepts",
+        "Word associations always measure personality without error",
+        "Only response spelling matters"
+      ],
+      "answer": 1,
+      "explanationZh": "词语联想能提供概念之间联系的行为线索。页面用Skyfall中的互动场景引出认知建模，实际推断还需要上下文与可验证的测量设计。",
+      "distractorsZh": [
+        "外部反应只是有限线索。",
+        "",
+        "测量存在不确定性。",
+        "语义关联比拼写本身更重要。"
+      ],
+      "terms": [
+        {
+          "en": "persona",
+          "zh": "个体画像"
+        },
+        {
+          "en": "cognitive modeling",
+          "zh": "认知建模"
+        }
+      ],
+      "refs": [
+        {
+          "page": 369,
+          "reasonZh": "词语联想线索"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-umbrella-01",
+      "topic": "sentic-umbrella",
+      "form": "definition",
+      "prompt": "Which combination best characterizes sentic computing?",
+      "options": [
+        "Syntax parsing, image compression, and speech coding",
+        "Affective computing, neurosymbolic AI, and cognitive science",
+        "Database indexing, cryptography, and network routing",
+        "Information retrieval, tokenization, and stemming"
+      ],
+      "answer": 1,
+      "explanationZh": "Sentic computing结合情感计算、神经符号AI和认知科学，连接情绪、概念知识与人的认知过程。",
+      "distractorsZh": [
+        "这些技术未覆盖认知与情感的结合。",
+        "",
+        "这些基础设施技术不构成该交叉领域。",
+        "这些文本处理任务不足以描述其跨学科范围。"
+      ],
+      "terms": [
+        {
+          "en": "faithfulness",
+          "zh": "忠实性"
+        },
+        {
+          "en": "utility",
+          "zh": "效用"
+        }
+      ],
+      "refs": [
+        {
+          "page": 370,
+          "reasonZh": "交叉学科基础"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-umbrella-02",
+      "topic": "sentic-umbrella",
+      "form": "scenario",
+      "prompt": "A sentiment system must explain decisions, adapt to individuals, and anticipate emotional responses. Which set of research directions matches these requirements?",
+      "options": [
+        "Multilingual, multimodal, and multitask",
+        "Tokenization, lemmatization, and POS tagging",
+        "Explainable, personalized, and predictive sentiment analysis",
+        "Named entity recognition, chunking, and sentence segmentation"
+      ],
+      "answer": 2,
+      "explanationZh": "解释判断对应explainable，适应个人对应personalized，预测反应对应predictive。多模态、多语言、多任务和会话情感分析关注另外的扩展方向。",
+      "distractorsZh": [
+        "它们分别扩展输入模态、语言和任务，并未直接对应题设三项需求。",
+        "这些是基础语言处理任务。",
+        "",
+        "这些处理语言结构，而非解释、个体差异或未来情感。"
+      ],
+      "terms": [
+        {
+          "en": "faithfulness",
+          "zh": "忠实性"
+        },
+        {
+          "en": "utility",
+          "zh": "效用"
+        }
+      ],
+      "refs": [
+        {
+          "page": 371,
+          "reasonZh": "研究方向匹配"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-umbrella-03",
+      "topic": "sentic-umbrella",
+      "form": "evaluation",
+      "prompt": "An explanation sounds convincing but does not reflect how a model reached its answer. Which property is most directly lacking?",
+      "options": [
+        "Faithfulness",
+        "Fluency",
+        "Brevity",
+        "Grammaticality"
+      ],
+      "answer": 0,
+      "explanationZh": "Faithfulness要求解释忠实于模型实际决策过程。语言流畅、简洁或合乎语法都不能单独证明解释忠实。",
+      "distractorsZh": [
+        "",
+        "流畅性评价表达方式。",
+        "简洁性不揭示模型如何决策。",
+        "语法正确不保证推理来源真实。"
+      ],
+      "terms": [
+        {
+          "en": "faithfulness",
+          "zh": "忠实性"
+        },
+        {
+          "en": "utility",
+          "zh": "效用"
+        }
+      ],
+      "refs": [
+        {
+          "page": 372,
+          "reasonZh": "解释忠实性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-umbrella-04",
+      "topic": "sentic-umbrella",
+      "form": "evaluation",
+      "prompt": "A model gives very different explanations after a meaning-preserving paraphrase. Which evaluation concern does this most directly raise?",
+      "options": [
+        "Whether the answer contains enough named entities",
+        "Whether the explanation is translated into every language",
+        "Whether all explanations have equal length",
+        "Robustness under meaning-preserving changes"
+      ],
+      "answer": 3,
+      "explanationZh": "保持语义的改写可以检验解释稳定性；合理的解释不应因无关表面变化而大幅改变。Robustness、faithfulness和utility是相互关联但不同的评价维度。",
+      "distractorsZh": [
+        "实体数量不直接衡量解释稳定性。",
+        "覆盖所有语言并非当前测试目标。",
+        "长度相同的解释也可能不稳定。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "faithfulness",
+          "zh": "忠实性"
+        },
+        {
+          "en": "utility",
+          "zh": "效用"
+        }
+      ],
+      "refs": [
+        {
+          "page": 372,
+          "reasonZh": "解释鲁棒性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-umbrella-05",
+      "topic": "sentic-umbrella",
+      "form": "evaluation",
+      "prompt": "How can a simulatability test evaluate the usefulness of an explanation?",
+      "options": [
+        "By checking whether the explanation repeats the input exactly",
+        "By testing whether people can better anticipate the model's behavior using it",
+        "By treating a longer explanation as more useful",
+        "By ignoring the model's predictions"
+      ],
+      "answer": 1,
+      "explanationZh": "Simulatability关注解释能否帮助人预测或理解模型行为，因而与utility相关；这种帮助还需与faithfulness分别检验。",
+      "distractorsZh": [
+        "重复输入未必增进理解。",
+        "",
+        "文字长度不是效用的充分指标。",
+        "模拟性测试需要参照模型行为。"
+      ],
+      "terms": [
+        {
+          "en": "faithfulness",
+          "zh": "忠实性"
+        },
+        {
+          "en": "utility",
+          "zh": "效用"
+        }
+      ],
+      "refs": [
+        {
+          "page": 372,
+          "reasonZh": "模拟性与效用"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-umbrella-06",
+      "topic": "sentic-umbrella",
+      "form": "method",
+      "prompt": "Why combine text, voice, and visual cues when detecting sarcasm?",
+      "options": [
+        "All three modalities always express identical sentiment",
+        "The visual channel can replace every other signal",
+        "Sarcastic meaning may emerge from agreement or conflict across modalities",
+        "Combining modalities removes the need for evaluation"
+      ],
+      "answer": 2,
+      "explanationZh": "KnowleNet多模态路线分别提取文本、声音与视频特征，再进行融合。语调、表情和字面措辞之间的反差可能提供讽刺线索。",
+      "distractorsZh": [
+        "跨模态不一致恰好可能有信息。",
+        "单一模态无法稳定替代全部语境。",
+        "",
+        "融合效果仍需要验证。"
+      ],
+      "terms": [
+        {
+          "en": "faithfulness",
+          "zh": "忠实性"
+        },
+        {
+          "en": "utility",
+          "zh": "效用"
+        }
+      ],
+      "refs": [
+        {
+          "page": 374,
+          "reasonZh": "多模态讽刺线索"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-multix-01",
+      "topic": "sentic-multix",
+      "form": "challenge",
+      "prompt": "A sentiment classifier works well in English but poorly in another language. What problem can semantic alignment help address?",
+      "options": [
+        "Equivalent meanings may occupy mismatched representational spaces",
+        "The target language necessarily contains no emotional words",
+        "Every language must use an identical writing system",
+        "Translation makes all cultural differences disappear"
+      ],
+      "answer": 0,
+      "explanationZh": "跨语言语义对齐让相近含义在不同语言表示之间更可比较。语义偏移和目标语言特性仍需处理。",
+      "distractorsZh": [
+        "",
+        "目标语言表现较差不意味着缺少情感词。",
+        "表示对齐不要求书写系统相同。",
+        "文化和语用差异不会自动消失。"
+      ],
+      "terms": [
+        {
+          "en": "multitask learning",
+          "zh": "多任务学习"
+        },
+        {
+          "en": "semantic alignment",
+          "zh": "语义对齐"
+        }
+      ],
+      "refs": [
+        {
+          "page": 375,
+          "reasonZh": "跨语言表示偏移"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-multix-02",
+      "topic": "sentic-multix",
+      "form": "method",
+      "prompt": "What is a useful role for a gate when combining multilingual and language-specific representations?",
+      "options": [
+        "Remove every target-language feature",
+        "Force both branches to contribute equally for all inputs",
+        "Convert all words into a single sentiment label before encoding",
+        "Adaptively control how much information each representation contributes"
+      ],
+      "answer": 3,
+      "explanationZh": "门控机制可以按输入调节多语言与语言特定表示的贡献，利用共享语义并保留对当前语言有用的差异。",
+      "distractorsZh": [
+        "删除目标语言信息可能损失语言特征。",
+        "固定等权无法适应输入差异。",
+        "先丢弃语义细节会限制后续建模。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "multitask learning",
+          "zh": "多任务学习"
+        },
+        {
+          "en": "semantic alignment",
+          "zh": "语义对齐"
+        }
+      ],
+      "refs": [
+        {
+          "page": 375,
+          "reasonZh": "语义融合门控"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-multix-03",
+      "topic": "sentic-multix",
+      "form": "method",
+      "prompt": "Why share an encoder across related NLP tasks while retaining separate prediction heads?",
+      "options": [
+        "The tasks must produce identical labels",
+        "Shared features can transfer across tasks while each head models its own output",
+        "A shared encoder guarantees that no task can harm another",
+        "Separate heads remove the need for any training labels"
+      ],
+      "answer": 1,
+      "explanationZh": "多任务学习共享底层表示、保留各任务输出层，使相关任务交换信息。任务关联不足时也可能出现负迁移。",
+      "distractorsZh": [
+        "相关任务可以有不同标签空间。",
+        "",
+        "共享并不保证没有负迁移。",
+        "监督训练仍需要适当的学习信号。"
+      ],
+      "terms": [
+        {
+          "en": "multitask learning",
+          "zh": "多任务学习"
+        },
+        {
+          "en": "semantic alignment",
+          "zh": "语义对齐"
+        }
+      ],
+      "refs": [
+        {
+          "page": 376,
+          "reasonZh": "多任务共享与输出"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-multix-04",
+      "topic": "sentic-multix",
+      "form": "method",
+      "prompt": "What can combining narrow and wide convolution windows contribute to language representation?",
+      "options": [
+        "A proof that all sentences have equal length",
+        "Replacement of contextual features with a word-count total",
+        "Features spanning different amounts of local context",
+        "A guarantee of perfect long-range reasoning"
+      ],
+      "answer": 2,
+      "explanationZh": "不同窗口覆盖不同局部跨度；把多尺度特征与句法信息、注意力等机制结合，有助于表达粒度不同的语言结构。",
+      "distractorsZh": [
+        "窗口大小不决定句长。",
+        "多尺度卷积保留局部结构，非只统计总量。",
+        "",
+        "局部多尺度处理不能保证长距离推理完美。"
+      ],
+      "terms": [
+        {
+          "en": "multitask learning",
+          "zh": "多任务学习"
+        },
+        {
+          "en": "semantic alignment",
+          "zh": "语义对齐"
+        }
+      ],
+      "refs": [
+        {
+          "page": 376,
+          "reasonZh": "多粒度局部上下文"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-multix-05",
+      "topic": "sentic-multix",
+      "form": "scenario",
+      "prompt": "Why might a conversational emotion model track emotions from consecutive speakers rather than classify each utterance independently?",
+      "options": [
+        "A speaker's emotion can depend on the partner's previous response and the dialogue trajectory",
+        "Each utterance must inherit the preceding emotion unchanged",
+        "Speaker identity determines emotion without content",
+        "Only the final utterance can express emotion"
+      ],
+      "answer": 0,
+      "explanationZh": "对话中的情绪可以相互影响并随轮次变化。情感对和多模态会话状态帮助模型理解这种交互；强化学习路线还可根据后续反馈学习选择。",
+      "distractorsZh": [
+        "",
+        "情绪可保持、缓和或发生转变。",
+        "身份只是上下文的一部分。",
+        "中间轮次也包含情绪信息。"
+      ],
+      "terms": [
+        {
+          "en": "multitask learning",
+          "zh": "多任务学习"
+        },
+        {
+          "en": "semantic alignment",
+          "zh": "语义对齐"
+        }
+      ],
+      "refs": [
+        {
+          "page": 377,
+          "reasonZh": "会话中的情绪交互"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-multix-06",
+      "topic": "sentic-multix",
+      "form": "definition",
+      "prompt": "What distinguishes emotion prediction from recognizing an emotion already expressed?",
+      "options": [
+        "Prediction always uses fewer words",
+        "Recognition concerns future states, whereas prediction concerns current labels",
+        "They differ only in the number of emotion categories",
+        "Prediction reasons about how context and appraisal may produce a subsequent emotional state"
+      ],
+      "answer": 3,
+      "explanationZh": "Emotion recognition识别已经表达的状态；emotion prediction结合上下文、期待与appraisal，推断接下来可能产生的情绪变化。",
+      "distractorsZh": [
+        "输入长度不是任务的定义。",
+        "两者的时间方向被颠倒。",
+        "关键差别是推断目标和时间关系。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "multitask learning",
+          "zh": "多任务学习"
+        },
+        {
+          "en": "semantic alignment",
+          "zh": "语义对齐"
+        }
+      ],
+      "refs": [
+        {
+          "page": 378,
+          "reasonZh": "动态情绪预测"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-projects-01",
+      "topic": "sentic-projects",
+      "form": "scenario",
+      "prompt": "A sustainability analyst wants to know which business practices drive positive or negative reactions to a company. Which output is most useful?",
+      "options": [
+        "A single polarity score without its target",
+        "Aspect-linked sentiment with evidence about the practices being discussed",
+        "Only sentence boundaries",
+        "Only a list of stock ticker symbols"
+      ],
+      "answer": 1,
+      "explanationZh": "方面情感分析把评价连接到业务实践、公司和相关证据，可用于社会责任投资等领域的分析。课件还列出商业、气候、教育、科学、健康、安全与金融应用。",
+      "distractorsZh": [
+        "总分隐藏了评价指向和原因。",
+        "",
+        "断句本身不回答业务实践受到何种评价。",
+        "识别公司符号不足以解析评价内容。"
+      ],
+      "terms": [
+        {
+          "en": "aspect-linked evidence",
+          "zh": "方面相关证据"
+        },
+        {
+          "en": "hypothesis generation",
+          "zh": "假设生成"
+        }
+      ],
+      "refs": [
+        {
+          "page": 379,
+          "reasonZh": "业务方面评价"
+        },
+        {
+          "page": 380,
+          "reasonZh": "业务方面评价"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-projects-02",
+      "topic": "sentic-projects",
+      "form": "scenario",
+      "prompt": "Which distinction is most important when comparing 'We may adopt recycling next year' with 'We have implemented recycling'?",
+      "options": [
+        "Whether both sentences contain the same number of tokens",
+        "Whether recycling is a named person",
+        "A conditional plan versus an implemented action",
+        "A positive word versus a negative word only"
+      ],
+      "answer": 2,
+      "explanationZh": "气候与可持续性文本分析需要区分计划、条件性意向与已实施行动，并关联主题和影响。只做正负词计数会遗漏这种状态差异。",
+      "distractorsZh": [
+        "词数不表达实施状态。",
+        "这里讨论的是行动。",
+        "",
+        "两个句子可能都用积极词，承诺状态仍不同。"
+      ],
+      "terms": [
+        {
+          "en": "aspect-linked evidence",
+          "zh": "方面相关证据"
+        },
+        {
+          "en": "hypothesis generation",
+          "zh": "假设生成"
+        }
+      ],
+      "refs": [
+        {
+          "page": 381,
+          "reasonZh": "计划与实施状态"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-projects-03",
+      "topic": "sentic-projects",
+      "form": "challenge",
+      "prompt": "Why is interpretable analysis valuable when extracting sustainability claims from corporate reports?",
+      "options": [
+        "Claims can be incomplete, ambiguous, or conditional, so reviewers need inspectable evidence",
+        "Every favorable statement is independently verified by being published",
+        "Corporate reports contain no subjective language",
+        "A model can infer actual outcomes solely from positive wording"
+      ],
+      "answer": 0,
+      "explanationZh": "报告可能包含不完整、含糊或条件性的主张。可检查的文本证据和状态说明有助于复核模型如何得出主题、行动或影响判断。",
+      "distractorsZh": [
+        "",
+        "公开发布不等于独立核实。",
+        "企业叙述也可能包含主观评价。",
+        "积极措辞不能直接证明行动结果。"
+      ],
+      "terms": [
+        {
+          "en": "aspect-linked evidence",
+          "zh": "方面相关证据"
+        },
+        {
+          "en": "hypothesis generation",
+          "zh": "假设生成"
+        }
+      ],
+      "refs": [
+        {
+          "page": 381,
+          "reasonZh": "可核查的可持续性主张"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-projects-04",
+      "topic": "sentic-projects",
+      "form": "scenario",
+      "prompt": "A student looks down during a lesson. What is the safest interpretation for an automated engagement analysis?",
+      "options": [
+        "The student is necessarily disengaged",
+        "The student must be experiencing a negative emotion",
+        "Emotion and engagement are the same label",
+        "The behavior needs context; looking down could reflect reading, writing, or disengagement"
+      ],
+      "answer": 3,
+      "explanationZh": "教育场景应区分行为、情绪极性和参与度。低头可能对应阅读或书写等投入行为，需要情境与其他线索辅助判断。",
+      "distractorsZh": [
+        "单一动作存在多种解释。",
+        "低头不能直接确定负面情绪。",
+        "情绪和参与度是不同目标。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "aspect-linked evidence",
+          "zh": "方面相关证据"
+        },
+        {
+          "en": "hypothesis generation",
+          "zh": "假设生成"
+        }
+      ],
+      "refs": [
+        {
+          "page": 382,
+          "reasonZh": "行为情绪与参与度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-projects-05",
+      "topic": "sentic-projects",
+      "form": "workflow",
+      "prompt": "Which workflow best supports generating and checking a scientific hypothesis?",
+      "options": [
+        "Generate a hypothesis and publish it without comparison",
+        "Retrieve background and inspirations, propose a hypothesis, then check clarity, plausibility, and novelty",
+        "Rank hypotheses only by sentence length",
+        "Treat any fluent hypothesis as a verified discovery"
+      ],
+      "answer": 1,
+      "explanationZh": "科学发现流程从背景和启发材料构造假设，再通过清晰度、现实合理性与新颖性检查迭代改进。生成假设不等于验证发现。",
+      "distractorsZh": [
+        "跳过检查会遗漏已有工作和不合理假设。",
+        "",
+        "长度无法代表科学价值。",
+        "语言流畅不能代替证据与验证。"
+      ],
+      "terms": [
+        {
+          "en": "aspect-linked evidence",
+          "zh": "方面相关证据"
+        },
+        {
+          "en": "hypothesis generation",
+          "zh": "假设生成"
+        }
+      ],
+      "refs": [
+        {
+          "page": 383,
+          "reasonZh": "科学假设工作流"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-projects-06",
+      "topic": "sentic-projects",
+      "form": "evaluation",
+      "prompt": "Why retrieve related literature while evaluating the novelty of a generated hypothesis?",
+      "options": [
+        "To ensure the hypothesis uses the most common wording",
+        "To make every hypothesis agree with every previous paper",
+        "To check whether substantially similar ideas or findings already exist",
+        "To replace empirical testing with a citation count"
+      ],
+      "answer": 2,
+      "explanationZh": "相关文献检索为新颖性判断提供比较对象。课件中的novelty checker结合检索与反馈，但检索本身既非完整的新颖性证明，也非实验证据。",
+      "distractorsZh": [
+        "常用措辞和新颖性是不同问题。",
+        "新假设可以与既有观点不同。",
+        "",
+        "引用数量不能替代测试。"
+      ],
+      "terms": [
+        {
+          "en": "aspect-linked evidence",
+          "zh": "方面相关证据"
+        },
+        {
+          "en": "hypothesis generation",
+          "zh": "假设生成"
+        }
+      ],
+      "refs": [
+        {
+          "page": 383,
+          "reasonZh": "检索辅助新颖性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-applied-01",
+      "topic": "sentic-applied",
+      "form": "method",
+      "prompt": "Why combine diagnosis codes, medication information, and the order of clinical visits in patient representation learning?",
+      "options": [
+        "The codes alone always reveal a complete patient history",
+        "The modalities must all share identical labels",
+        "The combination captures complementary medical relationships and temporal context",
+        "Visit order is irrelevant whenever an embedding is used"
+      ],
+      "answer": 2,
+      "explanationZh": "MEGACare结合诊断、程序、药物等医疗代码和就诊顺序，并利用知识与图表示建模患者轨迹。互补信息可支持诊断预测或药物推荐研究。",
+      "distractorsZh": [
+        "单类代码往往只描述部分信息。",
+        "不同信息源保留各自语义。",
+        "",
+        "嵌入并不会自动消除时间信息的重要性。"
+      ],
+      "terms": [
+        {
+          "en": "multilabel classification",
+          "zh": "多标签分类"
+        },
+        {
+          "en": "hypergraph",
+          "zh": "超图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 384,
+          "reasonZh": "医疗多源时序表示"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-applied-02",
+      "topic": "sentic-applied",
+      "form": "method",
+      "prompt": "What makes a hypergraph useful when several medical codes participate in one clinical event?",
+      "options": [
+        "A hyperedge can connect more than two items as one higher-order relation",
+        "It forces every event to contain exactly two codes",
+        "It removes the need to distinguish diagnoses from medications",
+        "It proves a treatment is effective"
+      ],
+      "answer": 0,
+      "explanationZh": "超边可同时关联多个节点，表达一次事件或一次就诊涉及的一组医疗代码。多视图融合进一步结合代码图、超图和子超图的信息。",
+      "distractorsZh": [
+        "",
+        "二元连接是普通图边的典型形式。",
+        "表示关联不等于删除代码语义。",
+        "结构表示不直接提供治疗效果证明。"
+      ],
+      "terms": [
+        {
+          "en": "multilabel classification",
+          "zh": "多标签分类"
+        },
+        {
+          "en": "hypergraph",
+          "zh": "超图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 384,
+          "reasonZh": "医疗高阶关联"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-applied-03",
+      "topic": "sentic-applied",
+      "form": "definition",
+      "prompt": "Why is toxic comment detection often formulated as multilabel classification?",
+      "options": [
+        "Each comment must be assigned exactly one mutually exclusive subtype",
+        "All toxic subtypes mean the same thing",
+        "Only the longest comment can have multiple labels",
+        "One comment may simultaneously contain insults, threats, and obscene language"
+      ],
+      "answer": 3,
+      "explanationZh": "同一评论可以同时属于多个毒性类别，因此可使用多标签输出。Toxic、severe toxic、obscene、threat、insult和hate描述不同但可重叠的现象。",
+      "distractorsZh": [
+        "互斥单标签无法保留重叠属性。",
+        "这些类别的含义和识别线索不同。",
+        "多标签取决于内容而非长度。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "multilabel classification",
+          "zh": "多标签分类"
+        },
+        {
+          "en": "hypergraph",
+          "zh": "超图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 385,
+          "reasonZh": "毒性多标签"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-applied-04",
+      "topic": "sentic-applied",
+      "form": "challenge",
+      "prompt": "Why can sexist language be difficult to detect using a list of overt insults alone?",
+      "options": [
+        "Sexism can never appear in polite wording",
+        "Apparently complimentary wording can still express restrictive gender stereotypes",
+        "Every compliment is sexist",
+        "Gender references always constitute harassment"
+      ],
+      "answer": 1,
+      "explanationZh": "性别偏见可能表现为敌意，也可能以看似善意的刻板角色期待出现；因此需要结合语境和表达所承载的性别假设判断。",
+      "distractorsZh": [
+        "看似礼貌的表达也可能包含偏见。",
+        "",
+        "称赞的性质需结合具体内容判断。",
+        "提及性别本身不等于骚扰。"
+      ],
+      "terms": [
+        {
+          "en": "multilabel classification",
+          "zh": "多标签分类"
+        },
+        {
+          "en": "hypergraph",
+          "zh": "超图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 385,
+          "reasonZh": "隐性性别偏见"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-applied-05",
+      "topic": "sentic-applied",
+      "form": "definition",
+      "prompt": "Which distinction is most useful when studying financial sentiment?",
+      "options": [
+        "News sentiment, investor attitudes, and market-level indicators are related but distinct measurements",
+        "A positive news headline guarantees that a stock price will rise",
+        "Investor surveys measure exactly the same object as every market index",
+        "Text sentiment is a direct measurement of all future trading behavior"
+      ],
+      "answer": 0,
+      "explanationZh": "金融文本情感、投资者主观态度和总体市场情绪指标来自不同测量渠道，可相互关联但不可直接等同。市场走势还受到其他因素影响。",
+      "distractorsZh": [
+        "",
+        "文本评价不能保证未来价格走势。",
+        "调查与市场指标的构造和测量对象不同。",
+        "文本只是观察投资行为的部分线索。"
+      ],
+      "terms": [
+        {
+          "en": "multilabel classification",
+          "zh": "多标签分类"
+        },
+        {
+          "en": "hypergraph",
+          "zh": "超图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 386,
+          "reasonZh": "金融情感的测量层次"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-atlas-01",
+      "topic": "emotion-atlas",
+      "form": "workflow",
+      "prompt": "What is a useful goal of a unified human-behavior benchmark spanning emotion, cognition, pathology, and social judgment?",
+      "options": [
+        "Assume every task has an identical label set",
+        "Evaluate only the domain with the largest dataset",
+        "Ignore differences among tasks and modalities",
+        "Organize heterogeneous tasks with explicit taxonomies, processing, and evaluation protocols"
+      ],
+      "answer": 3,
+      "explanationZh": "统一行为评估需要任务分类、标注标准化、特征处理与评价协议，同时保留情感、认知、病理和社会任务的差异。",
+      "distractorsZh": [
+        "任务之间的标签语义可能不同。",
+        "只看最大数据集会遮蔽其他能力。",
+        "异质性需要明确处理。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "annotation standardization",
+          "zh": "标注标准化"
+        },
+        {
+          "en": "proxy measurement",
+          "zh": "代理测量"
+        }
+      ],
+      "refs": [
+        {
+          "page": 387,
+          "reasonZh": "异质任务统一评估"
+        },
+        {
+          "page": 388,
+          "reasonZh": "异质任务统一评估"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-atlas-02",
+      "topic": "emotion-atlas",
+      "form": "workflow",
+      "prompt": "Why standardize annotations before combining multiple human-behavior datasets?",
+      "options": [
+        "To replace every original observation with a synthetic one",
+        "To make label definitions and task mappings explicit and comparable",
+        "To guarantee equal demographic representation",
+        "To remove the need to document the data source"
+      ],
+      "answer": 1,
+      "explanationZh": "标准化过程明确标签定义、量表或任务映射，减少名称相同而含义不同的问题。来源、人群与采样信息仍需保留。",
+      "distractorsZh": [
+        "标准化不是用合成数据替换观察。",
+        "",
+        "标签统一不保证人群分布均衡。",
+        "来源记录仍是解释结果的依据。"
+      ],
+      "terms": [
+        {
+          "en": "annotation standardization",
+          "zh": "标注标准化"
+        },
+        {
+          "en": "proxy measurement",
+          "zh": "代理测量"
+        }
+      ],
+      "refs": [
+        {
+          "page": 388,
+          "reasonZh": "标注标准化"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-atlas-03",
+      "topic": "emotion-atlas",
+      "form": "method",
+      "prompt": "Which feature set best matches a multimodal behavior analysis pipeline?",
+      "options": [
+        "A transcript-only representation treated as all three modalities",
+        "One pooled sentiment score reused for each modality",
+        "Text transcripts, acoustic descriptors, facial landmarks, and body-pose features",
+        "A topic vector with audio and visual channels discarded"
+      ],
+      "answer": 2,
+      "explanationZh": "行为分析可分别提取转录文本、声学特征、面部标记点与姿态关键点，再按任务构建模型。不同通道提供互补但不完整的线索。",
+      "distractorsZh": [
+        "转录文本不包含全部声学和视觉线索。",
+        "复用同一分数未保留各模态信息。",
+        "",
+        "丢弃其他通道不能形成题设的多模态特征集。"
+      ],
+      "terms": [
+        {
+          "en": "annotation standardization",
+          "zh": "标注标准化"
+        },
+        {
+          "en": "proxy measurement",
+          "zh": "代理测量"
+        }
+      ],
+      "refs": [
+        {
+          "page": 388,
+          "reasonZh": "多模态行为特征"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "emotion-atlas-04",
+      "topic": "emotion-atlas",
+      "form": "evaluation",
+      "prompt": "A benchmark mixes short clips with long recordings and different modality combinations. What should an evaluation report make clear?",
+      "options": [
+        "Which durations and modality configurations are represented and how results are compared",
+        "Only the overall score, because input differences never matter",
+        "That all clips contain the same amount of behavioral context",
+        "That a missing modality has no possible effect"
+      ],
+      "answer": 0,
+      "explanationZh": "样本时长影响可见上下文，模态组合影响可用信号。分布说明与分组评价能帮助解释总体结果和适用范围。",
+      "distractorsZh": [
+        "",
+        "总体分数可能掩盖条件差异。",
+        "不同长度通常提供不同上下文范围。",
+        "缺失模态可能影响表现。"
+      ],
+      "terms": [
+        {
+          "en": "annotation standardization",
+          "zh": "标注标准化"
+        },
+        {
+          "en": "proxy measurement",
+          "zh": "代理测量"
+        }
+      ],
+      "refs": [
+        {
+          "page": 388,
+          "reasonZh": "输入条件与评测"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "emotion-atlas-05",
+      "topic": "emotion-atlas",
+      "form": "challenge",
+      "prompt": "Why can facial-expression labels be an imperfect proxy for felt emotion?",
+      "options": [
+        "Facial expressions have no observable variation",
+        "The same face always reveals a unique internal state",
+        "A person's social context cannot affect expression",
+        "Expressions can be masked, performed, or interpreted differently from the person's experience"
+      ],
+      "answer": 3,
+      "explanationZh": "表情与实际感受之间并非一一对应。标注时需要认识外显行为和内部体验的差别，并考虑上下文、个体差异和测量局限。",
+      "distractorsZh": [
+        "表情存在丰富变化。",
+        "同一表情可能对应不同体验或动机。",
+        "社交情境会影响情感表达。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "annotation standardization",
+          "zh": "标注标准化"
+        },
+        {
+          "en": "proxy measurement",
+          "zh": "代理测量"
+        }
+      ],
+      "refs": [
+        {
+          "page": 389,
+          "reasonZh": "表情与内在体验"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-resources-01",
+      "topic": "sentic-resources",
+      "form": "resource",
+      "prompt": "You want peer-reviewed work on concept-level affective analysis and sentic computing. Which resource category best fits?",
+      "options": [
+        "A POS tag inventory",
+        "Specialist journal sections and an academic book series on affective computing",
+        "An unannotated token-frequency list",
+        "A medication code dictionary"
+      ],
+      "answer": 1,
+      "explanationZh": "ACSA、Cognitive Computation的相关栏目和Socio-Affective Computing书系提供该方向的学术研究入口。资源用途是检索研究成果与理论，而非直接充当训练语料。",
+      "distractorsZh": [
+        "标签集定义词性，不汇集该领域研究。",
+        "",
+        "词频表不是专门的学术出版渠道。",
+        "医疗代码词典用途不同。"
+      ],
+      "terms": [
+        {
+          "en": "ontology",
+          "zh": "本体"
+        },
+        {
+          "en": "source-target mapping",
+          "zh": "源域—目标域映射"
+        }
+      ],
+      "refs": [
+        {
+          "page": 390,
+          "reasonZh": "专业学术资源"
+        },
+        {
+          "page": 391,
+          "reasonZh": "专业学术资源"
+        },
+        {
+          "page": 392,
+          "reasonZh": "专业学术资源"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-resources-03",
+      "topic": "sentic-resources",
+      "form": "resource",
+      "prompt": "Which distinction best describes a concept knowledge base and an embedding space?",
+      "options": [
+        "A knowledge base exposes concepts and relations, while embeddings represent items as vectors",
+        "They must contain exactly the same numerical values",
+        "Embeddings are always manually written logical rules",
+        "A knowledge base cannot express relations"
+      ],
+      "answer": 0,
+      "explanationZh": "SenticNet知识库组织概念及相关信息；AffectiveSpace提供向量化表示。结构化知识与连续向量空间支持不同形式的查询、匹配和学习。",
+      "distractorsZh": [
+        "",
+        "两类表示的数据形式不同。",
+        "嵌入是连续表示，不等于手写规则集合。",
+        "关系正是知识表示的重要组成。"
+      ],
+      "terms": [
+        {
+          "en": "ontology",
+          "zh": "本体"
+        },
+        {
+          "en": "source-target mapping",
+          "zh": "源域—目标域映射"
+        }
+      ],
+      "refs": [
+        {
+          "page": 394,
+          "reasonZh": "知识库与向量空间"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-resources-04",
+      "topic": "sentic-resources",
+      "form": "resource",
+      "prompt": "When would an ontology such as OntoSenticNet be especially useful?",
+      "options": [
+        "When only a document's bag-of-words frequency is needed",
+        "When the task requires only cosine similarity between dense vectors",
+        "When token boundaries alone are the desired output",
+        "When a system needs explicit classes, relations, and structured semantic organization"
+      ],
+      "answer": 3,
+      "explanationZh": "Ontology用明确的概念、类别及关系组织知识，适合需要结构化语义、互操作或逻辑约束的系统。",
+      "distractorsZh": [
+        "词频统计不需要显式语义本体。",
+        "向量近邻计算通常由嵌入表示直接支持。",
+        "分词边界属于另一类处理目标。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "ontology",
+          "zh": "本体"
+        },
+        {
+          "en": "source-target mapping",
+          "zh": "源域—目标域映射"
+        }
+      ],
+      "refs": [
+        {
+          "page": 394,
+          "reasonZh": "本体用途"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-resources-05",
+      "topic": "sentic-resources",
+      "form": "resource",
+      "prompt": "You want to reproduce a model that uses a downloadable knowledge resource. What should you obtain and check?",
+      "options": [
+        "Only the final reported accuracy",
+        "Both the relevant data or model resource and its implementation or usage instructions",
+        "Only a verbal description of the task",
+        "Only a small set of successful demo outputs"
+      ],
+      "answer": 1,
+      "explanationZh": "复现通常需要资源本体、实现代码和使用说明，并检查版本、依赖及资源格式是否匹配。下载页与代码仓库承担互补角色。",
+      "distractorsZh": [
+        "结果指标不包含实现过程。",
+        "",
+        "任务描述不足以确定训练和推理细节。",
+        "成功案例不能替代完整实现与资源。"
+      ],
+      "terms": [
+        {
+          "en": "ontology",
+          "zh": "本体"
+        },
+        {
+          "en": "source-target mapping",
+          "zh": "源域—目标域映射"
+        }
+      ],
+      "refs": [
+        {
+          "page": 394,
+          "reasonZh": "资源与代码复现"
+        },
+        {
+          "page": 395,
+          "reasonZh": "资源与代码复现"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-resources-06",
+      "topic": "sentic-resources",
+      "form": "resource",
+      "prompt": "Why might a language-model project prioritize Southeast Asian languages?",
+      "options": [
+        "To make all languages share English grammar",
+        "To eliminate the need for language-specific evaluation",
+        "To improve coverage of regional languages, usage, and linguistic diversity",
+        "To guarantee identical performance for every language"
+      ],
+      "answer": 2,
+      "explanationZh": "SEA-LION关注东南亚语言。区域语言模型与评测资源可补足语言覆盖，并需要分别检验目标语言上的能力。",
+      "distractorsZh": [
+        "语言适配不要求改变语言自身语法。",
+        "目标语言评测仍不可省略。",
+        "",
+        "覆盖范围扩展不保证表现完全相同。"
+      ],
+      "terms": [
+        {
+          "en": "ontology",
+          "zh": "本体"
+        },
+        {
+          "en": "source-target mapping",
+          "zh": "源域—目标域映射"
+        }
+      ],
+      "refs": [
+        {
+          "page": 396,
+          "reasonZh": "区域语言覆盖"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-resources-07",
+      "topic": "sentic-resources",
+      "form": "workflow",
+      "prompt": "Which sequence best describes a metaphor-analysis tool beyond simply marking a figurative word?",
+      "options": [
+        "Identify the metaphor, interpret its intended meaning, and relate source and target domains",
+        "Count adjectives and stop",
+        "Replace every unusual verb with a named entity",
+        "Assign positive polarity to every metaphor"
+      ],
+      "answer": 0,
+      "explanationZh": "MetaPro展示隐喻识别、释义以及源域—目标域映射。标出隐喻只是第一步，还需要解释它在语境中的含义及概念映射。",
+      "distractorsZh": [
+        "",
+        "形容词数量不能完成隐喻分析。",
+        "隐喻可涉及多种词性，实体替换不解决映射。",
+        "隐喻的极性取决于内容与语境。"
+      ],
+      "terms": [
+        {
+          "en": "ontology",
+          "zh": "本体"
+        },
+        {
+          "en": "source-target mapping",
+          "zh": "源域—目标域映射"
+        }
+      ],
+      "refs": [
+        {
+          "page": 397,
+          "reasonZh": "隐喻分析流程"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-resources-08",
+      "topic": "sentic-resources",
+      "form": "scenario",
+      "prompt": "In 'Her argument demolished my proposal,' which interpretation best captures the metaphor?",
+      "options": [
+        "A physical building containing the proposal was necessarily destroyed",
+        "The sentence contains no comparison between conceptual domains",
+        "The word 'argument' must refer to a construction tool",
+        "Reasoning is understood through a physical-destruction source domain"
+      ],
+      "answer": 3,
+      "explanationZh": "这里把物理破坏的源域映射到论证反驳的目标域，表达提案受到有力驳斥。隐喻解释需要从字面动作恢复语境中的概念含义。",
+      "distractorsZh": [
+        "字面物理毁坏不符合通常语境。",
+        "demolished把物理动作投射到论证活动。",
+        "论证并不因此成为实体工具。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "ontology",
+          "zh": "本体"
+        },
+        {
+          "en": "source-target mapping",
+          "zh": "源域—目标域映射"
+        }
+      ],
+      "refs": [
+        {
+          "page": 397,
+          "reasonZh": "源域与目标域应用"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-api-01",
+      "topic": "sentic-api",
+      "form": "definition",
+      "prompt": "Which API output identifies whether a sentence expresses an opinion rather than merely stating a fact?",
+      "options": [
+        "Subjectivity",
+        "Polarity",
+        "Intensity",
+        "Sentence length"
+      ],
+      "answer": 0,
+      "explanationZh": "Subjectivity区分主观评价与客观陈述；polarity判断评价方向，intensity判断程度。三者回答不同问题。",
+      "distractorsZh": [
+        "",
+        "极性是正负方向。",
+        "强度是程度。",
+        "长度不确定主观性。"
+      ],
+      "terms": [
+        {
+          "en": "intensity",
+          "zh": "强度"
+        },
+        {
+          "en": "aspect",
+          "zh": "方面"
+        }
+      ],
+      "refs": [
+        {
+          "page": 398,
+          "reasonZh": "主观性输出"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "sentic-api-02",
+      "topic": "sentic-api",
+      "form": "scenario",
+      "prompt": "Two reviews are both positive, but one says 'acceptable' and the other says 'absolutely wonderful.' Which output distinguishes their strength?",
+      "options": [
+        "Named entity type",
+        "POS tag",
+        "Sentiment intensity",
+        "Document identifier"
+      ],
+      "answer": 2,
+      "explanationZh": "相同正向极性可以具有不同强度。API把polarity与intensity分开输出，便于保留方向与程度的信息。",
+      "distractorsZh": [
+        "实体类型不刻画评价强度。",
+        "词性不直接等于情感程度。",
+        "",
+        "文档标识不表达态度。"
+      ],
+      "terms": [
+        {
+          "en": "intensity",
+          "zh": "强度"
+        },
+        {
+          "en": "aspect",
+          "zh": "方面"
+        }
+      ],
+      "refs": [
+        {
+          "page": 398,
+          "reasonZh": "方向与强度"
+        },
+        {
+          "page": 399,
+          "reasonZh": "方向与强度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-api-03",
+      "topic": "sentic-api",
+      "form": "scenario",
+      "prompt": "For 'The screen is excellent, but the battery is disappointing,' which output preserves the contrast most directly?",
+      "options": [
+        "One positive label for the entire review",
+        "Separate aspect-linked evaluations for screen and battery",
+        "One negative label for the entire review",
+        "A single objective-versus-subjective label"
+      ],
+      "answer": 1,
+      "explanationZh": "方面级分析分别绑定screen的正面评价和battery的负面评价，保留同一文本中的目标差异。",
+      "distractorsZh": [
+        "总体正向会掩盖电池的负面评价。",
+        "",
+        "总体负向会掩盖屏幕的正面评价。",
+        "主客观标签不能区分评价目标与方向。"
+      ],
+      "terms": [
+        {
+          "en": "intensity",
+          "zh": "强度"
+        },
+        {
+          "en": "aspect",
+          "zh": "方面"
+        }
+      ],
+      "refs": [
+        {
+          "page": 398,
+          "reasonZh": "方面级情感"
+        },
+        {
+          "page": 399,
+          "reasonZh": "方面级情感"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-api-04",
+      "topic": "sentic-api",
+      "form": "challenge",
+      "prompt": "Why should a sarcasm signal be considered alongside literal polarity?",
+      "options": [
+        "Sarcasm always removes all emotion from a sentence",
+        "Sarcasm is identical to a spelling mistake",
+        "Every positive word is sarcastic",
+        "The intended attitude can oppose the literal wording"
+      ],
+      "answer": 3,
+      "explanationZh": "讽刺可能借正面措辞表达负面态度。结合讽刺与语境分析，有助于解释字面极性与真实意图的差异。",
+      "distractorsZh": [
+        "讽刺通常仍传递评价。",
+        "拼写错误与语用意图不同。",
+        "需要上下文证据，不能只凭正面词判断。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "intensity",
+          "zh": "强度"
+        },
+        {
+          "en": "aspect",
+          "zh": "方面"
+        }
+      ],
+      "refs": [
+        {
+          "page": 398,
+          "reasonZh": "讽刺与字面极性"
+        },
+        {
+          "page": 399,
+          "reasonZh": "讽刺与字面极性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-api-05",
+      "topic": "sentic-api",
+      "form": "challenge",
+      "prompt": "An API returns a personality or depression-related score from a short text. How should the result be used?",
+      "options": [
+        "As an uncertain model output requiring appropriate validation and context",
+        "As a definitive clinical diagnosis",
+        "As proof of a permanent personality trait",
+        "As a substitute for all other evidence about the author"
+      ],
+      "answer": 0,
+      "explanationZh": "人格或心理状态相关输出属于模型估计，解释时需考虑测量依据、文本范围、误差及适用场景；单段文本的分数不能直接确证个人状态。",
+      "distractorsZh": [
+        "",
+        "短文本API评分不等于临床诊断。",
+        "模型输出不能证明人格永久固定。",
+        "仍需其他相关证据和验证。"
+      ],
+      "terms": [
+        {
+          "en": "intensity",
+          "zh": "强度"
+        },
+        {
+          "en": "aspect",
+          "zh": "方面"
+        }
+      ],
+      "refs": [
+        {
+          "page": 399,
+          "reasonZh": "个体相关输出的验证"
+        },
+        {
+          "page": 400,
+          "reasonZh": "个体相关输出的验证"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "sentic-api-06",
+      "topic": "sentic-api",
+      "form": "definition",
+      "prompt": "Which pair of outputs addresses different questions rather than interchangeable labels?",
+      "options": [
+        "Polarity and positive-versus-negative direction",
+        "Sentiment intensity and degree of sentiment",
+        "Toxicity and engagement",
+        "Explicit aspect-term spans and extracted spans naming the evaluated aspects"
+      ],
+      "answer": 2,
+      "explanationZh": "Toxicity关注冒犯、威胁等有害内容；engagement关注投入或参与。相同文本可以在两个维度上独立变化，well-being、depression等输出也需分别理解。",
+      "distractorsZh": [
+        "这里是同一维度的名称和解释。",
+        "两者描述同一强度维度。",
+        "",
+        "两者都指文本中明确命名被评价方面的词语片段。"
+      ],
+      "terms": [
+        {
+          "en": "intensity",
+          "zh": "强度"
+        },
+        {
+          "en": "aspect",
+          "zh": "方面"
+        }
+      ],
+      "refs": [
+        {
+          "page": 398,
+          "reasonZh": "多种输出维度"
+        },
+        {
+          "page": 399,
+          "reasonZh": "多种输出维度"
+        },
+        {
+          "page": 400,
+          "reasonZh": "多种输出维度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    }
+  ]
+}

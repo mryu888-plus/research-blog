@@ -1,0 +1,5395 @@
+{
+  "topics": [
+    {
+      "id": "seq-encoding",
+      "nameZh": "序列转换与语言生成",
+      "nameEn": "Sequence Encoding and Generation",
+      "lecture": 2,
+      "originalQuestions": [],
+      "pages": [
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141
+      ],
+      "focusZh": "编码器—解码器、注意力、提示标签映射和嵌入查表"
+    },
+    {
+      "id": "seq-transformer",
+      "nameZh": "Transformer 与序列建模",
+      "nameEn": "Transformers and Sequence Modelling",
+      "lecture": 2,
+      "originalQuestions": [],
+      "pages": [
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148
+      ],
+      "focusZh": "多头、自注意力、位置、掩码与工具资源"
+    },
+    {
+      "id": "cog-learning",
+      "nameZh": "学习能力与理解证据",
+      "nameEn": "Learning and Evidence of Understanding",
+      "lecture": 3,
+      "originalQuestions": [],
+      "pages": [
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160
+      ],
+      "focusZh": "学习范式、分布偏差、AI失败及证据的边界"
+    },
+    {
+      "id": "cog-llm",
+      "nameZh": "语言模型与语义局限",
+      "nameEn": "Language Models and Semantic Limits",
+      "lecture": 3,
+      "originalQuestions": [],
+      "pages": [
+        161,
+        162,
+        163,
+        164,
+        165,
+        166
+      ],
+      "focusZh": "共现、事实性、具身、符号操作与否定"
+    },
+    {
+      "id": "cog-language",
+      "nameZh": "语言、文化与思维",
+      "nameEn": "Language, Culture and Thought",
+      "lecture": 3,
+      "originalQuestions": [],
+      "pages": [
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177
+      ],
+      "focusZh": "语言相对论、约定、语音、多语言与认知类比"
+    },
+    {
+      "id": "cog-mind",
+      "nameZh": "心智与人工智能设计",
+      "nameEn": "Mind and AI Design",
+      "lecture": 3,
+      "originalQuestions": [],
+      "pages": [
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187
+      ],
+      "focusZh": "脑类比、心智理论、智能与价值及情绪"
+    },
+    {
+      "id": "cog-risk",
+      "nameZh": "人工智能风险与治理",
+      "nameEn": "AI Risk and Governance",
+      "lecture": 3,
+      "originalQuestions": [],
+      "pages": [
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197
+      ],
+      "focusZh": "恐怖谷、风险概率、目标错配与长期外部性"
+    },
+    {
+      "id": "cog-pillars",
+      "nameZh": "理解系统的七项原则",
+      "nameEn": "Seven Principles for Understanding Systems",
+      "lecture": 3,
+      "originalQuestions": [],
+      "pages": [
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "focusZh": "跨学科、分解、并行类比、符号、相似性、意图与信任"
+    },
+    {
+      "id": "taskdetail-layers",
+      "nameZh": "任务层次与评估设计",
+      "nameEn": "Task Layers and Evaluation Design",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        233,
+        234,
+        235,
+        236,
+        260,
+        261,
+        262
+      ],
+      "focusZh": "句法语义语用及下游使用方式"
+    },
+    {
+      "id": "taskdetail-normalization",
+      "nameZh": "规范化策略与资源",
+      "nameEn": "Normalization Strategies and Resources",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        213,
+        214,
+        215,
+        216,
+        217
+      ],
+      "focusZh": "发音、变体、上下文和排序评估"
+    },
+    {
+      "id": "taskdetail-syntax",
+      "nameZh": "断句、词性与浅层解析",
+      "nameEn": "Boundaries, Tags and Shallow Parsing",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224
+      ],
+      "focusZh": "韵律、领域偏移、字符特征及全局标签一致性"
+    },
+    {
+      "id": "taskdetail-morphology",
+      "nameZh": "形态归一与词元建模",
+      "nameEn": "Morphological Normalization",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232
+      ],
+      "focusZh": "词形词义、条件规则、序列转换及跨语言资源"
+    },
+    {
+      "id": "taskdetail-senses",
+      "nameZh": "词义知识与消歧算法",
+      "nameEn": "Sense Knowledge and Disambiguation",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        237,
+        238,
+        239,
+        240
+      ],
+      "focusZh": "同形异义、Lesk、图排序、知识与监督混合"
+    },
+    {
+      "id": "taskdetail-entities",
+      "nameZh": "实体结构与低资源识别",
+      "nameEn": "Entity Structure and Low-resource NER",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        241,
+        242,
+        243,
+        244
+      ],
+      "focusZh": "BIOES、嵌套、提示、关系联合抽取及领域资源"
+    },
+    {
+      "id": "taskdetail-concepts",
+      "nameZh": "概念抽取方法与知识资源",
+      "nameEn": "Concept Extraction Methods and Resources",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251
+      ],
+      "focusZh": "组合语义、分词保真、抽取与生成、领域知识"
+    },
+    {
+      "id": "taskdetail-coreference",
+      "nameZh": "指代推理与评估",
+      "nameEn": "Coreference Reasoning and Evaluation",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        252,
+        253,
+        254
+      ],
+      "focusZh": "常识、零代词、聚类评价及标注/知识资源"
+    },
+    {
+      "id": "taskdetail-opinion",
+      "nameZh": "主观性、偏差与多模态",
+      "nameEn": "Subjectivity, Bias and Multimodality",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        255,
+        256,
+        257,
+        258,
+        259
+      ],
+      "focusZh": "中性/矛盾情绪、词义依赖、跨语迁移与语境"
+    },
+    {
+      "id": "taskdetail-metaphor",
+      "nameZh": "隐喻推理与解释",
+      "nameEn": "Metaphor Reasoning and Interpretation",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        263,
+        264,
+        265,
+        266
+      ],
+      "focusZh": "识别到解释、属性映射、选择偏好与输出评估"
+    },
+    {
+      "id": "taskdetail-sarcasm",
+      "nameZh": "反讽的多源证据",
+      "nameEn": "Evidence for Sarcasm",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        267,
+        268,
+        269,
+        270
+      ],
+      "focusZh": "多模态不一致、上下文融合与任务迁移"
+    },
+    {
+      "id": "taskdetail-personality",
+      "nameZh": "人格测量与建模",
+      "nameEn": "Personality Measurement and Modelling",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        271,
+        272,
+        273,
+        274,
+        275,
+        276
+      ],
+      "focusZh": "特质解释、MBTI维度、问卷反向计分及用户级评估"
+    },
+    {
+      "id": "taskdetail-aspects",
+      "nameZh": "方面级情感与联合抽取",
+      "nameEn": "Aspect-level Sentiment and Joint Extraction",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        277,
+        278,
+        279,
+        280,
+        281
+      ],
+      "focusZh": "显式/隐式方面、术语/类别、结构标签与联合输出"
+    },
+    {
+      "id": "taskdetail-polarity",
+      "nameZh": "情感强度与神经符号推理",
+      "nameEn": "Sentiment Intensity and Neurosymbolic Reasoning",
+      "lecture": 4,
+      "originalQuestions": [],
+      "pages": [
+        282,
+        283,
+        284
+      ],
+      "focusZh": "词典、预训练、逻辑约束、指标及下游应用"
+    }
+  ],
+  "questions": [
+    {
+      "id": "seq-encoding-01",
+      "topic": "seq-encoding",
+      "form": "scenario",
+      "prompt": "An encoder reads a source sentence before a decoder generates its translation. What is the role of the encoder output?",
+      "options": [
+        "It represents source information used to condition the target sequence.",
+        "It is necessarily the final translated sentence.",
+        "It specifies a dictionary replacement for every source word.",
+        "It requires the source and target to have equal lengths."
+      ],
+      "answer": 0,
+      "explanationZh": "编码器把输入序列转为中间表示，解码器据此逐步生成目标序列。绘图传词的类比强调信息经过中间表示传递；翻译时输入输出长度可以不同。",
+      "distractorsZh": [
+        "",
+        "译文由解码器生成。",
+        "编码表示可包含上下文，而非逐词替换表。",
+        "序列转换允许不同长度。"
+      ],
+      "terms": [
+        {
+          "en": "encoder",
+          "zh": "编码器"
+        },
+        {
+          "en": "decoder",
+          "zh": "解码器"
+        }
+      ],
+      "refs": [
+        {
+          "page": 134,
+          "reasonZh": "编码—解码与中间表示"
+        },
+        {
+          "page": 135,
+          "reasonZh": "编码—解码与中间表示"
+        },
+        {
+          "page": 136,
+          "reasonZh": "编码—解码与中间表示"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-encoding-02",
+      "topic": "seq-encoding",
+      "form": "method",
+      "prompt": "Why can attention help a decoder translate a long sentence?",
+      "options": [
+        "It forces all source words to contribute equally.",
+        "It prevents the decoder from depending on earlier output tokens.",
+        "It makes the encoder's source representation unnecessary.",
+        "It lets each decoding step access differently weighted source states."
+      ],
+      "answer": 3,
+      "explanationZh": "单个固定向量需要压缩整句信息；注意力让解码器在不同生成步骤访问不同编码状态，形成动态上下文。",
+      "distractorsZh": [
+        "等权平均丢失了按当前需求选择信息的能力。",
+        "自回归解码仍可依赖先前输出。",
+        "注意力通常正是对编码表示加权。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "attention",
+          "zh": "注意力"
+        },
+        {
+          "en": "context vector",
+          "zh": "上下文向量"
+        }
+      ],
+      "refs": [
+        {
+          "page": 137,
+          "reasonZh": "注意力缓解固定向量瓶颈"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-encoding-03",
+      "topic": "seq-encoding",
+      "form": "scenario",
+      "prompt": "A sentiment prompt predicts 'delighted' or 'miserable' in a masked position. What is needed to turn these predictions into class labels?",
+      "options": [
+        "A sentence-boundary detector to replace the classifier.",
+        "A rule assigning every adjective the positive class.",
+        "A mapping from label words to sentiment classes.",
+        "A mapping from token positions to part-of-speech tags."
+      ],
+      "answer": 2,
+      "explanationZh": "提示分类把任务写成语言模型可完成的填空，再由标签词映射（verbalizer）把 delighted 等词转换为正负类别。掩码表示经过预测头和 softmax 得到词概率。",
+      "distractorsZh": [
+        "断句不负责标签词到类别的映射。",
+        "形容词既可能积极也可能消极。",
+        "",
+        "词性标签不是本题目标类别。"
+      ],
+      "terms": [
+        {
+          "en": "verbalizer",
+          "zh": "标签词映射"
+        },
+        {
+          "en": "masked token",
+          "zh": "掩码词元"
+        }
+      ],
+      "refs": [
+        {
+          "page": 138,
+          "reasonZh": "提示学习与标签词映射"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-encoding-04",
+      "topic": "seq-encoding",
+      "form": "method",
+      "prompt": "Which design can generate a sentence describing an image?",
+      "options": [
+        "A language encoder connected only to an image classifier.",
+        "An image encoder connected to a language decoder.",
+        "A POS tagger applied directly to image pixels.",
+        "A sentence splitter with a pronunciation dictionary."
+      ],
+      "answer": 1,
+      "explanationZh": "序列转换框架可按输入模态换编码器：图像描述为图像→文本，语音识别为音频→文本，字幕生成同样需要把源信息变成文本序列。",
+      "distractorsZh": [
+        "只有图像分类结果不足以直接生成完整描述。",
+        "",
+        "词性标注要求词或词元序列。",
+        "断句与发音词典不能独立完成视觉到语言转换。"
+      ],
+      "terms": [
+        {
+          "en": "image captioning",
+          "zh": "图像描述"
+        },
+        {
+          "en": "speech recognition",
+          "zh": "语音识别"
+        }
+      ],
+      "refs": [
+        {
+          "page": 139,
+          "reasonZh": "跨模态序列转换"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-encoding-05",
+      "topic": "seq-encoding",
+      "form": "evaluation",
+      "prompt": "A language model assigns next-token probabilities: cafe 0.10, hospital 0.05, playground 0.40, park 0.15, school 0.30. Which token does greedy decoding choose?",
+      "options": [
+        "playground",
+        "school",
+        "park",
+        "A random token, regardless of its probability"
+      ],
+      "answer": 0,
+      "explanationZh": "贪心解码每步取当前条件概率最大的词元，因此选择 0.40 的 playground。下一词预测可用于自动补全；局部最大概率并不保证整段序列最优。",
+      "distractorsZh": [
+        "",
+        "0.30 小于 0.40。",
+        "0.15 小于 0.40。",
+        "随机采样与贪心选择不同。"
+      ],
+      "terms": [
+        {
+          "en": "greedy decoding",
+          "zh": "贪心解码"
+        },
+        {
+          "en": "conditional probability",
+          "zh": "条件概率"
+        }
+      ],
+      "refs": [
+        {
+          "page": 140,
+          "reasonZh": "贪心解码与下一词概率"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-encoding-06",
+      "topic": "seq-encoding",
+      "form": "scenario",
+      "prompt": "Let E have rows [2,1], [0,3], and [4,-1]. What is the embedding obtained from the one-hot row vector [0,0,1] multiplied by E?",
+      "options": [
+        "[4,-1]",
+        "[2,1]",
+        "[6,3]",
+        "[0,0,1]"
+      ],
+      "answer": 0,
+      "explanationZh": "矩阵乘法 0E₁+0E₂+1E₃ 选出第三行，结果为 [4,-1]。嵌入查表把词表大小维的稀疏独热表示变成固定维度的稠密表示。",
+      "distractorsZh": [
+        "",
+        "这是第一行。",
+        "这是对各行求和，而非由独热向量选行。",
+        "输出维度等于嵌入维度，此处为 2。"
+      ],
+      "terms": [
+        {
+          "en": "one-hot vector",
+          "zh": "独热向量"
+        },
+        {
+          "en": "embedding lookup",
+          "zh": "嵌入查表"
+        }
+      ],
+      "refs": [
+        {
+          "page": 141,
+          "reasonZh": "独热向量与嵌入查表"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-transformer-01",
+      "topic": "seq-transformer",
+      "form": "scenario",
+      "prompt": "Two language models have different parameter counts. What can parameter count alone establish?",
+      "options": [
+        "Which model is necessarily more factually reliable.",
+        "Which model has the longer supported context window.",
+        "Which model must use recurrent computation.",
+        "Their number of learned parameters, not which model understands every task better."
+      ],
+      "answer": 3,
+      "explanationZh": "参数量反映模型规模；能力、事实性、上下文长度与架构还取决于训练数据、目标和设计。讲义用历史规模曲线展示增长趋势。",
+      "distractorsZh": [
+        "更大规模不保证所有事实回答更可靠。",
+        "上下文窗口不是参数量的直接同义词。",
+        "参数量不能确定是否采用 RNN。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "parameter count",
+          "zh": "参数量"
+        },
+        {
+          "en": "scaling",
+          "zh": "规模扩展"
+        }
+      ],
+      "refs": [
+        {
+          "page": 142,
+          "reasonZh": "规模与架构的区别"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-transformer-02",
+      "topic": "seq-transformer",
+      "form": "method",
+      "prompt": "What is the main purpose of using multiple attention heads?",
+      "options": [
+        "To ensure every head uses exactly the same projection and weights.",
+        "To replace all token representations with a single vocabulary index.",
+        "To learn several attention patterns in different representation subspaces.",
+        "To prevent tokens from attending to distant positions."
+      ],
+      "answer": 2,
+      "explanationZh": "每个头通过不同投影在表示子空间中建立关联，随后拼接并投影。多头机制可同时捕捉不同关系，也适合并行计算。",
+      "distractorsZh": [
+        "完全相同的头不会提供所期待的多样关系。",
+        "注意力操作连续表示。",
+        "",
+        "注意力可以连接远处位置。"
+      ],
+      "terms": [
+        {
+          "en": "multi-head attention",
+          "zh": "多头注意力"
+        },
+        {
+          "en": "projection",
+          "zh": "投影"
+        }
+      ],
+      "refs": [
+        {
+          "page": 143,
+          "reasonZh": "多头注意力"
+        },
+        {
+          "page": 144,
+          "reasonZh": "多头注意力"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "seq-transformer-03",
+      "topic": "seq-transformer",
+      "form": "method",
+      "prompt": "In attention, which operation determines how strongly a query retrieves information from each position?",
+      "options": [
+        "Compare values with output class names and discard all keys.",
+        "Compare the query with keys, normalize the scores, and weight the values.",
+        "Average all values without considering the query.",
+        "Multiply position indices and use them as class labels."
+      ],
+      "answer": 1,
+      "explanationZh": "Q 与 K 的匹配产生分数，缩放后经 softmax 得到权重，再对 V 加权求和。Q/K 决定相关性，V 提供被汇总的信息。",
+      "distractorsZh": [
+        "该操作混淆了检索相关性与分类。",
+        "",
+        "等权平均不随查询变化。",
+        "位置编号不是注意力类别。"
+      ],
+      "terms": [
+        {
+          "en": "query/key/value",
+          "zh": "查询/键/值"
+        },
+        {
+          "en": "softmax",
+          "zh": "归一化指数函数"
+        }
+      ],
+      "refs": [
+        {
+          "page": 143,
+          "reasonZh": "注意力的查询键值"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-transformer-04",
+      "topic": "seq-transformer",
+      "form": "method",
+      "prompt": "Why is causal masking used in a Transformer decoder during next-token training?",
+      "options": [
+        "To prevent a position from using future target tokens that will be unavailable at generation time.",
+        "To prevent access to all source-encoder outputs.",
+        "To remove positional information from target tokens.",
+        "To make every output position predict the same word."
+      ],
+      "answer": 0,
+      "explanationZh": "因果掩码屏蔽目标序列未来位置，保持训练与生成时的信息条件一致。编码器—解码器注意力仍可读取源句表示；解码输入常右移一位。",
+      "distractorsZh": [
+        "",
+        "交叉注意力通常允许访问完整源句。",
+        "掩码不用于删除位置信息。",
+        "每个位置的预测由不同前缀条件决定。"
+      ],
+      "terms": [
+        {
+          "en": "causal mask",
+          "zh": "因果掩码"
+        },
+        {
+          "en": "cross-attention",
+          "zh": "交叉注意力"
+        }
+      ],
+      "refs": [
+        {
+          "page": 144,
+          "reasonZh": "自回归掩码与交叉注意力"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-transformer-05",
+      "topic": "seq-transformer",
+      "form": "scenario",
+      "prompt": "Why does a Transformer need information about token positions?",
+      "options": [
+        "Token identity alone does not distinguish different orders of the same tokens.",
+        "The position is always the same as the token's dictionary meaning.",
+        "Word order is irrelevant whenever vocabulary items match.",
+        "Positions are needed only when every sentence has equal length."
+      ],
+      "answer": 0,
+      "explanationZh": "同一组词的不同次序可产生不同意义。位置表示为注意力提供顺序线索；倒排索引记录词项出现位置也说明仅知道“出现过”还不够。",
+      "distractorsZh": [
+        "",
+        "位置和词义是不同信息。",
+        "交换主客体等词序会改变意义。",
+        "变长序列同样需要顺序信息。"
+      ],
+      "terms": [
+        {
+          "en": "positional information",
+          "zh": "位置信息"
+        },
+        {
+          "en": "word order",
+          "zh": "词序"
+        }
+      ],
+      "refs": [
+        {
+          "page": 145,
+          "reasonZh": "顺序与位置表示"
+        },
+        {
+          "page": 144,
+          "reasonZh": "顺序与位置表示"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "seq-transformer-06",
+      "topic": "seq-transformer",
+      "form": "method",
+      "prompt": "Which pairing correctly identifies an attention mechanism and a practical NLP resource?",
+      "options": [
+        "Self-attention relates only different languages; spaCy is a personality questionnaire.",
+        "Self-attention fixes all weights equally; CS224n is an annotated clinical corpus.",
+        "Self-attention requires recurrence; Hugging Face is only a pronunciation alphabet.",
+        "Self-attention relates positions within one sequence; Hugging Face provides model tooling."
+      ],
+      "answer": 3,
+      "explanationZh": "自注意力的 Q、K、V 来自同一序列，可捕捉不同位置之间的关联。相关学习和实现资源包括 Stanford CS224n、spaCy 与 Hugging Face。",
+      "distractorsZh": [
+        "自注意力不以跨语言为定义；spaCy 是 NLP 工具库。",
+        "权重可随输入变化；CS224n 是课程。",
+        "自注意力不必依赖循环；Hugging Face 提供模型生态。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "self-attention",
+          "zh": "自注意力"
+        },
+        {
+          "en": "NLP toolkit",
+          "zh": "自然语言处理工具包"
+        }
+      ],
+      "refs": [
+        {
+          "page": 146,
+          "reasonZh": "自注意力与工具选择"
+        },
+        {
+          "page": 147,
+          "reasonZh": "自注意力与工具选择"
+        },
+        {
+          "page": 148,
+          "reasonZh": "自注意力与工具选择"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-learning-01",
+      "topic": "cog-learning",
+      "form": "scenario",
+      "prompt": "An agent learns a navigation policy from rewards received after actions. Which learning setting fits best?",
+      "options": [
+        "Supervised regression using fixed target outputs for every action",
+        "Unsupervised clustering of navigation logs",
+        "Reinforcement learning",
+        "Dictionary-based morphological analysis"
+      ],
+      "answer": 2,
+      "explanationZh": "强化学习通过行动、环境反馈和奖励学习策略。监督学习利用标注目标，非监督学习寻找数据结构；它们解决的问题不同。",
+      "distractorsZh": [
+        "固定监督目标不等同于探索行动的奖励反馈。",
+        "聚类不直接定义奖励最大化策略。",
+        "",
+        "形态分析处理词形。"
+      ],
+      "terms": [
+        {
+          "en": "reinforcement learning",
+          "zh": "强化学习"
+        },
+        {
+          "en": "policy",
+          "zh": "策略"
+        }
+      ],
+      "refs": [
+        {
+          "page": 150,
+          "reasonZh": "学习范式的任务区分"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "cog-learning-02",
+      "topic": "cog-learning",
+      "form": "scenario",
+      "prompt": "A system predicts words about snowboarding very accurately but has never sensed or acted in that environment. Which conclusion is best supported?",
+      "options": [
+        "It therefore cannot know any factual information about snowboarding.",
+        "Its language prediction skill does not by itself demonstrate sensorimotor understanding.",
+        "Its prediction accuracy proves it can safely control a snowboard.",
+        "Its lack of a body makes every generated sentence false."
+      ],
+      "answer": 1,
+      "explanationZh": "语言统计表现与通过感知、行动形成的理解需要区分。类似地，拼字比赛表现出色不能单凭这一点证明具备该语言的全面交际能力。",
+      "distractorsZh": [
+        "未亲身体验不等于完全没有事实知识。",
+        "",
+        "控制能力需要独立行动任务证据。",
+        "句子真假不能由是否具身一概判断。"
+      ],
+      "terms": [
+        {
+          "en": "embodied understanding",
+          "zh": "具身理解"
+        },
+        {
+          "en": "task competence",
+          "zh": "任务能力"
+        }
+      ],
+      "refs": [
+        {
+          "page": 151,
+          "reasonZh": "任务表现与具身理解"
+        },
+        {
+          "page": 160,
+          "reasonZh": "任务表现与具身理解"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-learning-03",
+      "topic": "cog-learning",
+      "form": "scenario",
+      "prompt": "A hiring model learns from historically male-dominated successful applications. What risk should be checked first?",
+      "options": [
+        "It may reproduce historical selection bias through correlated features.",
+        "Historical labels guarantee fair treatment of every group.",
+        "Removing the gender field guarantees that no proxy remains.",
+        "Higher training accuracy eliminates the need for subgroup evaluation."
+      ],
+      "answer": 0,
+      "explanationZh": "历史标签可能包含不公平的选择规律，代理特征仍可能携带相关信号。聊天机器人从未经筛选的互动中学习也可能吸收有害语言，说明数据和反馈都需治理。",
+      "distractorsZh": [
+        "",
+        "历史决定并不自动等于公平标签。",
+        "其他特征可能代理敏感属性。",
+        "总体训练准确率掩盖群体差异。"
+      ],
+      "terms": [
+        {
+          "en": "selection bias",
+          "zh": "选择偏差"
+        },
+        {
+          "en": "proxy feature",
+          "zh": "代理特征"
+        }
+      ],
+      "refs": [
+        {
+          "page": 155,
+          "reasonZh": "偏差数据与部署反馈"
+        },
+        {
+          "page": 156,
+          "reasonZh": "偏差数据与部署反馈"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-learning-04",
+      "topic": "cog-learning",
+      "form": "scenario",
+      "prompt": "A convincing demonstration is followed by failures in a new operating environment. What is the most defensible response?",
+      "options": [
+        "Investigate assumptions, test representative conditions, and revise claims to match the evidence.",
+        "Treat the demonstration as proof that later failures are impossible.",
+        "Infer that no AI method can ever work in the domain.",
+        "Replace evaluation with a larger publicity campaign."
+      ],
+      "answer": 0,
+      "explanationZh": "演示、媒体标题和预期都不能替代有代表性的测试。AI 历史中的高期待与低谷，以及部署事故，提示应检验失效条件并避免自我欺骗。",
+      "distractorsZh": [
+        "",
+        "一个成功演示没有覆盖所有条件。",
+        "局部失败不支持对整个领域的全称否定。",
+        "宣传不提供性能证据。"
+      ],
+      "terms": [
+        {
+          "en": "evaluation evidence",
+          "zh": "评估证据"
+        },
+        {
+          "en": "distribution shift",
+          "zh": "分布变化"
+        }
+      ],
+      "refs": [
+        {
+          "page": 152,
+          "reasonZh": "AI失败与证据检验"
+        },
+        {
+          "page": 153,
+          "reasonZh": "AI失败与证据检验"
+        },
+        {
+          "page": 154,
+          "reasonZh": "AI失败与证据检验"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-learning-05",
+      "topic": "cog-learning",
+      "form": "scenario",
+      "prompt": "An ECG model predicts outcomes well, but researchers cannot explain the mechanism behind its predictions. What distinction does this illustrate?",
+      "options": [
+        "An unexplained predictor must have zero predictive value.",
+        "High predictive performance establishes a causal mechanism.",
+        "Any human explanation automatically outperforms the model.",
+        "Predictive performance and mechanistic explanation are different achievements."
+      ],
+      "answer": 3,
+      "explanationZh": "准确预测、发现因果机制和给出可理解解释是不同目标。数据规模与相关性模式可以帮助预测，但理论洞见需要额外论证。",
+      "distractorsZh": [
+        "不能解释不等于不能预测。",
+        "预测相关性不能自动确定因果机制。",
+        "解释的存在不能代替性能比较。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "prediction",
+          "zh": "预测"
+        },
+        {
+          "en": "mechanistic explanation",
+          "zh": "机制解释"
+        }
+      ],
+      "refs": [
+        {
+          "page": 157,
+          "reasonZh": "因果解释与预测表现"
+        },
+        {
+          "page": 159,
+          "reasonZh": "因果解释与预测表现"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-learning-06",
+      "topic": "cog-learning",
+      "form": "scenario",
+      "prompt": "Two striking pictures depict two possible hazards. What is needed to compare their risks quantitatively?",
+      "options": [
+        "The more frightening picture alone.",
+        "The hazard that is easier to recall.",
+        "Reliable outcome counts and relevant exposure or base-rate information.",
+        "Only the largest reported incident, without a denominator."
+      ],
+      "answer": 2,
+      "explanationZh": "视觉冲击力会影响直觉；量化风险需要事件与暴露量、观察期间和统计口径。单凭示意图片无法推出某种危险的发生概率。",
+      "distractorsZh": [
+        "恐惧感不是发生率。",
+        "易回忆性可能造成可得性偏差。",
+        "",
+        "缺少分母难以比较风险。"
+      ],
+      "terms": [
+        {
+          "en": "base rate",
+          "zh": "基准发生率"
+        },
+        {
+          "en": "risk evidence",
+          "zh": "风险证据"
+        }
+      ],
+      "refs": [
+        {
+          "page": 158,
+          "reasonZh": "风险比较与统计证据"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-llm-01",
+      "topic": "cog-llm",
+      "form": "scenario",
+      "prompt": "A neural system matches human accuracy on a benchmark. What follows from this result?",
+      "options": [
+        "It must use the same representations as the human brain.",
+        "It matches the measured performance, while its internal mechanism may still differ from human cognition.",
+        "It must share human motivations and emotions.",
+        "It must generalize identically to humans on every new task."
+      ],
+      "answer": 1,
+      "explanationZh": "行为指标相似不能单独证明机制、动机或泛化方式相同；“像人一样准确”和“以人的方式理解”是不同主张。",
+      "distractorsZh": [
+        "相同输出可能来自不同算法。",
+        "",
+        "准确率不测量动机与情绪。",
+        "其他任务的泛化需要另行测试。"
+      ],
+      "terms": [
+        {
+          "en": "benchmark performance",
+          "zh": "基准表现"
+        },
+        {
+          "en": "cognitive mechanism",
+          "zh": "认知机制"
+        }
+      ],
+      "refs": [
+        {
+          "page": 161,
+          "reasonZh": "性能相似不代表机制相同"
+        },
+        {
+          "page": 176,
+          "reasonZh": "性能相似不代表机制相同"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-llm-02",
+      "topic": "cog-llm",
+      "form": "scenario",
+      "prompt": "A classifier treats a neutral reporting word as negative because it often appears near bad news. What failure is most directly illustrated?",
+      "options": [
+        "Confusing a contextual association with an intrinsic sentiment property.",
+        "Correctly resolving every occurrence to the same negative sense.",
+        "Using word order too accurately.",
+        "Failing because neutral words never co-occur with emotional content."
+      ],
+      "answer": 0,
+      "explanationZh": "中性词可能频繁出现在消极语境中。模型如果把这种共现直接当成词本身的固定极性，可能在换语境后误判。",
+      "distractorsZh": [
+        "",
+        "消极邻域不保证该词本身消极。",
+        "问题在关联解释，而非词序过准。",
+        "中性词当然可以出现在情绪文本中。"
+      ],
+      "terms": [
+        {
+          "en": "co-occurrence",
+          "zh": "共现"
+        },
+        {
+          "en": "spurious association",
+          "zh": "伪关联"
+        }
+      ],
+      "refs": [
+        {
+          "page": 162,
+          "reasonZh": "上下文共现与词义极性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-llm-03",
+      "topic": "cog-llm",
+      "form": "scenario",
+      "prompt": "A language model writes a fluent summary containing an unsupported claim. Which additional step addresses the most immediate problem?",
+      "options": [
+        "Check the claim against the source evidence.",
+        "Increase the elegance of the wording.",
+        "Treat a high next-token probability as proof of truth.",
+        "Accept the claim if the model repeats it consistently."
+      ],
+      "answer": 0,
+      "explanationZh": "语言模型可生成、总结、翻译和预测文本；流畅和高概率不保证事实得到来源支持。摘要中的断言需要与原文核对。",
+      "distractorsZh": [
+        "",
+        "措辞改进不能验证事实。",
+        "词元概率衡量模型预测，不是事实证明。",
+        "重复错误仍然是错误。"
+      ],
+      "terms": [
+        {
+          "en": "factual grounding",
+          "zh": "事实依据"
+        },
+        {
+          "en": "hallucination",
+          "zh": "幻觉"
+        }
+      ],
+      "refs": [
+        {
+          "page": 163,
+          "reasonZh": "流畅生成与事实核验"
+        },
+        {
+          "page": 164,
+          "reasonZh": "流畅生成与事实核验"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-llm-04",
+      "topic": "cog-llm",
+      "form": "scenario",
+      "prompt": "An assistant must remember what a particular user did yesterday. Which requirement goes beyond knowing general facts from training?",
+      "options": [
+        "A larger list of generic word synonyms.",
+        "A guarantee that every user had the same experience.",
+        "Removing all conversation context.",
+        "Access to relevant user-specific episodic information."
+      ],
+      "answer": 3,
+      "explanationZh": "通用知识与某个人某次经历不同。个性化助手需要获得并恰当使用相关历史或情景信息；模型规模本身不会自动提供未输入的私人经历。",
+      "distractorsZh": [
+        "同义词不能提供具体经历。",
+        "个人经历不能假定相同。",
+        "删除上下文会丢失可能有用的信息。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "episodic memory",
+          "zh": "情景记忆"
+        },
+        {
+          "en": "personalization",
+          "zh": "个性化"
+        }
+      ],
+      "refs": [
+        {
+          "page": 164,
+          "reasonZh": "情景记忆与个性化"
+        },
+        {
+          "page": 165,
+          "reasonZh": "情景记忆与个性化"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-llm-05",
+      "topic": "cog-llm",
+      "form": "scenario",
+      "prompt": "In a thought experiment, a person follows symbol-manipulation rules to produce convincing replies in a language they do not understand. What issue is being examined?",
+      "options": [
+        "Whether every rule-based program must produce ungrammatical output.",
+        "Whether translation can be evaluated only by typing speed.",
+        "Whether syntactically correct symbol manipulation is sufficient for semantic understanding.",
+        "Whether having many symbols proves conscious experience."
+      ],
+      "answer": 2,
+      "explanationZh": "中文房间思想实验讨论规则操作与意义理解之间的关系。它提出哲学争议，不是通过一张图就解决机器理解问题。",
+      "distractorsZh": [
+        "实验设定正允许输出看起来合理。",
+        "打字速度不是核心议题。",
+        "",
+        "符号数量不能证明意识。"
+      ],
+      "terms": [
+        {
+          "en": "Chinese Room",
+          "zh": "中文房间"
+        },
+        {
+          "en": "semantic understanding",
+          "zh": "语义理解"
+        }
+      ],
+      "refs": [
+        {
+          "page": 165,
+          "reasonZh": "符号操作与理解之争"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-llm-06",
+      "topic": "cog-llm",
+      "form": "scenario",
+      "prompt": "An image-generation request says 'a river with no boats', but the result contains a boat. What capability needs improvement?",
+      "options": [
+        "Recognizing that the word 'boat' is mentioned at all.",
+        "Representing and enforcing the negated constraint.",
+        "Replacing all negative sentences with positive sentiment.",
+        "Adding more boats to strengthen concept recognition."
+      ],
+      "answer": 1,
+      "explanationZh": "生成系统既要识别对象，也要理解否定对对象存在性的约束。出现被明确排除的对象说明简单激活关键词不足以遵守组合语义。",
+      "distractorsZh": [
+        "仅识别关键词可能恰好导致错误添加对象。",
+        "",
+        "语法否定不同于消极情感。",
+        "添加更多被排除对象违背要求。"
+      ],
+      "terms": [
+        {
+          "en": "negation",
+          "zh": "否定"
+        },
+        {
+          "en": "constraint satisfaction",
+          "zh": "约束满足"
+        }
+      ],
+      "refs": [
+        {
+          "page": 166,
+          "reasonZh": "否定约束与生成验证"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-language-01",
+      "topic": "cog-language",
+      "form": "scenario",
+      "prompt": "Which statement expresses the weaker form of linguistic relativity?",
+      "options": [
+        "Language can influence habitual thought without completely determining what people can think.",
+        "Language makes some thoughts absolutely impossible for every speaker.",
+        "All languages encode exactly the same distinctions in the same way.",
+        "Thought cannot influence language use."
+      ],
+      "answer": 0,
+      "explanationZh": "弱版本强调语言影响习惯性注意与思考；强版本主张语言决定思维。讲义也从文化、地理、常识等角度讨论思维和经验对语言的作用。",
+      "distractorsZh": [
+        "",
+        "这是更强的语言决定论主张。",
+        "不同语言可突出不同区别。",
+        "影响关系不必只有单向。"
+      ],
+      "terms": [
+        {
+          "en": "linguistic relativity",
+          "zh": "语言相对论"
+        },
+        {
+          "en": "linguistic determinism",
+          "zh": "语言决定论"
+        }
+      ],
+      "refs": [
+        {
+          "page": 167,
+          "reasonZh": "强弱语言相对论"
+        },
+        {
+          "page": 168,
+          "reasonZh": "强弱语言相对论"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-language-02",
+      "topic": "cog-language",
+      "form": "scenario",
+      "prompt": "Two languages assign different grammatical genders to the same inanimate object. What should a multilingual system avoid assuming?",
+      "options": [
+        "That grammatical categories directly encode a universal physical property of the object.",
+        "That the object can be referred to in both languages.",
+        "That translation may require language-specific grammatical choices.",
+        "That the same concept may appear in different linguistic forms."
+      ],
+      "answer": 0,
+      "explanationZh": "语法性别属于语言系统；不能直接把阳性、阴性当作无生命对象的生物属性。不同语言还可能把动作、对象、方向等信息以不同方式组合。",
+      "distractorsZh": [
+        "",
+        "跨语言都能提及该对象并无问题。",
+        "语言特定语法正需要考虑。",
+        "同概念多表达是常见现象。"
+      ],
+      "terms": [
+        {
+          "en": "grammatical gender",
+          "zh": "语法性别"
+        },
+        {
+          "en": "cross-linguistic variation",
+          "zh": "跨语言差异"
+        }
+      ],
+      "refs": [
+        {
+          "page": 167,
+          "reasonZh": "语法范畴与跨语言表达"
+        },
+        {
+          "page": 168,
+          "reasonZh": "语法范畴与跨语言表达"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-language-03",
+      "topic": "cog-language",
+      "form": "scenario",
+      "prompt": "Why should an NLU system account for conventions shared by a language community?",
+      "options": [
+        "Every convention follows directly from universal spelling rules.",
+        "A constructed language has no grammar or shared conventions.",
+        "Different conventions make communication within a community impossible.",
+        "The same communicative intention can be encoded through different learned conventions."
+      ],
+      "answer": 3,
+      "explanationZh": "语言依赖社会共享的表达约定，类似单位或标准的不同选择。人工语言也可有明确定义的词汇与规则；关于语言简化和思想的关系仍需独立论证。",
+      "distractorsZh": [
+        "拼写与表达约定可以跨语言不同。",
+        "人工语言恰可人为规定语法。",
+        "共同约定通常促进群体内部交流。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "linguistic convention",
+          "zh": "语言约定"
+        },
+        {
+          "en": "constructed language",
+          "zh": "人工语言"
+        }
+      ],
+      "refs": [
+        {
+          "page": 169,
+          "reasonZh": "语言约定与人工语言"
+        },
+        {
+          "page": 170,
+          "reasonZh": "语言约定与人工语言"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-language-04",
+      "topic": "cog-language",
+      "form": "scenario",
+      "prompt": "Why may the same written digit sequence convey different emotions in different language communities?",
+      "options": [
+        "Digits always carry one universal emotional label.",
+        "Written form alone uniquely determines pronunciation in every language.",
+        "Its pronunciation and associated conventions can evoke different meanings.",
+        "Emotion can be inferred only from dictionary POS tags."
+      ],
+      "answer": 2,
+      "explanationZh": "文字、声音和意义不是一一对应的普适关系。谐音、读法与社群惯例能改变表达的情感解释；多语言理解应结合语言及语境。",
+      "distractorsZh": [
+        "数字串的情绪含义可能依惯例变化。",
+        "同形串可有不同读法。",
+        "",
+        "词性不能充分确定情绪与谐音意义。"
+      ],
+      "terms": [
+        {
+          "en": "phonology",
+          "zh": "语音系统"
+        },
+        {
+          "en": "orthography",
+          "zh": "书写系统"
+        }
+      ],
+      "refs": [
+        {
+          "page": 171,
+          "reasonZh": "文字、发音与意义"
+        },
+        {
+          "page": 172,
+          "reasonZh": "文字、发音与意义"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-language-05",
+      "topic": "cog-language",
+      "form": "scenario",
+      "prompt": "What is a reasonable conclusion from comparing a language-related gene across species?",
+      "options": [
+        "One gene fully determines every language's grammar.",
+        "Genetic comparison can inform biological hypotheses, but does not by itself explain all language abilities.",
+        "Shared genetic features imply identical language competence.",
+        "A phylogenetic tree directly measures sentence understanding."
+      ],
+      "answer": 1,
+      "explanationZh": "语言演化可从基因比较获得证据，但语言能力也涉及学习、结构、语音、环境与认知。FOXP2 比较图展示进化相关材料，不足以把复杂能力归结为单个因素。",
+      "distractorsZh": [
+        "复杂语言能力不能由这类图直接归结为一基因。",
+        "",
+        "共享部分遗传特征不等于相同能力。",
+        "系统发育树展示演化关系。"
+      ],
+      "terms": [
+        {
+          "en": "phylogenetic comparison",
+          "zh": "系统发育比较"
+        },
+        {
+          "en": "language acquisition",
+          "zh": "语言习得"
+        }
+      ],
+      "refs": [
+        {
+          "page": 173,
+          "reasonZh": "语言学习与生物学证据"
+        },
+        {
+          "page": 175,
+          "reasonZh": "语言学习与生物学证据"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-language-06",
+      "topic": "cog-language",
+      "form": "scenario",
+      "prompt": "Humans and a language model produce different clusters in a metaphor-association experiment. What is the most cautious interpretation?",
+      "options": [
+        "Their measured association patterns differ in that experiment.",
+        "The model can never perform any metaphor task.",
+        "The clusters prove the model has human consciousness.",
+        "One visual difference establishes every aspect of their cognition."
+      ],
+      "answer": 0,
+      "explanationZh": "关联结构实验可检验特定表征或行为的相似与差异。实验任务、样本和测量范围决定结论边界；神经网络受脑启发不等于复制脑机制。",
+      "distractorsZh": [
+        "",
+        "局部差异不推出所有任务都失败。",
+        "聚类结构不是意识证明。",
+        "一个实验不穷尽全部认知。"
+      ],
+      "terms": [
+        {
+          "en": "conceptual association",
+          "zh": "概念关联"
+        },
+        {
+          "en": "experimental scope",
+          "zh": "实验范围"
+        }
+      ],
+      "refs": [
+        {
+          "page": 176,
+          "reasonZh": "认知结构的实证比较"
+        },
+        {
+          "page": 177,
+          "reasonZh": "认知结构的实证比较"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-mind-01",
+      "topic": "cog-mind",
+      "form": "scenario",
+      "prompt": "A neural network diagram resembles a picture of a biological or cosmic network. What would be needed to establish a shared computational mechanism?",
+      "options": [
+        "Evidence about components, interactions, and causal operation beyond visual resemblance.",
+        "Matching colors and branching shapes alone.",
+        "A larger printed version of the two pictures.",
+        "A claim that all networks implement the same algorithm."
+      ],
+      "answer": 0,
+      "explanationZh": "形态相似可以启发假设，但机制相同需要可检验的结构与功能证据。脑组织的大规模数据也提醒我们，简单视觉类比不能替代细致建模。",
+      "distractorsZh": [
+        "",
+        "外观相似不等于机制相同。",
+        "放大图像不会自动提供因果证据。",
+        "网络的连接规则和计算可很不同。"
+      ],
+      "terms": [
+        {
+          "en": "analogy",
+          "zh": "类比"
+        },
+        {
+          "en": "causal mechanism",
+          "zh": "因果机制"
+        }
+      ],
+      "refs": [
+        {
+          "page": 178,
+          "reasonZh": "视觉类比与机制证据"
+        },
+        {
+          "page": 179,
+          "reasonZh": "视觉类比与机制证据"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-mind-02",
+      "topic": "cog-mind",
+      "form": "scenario",
+      "prompt": "A detailed brain scan produces an enormous amount of data. Which further step is still necessary for an explanatory model?",
+      "options": [
+        "Assume storage volume alone explains consciousness.",
+        "Treat every recorded value as a separate complete theory.",
+        "Conclude that no simplification can ever be informative.",
+        "Identify useful abstractions and test how the measured structures support functions."
+      ],
+      "answer": 3,
+      "explanationZh": "丰富观测并不自动成为解释。需要从结构和活动中建立功能假设、选取抽象层次并进行检验。",
+      "distractorsZh": [
+        "数据量不等于意识理论。",
+        "单个测量值不构成完整理论。",
+        "合理抽象有助于理解复杂系统。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "abstraction",
+          "zh": "抽象"
+        },
+        {
+          "en": "explanatory model",
+          "zh": "解释模型"
+        }
+      ],
+      "refs": [
+        {
+          "page": 179,
+          "reasonZh": "脑数据量与理论解释"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-mind-03",
+      "topic": "cog-mind",
+      "form": "scenario",
+      "prompt": "Which view models intelligence as the interaction of many specialized processes rather than one indivisible central thinker?",
+      "options": [
+        "A claim that one scalar score completely explains the mind.",
+        "A rule that every mental process must be identical.",
+        "A society-of-mind view.",
+        "A definition equating grammar with consciousness."
+      ],
+      "answer": 2,
+      "explanationZh": "心智社会视角把复杂智能看作多个较简单过程协作的结果。它与把心灵和身体视为不同实体的二元论讨论属于不同理论立场。",
+      "distractorsZh": [
+        "单一分数没有表达多过程协作。",
+        "专门化过程恰可以不同。",
+        "",
+        "语法能力与意识并非同一定义。"
+      ],
+      "terms": [
+        {
+          "en": "society of mind",
+          "zh": "心智社会"
+        },
+        {
+          "en": "dualism",
+          "zh": "二元论"
+        }
+      ],
+      "refs": [
+        {
+          "page": 181,
+          "reasonZh": "心身二元论与心智社会"
+        },
+        {
+          "page": 182,
+          "reasonZh": "心身二元论与心智社会"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "基础"
+    },
+    {
+      "id": "cog-mind-04",
+      "topic": "cog-mind",
+      "form": "scenario",
+      "prompt": "Two authors disagree about whether machines could attain general intelligence. How should their positions be used in technical reasoning?",
+      "options": [
+        "As proof that whichever book is newer must be correct.",
+        "As competing claims whose assumptions and evidence should be examined.",
+        "As interchangeable established measurements of intelligence.",
+        "As a reason to replace empirical evaluation with author popularity."
+      ],
+      "answer": 1,
+      "explanationZh": "关于机器能否达到通用智能的著作与辩论提供不同立场。应区分哲学假设、工程预测与已测量结果，而非按权威或人气决定结论。",
+      "distractorsZh": [
+        "出版先后不能决定论证真假。",
+        "",
+        "观点不是同一口径的测量值。",
+        "作者声望不能替代证据。"
+      ],
+      "terms": [
+        {
+          "en": "general intelligence",
+          "zh": "通用智能"
+        },
+        {
+          "en": "assumption",
+          "zh": "假设"
+        }
+      ],
+      "refs": [
+        {
+          "page": 180,
+          "reasonZh": "人工通用智能的争论范围"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-mind-05",
+      "topic": "cog-mind",
+      "form": "scenario",
+      "prompt": "Why does increasing an AI system's capability not automatically ensure that it benefits people?",
+      "options": [
+        "Capability and alignment with human goals are separate design concerns.",
+        "Greater capability necessarily creates empathy.",
+        "All human traits are desirable design targets.",
+        "A system cannot cause harm unless it dislikes humans."
+      ],
+      "answer": 0,
+      "explanationZh": "高能力、善意与合适目标是不同维度。把人类作为设计参照也需有选择：某些情绪或动机未必值得复制；不带敌意的目标优化仍可能造成伤害。",
+      "distractorsZh": [
+        "",
+        "能力不自动生成共情。",
+        "人类也有报复、嫉妒等不希望复制的倾向。",
+        "目标错配可在没有敌意时产生危害。"
+      ],
+      "terms": [
+        {
+          "en": "capability",
+          "zh": "能力"
+        },
+        {
+          "en": "alignment",
+          "zh": "目标对齐"
+        }
+      ],
+      "refs": [
+        {
+          "page": 183,
+          "reasonZh": "智能水平与人类价值"
+        },
+        {
+          "page": 184,
+          "reasonZh": "智能水平与人类价值"
+        },
+        {
+          "page": 185,
+          "reasonZh": "智能水平与人类价值"
+        },
+        {
+          "page": 186,
+          "reasonZh": "智能水平与人类价值"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-mind-06",
+      "topic": "cog-mind",
+      "form": "scenario",
+      "prompt": "A conversational character makes users feel emotionally supported. What can this observation establish directly?",
+      "options": [
+        "It affects users' emotional experience; it does not alone establish that the system has feelings.",
+        "The system necessarily experiences the same emotions as the user.",
+        "The system must be biologically human.",
+        "Every emotionally engaging interaction is automatically beneficial."
+      ],
+      "answer": 0,
+      "explanationZh": "交互可以激发人类情绪与依恋；这属于可观察的用户影响。机器是否具有主观体验是另一个问题，设计还需考虑依赖和用户福祉。",
+      "distractorsZh": [
+        "",
+        "用户感受不能直接证明机器内在感受。",
+        "情绪交互不要求生物人类身份。",
+        "吸引力与长期福祉需要分别评估。"
+      ],
+      "terms": [
+        {
+          "en": "affective interaction",
+          "zh": "情感交互"
+        },
+        {
+          "en": "subjective experience",
+          "zh": "主观体验"
+        }
+      ],
+      "refs": [
+        {
+          "page": 187,
+          "reasonZh": "情绪模拟与用户体验"
+        },
+        {
+          "page": 185,
+          "reasonZh": "情绪模拟与用户体验"
+        },
+        {
+          "page": 186,
+          "reasonZh": "情绪模拟与用户体验"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-risk-01",
+      "topic": "cog-risk",
+      "form": "scenario",
+      "prompt": "A robot becomes more humanlike, yet users find an intermediate version less comfortable than a clearly mechanical one. Which idea fits this pattern?",
+      "options": [
+        "A strictly monotonic increase in affinity.",
+        "An inevitable increase in language accuracy.",
+        "A guarantee that perfect realism is always necessary.",
+        "The uncanny valley."
+      ],
+      "answer": 3,
+      "explanationZh": "恐怖谷描述拟人程度和亲近感可能呈非单调关系：接近人却仍有不协调处时，亲近感可能下降，动作也可能影响体验。",
+      "distractorsZh": [
+        "题设恰好违反单调增加。",
+        "这是人机体验现象，不是语言准确率结论。",
+        "该现象不要求所有设计追求完全写实。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "uncanny valley",
+          "zh": "恐怖谷"
+        },
+        {
+          "en": "human likeness",
+          "zh": "拟人程度"
+        }
+      ],
+      "refs": [
+        {
+          "page": 188,
+          "reasonZh": "恐怖谷的非单调关系"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-risk-02",
+      "topic": "cog-risk",
+      "form": "evaluation",
+      "prompt": "A highly capable system will allocate opportunities among people. Which evaluation addresses a concern beyond raw task accuracy?",
+      "options": [
+        "Measure only average prediction accuracy.",
+        "Assume faster decisions are necessarily fairer.",
+        "Assess who benefits, who is harmed, and how decisions affect fairness and autonomy.",
+        "Ignore user recourse whenever a model is sufficiently large."
+      ],
+      "answer": 2,
+      "explanationZh": "在涉及人的决策中，公平、自主性、控制和问责也是设计目标。能力提升不能替代对影响及治理方式的讨论。",
+      "distractorsZh": [
+        "平均准确率可能掩盖分配不公。",
+        "速度不决定公平。",
+        "",
+        "模型规模不取消申诉与监督需求。"
+      ],
+      "terms": [
+        {
+          "en": "fairness",
+          "zh": "公平性"
+        },
+        {
+          "en": "autonomy",
+          "zh": "自主性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 189,
+          "reasonZh": "治理目标与评价标准"
+        },
+        {
+          "page": 190,
+          "reasonZh": "治理目标与评价标准"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-risk-03",
+      "topic": "cog-risk",
+      "form": "scenario",
+      "prompt": "Two analysts agree that advanced AI is likely but disagree about whether it would cause catastrophe. Which distinction explains their disagreement?",
+      "options": [
+        "Both probabilities must always be equal.",
+        "The probability of advanced AI and the probability of harm conditional on it are different quantities.",
+        "A disagreement about consequences proves advanced AI is impossible.",
+        "A person's confidence is the same as empirical frequency."
+      ],
+      "answer": 1,
+      "explanationZh": "应区分技术出现的可能性与出现后产生严重后果的条件风险。讨论矩阵能整理立场，名人分歧或科幻叙事不能直接确定概率。",
+      "distractorsZh": [
+        "不同事件的概率没有必然相等关系。",
+        "",
+        "后果分歧不决定技术能否出现。",
+        "主观判断不同于已观测频率。"
+      ],
+      "terms": [
+        {
+          "en": "conditional risk",
+          "zh": "条件风险"
+        },
+        {
+          "en": "uncertainty",
+          "zh": "不确定性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 191,
+          "reasonZh": "条件风险与不同预测"
+        },
+        {
+          "page": 192,
+          "reasonZh": "条件风险与不同预测"
+        },
+        {
+          "page": 193,
+          "reasonZh": "条件风险与不同预测"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-risk-04",
+      "topic": "cog-risk",
+      "form": "scenario",
+      "prompt": "An optimizer damages a habitat because doing so helps its assigned goal, not because it hates the inhabitants. What is the key failure?",
+      "options": [
+        "Its objective omits consequences that matter to affected beings.",
+        "It must secretly possess human-like anger.",
+        "It failed solely because it lacked a larger training set.",
+        "Any optimizer is necessarily incapable of following objectives."
+      ],
+      "answer": 0,
+      "explanationZh": "伤害可能来自对无关对象的漠视，而非仇恨。目标函数没有表达重要约束时，工具性行为就可能牺牲这些约束。",
+      "distractorsZh": [
+        "",
+        "题设没有敌意，伤害仍可发生。",
+        "问题首先是目标及约束是否正确。",
+        "它可能恰恰很有效地优化了错误目标。"
+      ],
+      "terms": [
+        {
+          "en": "objective misspecification",
+          "zh": "目标错设"
+        },
+        {
+          "en": "side effect",
+          "zh": "副作用"
+        }
+      ],
+      "refs": [
+        {
+          "page": 194,
+          "reasonZh": "无敌意也可能造成伤害"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-risk-05",
+      "topic": "cog-risk",
+      "form": "scenario",
+      "prompt": "A factory AI maximizes paperclip production without any safety or resource constraints. Why could simply improving its optimization make outcomes worse?",
+      "options": [
+        "It could pursue resource acquisition or prevent shutdown when these actions help the unconstrained goal.",
+        "More optimization automatically supplies all missing human values.",
+        "The word 'paperclip' prevents resource-related side effects.",
+        "A harmless-looking product guarantees harmless optimization."
+      ],
+      "answer": 0,
+      "explanationZh": "回形针思想实验强调：表面温和的目标若缺少约束，强优化也可能采取有害的工具性行为。问题是目标与边界，而非回形针本身。",
+      "distractorsZh": [
+        "",
+        "未指定的价值不会因优化更强自动补齐。",
+        "产品名称不能约束行动后果。",
+        "目标简单不代表实现过程安全。"
+      ],
+      "terms": [
+        {
+          "en": "instrumental action",
+          "zh": "工具性行动"
+        },
+        {
+          "en": "goal constraint",
+          "zh": "目标约束"
+        }
+      ],
+      "refs": [
+        {
+          "page": 195,
+          "reasonZh": "工具性行为与目标约束"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-risk-06",
+      "topic": "cog-risk",
+      "form": "scenario",
+      "prompt": "A technology brings short-term convenience but accumulates long-term environmental and social costs. What should a responsible assessment include?",
+      "options": [
+        "Only initial adoption speed.",
+        "Only whether the technology is technically impressive.",
+        "A presumption that unintended effects have no engineering relevance.",
+        "Lifecycle effects and externalities, not only immediate performance."
+      ],
+      "answer": 3,
+      "explanationZh": "技术价值需结合长期后果评估。便利、效率和能力增长不能独自决定值得追求的未来；目标选择与外部性应进入设计和治理。",
+      "distractorsZh": [
+        "传播速度不反映完整成本。",
+        "技术难度不等于社会净收益。",
+        "可预见或可监测的副作用具有设计意义。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "externality",
+          "zh": "外部性"
+        },
+        {
+          "en": "lifecycle assessment",
+          "zh": "全生命周期评估"
+        }
+      ],
+      "refs": [
+        {
+          "page": 196,
+          "reasonZh": "长期外部性与技术方向"
+        },
+        {
+          "page": 197,
+          "reasonZh": "长期外部性与技术方向"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-pillars-01",
+      "topic": "cog-pillars",
+      "form": "scenario",
+      "prompt": "An assistant must interpret an indirect request politely across cultures. Which combination of expertise is most relevant?",
+      "options": [
+        "Only matrix multiplication, with every social factor excluded.",
+        "Only spelling conventions, with intentions excluded.",
+        "Linguistics, psychology, social context, ethics, and computational methods.",
+        "Only sentiment polarity, with the speaker's situation excluded."
+      ],
+      "answer": 2,
+      "explanationZh": "自然语言理解涉及形式计算，也涉及符号、语言、心理、社会规范和伦理。跨学科原则要求把这些视角结合到具体理解任务。",
+      "distractorsZh": [
+        "数值计算无法单独规定所有语用约定。",
+        "拼写不能充分解释间接意图。",
+        "",
+        "极性不是完整的意图与语境模型。"
+      ],
+      "terms": [
+        {
+          "en": "interdisciplinarity",
+          "zh": "跨学科"
+        },
+        {
+          "en": "pragmatics",
+          "zh": "语用学"
+        }
+      ],
+      "refs": [
+        {
+          "page": 198,
+          "reasonZh": "跨学科理解"
+        },
+        {
+          "page": 199,
+          "reasonZh": "跨学科理解"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-pillars-02",
+      "topic": "cog-pillars",
+      "form": "scenario",
+      "prompt": "A system answers a question incorrectly. Why can a modular NLU pipeline make diagnosis easier?",
+      "options": [
+        "It guarantees that no error can propagate between modules.",
+        "It allows separate checks of entities, senses, references, intentions, and reasoning steps.",
+        "It requires all modules to use unrelated interfaces.",
+        "It makes end-to-end evaluation unnecessary."
+      ],
+      "answer": 1,
+      "explanationZh": "任务分解使错误定位、模块更新、解释与评估更有针对性，同时需要关注接口和误差传播。多任务协作可以共享信息，不等于各模块彼此隔离。",
+      "distractorsZh": [
+        "模块错误仍会影响下游。",
+        "",
+        "协作需要可兼容的信息表示。",
+        "局部评估需与整体效果一起检查。"
+      ],
+      "terms": [
+        {
+          "en": "task decomposition",
+          "zh": "任务分解"
+        },
+        {
+          "en": "error propagation",
+          "zh": "误差传播"
+        }
+      ],
+      "refs": [
+        {
+          "page": 200,
+          "reasonZh": "任务分解与局部诊断"
+        },
+        {
+          "page": 210,
+          "reasonZh": "任务分解与局部诊断"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-pillars-03",
+      "topic": "cog-pillars",
+      "form": "scenario",
+      "prompt": "Why can comparing several representations of a problem be useful for understanding?",
+      "options": [
+        "Different analogies may expose complementary relations or suggest alternative solutions.",
+        "One representation must be discarded before any other is considered.",
+        "Every analogy guarantees a logically valid conclusion.",
+        "Parallel comparison means all representations must be identical."
+      ],
+      "answer": 0,
+      "explanationZh": "并行类比强调用多种视角或相关结构理解同一问题。类比可产生候选解释，但其适用性仍需验证。",
+      "distractorsZh": [
+        "",
+        "多视角的价值在于互补。",
+        "类比不是逻辑有效性的保证。",
+        "相同表示通常不能提供新的结构视角。"
+      ],
+      "terms": [
+        {
+          "en": "parallel analogy",
+          "zh": "并行类比"
+        },
+        {
+          "en": "representation",
+          "zh": "表征"
+        }
+      ],
+      "refs": [
+        {
+          "page": 201,
+          "reasonZh": "并行类比与多种表征"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-pillars-04",
+      "topic": "cog-pillars",
+      "form": "scenario",
+      "prompt": "Suppose GENERATE(x) changes x from nonexistent to existent, and ACTIVATE(p) means GENERATE(process p). What does ACTIVATE(life) express in this representation?",
+      "options": [
+        "The beginning of a life process.",
+        "The termination of a life process.",
+        "A change only to the spelling of the word life.",
+        "An assertion that every process is already active."
+      ],
+      "answer": 0,
+      "explanationZh": "给定定义后，ACTIVATE(life) 表示生成生命过程。抽象操作可以组合成更具体概念；相应的 TERMINATE 与 DEACTIVATE 描述结束而非开始。",
+      "distractorsZh": [
+        "",
+        "终止生命过程对应相反操作。",
+        "表示处理语义状态变化。",
+        "生成操作不主张所有对象原本都活动。"
+      ],
+      "terms": [
+        {
+          "en": "semantic primitive",
+          "zh": "语义基元"
+        },
+        {
+          "en": "compositionality",
+          "zh": "组合性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 202,
+          "reasonZh": "抽象语义操作的组合"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-pillars-05",
+      "topic": "cog-pillars",
+      "form": "evaluation",
+      "prompt": "Why should an engineer examine the assumptions of a similarity measure before using it on a knowledge representation?",
+      "options": [
+        "Cosine similarity is mathematically undefined for every embedding.",
+        "All similarity measures produce identical rankings.",
+        "The representation's structure never affects meaningful comparison.",
+        "A geometric score may miss relations or topology important to the task."
+      ],
+      "answer": 3,
+      "explanationZh": "相似性应与任务和表征结构相匹配。余弦关注向量方向，图上的关系类型、路径和邻域可能承载额外语义；这不意味着余弦在所有任务都无效。",
+      "distractorsZh": [
+        "非零向量之间可正常计算余弦。",
+        "不同指标可能有不同排序。",
+        "结构可包含向量距离未保留的信息。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "similarity measure",
+          "zh": "相似性度量"
+        },
+        {
+          "en": "topology",
+          "zh": "拓扑结构"
+        }
+      ],
+      "refs": [
+        {
+          "page": 203,
+          "reasonZh": "相似性指标的假设"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "cog-pillars-06",
+      "topic": "cog-pillars",
+      "form": "scenario",
+      "prompt": "A recommender increases engagement but narrows users' exposure and weakens their control. What is the best assessment?",
+      "options": [
+        "Higher engagement proves every user's intention was fulfilled.",
+        "Trust can be measured entirely by click volume.",
+        "Engagement is a benefit-related metric, but trust also requires evaluating autonomy, diversity, and longer-term effects.",
+        "Personalization makes filter bubbles impossible."
+      ],
+      "answer": 2,
+      "explanationZh": "理解用户意图不能只看表面行为。推荐可节省时间、改善体验并拓宽视野，也可能造成信息泡沫、成瘾和自主性下降；信任需要平衡这些影响。",
+      "distractorsZh": [
+        "参与度可能来自习惯或诱导，并不等于实现真实意图。",
+        "点击量遗漏自主性等重要维度。",
+        "",
+        "个性化也可能缩窄信息范围。"
+      ],
+      "terms": [
+        {
+          "en": "trustworthiness",
+          "zh": "可信性"
+        },
+        {
+          "en": "filter bubble",
+          "zh": "信息过滤泡沫"
+        }
+      ],
+      "refs": [
+        {
+          "page": 204,
+          "reasonZh": "信任、意图与推荐后果"
+        },
+        {
+          "page": 205,
+          "reasonZh": "信任、意图与推荐后果"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-layers-01",
+      "topic": "taskdetail-layers",
+      "form": "scenario",
+      "prompt": "Which sequence moves from grammatical form to contextual communicative meaning?",
+      "options": [
+        "Intention interpretation → spelling correction → token counting.",
+        "POS tagging → word-sense disambiguation → intention interpretation.",
+        "Personality recognition → stemming → sentence splitting.",
+        "Polarity scoring → punctuation deletion → character encoding."
+      ],
+      "answer": 1,
+      "explanationZh": "词性等句法任务处理形式结构，词义等语义任务处理意义，意图及反讽等语用任务更依赖说话者和语境。各层会互相支持，并非完全独立。",
+      "distractorsZh": [
+        "该序列不是从形式逐步走向语境意图。",
+        "",
+        "由人格退回词形和断句，方向相反。",
+        "后两步不构成语义到语用层次。"
+      ],
+      "terms": [
+        {
+          "en": "syntax",
+          "zh": "句法"
+        },
+        {
+          "en": "semantics/pragmatics",
+          "zh": "语义/语用"
+        }
+      ],
+      "refs": [
+        {
+          "page": 207,
+          "reasonZh": "句法、语义与语用"
+        },
+        {
+          "page": 208,
+          "reasonZh": "句法、语义与语用"
+        },
+        {
+          "page": 211,
+          "reasonZh": "句法、语义与语用"
+        },
+        {
+          "page": 233,
+          "reasonZh": "句法、语义与语用"
+        },
+        {
+          "page": 260,
+          "reasonZh": "句法、语义与语用"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-layers-02",
+      "topic": "taskdetail-layers",
+      "form": "evaluation",
+      "prompt": "A developer improves a simple classifier quickly at first, then needs richer context to fix the remaining difficult cases. What does this illustrate?",
+      "options": [
+        "Higher-quality understanding can require disproportionately more linguistic and contextual capability.",
+        "Every one-percent improvement always has the same cost.",
+        "A fixed accuracy threshold universally defines understanding.",
+        "Easy examples are sufficient to characterize all remaining errors."
+      ],
+      "answer": 0,
+      "explanationZh": "剩余错误往往涉及歧义、常识、意图及任务间依赖，因此质量提升可能越来越困难。应分析难例，不能把示意百分比当作所有任务的普适定律。",
+      "distractorsZh": [
+        "",
+        "边际难度不必相同。",
+        "理解没有由一个固定准确率定义的通用边界。",
+        "难例往往与已解决的简单模式不同。"
+      ],
+      "terms": [
+        {
+          "en": "error analysis",
+          "zh": "错误分析"
+        },
+        {
+          "en": "diminishing returns",
+          "zh": "边际收益递减"
+        }
+      ],
+      "refs": [
+        {
+          "page": 209,
+          "reasonZh": "精度提升的难度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-layers-03",
+      "topic": "taskdetail-layers",
+      "form": "scenario",
+      "prompt": "Which pairing best distinguishes lexical semantics from cognitive semantics?",
+      "options": [
+        "Lexical semantics studies word meanings and senses; cognitive semantics examines conceptual frames and situations.",
+        "Lexical semantics ignores words; cognitive semantics only counts characters.",
+        "Lexical semantics identifies sentence boundaries; cognitive semantics assigns file encodings.",
+        "Both are simply alternative names for pronunciation transcription."
+      ],
+      "answer": 0,
+      "explanationZh": "词汇语义关注词义、歧义、词形成及对照关系；结构语义关注句法、语法与结构解释；认知语义关注框架、情景和概念化。",
+      "distractorsZh": [
+        "",
+        "词与概念正是两者的核心内容。",
+        "断句和编码不是这两个领域的定义。",
+        "发音转写属于不同问题。"
+      ],
+      "terms": [
+        {
+          "en": "lexical semantics",
+          "zh": "词汇语义学"
+        },
+        {
+          "en": "cognitive semantics",
+          "zh": "认知语义学"
+        }
+      ],
+      "refs": [
+        {
+          "page": 235,
+          "reasonZh": "词汇、结构与认知语义"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-layers-04",
+      "topic": "taskdetail-layers",
+      "form": "scenario",
+      "prompt": "An entity recognizer outputs structured entities that a dialogue system uses to interpret requests. What role does it play in this pipeline?",
+      "options": [
+        "A replacement for the dialogue system's entire goal.",
+        "A guarantee of perfect end-to-end performance.",
+        "A dataset split rather than a processing component.",
+        "A parsing or structured-analysis component supplying interpretable units."
+      ],
+      "answer": 3,
+      "explanationZh": "任务结果可作为下游特征、解析结构或解释依据。区分这些角色有助于理解“用于某下游任务”具体怎样发挥作用。",
+      "distractorsZh": [
+        "一个组件不等于完整系统。",
+        "结构化输出仍可能出错或不够充分。",
+        "此处描述模型功能而非数据划分。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "downstream task",
+          "zh": "下游任务"
+        },
+        {
+          "en": "structured analysis",
+          "zh": "结构化分析"
+        }
+      ],
+      "refs": [
+        {
+          "page": 236,
+          "reasonZh": "下游中的特征、解析与解释"
+        },
+        {
+          "page": 262,
+          "reasonZh": "下游中的特征、解析与解释"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-layers-05",
+      "topic": "taskdetail-layers",
+      "form": "scenario",
+      "prompt": "Which statement about methods across NLU tasks is most accurate?",
+      "options": [
+        "Each model family can solve exactly one NLU task.",
+        "Choosing a neural method makes annotation conventions irrelevant.",
+        "Rule-based, statistical, and neural approaches can be adapted to different tasks, with task-specific inputs and outputs.",
+        "The same metric value means identical quality across every task."
+      ],
+      "answer": 2,
+      "explanationZh": "方法家族在多个任务中复用，但标签结构、特征、监督信号和评价方式需适配任务。任务树和方法趋势图应按这种关系理解。",
+      "distractorsZh": [
+        "CRF、Transformer 等可用于多种任务。",
+        "神经模型仍需要清楚定义输出标签。",
+        "",
+        "不同任务、数据和指标不可只按数值比较。"
+      ],
+      "terms": [
+        {
+          "en": "method family",
+          "zh": "方法家族"
+        },
+        {
+          "en": "task specification",
+          "zh": "任务定义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 212,
+          "reasonZh": "方法家族与任务独立"
+        },
+        {
+          "page": 234,
+          "reasonZh": "方法家族与任务独立"
+        },
+        {
+          "page": 261,
+          "reasonZh": "方法家族与任务独立"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-layers-06",
+      "topic": "taskdetail-layers",
+      "form": "scenario",
+      "prompt": "A team replaces only a lemmatizer in a modular system. Which validation is most useful?",
+      "options": [
+        "Assume all downstream tasks improve automatically.",
+        "Check the lemmatizer's outputs and whether downstream behavior improves or regresses.",
+        "Skip interface checks because the component name is unchanged.",
+        "Evaluate only the size of the replacement model."
+      ],
+      "answer": 1,
+      "explanationZh": "模块化便于独立更新、并行开发和定位错误，但替换后仍须检查输入输出约定、局部质量及整体效果，才能获得可靠性与可维护性收益。",
+      "distractorsZh": [
+        "局部改进不保证每个下游都受益。",
+        "",
+        "同名组件也可能改变标签或规范。",
+        "规模不是功能质量的替代指标。"
+      ],
+      "terms": [
+        {
+          "en": "modularity",
+          "zh": "模块化"
+        },
+        {
+          "en": "regression test",
+          "zh": "回归测试"
+        }
+      ],
+      "refs": [
+        {
+          "page": 210,
+          "reasonZh": "模块更新与系统评估"
+        },
+        {
+          "page": 208,
+          "reasonZh": "模块更新与系统评估"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-normalization-01",
+      "topic": "taskdetail-normalization",
+      "form": "scenario",
+      "prompt": "A borrowed expression appears in many spellings that approximate the same pronunciation. Which evidence is especially useful for grouping the variants?",
+      "options": [
+        "Phonetic similarity together with contextual evidence.",
+        "Only exact character equality.",
+        "Only the number of sentences in each document.",
+        "Only the final punctuation mark."
+      ],
+      "answer": 0,
+      "explanationZh": "借词和口语转写可能出现大量拼写变体。发音相似度可以连接表面差异较大的形式，上下文则帮助排除同音但不同义的候选。",
+      "distractorsZh": [
+        "",
+        "严格字符串相等无法连接不同拼写。",
+        "句子数通常不能识别发音关系。",
+        "标点不足以确定词语变体。"
+      ],
+      "terms": [
+        {
+          "en": "phonetic similarity",
+          "zh": "语音相似度"
+        },
+        {
+          "en": "spelling variant",
+          "zh": "拼写变体"
+        }
+      ],
+      "refs": [
+        {
+          "page": 214,
+          "reasonZh": "发音变体与规范化"
+        },
+        {
+          "page": 216,
+          "reasonZh": "发音变体与规范化"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-normalization-02",
+      "topic": "taskdetail-normalization",
+      "form": "scenario",
+      "prompt": "A search engine maps 'colour' and 'color' to a shared form but also expands 'automobile' to 'car'. What is the distinction?",
+      "options": [
+        "The first handles spelling variants; the second handles lexical synonyms.",
+        "Both operations necessarily perform sentence segmentation.",
+        "The first resolves pronouns; the second assigns grammatical gender.",
+        "The first is sentiment reversal; the second is causal inference."
+      ],
+      "answer": 0,
+      "explanationZh": "拼写规范化将英美等书写变体统一；同义扩展建立不同词语之间的语义联系。两者都可改善检索，但依据不同。",
+      "distractorsZh": [
+        "",
+        "两者处理词语形式或语义，不是断句。",
+        "不涉及代词先行词或性别语法。",
+        "不直接推断情感反转或因果。"
+      ],
+      "terms": [
+        {
+          "en": "spelling normalization",
+          "zh": "拼写规范化"
+        },
+        {
+          "en": "query expansion",
+          "zh": "查询扩展"
+        }
+      ],
+      "refs": [
+        {
+          "page": 215,
+          "reasonZh": "词形变体和同义扩展"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-normalization-03",
+      "topic": "taskdetail-normalization",
+      "form": "resource",
+      "prompt": "You need pronunciations of English vocabulary to score noisy spelling candidates. Which resource is the best fit?",
+      "options": [
+        "A collection labeled only for sarcasm.",
+        "A Big Five personality inventory.",
+        "A sentence-level topic-classification label list.",
+        "A pronunciation lexicon such as CMUdict."
+      ],
+      "answer": 3,
+      "explanationZh": "发音词典提供词与音素序列对应，可服务于语音相似候选生成。ARPABET 是音素编码体系，CMUdict 等是具体词典；CELEX 也包含词汇信息并涉及多种语言。",
+      "distractorsZh": [
+        "反讽标签没有直接给出词的发音。",
+        "人格问卷不编码发音条目。",
+        "主题标签不提供音素序列。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "pronunciation lexicon",
+          "zh": "发音词典"
+        },
+        {
+          "en": "ARPABET",
+          "zh": "音素编码体系"
+        }
+      ],
+      "refs": [
+        {
+          "page": 216,
+          "reasonZh": "发音资源的选用"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-normalization-04",
+      "topic": "taskdetail-normalization",
+      "form": "scenario",
+      "prompt": "A noisy token has two plausible normalizations with similar edit distance. What is a sensible next step?",
+      "options": [
+        "Choose the candidate that comes first alphabetically in every case.",
+        "Treat equal edit distance as proof of equal meaning.",
+        "Use neighboring words and the intended meaning to rank the candidates.",
+        "Normalize every occurrence identically regardless of context."
+      ],
+      "answer": 2,
+      "explanationZh": "字符串与发音相似度生成候选后，上下文可帮助判断哪个候选适合当前句意。规范化也可利用字符、音节和无标注文本信息。",
+      "distractorsZh": [
+        "字母顺序不是语义相关性依据。",
+        "相同编辑距离不代表语义相同。",
+        "",
+        "一刀切替换会忽略歧义。"
+      ],
+      "terms": [
+        {
+          "en": "candidate ranking",
+          "zh": "候选排序"
+        },
+        {
+          "en": "context feature",
+          "zh": "上下文特征"
+        }
+      ],
+      "refs": [
+        {
+          "page": 216,
+          "reasonZh": "规范化的候选歧义"
+        },
+        {
+          "page": 217,
+          "reasonZh": "规范化的候选歧义"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-normalization-05",
+      "topic": "taskdetail-normalization",
+      "form": "evaluation",
+      "prompt": "A normalizer places the correct form second in a list of three candidates. How is this instance scored?",
+      "options": [
+        "Correct under top-1 but incorrect under top-3.",
+        "Incorrect under top-1 accuracy, but correct under top-3 accuracy.",
+        "Incorrect under both because candidates are never evaluated.",
+        "Correct under both because any generated candidate counts as the first."
+      ],
+      "answer": 1,
+      "explanationZh": "Top-1 要求首选正确；Top-k 只要求正确答案出现在前 k 个候选中。因此扩大候选范围通常会提高覆盖，但不代表首选已经正确。",
+      "distractorsZh": [
+        "Top-3 包含首位和第二位，不能出现该组合。",
+        "",
+        "候选列表可以有明确定义的评价。",
+        "候选位置是评价条件的一部分。"
+      ],
+      "terms": [
+        {
+          "en": "top-k accuracy",
+          "zh": "前k候选准确率"
+        },
+        {
+          "en": "candidate recall",
+          "zh": "候选覆盖率"
+        }
+      ],
+      "refs": [
+        {
+          "page": 217,
+          "reasonZh": "Top-k与Top-1评价"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-normalization-06",
+      "topic": "taskdetail-normalization",
+      "form": "scenario",
+      "prompt": "A reference has 20 words. An output contains 2 substitutions, 1 deletion, and 1 insertion. With WER = (S+D+I)/N, what is WER?",
+      "options": [
+        "0.20",
+        "0.10",
+        "0.15",
+        "0.80"
+      ],
+      "answer": 0,
+      "explanationZh": "WER=(2+1+1)/20=0.20。比较系统时还应考虑 SMS、社交媒体与正式新闻的分布差异，不能把不同测试集的分数直接当作同条件排名。",
+      "distractorsZh": [
+        "",
+        "只计入替换，漏掉删除和插入。",
+        "少计入一种错误。",
+        "0.80 不是按给定公式得到的词错误率。"
+      ],
+      "terms": [
+        {
+          "en": "word error rate",
+          "zh": "词错误率"
+        },
+        {
+          "en": "test distribution",
+          "zh": "测试分布"
+        }
+      ],
+      "refs": [
+        {
+          "page": 217,
+          "reasonZh": "词错误率与数据分布"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-syntax-01",
+      "topic": "taskdetail-syntax",
+      "form": "scenario",
+      "prompt": "In 'The office closed at 5 p.m. Tomorrow it opens early.', why is the period after 'p.m.' challenging for SBD?",
+      "options": [
+        "It is part of an abbreviation and also coincides with a sentence boundary.",
+        "Abbreviations can never occur at the end of a sentence.",
+        "Every period inside a time expression must begin a new sentence.",
+        "The time expression has no bearing on boundary decisions."
+      ],
+      "answer": 0,
+      "explanationZh": "同一个标点可以同时结束缩写和句子，不能简单规定“缩写中的点永不分句”。需结合后文结构和语境判断。",
+      "distractorsZh": [
+        "",
+        "缩写完全可以位于句末。",
+        "内部缩写点未必是句界。",
+        "缩写结构正是判断歧义来源。"
+      ],
+      "terms": [
+        {
+          "en": "abbreviation",
+          "zh": "缩写"
+        },
+        {
+          "en": "sentence boundary",
+          "zh": "句子边界"
+        }
+      ],
+      "refs": [
+        {
+          "page": 218,
+          "reasonZh": "句末缩写的双重角色"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-syntax-02",
+      "topic": "taskdetail-syntax",
+      "form": "scenario",
+      "prompt": "A speech transcript lacks reliable punctuation. Which extra signal can help identify sentence boundaries?",
+      "options": [
+        "Only the typography of a printed dictionary.",
+        "Only document-level sentiment labels.",
+        "Only alphabetical ordering of recognized words.",
+        "Pauses and intonation patterns from the audio."
+      ],
+      "answer": 3,
+      "explanationZh": "语音场景可结合词汇、句法和韵律特征。停顿、语调等信息补充文本线索，但单一停顿也不一定是句界。",
+      "distractorsZh": [
+        "印刷字体不提供当前语音的韵律。",
+        "文档情绪标签不能精确定位句界。",
+        "排序会破坏原始序列。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "prosody",
+          "zh": "韵律"
+        },
+        {
+          "en": "intonation",
+          "zh": "语调"
+        }
+      ],
+      "refs": [
+        {
+          "page": 219,
+          "reasonZh": "语音断句中的韵律线索"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-syntax-03",
+      "topic": "taskdetail-syntax",
+      "form": "resource",
+      "prompt": "A POS tagger trained on edited news performs poorly on informal posts. Which explanation is plausible?",
+      "options": [
+        "POS categories cannot be assigned to informal language.",
+        "Good news performance guarantees identical performance in every domain.",
+        "The posts contain different spelling, vocabulary, and syntactic patterns.",
+        "The only possible reason is a smaller label font."
+      ],
+      "answer": 2,
+      "explanationZh": "正式语料、社交媒体和生物医学文本的分布可不同。WSJ、社交语料和 GENIA 等资源支持各自场景的评估，应核对目标领域。",
+      "distractorsZh": [
+        "口语和社交语言也可以进行词性标注。",
+        "领域偏移会影响泛化。",
+        "",
+        "排版不是统计模型失配的核心解释。"
+      ],
+      "terms": [
+        {
+          "en": "domain shift",
+          "zh": "领域偏移"
+        },
+        {
+          "en": "POS tagging",
+          "zh": "词性标注"
+        }
+      ],
+      "refs": [
+        {
+          "page": 221,
+          "reasonZh": "领域迁移与词性资源"
+        },
+        {
+          "page": 222,
+          "reasonZh": "领域迁移与词性资源"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-syntax-04",
+      "topic": "taskdetail-syntax",
+      "form": "scenario",
+      "prompt": "Why might character-level features help a POS tagger label a rare word?",
+      "options": [
+        "Character features guarantee the word has only one possible POS.",
+        "Prefixes, suffixes, and internal spelling patterns can provide morphological clues.",
+        "They replace the need for every contextual clue.",
+        "They reveal the writer's personality label directly."
+      ],
+      "answer": 1,
+      "explanationZh": "罕见词或未登录词的整词统计较弱，字符及形态线索可补充信息；上下文仍可能决定歧义词的实际词性。",
+      "distractorsZh": [
+        "同一形态可能对应多个词性。",
+        "",
+        "上下文仍然重要。",
+        "词性特征不直接给出人格标签。"
+      ],
+      "terms": [
+        {
+          "en": "character feature",
+          "zh": "字符特征"
+        },
+        {
+          "en": "morphology",
+          "zh": "形态学"
+        }
+      ],
+      "refs": [
+        {
+          "page": 220,
+          "reasonZh": "稀有词的字符与形态特征"
+        },
+        {
+          "page": 222,
+          "reasonZh": "稀有词的字符与形态特征"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-syntax-05",
+      "topic": "taskdetail-syntax",
+      "form": "scenario",
+      "prompt": "A chunker considers the predicted labels of nearby tokens when selecting a noun-phrase span. Why can this help?",
+      "options": [
+        "It can favor coherent label sequences and phrase boundaries.",
+        "It forces every sentence into one noun phrase.",
+        "It makes token order irrelevant.",
+        "It changes noun phrases into named-entity categories."
+      ],
+      "answer": 0,
+      "explanationZh": "局部词汇、POS 与上下文特征可以结合前序 chunk 标签或全局结构，让边界更一致。浅层解析识别短语块，不必构建完整句法树。",
+      "distractorsZh": [
+        "",
+        "句子可包含多个不同短语块。",
+        "标签依赖建立在序列位置之上。",
+        "短语类别与实体类型是不同标注目标。"
+      ],
+      "terms": [
+        {
+          "en": "chunk boundary",
+          "zh": "短语块边界"
+        },
+        {
+          "en": "label dependency",
+          "zh": "标签依赖"
+        }
+      ],
+      "refs": [
+        {
+          "page": 223,
+          "reasonZh": "词组边界与标签一致性"
+        },
+        {
+          "page": 224,
+          "reasonZh": "词组边界与标签一致性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-syntax-06",
+      "topic": "taskdetail-syntax",
+      "form": "scenario",
+      "prompt": "A system correctly tags every token's POS but groups a preposition into the wrong noun phrase. Which evaluation is needed to detect this error?",
+      "options": [
+        "Chunk-span evaluation in addition to token-level POS accuracy.",
+        "Only checking whether words are spelled correctly.",
+        "Only measuring the number of tokens.",
+        "Only evaluating document sentiment."
+      ],
+      "answer": 0,
+      "explanationZh": "正确词性并不保证正确短语分块；词元级准确率与跨度级精确率、召回率和 F1 衡量不同输出结构。",
+      "distractorsZh": [
+        "",
+        "拼写检查不能检验短语边界。",
+        "词数不评价分组是否正确。",
+        "文档情绪与短语边界不直接相同。"
+      ],
+      "terms": [
+        {
+          "en": "span evaluation",
+          "zh": "跨度评价"
+        },
+        {
+          "en": "shallow parsing",
+          "zh": "浅层解析"
+        }
+      ],
+      "refs": [
+        {
+          "page": 223,
+          "reasonZh": "标注任务的错误层次"
+        },
+        {
+          "page": 224,
+          "reasonZh": "标注任务的错误层次"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-morphology-01",
+      "topic": "taskdetail-morphology",
+      "form": "scenario",
+      "prompt": "Why can aggressive suffix stripping harm sentiment analysis?",
+      "options": [
+        "Every suffix is semantically empty in every language.",
+        "Removing more characters always preserves meaning better.",
+        "Sentiment depends only on word length.",
+        "It may merge forms with different meanings or connotations."
+      ],
+      "answer": 3,
+      "explanationZh": "形式相似并不保证意义相同。过度去后缀可能把不同词义或情感内涵合并，因此归一化强度应结合下游目标。",
+      "distractorsZh": [
+        "后缀可能承载语法和词义信息。",
+        "删字符更多不等于语义更准确。",
+        "情绪并非由词长唯一决定。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "overstemming",
+          "zh": "过度词干化"
+        },
+        {
+          "en": "semantic preservation",
+          "zh": "语义保真"
+        }
+      ],
+      "refs": [
+        {
+          "page": 225,
+          "reasonZh": "词形归一与语义保真"
+        },
+        {
+          "page": 227,
+          "reasonZh": "词形归一与语义保真"
+        },
+        {
+          "page": 230,
+          "reasonZh": "词形归一与语义保真"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-morphology-02",
+      "topic": "taskdetail-morphology",
+      "form": "scenario",
+      "prompt": "Which contrast is most relevant when deciding whether words should share a lemma?",
+      "options": [
+        "All words sharing a prefix must have the same lemma.",
+        "Every noun and verb with related meaning must collapse to one POS.",
+        "Inflection changes grammatical form, while derivation can create a different lexical item.",
+        "A lemma is always the shortest possible character substring."
+      ],
+      "answer": 2,
+      "explanationZh": "屈折形式通常对应同一词元；派生可改变词性或词汇意义。词干算法可能把相关词压到共同片段，而词元化往往需要词性和词典信息。",
+      "distractorsZh": [
+        "相同前缀不足以决定词元。",
+        "相关意义不代表同一词性或词元。",
+        "",
+        "词元不是最短字符串定义。"
+      ],
+      "terms": [
+        {
+          "en": "inflection",
+          "zh": "屈折"
+        },
+        {
+          "en": "derivation",
+          "zh": "派生"
+        }
+      ],
+      "refs": [
+        {
+          "page": 226,
+          "reasonZh": "屈折与派生的区别"
+        },
+        {
+          "page": 229,
+          "reasonZh": "屈折与派生的区别"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-morphology-03",
+      "topic": "taskdetail-morphology",
+      "form": "method",
+      "prompt": "A stemmer has a suffix-removal rule that applies only when a morphological condition is satisfied. What should it do when that condition fails?",
+      "options": [
+        "Remove the suffix whenever its letters match.",
+        "Leave that rule unapplied, even if the suffix text matches.",
+        "Discard the entire token.",
+        "Apply every suffix rule simultaneously without ordering."
+      ],
+      "answer": 1,
+      "explanationZh": "规则词干器不仅匹配字符，还可能检验词干结构条件；规则的优先级、最长后缀和分阶段处理会影响结果。",
+      "distractorsZh": [
+        "字符匹配只是条件之一。",
+        "",
+        "条件失败不要求删除整个词。",
+        "阶段和次序可避免冲突。"
+      ],
+      "terms": [
+        {
+          "en": "conditional rule",
+          "zh": "条件规则"
+        },
+        {
+          "en": "rule ordering",
+          "zh": "规则次序"
+        }
+      ],
+      "refs": [
+        {
+          "page": 228,
+          "reasonZh": "条件规则与规则次序"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-morphology-04",
+      "topic": "taskdetail-morphology",
+      "form": "method",
+      "prompt": "A model converts an inflected character sequence into a lemma character sequence. Which formulation fits this operation?",
+      "options": [
+        "Sequence transduction.",
+        "Document-level personality classification.",
+        "Sentence boundary detection alone.",
+        "Entity linking without any word-form transformation."
+      ],
+      "answer": 0,
+      "explanationZh": "词元化可以建模为字符序列到字符序列的转换，也可采用规则、编辑脚本、统计转换与神经转换；上下文和形态标签帮助选择正确输出。",
+      "distractorsZh": [
+        "",
+        "人格分类的输出不是词元字符序列。",
+        "断句只预测句界。",
+        "实体链接映射实体标识，目标不同。"
+      ],
+      "terms": [
+        {
+          "en": "sequence transduction",
+          "zh": "序列转换"
+        },
+        {
+          "en": "edit script",
+          "zh": "编辑脚本"
+        }
+      ],
+      "refs": [
+        {
+          "page": 231,
+          "reasonZh": "词元化的序列转换"
+        },
+        {
+          "page": 232,
+          "reasonZh": "词元化的序列转换"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-morphology-05",
+      "topic": "taskdetail-morphology",
+      "form": "resource",
+      "prompt": "You want multilingual examples of inflected forms paired with lemmas and morphological information. Which resource family is most relevant?",
+      "options": [
+        "Morphological resources such as UniMorph and lemmatization shared-task data.",
+        "Only a movie-review polarity lexicon.",
+        "Only a database of geographic coordinates.",
+        "Only an image-only facial-expression dataset."
+      ],
+      "answer": 0,
+      "explanationZh": "UniMorph、Universal Dependencies 以及 SIGMORPHON 等资源可支撑形态和词元相关研究；具体字段、语言和任务版本仍需检查。",
+      "distractorsZh": [
+        "",
+        "情感词典通常不提供所需形态配对。",
+        "地理坐标不是词形标注。",
+        "图像表情数据不提供词元序列监督。"
+      ],
+      "terms": [
+        {
+          "en": "UniMorph",
+          "zh": "多语言形态资源"
+        },
+        {
+          "en": "lemmatization",
+          "zh": "词元化"
+        }
+      ],
+      "refs": [
+        {
+          "page": 231,
+          "reasonZh": "跨语言形态资源"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-morphology-06",
+      "topic": "taskdetail-morphology",
+      "form": "evaluation",
+      "prompt": "A report gives average lemmatization accuracy over many languages. What should be inspected before concluding that the system works equally well on all of them?",
+      "options": [
+        "Only the highest single-language score.",
+        "Only whether the average is printed with two decimal places.",
+        "Only the number of model layers.",
+        "Per-language results and the averaging scheme."
+      ],
+      "answer": 3,
+      "explanationZh": "多语言平均值可能掩盖形态复杂度、数据量和领域带来的语言间差异。宏平均和按样本加权平均也有不同含义。",
+      "distractorsZh": [
+        "最高值不能代表所有语言。",
+        "小数位不说明各语言表现。",
+        "层数不能替代细分评估。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "per-language evaluation",
+          "zh": "逐语言评价"
+        },
+        {
+          "en": "macro average",
+          "zh": "宏平均"
+        }
+      ],
+      "refs": [
+        {
+          "page": 232,
+          "reasonZh": "多语言平均分的解释"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-senses-01",
+      "topic": "taskdetail-senses",
+      "form": "scenario",
+      "prompt": "The written word 'tear' can refer to liquid from an eye or to ripping something. What information is most useful for selecting the intended meaning in a sentence?",
+      "options": [
+        "Its spelling alone, because spelling must uniquely determine sense.",
+        "A fixed rule assigning the most emotional meaning everywhere.",
+        "Its surrounding syntactic and semantic context.",
+        "The number of letters alone."
+      ],
+      "answer": 2,
+      "explanationZh": "同形形式可能对应不同词义甚至不同发音。上下文、词性和搭配为消歧提供线索；仅凭拼写无法总是唯一确定意义。",
+      "distractorsZh": [
+        "同形异义正说明拼写不能唯一确定词义。",
+        "固定情绪偏好忽略语境。",
+        "",
+        "词长不能区分同形词义。"
+      ],
+      "terms": [
+        {
+          "en": "homograph",
+          "zh": "同形异义词"
+        },
+        {
+          "en": "word sense",
+          "zh": "词义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 237,
+          "reasonZh": "同形异义与上下文"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-senses-02",
+      "topic": "taskdetail-senses",
+      "form": "scenario",
+      "prompt": "A WSD algorithm compares dictionary definitions with the target word's context and selects the sense with greatest overlap. Which approach is this?",
+      "options": [
+        "A pure character edit-distance normalizer.",
+        "A Lesk-style knowledge-based method.",
+        "A sentence-boundary heuristic using periods only.",
+        "A personality classifier using questionnaire scores."
+      ],
+      "answer": 1,
+      "explanationZh": "Lesk 类方法利用词义释义与语境的重叠，属于知识驱动的词义消歧。释义为候选义提供外部语义信息。",
+      "distractorsZh": [
+        "编辑距离比较字符串形式，不比较词义释义。",
+        "",
+        "句界检测不选择词义。",
+        "人格分数不提供词义释义重叠。"
+      ],
+      "terms": [
+        {
+          "en": "Lesk algorithm",
+          "zh": "Lesk算法"
+        },
+        {
+          "en": "gloss overlap",
+          "zh": "释义重叠"
+        }
+      ],
+      "refs": [
+        {
+          "page": 238,
+          "reasonZh": "Lesk的释义重叠"
+        },
+        {
+          "page": 240,
+          "reasonZh": "Lesk的释义重叠"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-senses-03",
+      "topic": "taskdetail-senses",
+      "form": "scenario",
+      "prompt": "Why can graph ranking help choose senses for several words in the same context?",
+      "options": [
+        "It can favor senses connected coherently in a lexical knowledge graph.",
+        "It guarantees every word has exactly one dictionary sense.",
+        "It requires the words to have identical spelling.",
+        "It removes all semantic relations before ranking."
+      ],
+      "answer": 0,
+      "explanationZh": "图式方法将候选义及其关系组织为图，利用连通性或 PageRank 类排序寻找语境中相互协调的解释。",
+      "distractorsZh": [
+        "",
+        "词义数量由词汇资源决定，并不被算法强制为一。",
+        "相关词不必同形。",
+        "关系正是图排序的重要输入。"
+      ],
+      "terms": [
+        {
+          "en": "graph ranking",
+          "zh": "图排序"
+        },
+        {
+          "en": "lexical graph",
+          "zh": "词汇知识图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 238,
+          "reasonZh": "图式词义消歧"
+        },
+        {
+          "page": 240,
+          "reasonZh": "图式词义消歧"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-senses-04",
+      "topic": "taskdetail-senses",
+      "form": "scenario",
+      "prompt": "A team has sense definitions but no labeled example sentences. What is missing for straightforward supervised WSD training?",
+      "options": [
+        "Examples mapping word occurrences in context to gold sense labels.",
+        "Any distinction between words and characters.",
+        "A guarantee that the dictionary contains no ambiguous entries.",
+        "A requirement that all definitions have the same length."
+      ],
+      "answer": 0,
+      "explanationZh": "WordNet、FrameNet、BabelNet 等提供不同类型的词义或关系知识；SemCor 等提供带词义标注的实例。监督训练需要实例到标签的对应，而不仅是候选义清单。",
+      "distractorsZh": [
+        "",
+        "词与字符区分不能代替监督实例。",
+        "词典记录歧义是正常且必要的。",
+        "释义等长不是监督条件。"
+      ],
+      "terms": [
+        {
+          "en": "sense-annotated corpus",
+          "zh": "词义标注语料"
+        },
+        {
+          "en": "knowledge base",
+          "zh": "知识库"
+        }
+      ],
+      "refs": [
+        {
+          "page": 239,
+          "reasonZh": "消歧语料与词义知识库"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-senses-05",
+      "topic": "taskdetail-senses",
+      "form": "scenario",
+      "prompt": "What is a potential benefit of combining a contextual neural encoder with a lexical knowledge graph for WSD?",
+      "options": [
+        "Both components must contain exactly the same information.",
+        "The combination eliminates the need to define candidate senses.",
+        "Adding a graph guarantees perfect accuracy on unseen domains.",
+        "The encoder supplies usage context while the graph supplies explicit sense relations."
+      ],
+      "answer": 3,
+      "explanationZh": "上下文表示与显式词义知识可互补，形成混合方法。知识资源的覆盖范围、领域适配和融合方式仍影响效果。",
+      "distractorsZh": [
+        "互补性正来自信息来源不同。",
+        "仍需明确要选择的词义集合或输出形式。",
+        "混合设计并不保证跨域完美。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "hybrid WSD",
+          "zh": "混合词义消歧"
+        },
+        {
+          "en": "contextual representation",
+          "zh": "上下文表征"
+        }
+      ],
+      "refs": [
+        {
+          "page": 240,
+          "reasonZh": "混合消歧的互补信息"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-senses-06",
+      "topic": "taskdetail-senses",
+      "form": "scenario",
+      "prompt": "A translation system chooses the financial meaning of 'bank' in a sentence about a river. What can a WSD component directly improve?",
+      "options": [
+        "The physical speed of the speaker's voice.",
+        "The number of pages in the source document.",
+        "The selection of the context-appropriate meaning before translation.",
+        "The document's font size."
+      ],
+      "answer": 2,
+      "explanationZh": "错误词义会传给翻译、检索和情感分析等下游任务。显式消歧可提供特征、解析结果或解释依据，但仍需测试整体收益。",
+      "distractorsZh": [
+        "词义选择不直接改变语音速度。",
+        "页数不解决语义歧义。",
+        "",
+        "排版不决定词义。"
+      ],
+      "terms": [
+        {
+          "en": "semantic error propagation",
+          "zh": "语义错误传播"
+        },
+        {
+          "en": "machine translation",
+          "zh": "机器翻译"
+        }
+      ],
+      "refs": [
+        {
+          "page": 240,
+          "reasonZh": "消歧结果的下游作用"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-entities-01",
+      "topic": "taskdetail-entities",
+      "form": "scenario",
+      "prompt": "Under BIOES tagging, how should a three-token entity be labeled when it is one complete span?",
+      "options": [
+        "B, B, B",
+        "B, I, E",
+        "S, S, S",
+        "I, O, I"
+      ],
+      "answer": 1,
+      "explanationZh": "B 表示开头，I 表示内部，E 表示结尾，S 表示独立单词实体，O 表示实体外部。三词完整跨度因此为 B-I-E。",
+      "distractorsZh": [
+        "三个 B 表示三个新跨度开头。",
+        "",
+        "三个 S 表示三个独立单词实体。",
+        "O 会把中间词排除在实体之外。"
+      ],
+      "terms": [
+        {
+          "en": "BIOES",
+          "zh": "边界标注体系"
+        },
+        {
+          "en": "entity span",
+          "zh": "实体跨度"
+        }
+      ],
+      "refs": [
+        {
+          "page": 242,
+          "reasonZh": "BIOES完整跨度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-entities-02",
+      "topic": "taskdetail-entities",
+      "form": "scenario",
+      "prompt": "A text span names an organization that contains a location name inside it. Why might a single flat BIO sequence be insufficient?",
+      "options": [
+        "It normally assigns one label per token and cannot directly express all overlapping nested spans.",
+        "Organizations and locations can never overlap in text.",
+        "BIO requires every entity to contain exactly one word.",
+        "Nested entities remove the need to predict boundaries."
+      ],
+      "answer": 0,
+      "explanationZh": "嵌套 NER 需要同时表达内外层实体，单层标签序列通常不足。多层标注、跨度模型或超图等结构可表示多个层次。",
+      "distractorsZh": [
+        "",
+        "组织名可以包含地名等内层实体。",
+        "BIO 可以表示多词实体。",
+        "每层跨度仍需要边界。"
+      ],
+      "terms": [
+        {
+          "en": "nested NER",
+          "zh": "嵌套实体识别"
+        },
+        {
+          "en": "hypergraph",
+          "zh": "超图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 243,
+          "reasonZh": "嵌套实体的结构表示"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-entities-03",
+      "topic": "taskdetail-entities",
+      "form": "scenario",
+      "prompt": "A system asks a language model to complete 'X is a [MASK] entity' and maps 'person' to a label. What is the central idea?",
+      "options": [
+        "Reformulate entity typing as a language-model prediction with a label mapping.",
+        "Replace entity typing with alphabetical sorting.",
+        "Assume a masked token automatically determines every possible entity boundary.",
+        "Require millions of newly labeled examples for the definition of few-shot learning."
+      ],
+      "answer": 0,
+      "explanationZh": "提示方法利用预训练语言模型完成标签词预测，可用于少样本适配。实体跨度发现与类型映射仍需明确设计。",
+      "distractorsZh": [
+        "",
+        "排序不进行实体类型推断。",
+        "边界与类型是相关但不同的步骤。",
+        "少样本恰强调有限的任务标注。"
+      ],
+      "terms": [
+        {
+          "en": "prompt tuning",
+          "zh": "提示调优"
+        },
+        {
+          "en": "few-shot learning",
+          "zh": "少样本学习"
+        }
+      ],
+      "refs": [
+        {
+          "page": 243,
+          "reasonZh": "少样本提示识别"
+        },
+        {
+          "page": 244,
+          "reasonZh": "少样本提示识别"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-entities-04",
+      "topic": "taskdetail-entities",
+      "form": "scenario",
+      "prompt": "A table-filling model predicts entity boundaries on some token pairs and relations on others. What is the intended benefit?",
+      "options": [
+        "Treat relation labels as alternative spellings of entity names.",
+        "Produce relations without identifying their entity endpoints at any stage.",
+        "Turn every token pair into a separate sentence.",
+        "Represent entities and their relations within a shared structured prediction problem."
+      ],
+      "answer": 3,
+      "explanationZh": "表填充可让实体跨度与实体间关系共享结构和特征，从而进行联合抽取。联合建模并非取消实体识别，而是使两个目标协同。",
+      "distractorsZh": [
+        "关系表示实体间联系，不是名称拼写。",
+        "关系端点仍需识别。",
+        "词对结构不改变句子单位定义。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "joint extraction",
+          "zh": "联合抽取"
+        },
+        {
+          "en": "table filling",
+          "zh": "表填充"
+        }
+      ],
+      "refs": [
+        {
+          "page": 244,
+          "reasonZh": "实体关系联合抽取"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-entities-05",
+      "topic": "taskdetail-entities",
+      "form": "resource",
+      "prompt": "A recognizer needs terminology for diseases and medications. Which resource choice best matches this need?",
+      "options": [
+        "Only a geographic gazetteer such as GeoNames.",
+        "Only a personality-trait questionnaire.",
+        "Medical resources such as UMLS, SNOMED CT, or DrugBank.",
+        "Only an informal-spelling normalization benchmark."
+      ],
+      "answer": 2,
+      "explanationZh": "医学资源提供疾病、药物等领域知识；地理、金融与教育任务也可能选用不同专门知识库。标注语料与知识库分别提供学习实例和概念知识。",
+      "distractorsZh": [
+        "地名资源不覆盖所需医学术语主干。",
+        "人格问卷不提供医学实体知识。",
+        "",
+        "规范化基准面向不同输出目标。"
+      ],
+      "terms": [
+        {
+          "en": "domain knowledge",
+          "zh": "领域知识"
+        },
+        {
+          "en": "medical NER",
+          "zh": "医学实体识别"
+        }
+      ],
+      "refs": [
+        {
+          "page": 242,
+          "reasonZh": "实体领域知识资源"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-entities-06",
+      "topic": "taskdetail-entities",
+      "form": "scenario",
+      "prompt": "A system labels 'Washington' as a location but has not chosen which real-world place it denotes. Which problem remains?",
+      "options": [
+        "Whether the string contains any letters.",
+        "Entity disambiguation or linking to the intended referent.",
+        "Whether all locations must be people.",
+        "Whether every named entity is automatically the nearest pronoun's antecedent."
+      ],
+      "answer": 1,
+      "explanationZh": "类型识别回答“属于哪类实体”，具体指向仍可能有歧义。NER 为指代、知识图谱、推荐和对话提供线索，但不独自完成所有语义推断。",
+      "distractorsZh": [
+        "这不解决名称所指。",
+        "",
+        "地点与人物类型不能混为一谈。",
+        "指代还需语义和语境。"
+      ],
+      "terms": [
+        {
+          "en": "entity typing",
+          "zh": "实体类型识别"
+        },
+        {
+          "en": "entity linking",
+          "zh": "实体链接"
+        }
+      ],
+      "refs": [
+        {
+          "page": 241,
+          "reasonZh": "实体识别与实体消歧的界限"
+        },
+        {
+          "page": 244,
+          "reasonZh": "实体识别与实体消歧的界限"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-concepts-01",
+      "topic": "taskdetail-concepts",
+      "form": "scenario",
+      "prompt": "Why should a concept extractor preserve 'get along with' as a unit in a sentence about relationships?",
+      "options": [
+        "The phrase's meaning is not obtained by treating each word as an unrelated concept.",
+        "Every phrase containing 'get' expresses physical acquisition.",
+        "Function words never affect phrase meaning.",
+        "Multiword units must always be proper names."
+      ],
+      "answer": 0,
+      "explanationZh": "多词表达和动词搭配可能具有整体意义；前后缀也可改变概念含义。概念抽取应保留这些语义组合。",
+      "distractorsZh": [
+        "",
+        "不同搭配可有不同意义。",
+        "with 等功能词可决定搭配关系。",
+        "多词概念不必是专名。"
+      ],
+      "terms": [
+        {
+          "en": "multiword expression",
+          "zh": "多词表达"
+        },
+        {
+          "en": "compositional meaning",
+          "zh": "组合意义"
+        }
+      ],
+      "refs": [
+        {
+          "page": 245,
+          "reasonZh": "组合词义与短语单元"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-concepts-02",
+      "topic": "taskdetail-concepts",
+      "form": "scenario",
+      "prompt": "What is a risk of deleting all punctuation and stopwords before concept extraction?",
+      "options": [
+        "It can destroy meaningful phrase boundaries, relations, or title expressions.",
+        "It always increases semantic precision.",
+        "It preserves every distinction expressed by hyphens.",
+        "It guarantees correct concept boundaries without context."
+      ],
+      "answer": 0,
+      "explanationZh": "停用词、连字符、缩写点和大小写可能携带语义。规范化应按任务决定，避免把有意义的关系或名称机械删掉。",
+      "distractorsZh": [
+        "",
+        "删词也可能降低精度。",
+        "连字符删除可能改变词组合。",
+        "边界仍需语言与语境线索。"
+      ],
+      "terms": [
+        {
+          "en": "preprocessing",
+          "zh": "预处理"
+        },
+        {
+          "en": "information loss",
+          "zh": "信息损失"
+        }
+      ],
+      "refs": [
+        {
+          "page": 246,
+          "reasonZh": "预处理与结构信息损失"
+        },
+        {
+          "page": 247,
+          "reasonZh": "预处理与结构信息损失"
+        },
+        {
+          "page": 248,
+          "reasonZh": "预处理与结构信息损失"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-concepts-03",
+      "topic": "taskdetail-concepts",
+      "form": "scenario",
+      "prompt": "An abstract contains an idea but not its conventional keyphrase. Which approach can produce that absent keyphrase?",
+      "options": [
+        "A method strictly limited to selecting exact input spans.",
+        "A method that only marks sentence boundaries.",
+        "A method that only lowercases existing characters.",
+        "Generative keyphrase prediction."
+      ],
+      "answer": 3,
+      "explanationZh": "抽取式方法选择文本中已有跨度；生成式方法能输出原文未显式出现的关键词，因此需要评估生成内容与文档是否一致。",
+      "distractorsZh": [
+        "严格抽取不能直接输出不存在的字符串。",
+        "断句不生成关键词。",
+        "小写转换不生成新概念表达。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "extractive keyphrase",
+          "zh": "抽取式关键词"
+        },
+        {
+          "en": "generative keyphrase",
+          "zh": "生成式关键词"
+        }
+      ],
+      "refs": [
+        {
+          "page": 249,
+          "reasonZh": "抽取式与生成式关键词"
+        },
+        {
+          "page": 251,
+          "reasonZh": "抽取式与生成式关键词"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-concepts-04",
+      "topic": "taskdetail-concepts",
+      "form": "scenario",
+      "prompt": "A model extracts course concepts from lecture descriptions. Why might domain-adapted resources help more than a generic keyword list?",
+      "options": [
+        "Generic language never appears in course descriptions.",
+        "A domain resource makes every extraction automatically correct.",
+        "They represent the concepts and relations relevant to the educational domain.",
+        "Domain adaptation removes the need for evaluation."
+      ],
+      "answer": 2,
+      "explanationZh": "临床、课程和专利等概念抽取有不同术语及结构。可用领域语料、百科或知识图谱提供上下文及关联，模型仍需评价。",
+      "distractorsZh": [
+        "领域文本仍包含普通语言。",
+        "资源也可能缺失或有歧义。",
+        "",
+        "领域模型仍可能出错。"
+      ],
+      "terms": [
+        {
+          "en": "domain adaptation",
+          "zh": "领域适配"
+        },
+        {
+          "en": "concept graph",
+          "zh": "概念图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 249,
+          "reasonZh": "领域化概念抽取"
+        },
+        {
+          "page": 250,
+          "reasonZh": "领域化概念抽取"
+        },
+        {
+          "page": 251,
+          "reasonZh": "领域化概念抽取"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-concepts-05",
+      "topic": "taskdetail-concepts",
+      "form": "evaluation",
+      "prompt": "One keyphrase system reports F1@5, while a structured concept parser reports a task-specific score on another dataset. What is needed for a fair ranking?",
+      "options": [
+        "Sort the printed numbers regardless of metric.",
+        "A shared task definition, evaluation protocol, and comparable test data.",
+        "Assume the structured parser is better because it has a longer name.",
+        "Treat all scores as token accuracy."
+      ],
+      "answer": 1,
+      "explanationZh": "不同输出与评价协议回答不同问题。F1@5 限定候选数量；结构化概念任务可能采用特有评价，不能直接按数值排序。",
+      "distractorsZh": [
+        "指标和数据不同会改变分数含义。",
+        "",
+        "命名不决定性能。",
+        "F1、MAP 等不是 token accuracy 的别名。"
+      ],
+      "terms": [
+        {
+          "en": "evaluation protocol",
+          "zh": "评价协议"
+        },
+        {
+          "en": "F1@k",
+          "zh": "前k结果F1"
+        }
+      ],
+      "refs": [
+        {
+          "page": 251,
+          "reasonZh": "跨任务指标的可比性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-coreference-01",
+      "topic": "taskdetail-coreference",
+      "form": "scenario",
+      "prompt": "Why can gender and number agreement narrow antecedent candidates without always resolving a pronoun uniquely?",
+      "options": [
+        "Several candidates may satisfy agreement, requiring semantics and world knowledge to choose among them.",
+        "Agreement always leaves exactly one candidate.",
+        "The nearest noun is necessarily correct.",
+        "World knowledge cannot affect reference interpretation."
+      ],
+      "answer": 0,
+      "explanationZh": "形态一致性是筛选条件，而不是唯一性保证。多个候选兼容时，事件语义、常识、语篇焦点等继续发挥作用。",
+      "distractorsZh": [
+        "",
+        "多个候选可能都一致。",
+        "距离启发式可能与语义冲突。",
+        "常识常帮助排除不合理先行词。"
+      ],
+      "terms": [
+        {
+          "en": "agreement constraint",
+          "zh": "一致性约束"
+        },
+        {
+          "en": "antecedent",
+          "zh": "先行词"
+        }
+      ],
+      "refs": [
+        {
+          "page": 252,
+          "reasonZh": "指代约束与常识"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-coreference-02",
+      "topic": "taskdetail-coreference",
+      "form": "scenario",
+      "prompt": "A language allows a subject to be omitted when it is recoverable from context. What must a zero-pronoun resolver infer?",
+      "options": [
+        "The unexpressed reference and its antecedent.",
+        "Only the pronunciation of the missing punctuation.",
+        "A new word sense for every visible noun.",
+        "That the sentence contains no participant."
+      ],
+      "answer": 0,
+      "explanationZh": "零代词处理文本中未显式写出的指称。系统需借助句法和上下文恢复缺省参与者及其所指，不能仅扫描已出现的代词。",
+      "distractorsZh": [
+        "",
+        "缺省主语不同于标点发音。",
+        "词义选择不是本题核心。",
+        "省略不意味着事件没有参与者。"
+      ],
+      "terms": [
+        {
+          "en": "zero pronoun",
+          "zh": "零代词"
+        },
+        {
+          "en": "implicit reference",
+          "zh": "隐式指称"
+        }
+      ],
+      "refs": [
+        {
+          "page": 254,
+          "reasonZh": "零代词指代"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-coreference-03",
+      "topic": "taskdetail-coreference",
+      "form": "resource",
+      "prompt": "Which combination is suitable for developing a coreference system?",
+      "options": [
+        "Only unlabeled spelling variants, with no mention structure.",
+        "Only sentiment intensity scores, with no reference examples.",
+        "Only a list of character encodings.",
+        "Annotated mention clusters for learning, plus lexical or commonsense knowledge for inference."
+      ],
+      "answer": 3,
+      "explanationZh": "OntoNotes、ARRAU、GAP 等提供不同形式的指代数据；WordNet、OMCS 及百科知识图可补充关系知识。两类资源作用不同。",
+      "distractorsZh": [
+        "规范化变体不足以监督指代簇。",
+        "情感分数不标明哪些提及同指。",
+        "字符编码不提供指称结构。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "mention cluster",
+          "zh": "提及簇"
+        },
+        {
+          "en": "commonsense knowledge",
+          "zh": "常识知识"
+        }
+      ],
+      "refs": [
+        {
+          "page": 253,
+          "reasonZh": "指代语料与常识资源"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-coreference-04",
+      "topic": "taskdetail-coreference",
+      "form": "scenario",
+      "prompt": "What is a limitation of resolving every mention pair independently?",
+      "options": [
+        "Pairwise decisions guarantee transitivity automatically.",
+        "Entity identity is unrelated to consistency among mentions.",
+        "Individually plausible pair decisions may produce inconsistent entity clusters.",
+        "A cluster can contain only one textual mention by definition."
+      ],
+      "answer": 2,
+      "explanationZh": "共指关系最终涉及提及组成的实体簇。独立的局部判断可能不一致，提及排序、实体级或端到端建模可利用更完整结构。",
+      "distractorsZh": [
+        "独立预测未必保证传递一致性。",
+        "同一实体簇应保持身份一致。",
+        "",
+        "一个实体通常可有多次提及。"
+      ],
+      "terms": [
+        {
+          "en": "mention-pair model",
+          "zh": "提及对模型"
+        },
+        {
+          "en": "entity clustering",
+          "zh": "实体聚类"
+        }
+      ],
+      "refs": [
+        {
+          "page": 254,
+          "reasonZh": "提及对与实体簇"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-coreference-05",
+      "topic": "taskdetail-coreference",
+      "form": "evaluation",
+      "prompt": "A coreference report defines its score as the mean of MUC, B³, and CEAF scores. Why is the metric definition important?",
+      "options": [
+        "The mean must equal the number of correctly spelled tokens.",
+        "These metrics assess clustering in different ways, so the reported average is not ordinary token accuracy.",
+        "Each metric is merely a different name for sentiment recall.",
+        "A higher average proves every document's clusters are perfect."
+      ],
+      "answer": 1,
+      "explanationZh": "共指评价关注提及簇结构；MUC、B³、CEAF 的计算角度不同。比较时应核对变体、提及设置及平均方式。",
+      "distractorsZh": [
+        "拼写 token 数与共指簇评价不同。",
+        "",
+        "它们是共指评价指标。",
+        "平均分可掩盖局部错误。"
+      ],
+      "terms": [
+        {
+          "en": "coreference metric",
+          "zh": "共指评价指标"
+        },
+        {
+          "en": "cluster evaluation",
+          "zh": "聚类评价"
+        }
+      ],
+      "refs": [
+        {
+          "page": 254,
+          "reasonZh": "共指评价中的组合指标"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-opinion-01",
+      "topic": "taskdetail-opinion",
+      "form": "scenario",
+      "prompt": "Why can a single sentiment score near zero be ambiguous?",
+      "options": [
+        "It may represent little emotion or a balance of strong positive and negative reactions.",
+        "It always proves the text is objectively factual.",
+        "It always means the text contains no opinion.",
+        "It uniquely determines the speaker's personality."
+      ],
+      "answer": 0,
+      "explanationZh": "正负情绪作为两个维度时，双低是中性，双高可能是矛盾情绪。压缩成单一差值会丢失这种区别。",
+      "distractorsZh": [
+        "",
+        "近零不必客观，可能正负相抵。",
+        "矛盾情绪仍包含强烈意见。",
+        "一句话的情感不能唯一确定人格。"
+      ],
+      "terms": [
+        {
+          "en": "ambivalence",
+          "zh": "矛盾情绪"
+        },
+        {
+          "en": "neutrality",
+          "zh": "中性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 255,
+          "reasonZh": "中性与情绪矛盾"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-opinion-02",
+      "topic": "taskdetail-opinion",
+      "form": "scenario",
+      "prompt": "A word is subjective in one sense but descriptive in another. What can improve subjectivity detection?",
+      "options": [
+        "Sense and surrounding-context information.",
+        "Assigning it one permanent subjectivity label in every occurrence.",
+        "Ignoring all neighboring sentences.",
+        "Treating every adjective as subjective and every noun as objective."
+      ],
+      "answer": 0,
+      "explanationZh": "词典线索可提供先验，但词义、语篇与上下文会改变用法。主观性词义消歧及语境相关模型可减少固定词表误判。",
+      "distractorsZh": [
+        "",
+        "固定标签忽略词义和语境。",
+        "邻近语篇可能提供判断线索。",
+        "词性不是主观性的完美分界。"
+      ],
+      "terms": [
+        {
+          "en": "subjectivity WSD",
+          "zh": "主观性词义消歧"
+        },
+        {
+          "en": "context dependence",
+          "zh": "语境依赖"
+        }
+      ],
+      "refs": [
+        {
+          "page": 257,
+          "reasonZh": "语境依赖的主观性"
+        },
+        {
+          "page": 258,
+          "reasonZh": "语境依赖的主观性"
+        },
+        {
+          "page": 259,
+          "reasonZh": "语境依赖的主观性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-opinion-03",
+      "topic": "taskdetail-opinion",
+      "form": "scenario",
+      "prompt": "An English subjectivity corpus is machine-translated for another language. What should be checked?",
+      "options": [
+        "That every translated label is automatically noise-free.",
+        "That source-language word order must remain unchanged.",
+        "That target-language evaluation is unnecessary.",
+        "Whether translation preserves subjective cues and whether the target-language data distribution is suitable."
+      ],
+      "answer": 3,
+      "explanationZh": "跨语言资源可扩大训练材料，但翻译可能改变情感、模态或表达方式。需要验证标签保持情况并在目标语言评价。",
+      "distractorsZh": [
+        "机器翻译可能带来标签或表达噪声。",
+        "自然翻译通常需适应目标语序。",
+        "迁移效果必须在目标条件下测试。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "cross-lingual transfer",
+          "zh": "跨语言迁移"
+        },
+        {
+          "en": "label preservation",
+          "zh": "标签保持"
+        }
+      ],
+      "refs": [
+        {
+          "page": 256,
+          "reasonZh": "跨语言迁移的风险"
+        },
+        {
+          "page": 259,
+          "reasonZh": "跨语言迁移的风险"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-opinion-04",
+      "topic": "taskdetail-opinion",
+      "form": "scenario",
+      "prompt": "A meeting statement sounds hesitant despite neutral wording. Which design can use this evidence?",
+      "options": [
+        "A model restricted to a bag of written words.",
+        "A rule that all neutral wording implies neutral delivery.",
+        "A multimodal model combining textual and prosodic cues.",
+        "A model that discards audio before all analysis."
+      ],
+      "answer": 2,
+      "explanationZh": "多模态主观性可利用词汇、韵律、音素及视觉信息。不同模态可能互补，也需处理对齐和缺失模态问题。",
+      "distractorsZh": [
+        "只保留词袋无法直接利用语调。",
+        "措辞中性不保证表达方式中性。",
+        "",
+        "删除音频会丢失题设线索。"
+      ],
+      "terms": [
+        {
+          "en": "multimodal subjectivity",
+          "zh": "多模态主观性"
+        },
+        {
+          "en": "prosodic cue",
+          "zh": "韵律线索"
+        }
+      ],
+      "refs": [
+        {
+          "page": 256,
+          "reasonZh": "多模态主观性"
+        },
+        {
+          "page": 259,
+          "reasonZh": "多模态主观性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-opinion-05",
+      "topic": "taskdetail-opinion",
+      "form": "resource",
+      "prompt": "A system detects biased wording in encyclopedia edits. Why is a general positive/negative lexicon insufficient by itself?",
+      "options": [
+        "Biased wording must contain a swear word.",
+        "Bias can arise from framing, selection, or attribution even without overtly emotional words.",
+        "Every negative statement is necessarily biased.",
+        "Objective-looking grammar guarantees impartial content."
+      ],
+      "answer": 1,
+      "explanationZh": "偏差检测与主观性、极性相关但不等价。词汇、POS、LIWC 类心理语言特征和语境模型都可提供线索；偏差仍可能藏在叙述框架中。",
+      "distractorsZh": [
+        "偏差不要求粗俗用语。",
+        "",
+        "准确的负面事实也可以不带偏差。",
+        "语法客观不保证选材和框架中立。"
+      ],
+      "terms": [
+        {
+          "en": "bias detection",
+          "zh": "偏差检测"
+        },
+        {
+          "en": "framing",
+          "zh": "叙述框架"
+        }
+      ],
+      "refs": [
+        {
+          "page": 256,
+          "reasonZh": "观点、偏差与资源"
+        },
+        {
+          "page": 257,
+          "reasonZh": "观点、偏差与资源"
+        },
+        {
+          "page": 259,
+          "reasonZh": "观点、偏差与资源"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-metaphor-01",
+      "topic": "taskdetail-metaphor",
+      "form": "scenario",
+      "prompt": "A system marks 'grasp' as metaphorical in 'grasp the idea' but provides no intended meaning. What remains to be done?",
+      "options": [
+        "Interpret the metaphor, such as paraphrasing it as understanding the idea.",
+        "Only count the letters in the marked word.",
+        "Assume identification already provides a complete explanation.",
+        "Translate each character independently."
+      ],
+      "answer": 0,
+      "explanationZh": "识别定位隐喻表达，解释则恢复其语境意义。流程可结合多词表达识别、释义或义项配对，再把解释整合回句子。",
+      "distractorsZh": [
+        "",
+        "字符计数不提供语义解释。",
+        "知道哪里是隐喻不等于知道表达何意。",
+        "字符级翻译不解决整体意义。"
+      ],
+      "terms": [
+        {
+          "en": "metaphor identification",
+          "zh": "隐喻识别"
+        },
+        {
+          "en": "metaphor interpretation",
+          "zh": "隐喻解释"
+        }
+      ],
+      "refs": [
+        {
+          "page": 263,
+          "reasonZh": "隐喻识别与解释"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-metaphor-02",
+      "topic": "taskdetail-metaphor",
+      "form": "scenario",
+      "prompt": "In 'Her argument is a fragile bridge', what should a useful metaphor interpretation transfer?",
+      "options": [
+        "Relevant properties such as instability or weak support, selected by context.",
+        "Every physical property of an actual bridge without selection.",
+        "The literal claim that the argument is made of construction materials.",
+        "Only the grammatical number of 'bridge'."
+      ],
+      "answer": 0,
+      "explanationZh": "隐喻解释选择源域中与目标域相关的属性，而非逐项搬运全部字面特征。属性提取与概念隐喻处理服务于这种映射。",
+      "distractorsZh": [
+        "",
+        "无选择地转移全部属性通常产生荒谬解释。",
+        "字面物质身份不是隐喻意图。",
+        "单纯数一致不解释隐喻内容。"
+      ],
+      "terms": [
+        {
+          "en": "property extraction",
+          "zh": "属性提取"
+        },
+        {
+          "en": "conceptual mapping",
+          "zh": "概念映射"
+        }
+      ],
+      "refs": [
+        {
+          "page": 264,
+          "reasonZh": "属性提取与概念映射"
+        },
+        {
+          "page": 265,
+          "reasonZh": "属性提取与概念映射"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-metaphor-03",
+      "topic": "taskdetail-metaphor",
+      "form": "scenario",
+      "prompt": "Why can an unexpected semantic combination, such as an abstract idea being physically swallowed, signal a metaphor?",
+      "options": [
+        "Every unusual combination must be a spelling error.",
+        "Selectional preferences forbid all figurative language.",
+        "Only noun capitalization can indicate metaphor.",
+        "It may violate the verb's usual selectional preferences under a literal reading."
+      ],
+      "answer": 3,
+      "explanationZh": "选择偏好描述谓词通常与哪些语义类型的论元搭配。字面解读下的不协调可提示隐喻，但仍需语境排除其他解释。",
+      "distractorsZh": [
+        "不寻常表达也可能有连贯的比喻意义。",
+        "偏好是分析线索，不是禁令。",
+        "隐喻不依赖专名大写。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "selectional preference",
+          "zh": "选择偏好"
+        },
+        {
+          "en": "semantic incongruity",
+          "zh": "语义不协调"
+        }
+      ],
+      "refs": [
+        {
+          "page": 265,
+          "reasonZh": "选择偏好违背"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-metaphor-04",
+      "topic": "taskdetail-metaphor",
+      "form": "evaluation",
+      "prompt": "A metaphor system generates a literal paraphrase. Which evaluation most directly tests the quality of that output?",
+      "options": [
+        "Whether it contains the same number of letters as the input.",
+        "Whether every original word remains unchanged.",
+        "Whether the paraphrase preserves the intended contextual meaning and is coherent.",
+        "Whether it uses only words with the highest corpus frequency."
+      ],
+      "answer": 2,
+      "explanationZh": "隐喻释义需评价意义保持、适切性、可接受性与连贯性。词义词典、框架和常识知识能辅助解释，但候选解释仍要结合语境判断。",
+      "distractorsZh": [
+        "长度相同不保证意义相同。",
+        "释义通常会改写用词。",
+        "",
+        "高频词不能保证表达准确。"
+      ],
+      "terms": [
+        {
+          "en": "paraphrase evaluation",
+          "zh": "释义评价"
+        },
+        {
+          "en": "coherence",
+          "zh": "连贯性"
+        }
+      ],
+      "refs": [
+        {
+          "page": 264,
+          "reasonZh": "释义知识和评价目标"
+        },
+        {
+          "page": 265,
+          "reasonZh": "释义知识和评价目标"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-metaphor-05",
+      "topic": "taskdetail-metaphor",
+      "form": "scenario",
+      "prompt": "Why can literal translation fail on figurative expressions?",
+      "options": [
+        "All metaphors have identical literal equivalents in every language.",
+        "It can preserve surface words while losing the intended conceptual meaning.",
+        "A POS tag alone supplies every culturally appropriate interpretation.",
+        "Correct tokenization guarantees correct figurative translation."
+      ],
+      "answer": 1,
+      "explanationZh": "隐喻理解可支持翻译、情感、心理认知及政治话语分析。不同下游可能把它作为解析或解释模块，语言与文化背景仍重要。",
+      "distractorsZh": [
+        "不同语言的惯用隐喻不必相同。",
+        "",
+        "词性不能提供完整文化解释。",
+        "分词正确只是前置条件之一。"
+      ],
+      "terms": [
+        {
+          "en": "figurative translation",
+          "zh": "修辞表达翻译"
+        },
+        {
+          "en": "cultural context",
+          "zh": "文化语境"
+        }
+      ],
+      "refs": [
+        {
+          "page": 266,
+          "reasonZh": "隐喻理解的下游用途"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-sarcasm-01",
+      "topic": "taskdetail-sarcasm",
+      "form": "scenario",
+      "prompt": "A sarcastic reply appears polite in isolation but contradicts the preceding conversation. Which model input is most useful?",
+      "options": [
+        "The reply together with the relevant conversational context.",
+        "Only the reply's isolated positive words.",
+        "Only the total number of messages in the platform.",
+        "Only a dictionary's alphabetical order."
+      ],
+      "answer": 0,
+      "explanationZh": "反讽常依赖说话内容与情境的不一致。分别编码内容和上下文并进行融合，可让模型利用这类关系。",
+      "distractorsZh": [
+        "",
+        "孤立正面词可能给出相反判断。",
+        "总消息量不提供具体对话语义。",
+        "字母顺序没有语用关系。"
+      ],
+      "terms": [
+        {
+          "en": "context fusion",
+          "zh": "语境融合"
+        },
+        {
+          "en": "sarcastic intent",
+          "zh": "反讽意图"
+        }
+      ],
+      "refs": [
+        {
+          "page": 267,
+          "reasonZh": "内容与语境的反讽融合"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-sarcasm-02",
+      "topic": "taskdetail-sarcasm",
+      "form": "scenario",
+      "prompt": "You want to study sarcasm conveyed through words, voice, facial expression, and prior turns. What kind of dataset is needed?",
+      "options": [
+        "Aligned conversational text, audio, video, and sarcasm annotations.",
+        "Only isolated word-polarity entries.",
+        "Only sentence lengths and timestamps without content.",
+        "Only a morphological dictionary."
+      ],
+      "answer": 0,
+      "explanationZh": "多模态反讽需要可对齐的目标表达及上下文，并结合文本、声学和视觉信号。情境、说话方式和表情可能提供字面文字之外的线索。",
+      "distractorsZh": [
+        "",
+        "词级极性无法保留多模态交互。",
+        "元数据缺少所需语义和表达证据。",
+        "形态词典不包含反讽对话。"
+      ],
+      "terms": [
+        {
+          "en": "multimodal sarcasm",
+          "zh": "多模态反讽"
+        },
+        {
+          "en": "modality alignment",
+          "zh": "模态对齐"
+        }
+      ],
+      "refs": [
+        {
+          "page": 268,
+          "reasonZh": "多模态证据与数据选择"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-sarcasm-03",
+      "topic": "taskdetail-sarcasm",
+      "form": "scenario",
+      "prompt": "A positive caption accompanies an obviously unpleasant scene. What is the safest interpretation?",
+      "options": [
+        "Every text-image mismatch is certainly sarcastic.",
+        "A positive word guarantees positive communicative intent.",
+        "Visual information must always be ignored.",
+        "The contrast is evidence for possible sarcasm, but context is still needed."
+      ],
+      "answer": 3,
+      "explanationZh": "图文情感或语义不一致可触发反讽候选，但也可能是错误配图、引用或其他修辞。检测应综合证据，而非把不一致当充分条件。",
+      "distractorsZh": [
+        "不一致还有其他成因。",
+        "字面积极可能服务于反讽。",
+        "图像恰可能补充关键语境。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "cross-modal incongruity",
+          "zh": "跨模态不一致"
+        },
+        {
+          "en": "contextual inference",
+          "zh": "语境推断"
+        }
+      ],
+      "refs": [
+        {
+          "page": 269,
+          "reasonZh": "图文不一致与非必然性"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-sarcasm-04",
+      "topic": "taskdetail-sarcasm",
+      "form": "method",
+      "prompt": "A sarcasm detector measures the conflict between an event's negative implications and an explicitly positive evaluation. Which cue is it modeling?",
+      "options": [
+        "Morphological agreement alone.",
+        "A document's character encoding.",
+        "Semantic incongruity.",
+        "Only the speaker's chronological age."
+      ],
+      "answer": 2,
+      "explanationZh": "语义不协调方法显式关注内容或情感间的冲突；其他方法还可利用人工特征、嵌入及上下文。不同来源线索可以组合。",
+      "distractorsZh": [
+        "形态一致并非事件与评价之间的语义冲突。",
+        "字符编码不表示反讽关系。",
+        "",
+        "年龄不能替代句子语义证据。"
+      ],
+      "terms": [
+        {
+          "en": "semantic incongruity",
+          "zh": "语义不协调"
+        },
+        {
+          "en": "context-based model",
+          "zh": "语境模型"
+        }
+      ],
+      "refs": [
+        {
+          "page": 270,
+          "reasonZh": "语义不协调与特征建模"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-sarcasm-05",
+      "topic": "taskdetail-sarcasm",
+      "form": "scenario",
+      "prompt": "A sentiment system consistently treats sarcastic praise as sincere praise. Which component would most directly address the error?",
+      "options": [
+        "A longer list of positive synonyms alone.",
+        "A sarcasm-aware interpretation stage using context before final polarity assignment.",
+        "A rule deleting every positive adjective.",
+        "A rule treating every compliment as negative."
+      ],
+      "answer": 1,
+      "explanationZh": "反讽检测可纠正字面极性与真实意图的错位，并用于对话、心理状态相关分析和广告分析。结合语境比无差别翻转情感更可靠。",
+      "distractorsZh": [
+        "更多积极词仍可能强化误判。",
+        "",
+        "删除全部积极形容词会损害真诚表达。",
+        "并非所有赞美都是反讽。"
+      ],
+      "terms": [
+        {
+          "en": "polarity reversal",
+          "zh": "极性反转"
+        },
+        {
+          "en": "downstream interpretation",
+          "zh": "下游解释"
+        }
+      ],
+      "refs": [
+        {
+          "page": 270,
+          "reasonZh": "反讽对下游任务的影响"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-personality-01",
+      "topic": "taskdetail-personality",
+      "form": "scenario",
+      "prompt": "A person writes one anxious message. Why is it risky to infer their stable personality directly from that message?",
+      "options": [
+        "A temporary emotional state and a stable trait are different constructs.",
+        "Every anxious sentence proves the same personality profile.",
+        "Personality cannot influence language in any way.",
+        "The message's polarity completely specifies all five traits."
+      ],
+      "answer": 0,
+      "explanationZh": "人格特质描述较稳定倾向，单次表达可能受情境和暂时状态影响。外向、尽责、开放、宜人及神经质等维度不能由一句情绪化文本直接确定。",
+      "distractorsZh": [
+        "",
+        "一次状态不足以建立稳定画像。",
+        "人格可与语言倾向相关，但关系需证据。",
+        "情感极性与五维特质不同。"
+      ],
+      "terms": [
+        {
+          "en": "trait",
+          "zh": "特质"
+        },
+        {
+          "en": "state",
+          "zh": "状态"
+        }
+      ],
+      "refs": [
+        {
+          "page": 271,
+          "reasonZh": "特质与单次情绪的区别"
+        },
+        {
+          "page": 272,
+          "reasonZh": "特质与单次情绪的区别"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-personality-02",
+      "topic": "taskdetail-personality",
+      "form": "scenario",
+      "prompt": "A questionnaire describes someone as organized, reliable, and persistent. Which Big Five dimension is most directly indicated?",
+      "options": [
+        "Conscientiousness.",
+        "Extraversion.",
+        "Neuroticism.",
+        "Openness alone."
+      ],
+      "answer": 0,
+      "explanationZh": "尽责性关注组织性、可靠性和坚持；外向性偏向活跃社交，神经质偏向情绪敏感或焦虑，开放性偏向好奇与新体验。",
+      "distractorsZh": [
+        "",
+        "组织可靠并不直接定义外向社交。",
+        "这些特征并非焦虑或敏感。",
+        "好奇新体验不同于组织与自律。"
+      ],
+      "terms": [
+        {
+          "en": "conscientiousness",
+          "zh": "尽责性"
+        },
+        {
+          "en": "Big Five",
+          "zh": "大五人格"
+        }
+      ],
+      "refs": [
+        {
+          "page": 272,
+          "reasonZh": "大五人格维度的应用"
+        },
+        {
+          "page": 274,
+          "reasonZh": "大五人格维度的应用"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-personality-03",
+      "topic": "taskdetail-personality",
+      "form": "scenario",
+      "prompt": "In the MBTI framework, which contrast best matches Judging versus Perceiving?",
+      "options": [
+        "Logical analysis versus values-oriented judgment.",
+        "Outer-world orientation versus inner-world orientation.",
+        "Sensory detail versus pattern-oriented intuition.",
+        "Preference for closure and planning versus flexibility and spontaneity."
+      ],
+      "answer": 3,
+      "explanationZh": "J/P 关注处理外部世界时偏好的组织与开放方式。T/F 区分判断偏好，E/I 区分能量导向，S/N 区分信息感知偏好；这些是该框架中的术语。",
+      "distractorsZh": [
+        "这是 T/F 的对比。",
+        "这是 E/I 的对比。",
+        "这是 S/N 的对比。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "Judging/Perceiving",
+          "zh": "判断/感知"
+        },
+        {
+          "en": "MBTI",
+          "zh": "迈尔斯—布里格斯类型指标"
+        }
+      ],
+      "refs": [
+        {
+          "page": 273,
+          "reasonZh": "MBTI的判断与感知维度"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-personality-04",
+      "topic": "taskdetail-personality",
+      "form": "evaluation",
+      "prompt": "A trait score averages two responses on a 1–7 scale. The first is 6; the second is 2 and must be reverse-scored as 8−x. What is the trait score?",
+      "options": [
+        "4",
+        "2",
+        "6",
+        "7"
+      ],
+      "answer": 2,
+      "explanationZh": "反向得分为 8−2=6，再与第一题 6 求平均，得到 6。反向题让措辞相反的条目按同一特质方向计分；应先反向再汇总。",
+      "distractorsZh": [
+        "4 是忘记反向后直接平均的结果。",
+        "2 是未处理的单个原始回答。",
+        "",
+        "计算结果并非量表最大值。"
+      ],
+      "terms": [
+        {
+          "en": "reverse scoring",
+          "zh": "反向计分"
+        },
+        {
+          "en": "Likert scale",
+          "zh": "李克特量表"
+        }
+      ],
+      "refs": [
+        {
+          "page": 274,
+          "reasonZh": "反向题与量表计分"
+        },
+        {
+          "page": 275,
+          "reasonZh": "反向题与量表计分"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-personality-05",
+      "topic": "taskdetail-personality",
+      "form": "evaluation",
+      "prompt": "A dataset contains many posts per person. How should a test split be designed to assess generalization to unseen people?",
+      "options": [
+        "Randomly split posts so the same person appears in training and test.",
+        "Keep each person's posts entirely within one split.",
+        "Put each person's earliest and latest posts in different splits by default.",
+        "Duplicate frequent users across every split to stabilize scores."
+      ],
+      "answer": 1,
+      "explanationZh": "如果同一人的文本同时出现在训练和测试中，模型可能利用作者特定线索。评估新用户泛化需用户级划分，并区分各特质分类、相关系数和其他指标。",
+      "distractorsZh": [
+        "同作者跨集合可能造成泄漏。",
+        "",
+        "单纯按帖子时间不能保证未见用户条件。",
+        "复制用户强化泄漏。"
+      ],
+      "terms": [
+        {
+          "en": "user-level split",
+          "zh": "用户级划分"
+        },
+        {
+          "en": "data leakage",
+          "zh": "数据泄漏"
+        }
+      ],
+      "refs": [
+        {
+          "page": 275,
+          "reasonZh": "用户级分割与人格评价"
+        },
+        {
+          "page": 276,
+          "reasonZh": "用户级分割与人格评价"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-aspects-01",
+      "topic": "taskdetail-aspects",
+      "form": "scenario",
+      "prompt": "A review says, 'It fits easily into my jacket pocket' without naming size. Which task is needed to recover the implied product aspect?",
+      "options": [
+        "Implicit aspect extraction.",
+        "Only matching explicit occurrences of the word 'size'.",
+        "Only classifying the whole review as spam.",
+        "Only extracting the author's name."
+      ],
+      "answer": 0,
+      "explanationZh": "尺寸通过可放进口袋的描述被间接表达。显式方面有直接词语跨度，隐式方面需从语义或常识推断类别。",
+      "distractorsZh": [
+        "",
+        "原文没有直接出现该词，纯匹配会漏掉。",
+        "垃圾信息分类不是方面识别。",
+        "作者实体与产品方面不同。"
+      ],
+      "terms": [
+        {
+          "en": "implicit aspect",
+          "zh": "隐式方面"
+        },
+        {
+          "en": "explicit aspect",
+          "zh": "显式方面"
+        }
+      ],
+      "refs": [
+        {
+          "page": 277,
+          "reasonZh": "显式与隐式方面"
+        },
+        {
+          "page": 281,
+          "reasonZh": "显式与隐式方面"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-aspects-02",
+      "topic": "taskdetail-aspects",
+      "form": "scenario",
+      "prompt": "A review mentions 'touchscreen', assigns it to DISPLAY, and calls it excellent. Which output is the aspect category?",
+      "options": [
+        "DISPLAY.",
+        "touchscreen.",
+        "positive.",
+        "The full review length."
+      ],
+      "answer": 0,
+      "explanationZh": "方面术语是原文表达，方面类别是归纳标签，极性是评价方向。AE、AC、ATP、ACP 分别涉及术语抽取、类别识别及两种粒度的极性判断。",
+      "distractorsZh": [
+        "",
+        "touchscreen 是术语跨度。",
+        "positive 是极性。",
+        "长度不是语义类别。"
+      ],
+      "terms": [
+        {
+          "en": "aspect term",
+          "zh": "方面术语"
+        },
+        {
+          "en": "aspect category",
+          "zh": "方面类别"
+        }
+      ],
+      "refs": [
+        {
+          "page": 279,
+          "reasonZh": "术语、类别与极性的区别"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-aspects-03",
+      "topic": "taskdetail-aspects",
+      "form": "scenario",
+      "prompt": "Two products have equal overall ratings but opposite strengths in battery life and picture quality. What is lost by using only the overall rating?",
+      "options": [
+        "The fact that either product exists.",
+        "Every possible grammatical label.",
+        "The exact spelling of the product name.",
+        "The aspect-specific trade-offs needed for different user preferences."
+      ],
+      "answer": 3,
+      "explanationZh": "整体平均可能掩盖不同方面的优劣。方面级比较把相同总分背后的结构展开，支持根据用户偏好做选择。",
+      "distractorsZh": [
+        "实体存在不由评分聚合决定。",
+        "词性标注不是比较重点。",
+        "名称拼写可独立保留。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "aspect-level comparison",
+          "zh": "方面级比较"
+        },
+        {
+          "en": "aggregation",
+          "zh": "聚合"
+        }
+      ],
+      "refs": [
+        {
+          "page": 278,
+          "reasonZh": "方面比较与聚合损失"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-aspects-04",
+      "topic": "taskdetail-aspects",
+      "form": "scenario",
+      "prompt": "An opinion miner outputs (battery life, lasts all day, positive). What advantage does this structured output have over a sentence-level polarity label?",
+      "options": [
+        "It removes all need to locate the opinion target.",
+        "It guarantees that every other aspect is positive.",
+        "It connects a target aspect, supporting opinion expression, and polarity.",
+        "It expresses only whether the sentence is grammatical."
+      ],
+      "answer": 2,
+      "explanationZh": "联合输出可以绑定方面、意见和极性，减少“评价指向哪个对象”的歧义。不同任务还可能加入方面类别等字段。",
+      "distractorsZh": [
+        "该输出恰显式定位目标。",
+        "其他方面可能有不同评价。",
+        "",
+        "结构描述语义评价而非语法正确性。"
+      ],
+      "terms": [
+        {
+          "en": "joint extraction",
+          "zh": "联合抽取"
+        },
+        {
+          "en": "opinion expression",
+          "zh": "意见表达"
+        }
+      ],
+      "refs": [
+        {
+          "page": 279,
+          "reasonZh": "联合方面情感输出"
+        },
+        {
+          "page": 281,
+          "reasonZh": "联合方面情感输出"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-aspects-05",
+      "topic": "taskdetail-aspects",
+      "form": "scenario",
+      "prompt": "How can a knowledge base help identify an implied aspect and its sentiment?",
+      "options": [
+        "Every knowledge-graph edge must encode a positive opinion.",
+        "Concept relations can connect an expression to an aspect, while sentiment knowledge can inform its evaluation.",
+        "A knowledge base eliminates all need for sentence context.",
+        "A larger entity count guarantees correct aspect boundaries."
+      ],
+      "answer": 1,
+      "explanationZh": "常识关系可支持由表达推断方面；情感词典或知识图提供极性信息。Probase、通用实体图和情感知识资源的作用不同，需结合句内依赖及语境。",
+      "distractorsZh": [
+        "知识关系不一定是情感关系。",
+        "",
+        "语境决定当前用法。",
+        "规模不能保证跨度预测正确。"
+      ],
+      "terms": [
+        {
+          "en": "commonsense relation",
+          "zh": "常识关系"
+        },
+        {
+          "en": "sentiment knowledge",
+          "zh": "情感知识"
+        }
+      ],
+      "refs": [
+        {
+          "page": 280,
+          "reasonZh": "情感与常识知识的互补"
+        },
+        {
+          "page": 281,
+          "reasonZh": "情感与常识知识的互补"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-polarity-01",
+      "topic": "taskdetail-polarity",
+      "form": "evaluation",
+      "prompt": "A sentiment regressor predicts 0.2 for a gold intensity of −0.4. What is the absolute error?",
+      "options": [
+        "0.6",
+        "−0.6",
+        "0.2",
+        "0.08"
+      ],
+      "answer": 0,
+      "explanationZh": "绝对误差为 |0.2−(−0.4)|=0.6。连续强度评价可用 MAE 等误差指标，分类任务则常用准确率或 F1。",
+      "distractorsZh": [
+        "",
+        "绝对误差不为负。",
+        "0.2 只是预测值。",
+        "0.08 是乘积绝对值，不是差值绝对值。"
+      ],
+      "terms": [
+        {
+          "en": "sentiment regression",
+          "zh": "情感回归"
+        },
+        {
+          "en": "absolute error",
+          "zh": "绝对误差"
+        }
+      ],
+      "refs": [
+        {
+          "page": 282,
+          "reasonZh": "强度回归与误差指标"
+        },
+        {
+          "page": 283,
+          "reasonZh": "强度回归与误差指标"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-polarity-02",
+      "topic": "taskdetail-polarity",
+      "form": "method",
+      "prompt": "A polarity model combines contextual embeddings with explicit rules about negation and semantic relations. Which approach does this illustrate?",
+      "options": [
+        "Neurosymbolic modelling.",
+        "A purely context-free lookup with no learned representation.",
+        "A pronunciation-only model.",
+        "An approach that forbids all symbolic structure."
+      ],
+      "answer": 0,
+      "explanationZh": "神经符号方法融合神经表示与显式知识或逻辑约束，可包括依存、规则、词典、常识和逻辑张量网络等组合。",
+      "distractorsZh": [
+        "",
+        "题设包含上下文嵌入和规则。",
+        "其目标是语义极性而非发音。",
+        "显式结构正是该组合的一部分。"
+      ],
+      "terms": [
+        {
+          "en": "neurosymbolic AI",
+          "zh": "神经符号人工智能"
+        },
+        {
+          "en": "logical constraint",
+          "zh": "逻辑约束"
+        }
+      ],
+      "refs": [
+        {
+          "page": 283,
+          "reasonZh": "神经符号情感建模"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-polarity-03",
+      "topic": "taskdetail-polarity",
+      "form": "method",
+      "prompt": "Why might a contextual language model improve on a fixed sentiment lexicon for some sentences?",
+      "options": [
+        "It guarantees perfect handling of every domain and negation.",
+        "It never uses information learned from text.",
+        "A lexicon is incapable of providing any useful sentiment knowledge.",
+        "It can condition the interpretation on surrounding words and composition."
+      ],
+      "answer": 3,
+      "explanationZh": "上下文模型可捕捉词义、否定与组合关系；词典提供可解释的先验。预训练、提示和知识融合各有优势，并不存在不经评估的全面保证。",
+      "distractorsZh": [
+        "预训练模型也会产生领域和推理错误。",
+        "其能力通常依赖文本训练。",
+        "词典仍可作为基线、特征或知识源。",
+        ""
+      ],
+      "terms": [
+        {
+          "en": "contextual polarity",
+          "zh": "语境极性"
+        },
+        {
+          "en": "lexicon prior",
+          "zh": "词典先验"
+        }
+      ],
+      "refs": [
+        {
+          "page": 283,
+          "reasonZh": "语境模型与词典先验"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-polarity-04",
+      "topic": "taskdetail-polarity",
+      "form": "scenario",
+      "prompt": "A robot detects frustration in a user's utterance. What is a reasonable role for that output?",
+      "options": [
+        "Treat the detected emotion as an unquestionable command.",
+        "Assume every frustrated utterance has the same cause.",
+        "Use it as one input when selecting an appropriate response, alongside task and safety context.",
+        "Replace the entire dialogue state with a single polarity score."
+      ],
+      "answer": 2,
+      "explanationZh": "情感分析可支持人机交互和推荐，但单个情绪结果并不等于用户真实目的或完整状态。下游应结合其他证据，并考虑识别误差。",
+      "distractorsZh": [
+        "情绪判断不是行动授权。",
+        "原因随语境而异。",
+        "",
+        "单一分数丢失意图、对象和任务信息。"
+      ],
+      "terms": [
+        {
+          "en": "human-robot interaction",
+          "zh": "人机交互"
+        },
+        {
+          "en": "decision context",
+          "zh": "决策语境"
+        }
+      ],
+      "refs": [
+        {
+          "page": 284,
+          "reasonZh": "情感推断与行动决策"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    },
+    {
+      "id": "taskdetail-polarity-05",
+      "topic": "taskdetail-polarity",
+      "form": "scenario",
+      "prompt": "A study uses news sentiment as a feature for forecasting a financial time series. What does successful prediction alone demonstrate?",
+      "options": [
+        "A guaranteed profitable investment strategy.",
+        "Predictive usefulness under the evaluated conditions, not proof that sentiment causes every price movement.",
+        "A complete causal explanation of market behavior.",
+        "That future performance cannot change."
+      ],
+      "answer": 1,
+      "explanationZh": "极性结果可作为推荐、金融预测或组合配置等模型的特征，也可提供解释线索。预测关联的证据范围不同于因果证明或未来收益保证。",
+      "distractorsZh": [
+        "测试预测成绩不保证投资获利。",
+        "",
+        "市场因果机制需要额外论证。",
+        "数据分布和关系可能变化。"
+      ],
+      "terms": [
+        {
+          "en": "predictive feature",
+          "zh": "预测特征"
+        },
+        {
+          "en": "causal inference",
+          "zh": "因果推断"
+        }
+      ],
+      "refs": [
+        {
+          "page": 284,
+          "reasonZh": "情感预测的应用与因果边界"
+        }
+      ],
+      "sourceQuestions": [],
+      "difficulty": "应用"
+    }
+  ]
+}
