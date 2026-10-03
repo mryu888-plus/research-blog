@@ -235,3 +235,68 @@ test('question stems ask knowledge rather than slide-specific recall', () => {
   const recall = /\b(?:lecture\s+(?:page|slide)|on\s+(?:lecture\s+)?page\s+\d|table\s+\d|figure\s+\d|mock\s+(?:quiz|q\d)|according to the (?:lecture|caption)|in the (?:lecture|slide)'s|how many .* (?:shown|listed))\b/i;
   for (const q of b.questions) assert(!recall.test(q.prompt), q.id + ': slide-recall wording');
 });
+
+test('every topic has a substantive lesson with examples, bilingual terms and source pages', () => {
+  const b = JSON.parse(fs.readFileSync(bankPath, 'utf8'));
+  assert.equal(b.topics.length, 80);
+  for (const t of b.topics) {
+    const lesson = t.lesson;
+    assert(lesson, t.id);
+    assert(lesson.introZh.length >= 40, t.id + ': introduction');
+    assert(lesson.keyPoints.length >= 3, t.id + ': key points');
+    assert(lesson.keyPoints.every(p => p.title && p.body.length >= 20), t.id);
+    assert(lesson.example.title && lesson.example.body.length >= 40, t.id + ': example');
+    assert(lesson.pitfallZh.length >= 20, t.id + ': distinction');
+    assert(Array.isArray(lesson.formulas), t.id);
+    assert(lesson.formulas.every(f => f.expression && f.explanationZh), t.id);
+    assert(lesson.pages.length > 0 && lesson.pages.every(p => Number.isInteger(p) && p >= 1 && p <= 400), t.id);
+    assert(lesson.pages.some(p => t.pages.includes(p)), t.id + ': source overlap');
+    const text = JSON.stringify(lesson);
+    assert(/[A-Za-z]{3}/.test(text), t.id + ': English terms');
+    assert(!/不是[^。！？\n]{0,120}而是/.test(text), t.id + ': unwanted phrasing');
+    assert(!/TODO|待补充|占位符/.test(text), t.id + ': unfinished content');
+    const html = core.topicLessonHtml(t, b.source);
+    assert(html.includes('data-lesson-topic="' + t.id + '" open'));
+    assert(html.includes('开始做题'));
+    assert(html.includes('https://sentic.net/nlu-slides.pdf#page=' + lesson.pages[0]));
+  }
+});
+
+test('lessons render for study and review, stay hidden throughout an active exam', () => {
+  const b = JSON.parse(fs.readFileSync(bankPath, 'utf8'));
+  const t = b.topics[0];
+  const active = core.createSession([b.questions[0].id], 'exam', 1000, b.version);
+  assert.equal(core.topicLessonHtml(t, b.source, { session: active }), '');
+  assert.equal(core.topicLessonHtml(t, b.source, { session: active, preview: true }), '');
+  active.finishedAt = 2000;
+  assert(core.topicLessonHtml(t, b.source, { session: active }).includes(t.nameZh));
+  assert(core.topicLessonHtml(t, b.source, { preview: true }).includes('开始本主题练习'));
+  assert(!core.topicLessonHtml(t, b.source, { open: false }).includes('data-lesson-topic="' + t.id + '" open'));
+});
+
+test('lesson content is escaped and unsafe links are suppressed', () => {
+  const b = JSON.parse(fs.readFileSync(bankPath, 'utf8'));
+  const t = structuredClone(b.topics[0]);
+  t.lesson.introZh = '<img src=x onerror=alert(1)>';
+  t.lesson.formulas = [{ expression: '<svg/onload=1>', explanationZh: 'A < B' }];
+  t.lesson.keyPoints[0].title = '<script>bad()</script>';
+  const html = core.topicLessonHtml(t, { ...b.source, lectureUrl: 'javascript:alert(1)' });
+  assert(!html.includes('<img'));
+  assert(!html.includes('<script>'));
+  assert(!html.includes('<svg'));
+  assert(!html.includes('href="javascript:'));
+  assert(html.includes('&lt;img'));
+});
+
+test('lesson-only update remains compatible with all answers in the 475-question version', () => {
+  const b = JSON.parse(fs.readFileSync(bankPath, 'utf8'));
+  assert(b.compatibleVersions.includes('2026-10-03.2'));
+  const q = b.questions[150];
+  const s = core.createSession(b.questions.slice(140, 160).map(q => q.id), 'exam', 1000, '2026-10-03.2');
+  s.cursor = 10; s.answers[q.id] = q.answer;
+  const restored = core.restoreState({ schema: 1, bankVersion: '2026-10-03.2', stats: {}, session: s }, b);
+  assert.deepEqual(restored.session.ids, s.ids);
+  assert.deepEqual(restored.session.answers, s.answers);
+  assert.equal(restored.session.cursor, s.cursor);
+  assert.equal(restored.session.deadline, s.deadline);
+});

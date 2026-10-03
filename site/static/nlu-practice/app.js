@@ -93,6 +93,16 @@
   function formatTime(seconds) { return String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0'); }
   function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
+  function topicLessonHtml(topic, source, { session = null, open = true, base, preview = false } = {}) {
+    if (!topic?.lesson || (session?.mode === 'exam' && session.finishedAt === null)) return '';
+    const lesson = topic.lesson, esc = escapeHtml;
+    const links = lesson.pages.map(page => {
+      const href = lectureLink(source, page, base);
+      return href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">p. ' + page + ' ↗</a>' : '';
+    }).join('');
+    return '<details id="nlu-lesson" class="nlu-lesson" data-lesson-topic="' + esc(topic.id) + '"' + (open ? ' open' : '') + '><summary><span class="nlu-eyebrow">主题讲解</span><span class="nlu-lesson-title">' + esc(topic.nameZh) + '<span lang="en">' + esc(topic.nameEn) + '</span></span></summary><div class="nlu-lesson-body"><p class="nlu-lesson-intro">' + esc(lesson.introZh) + '</p><div class="nlu-lesson-points">' + lesson.keyPoints.map(point => '<section><h3>' + esc(point.title) + '</h3><p>' + esc(point.body) + '</p></section>').join('') + '</div>' + lesson.formulas.map(formula => '<div class="nlu-lesson-formula"><p class="nlu-formula">' + esc(formula.expression) + '</p><p>' + esc(formula.explanationZh) + '</p></div>').join('') + '<section class="nlu-lesson-example"><h3>' + esc(lesson.example.title) + '</h3><p>' + esc(lesson.example.body) + '</p></section><p class="nlu-lesson-pitfall"><strong>易混淆点：</strong>' + esc(lesson.pitfallZh) + '</p><div class="nlu-sources"><span>相关讲义</span>' + links + '</div><div class="nlu-lesson-actions">' + (preview ? '<button class="nlu-primary" data-action="topic" data-topic="' + esc(topic.id) + '">开始本主题练习</button>' : '<button data-action="skip-lesson">开始做题 ↓</button>') + '</div></div></details>';
+  }
+
   async function boot(doc) {
     const app = doc.getElementById('nlu-app'); if (!app || app.dataset.booted) return;
     app.dataset.booted = 'true';
@@ -104,7 +114,8 @@
     catch (error) { say('题库载入失败，请刷新重试。' + error.message); return; }
     let raw = null, storageOk = true;
     try { raw = JSON.parse(view.localStorage.getItem(STORAGE_KEY) || 'null'); } catch (_) { storageOk = false; }
-    let state = restoreState(raw, bank), review = false, lecture = '', topic = '', form = '', navOnly = 'all', coveragePage = 1;
+    let state = restoreState(raw, bank), review = false, lecture = '', topic = '', form = '', navOnly = 'all', coveragePage = 1, previewTopic = '';
+    const lessonExpanded = new Map();
     let migrationNotice = state.retiredQuestionCount ? '题库更新：本轮已移除 ' + state.retiredQuestionCount + ' 道细节题。' + (state.session ? '其余作答进度已保留。' : '本轮已无可用题目，其余累计记录已保留。') : '';
     const questions = new Map(bank.questions.map(q => [q.id, q]));
     const topics = new Map(bank.topics.map(t => [t.id, t]));
@@ -165,7 +176,7 @@
       const finished = s.finishedAt !== null, exam = s.mode === 'exam' && !finished, revealed = !exam && (finished || !!s.submitted[q.id]);
       const answered = validChoice(s.answers[q.id]);
       const completed = s.mode === 'exam' ? s.ids.filter(id => validChoice(s.answers[id])).length : s.ids.filter(id => s.submitted[id]).length;
-      return '<section class="nlu-workspace" aria-labelledby="nlu-question"><div class="nlu-session-line"><span>' + (exam ? '限时模拟' : finished ? '复盘模式' : s.mode === 'wrongbook' ? '错题重练' : '自由练习') + ' · ' + completed + ' / ' + s.ids.length + (exam ? ' 已答' : ' 已提交') + '</span>' + (exam ? '<span id="nlu-timer" class="nlu-timer" role="timer" aria-label="剩余时间">' + formatTime(remainingSeconds(s)) + '</span>' : '') + '</div><progress max="' + s.ids.length + '" value="' + completed + '" aria-label="本轮完成进度"></progress><div class="nlu-question-meta"><span>QUESTION ' + String(s.cursor + 1).padStart(2, '0') + ' / ' + s.ids.length + '</span><span>' + esc(topics.get(q.topic)?.nameZh) + ' · ' + esc(forms.get(q.form)?.nameZh) + ' · ' + esc(q.difficulty) + '</span></div><h2 id="nlu-question" lang="en" tabindex="-1">' + esc(q.prompt) + '</h2><fieldset class="nlu-options"><legend class="nlu-sr">选择一个答案 / Select one answer</legend>' + q.options.map((option, i) => {
+      return '<section class="nlu-workspace" aria-labelledby="nlu-question"><div class="nlu-session-line"><span>' + (exam ? '限时模拟' : finished ? '复盘模式' : s.mode === 'wrongbook' ? '错题重练' : '自由练习') + ' · ' + completed + ' / ' + s.ids.length + (exam ? ' 已答' : ' 已提交') + '</span>' + (exam ? '<span id="nlu-timer" class="nlu-timer" role="timer" aria-label="剩余时间">' + formatTime(remainingSeconds(s)) + '</span>' : '') + '</div><progress max="' + s.ids.length + '" value="' + completed + '" aria-label="本轮完成进度"></progress>' + topicLessonHtml(topics.get(q.topic), bank.source, { session: s, open: lessonExpanded.get(q.topic) !== false, base: view.location.href }) + '<div class="nlu-question-meta"><span>QUESTION ' + String(s.cursor + 1).padStart(2, '0') + ' / ' + s.ids.length + '</span><span>' + esc(topics.get(q.topic)?.nameZh) + ' · ' + esc(forms.get(q.form)?.nameZh) + ' · ' + esc(q.difficulty) + '</span></div><h2 id="nlu-question" lang="en" tabindex="-1">' + esc(q.prompt) + '</h2><fieldset class="nlu-options"><legend class="nlu-sr">选择一个答案 / Select one answer</legend>' + q.options.map((option, i) => {
         const classes = ['nlu-option', s.answers[q.id] === i ? 'is-selected' : '', revealed && i === q.answer ? 'is-correct' : '', revealed && i === s.answers[q.id] && i !== q.answer ? 'is-wrong' : ''].filter(Boolean).join(' ');
         return '<label class="' + classes + '"><input type="radio" name="nlu-answer" value="' + i + '"' + (s.answers[q.id] === i ? ' checked' : '') + (revealed ? ' disabled' : '') + '><span class="nlu-letter">' + 'ABCD'[i] + '</span><span lang="en">' + esc(option) + '</span>' + (revealed && i === q.answer ? '<span class="nlu-answer-tag">正确答案</span>' : '') + (revealed && i === s.answers[q.id] && i !== q.answer ? '<span class="nlu-answer-tag">你的选择</span>' : '') + '</label>';
       }).join('') + '</fieldset><div class="nlu-question-actions">' + (!exam && !revealed ? '<button class="nlu-primary" data-action="submit"' + (!answered ? ' disabled' : '') + '>提交并看解析</button>' : exam ? '<p>选择即保存；交卷后统一展示答案和解析。</p>' : '') + '<div class="nlu-step"><button data-action="prev"' + (s.cursor === 0 ? ' disabled' : '') + '>← 上一题</button><button data-action="next"' + (s.cursor === s.ids.length - 1 ? ' disabled' : '') + '>下一题 →</button></div></div>' + (revealed ? explanation(q, s) : sourceLinks(q.refs, '相关讲义')) + (q.sourceQuestions?.length ? '<p class="nlu-provenance">对应 Mock 题号：' + esc(q.sourceQuestions.map(n => '#' + n).join('、')) + '</p>' : '') + '<div class="nlu-round-actions">' + (finished ? '<button data-action="summary">返回本轮小结</button>' : '<button data-action="finish">' + (exam ? '交卷并查看结果' : '结束本轮并查看小结') + '</button>') + '</div></section>' + navigator();
@@ -185,7 +196,8 @@
     function topicCard(t) {
       const group = bank.questions.filter(q => q.topic === t.id);
       const done = group.filter(q => state.stats[q.id]?.attempts > 0).length;
-      return '<section><h3><button data-action="topic" data-topic="' + esc(t.id) + '">' + esc(t.nameZh) + ' <span lang="en">' + esc(t.nameEn) + '</span></button></h3><p>' + esc(t.focusZh) + '</p><p class="nlu-muted">' + group.length + ' 道练习 · 已练 ' + done + '</p>' + sourceLinks((t.pages || []).map(page => ({ page, lecture: t.lecture })), '讲义') + '</section>';
+      const canRead = t.lesson && !(state.session?.mode === 'exam' && state.session.finishedAt === null);
+      return '<section><h3><button data-action="topic" data-topic="' + esc(t.id) + '">' + esc(t.nameZh) + ' <span lang="en">' + esc(t.nameEn) + '</span></button></h3><p>' + esc(t.focusZh) + '</p><p class="nlu-muted">' + group.length + ' 道练习 · 已练 ' + done + '</p>' + (canRead ? '<button class="nlu-read-lesson" data-action="lesson" data-topic="' + esc(t.id) + '">阅读主题讲解</button>' : '') + sourceLinks((t.pages || []).map(page => ({ page, lecture: t.lecture })), '讲义') + '</section>';
     }
     function pageAudit(page) {
       const row = bank.coverage?.pageAudit.find(item => item.page === page);
@@ -206,13 +218,15 @@
       const visibleTopics = bank.topics.filter(t => !lecture || String(t.lecture) === lecture);
       return '<section class="nlu-dashboard" aria-label="练习设置"><div class="nlu-topline"><span><strong>' + bank.questions.length + '</strong> 道题 · <strong>' + bank.topics.length + '</strong> 个知识点组</span><span>已练 ' + practiced + ' · 错题 ' + wrong + '</span></div><div class="nlu-controls"><label>讲次 / Lecture<select id="nlu-lecture"><option value="">全部讲次</option>' + (bank.lectures || []).map(l => '<option value="' + l.id + '"' + (String(l.id) === lecture ? ' selected' : '') + '>Lec ' + l.id + ' · ' + esc(l.nameZh) + '</option>').join('') + '</select></label><label>知识主题 / Topic<select id="nlu-topic"><option value="">全部主题</option>' + visibleTopics.map(t => '<option value="' + esc(t.id) + '"' + (t.id === topic ? ' selected' : '') + '>' + esc(t.nameZh + ' / ' + t.nameEn) + '</option>').join('') + '</select></label><label>题型 / Form<select id="nlu-form"><option value="">全部题型</option>' + bank.forms.map(f => '<option value="' + esc(f.id) + '"' + (f.id === form ? ' selected' : '') + '>' + esc(f.nameZh) + '</option>').join('') + '</select></label></div><div class="nlu-actions"><button data-action="practice" class="nlu-primary">开始练习（' + pool.length + '）</button><button data-action="wrongbook">错题重练（' + filterQuestions(bank, { lecture, topic, form, wrongOnly: true }, state.stats).length + '）</button><button data-action="exam">' + Math.min(100, bank.questions.length) + ' 题 / 60 分钟模拟</button><button data-action="reset" class="nlu-quiet">清除本地记录</button></div><p class="nlu-muted">模拟从全题库抽取 100 题。</p></section>';
     }
-    function render(focusQuestion = false) {
+    function render(focusQuestion = false, focusLesson = false) {
       const wrong = Object.values(state.stats).filter(item => item.wrong).length;
       const practiced = Object.values(state.stats).filter(item => item.attempts > 0).length;
       const pool = filterQuestions(bank, { lecture, topic, form });
-      content.innerHTML = dashboard(pool, practiced, wrong) + (state.session ? state.session.finishedAt !== null && !review ? summary() : questionPanel() : '<section class="nlu-empty"><p class="nlu-eyebrow">READY WHEN YOU ARE</p><h2>选一讲，从一题开始。</h2><p>英文题干 · 中文解析 · 逐题回到讲义</p></section>') + coveragePanel() + '<p class="nlu-footnote">题库版本 ' + esc(bank.version) + ' · 进度自动保存在当前浏览器。' + (!storageOk ? ' 当前无法持久保存。' : '') + '</p>';
-      if (focusQuestion) {
-        const heading = doc.getElementById('nlu-question');
+      const studyTopic = previewTopic || (!state.session ? topic : '');
+      const study = studyTopic ? topicLessonHtml(topics.get(studyTopic), bank.source, { session: state.session, open: true, base: view.location.href, preview: true }) : '';
+      content.innerHTML = dashboard(pool, practiced, wrong) + (study ? '<section class="nlu-study-preview">' + (state.session ? '<button data-action="close-lesson" class="nlu-quiet">← 返回当前练习</button>' : '') + study + '</section>' : state.session ? state.session.finishedAt !== null && !review ? summary() : questionPanel() : '<section class="nlu-empty"><p class="nlu-eyebrow">READY WHEN YOU ARE</p><h2>选一讲，先读讲解，再做练习。</h2><p>英文题干 · 中文解析 · 逐题回到讲义</p></section>') + coveragePanel() + '<p class="nlu-footnote">题库版本 ' + esc(bank.version) + ' · 进度自动保存在当前浏览器。' + (!storageOk ? ' 当前无法持久保存。' : '') + '</p>';
+      if (focusQuestion || focusLesson) {
+        const heading = (focusLesson && doc.querySelector('#nlu-lesson > summary')) || doc.getElementById('nlu-question');
         heading?.focus({ preventScroll: true });
         heading?.scrollIntoView({ block: 'start', behavior: 'instant' });
       }
@@ -228,13 +242,16 @@
       lecture = nextLecture; topic = nextTopic; form = nextForm;
       state.session = createSession(pool.map(q => q.id), mode, Date.now(), bank.version);
       if (selectedQuestion && state.session.ids.includes(selectedQuestion)) { state.session.cursor = state.session.ids.indexOf(selectedQuestion); state.session.entryQuestionId = selectedQuestion; }
-      review = false; navOnly = 'all'; persist(); render(true); say(mode === 'exam' ? '模拟已开始，交卷后查看解析。' : '练习已开始。选择答案后提交。');
+      review = false; previewTopic = ''; navOnly = 'all'; persist(); render(true, mode !== 'exam'); say(mode === 'exam' ? '模拟已开始，交卷后查看解析。' : '主题讲解已就绪，可以先读再练。');
     }
     function expire() {
       if (!isExpired(state.session)) return false;
       if (cancelConfirmation) cancelConfirmation();
       finishSession(state.session, bank, state.stats); review = false; persist(); render(); say(migrationNotice + '60 分钟已到，已自动交卷。未作答题计入本轮失分和错题本。'); migrationNotice = ''; return true;
     }
+    content.addEventListener('toggle', event => {
+      if (content.contains(event.target) && event.target.matches('details[data-lesson-topic]')) lessonExpanded.set(event.target.dataset.lessonTopic, event.target.open);
+    }, true);
     content.addEventListener('input', event => {
       if (event.target.id !== 'nlu-page') return;
       const page = Number(event.target.value);
@@ -244,8 +261,8 @@
     });
     content.addEventListener('change', event => {
       if (event.target.id === 'nlu-page') { coveragePage = Math.max(1, Math.min(400, Math.trunc(Number(event.target.value)) || 1)); event.target.value = coveragePage; doc.getElementById('nlu-page-result').innerHTML = pageAudit(coveragePage); return; }
-      if (event.target.id === 'nlu-lecture') { lecture = event.target.value; topic = ''; render(); return; }
-      if (event.target.id === 'nlu-topic' || event.target.id === 'nlu-form') { topic = doc.getElementById('nlu-topic').value; form = doc.getElementById('nlu-form').value; render(); return; }
+      if (event.target.id === 'nlu-lecture') { lecture = event.target.value; topic = ''; previewTopic = ''; render(); return; }
+      if (event.target.id === 'nlu-topic' || event.target.id === 'nlu-form') { topic = doc.getElementById('nlu-topic').value; form = doc.getElementById('nlu-form').value; if (previewTopic) previewTopic = topic; render(); return; }
       if (event.target.name !== 'nlu-answer' || !state.session || expire()) return;
       const s = state.session, id = s.ids[s.cursor];
       if (s.finishedAt !== null || (s.mode !== 'exam' && s.submitted[id])) return;
@@ -258,11 +275,14 @@
       const action = button.dataset.action;
       if (expire()) return;
       if (['practice', 'wrongbook', 'exam'].includes(action)) { await start(action); return; }
+      if (action === 'lesson') { if (state.session?.mode === 'exam' && state.session.finishedAt === null) return; previewTopic = button.dataset.topic; topic = previewTopic; lecture = String(topics.get(topic)?.lecture || ''); form = ''; render(false, true); return; }
+      if (action === 'close-lesson') { previewTopic = ''; const q = questions.get(state.session?.ids[state.session.cursor]); if (q) { topic = q.topic; lecture = String(q.lecture); form = ''; } render(true); return; }
+      if (action === 'skip-lesson') { const q = questions.get(state.session?.ids[state.session.cursor]); if (q) lessonExpanded.set(q.topic, false); render(true); return; }
       if (action === 'topic') { await start('practice', button.dataset.topic); return; }
       if (action === 'question') { const q = questions.get(button.dataset.question); if (q) await start('practice', q.topic, q.id); return; }
       if (action === 'reset') {
         if (!await askConfirmation('清除本浏览器中的全部 NLU 作答记录、错题和当前练习？此操作无法撤销，其他博客设置不会受影响。', '清除本地记录', '确认清除')) return;
-        state = restoreState(null, bank); review = false; persist(); render(); say('练习记录已清除。'); return;
+        state = restoreState(null, bank); review = false; previewTopic = ''; persist(); render(); say('练习记录已清除。'); return;
       }
       const s = state.session; if (!s) return;
       if (action === 'submit') { if (submitPractice(s, questions.get(s.ids[s.cursor]), state.stats)) { persist(); render(); doc.getElementById('nlu-answer-title')?.scrollIntoView({ block: 'nearest' }); say(s.answers[s.ids[s.cursor]] === questions.get(s.ids[s.cursor]).answer ? '回答正确。解析已展开。' : '已记录到错题本。解析已展开。'); } return; }
@@ -271,10 +291,10 @@
         if (!await askConfirmation(s.mode === 'exam' ? '确定交卷？还有 ' + r.unanswered + ' 道未作答，交卷后不能再修改。' : '结束本轮并查看成绩？', s.mode === 'exam' ? '确认交卷' : '结束本轮', s.mode === 'exam' ? '确认交卷' : '结束并查看小结')) return;
         finishSession(s, bank, state.stats); review = false; persist(); render(); doc.getElementById('nlu-summary-title')?.focus(); say('本轮已结束，可以逐题复盘或再练错题。'); return;
       }
-      if (action === 'review') { review = true; s.cursor = 0; navOnly = 'all'; render(true); return; }
+      if (action === 'review') { review = true; s.cursor = 0; navOnly = 'all'; render(true, true); return; }
       if (action === 'summary') { review = false; render(); return; }
       if (action === 'nav-all' || action === 'nav-unanswered') { navOnly = action === 'nav-all' ? 'all' : 'unanswered'; render(); return; }
-      if (action === 'prev' || action === 'next' || action === 'jump') { s.cursor = action === 'jump' ? Math.max(0, Math.min(s.ids.length - 1, Number(button.dataset.index))) : Math.max(0, Math.min(s.ids.length - 1, s.cursor + (action === 'next' ? 1 : -1))); persist(); render(true); }
+      if (action === 'prev' || action === 'next' || action === 'jump') { const oldTopic = questions.get(s.ids[s.cursor]).topic; s.cursor = action === 'jump' ? Math.max(0, Math.min(s.ids.length - 1, Number(button.dataset.index))) : Math.max(0, Math.min(s.ids.length - 1, s.cursor + (action === 'next' ? 1 : -1))); persist(); render(true, oldTopic !== questions.get(s.ids[s.cursor]).topic); }
     });
     const params = new URLSearchParams(view.location.search), deepId = params.get('question'), deepTopic = params.get('topic');
     const activeExam = state.session?.mode === 'exam' && state.session.finishedAt === null;
@@ -296,5 +316,5 @@
     }, 1000);
     doc.addEventListener('visibilitychange', () => { if (!doc.hidden) expire(); });
   }
-  return { STORAGE_KEY, validateBank, shuffle, filterQuestions, createSession, remainingSeconds, isExpired, scoreSession, submitPractice, finishSession, restoreState, lectureLink, formatTime, escapeHtml, boot };
+  return { STORAGE_KEY, validateBank, shuffle, filterQuestions, createSession, remainingSeconds, isExpired, scoreSession, submitPractice, finishSession, restoreState, lectureLink, formatTime, escapeHtml, topicLessonHtml, boot };
 });

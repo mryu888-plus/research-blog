@@ -11,7 +11,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-VERSION = '2026-10-03.2'
+VERSION = '2026-10-03.3'
 RETIRED_IDS = {
     'general-07', 'microtext-03', 'sbd-04', 'pos-03', 'concept-06',
     'anaphora-04', 'anaphora-06', 'subjectivity-04', 'sarcasm-06',
@@ -36,7 +36,7 @@ def lecture_for(page):
 
 def build():
     baseline = read('baseline-bank.json')
-    bank = {**copy.deepcopy(baseline), 'version': VERSION, 'compatibleVersions': [baseline['version']], 'lectures': LECTURES, 'retiredQuestionIds': sorted(RETIRED_IDS)}
+    bank = {**copy.deepcopy(baseline), 'version': VERSION, 'compatibleVersions': [baseline['version'], '2026-10-03.2'], 'lectures': LECTURES, 'retiredQuestionIds': sorted(RETIRED_IDS)}
     bank['questions'] = [q for q in bank['questions'] if q['id'] not in RETIRED_IDS]
     natural_stems = {q['id']: q['prompt'] for name in ('content-a.json', 'content-b.json') for q in read(name)['questions']}
     natural_stems.update({
@@ -71,6 +71,20 @@ def build():
                 audit[key].extend(coverage[key])
 
     topics = {t['id']: t for t in bank['topics']}
+    lessons = [lesson for part in ('early', 'tasks', 'late') for lesson in read(f'lessons-{part}.json')['lessons']]
+    assert len(lessons) == len({lesson['topic'] for lesson in lessons}) == len(topics), 'Every topic needs one lesson'
+    assert {lesson['topic'] for lesson in lessons} == set(topics), 'Lesson/topic mismatch'
+    for lesson in lessons:
+        topic = topics[lesson['topic']]
+        assert lesson['introZh'].strip() and lesson['pitfallZh'].strip(), topic['id']
+        assert 3 <= len(lesson['keyPoints']) <= 5, topic['id']
+        assert all(point['title'].strip() and point['body'].strip() for point in lesson['keyPoints']), topic['id']
+        assert lesson['example']['title'].strip() and lesson['example']['body'].strip(), topic['id']
+        assert isinstance(lesson['formulas'], list) and all(formula['expression'].strip() and formula['explanationZh'].strip() for formula in lesson['formulas']), topic['id']
+        assert lesson['pages'] and len(lesson['pages']) == len(set(lesson['pages'])), topic['id']
+        assert all(isinstance(page, int) and 1 <= page <= 400 for page in lesson['pages']), topic['id']
+        assert set(lesson['pages']) & set(topic['pages']), ('Lesson source mismatch', topic['id'])
+        topic['lesson'] = {key: value for key, value in lesson.items() if key != 'topic'}
     qs = {q['id']: q for q in bank['questions']}
     assert len(topics) == len(bank['topics']), 'Duplicate topic id'
     assert len(qs) == len(bank['questions']), 'Duplicate question id'

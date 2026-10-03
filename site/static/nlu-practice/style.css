@@ -27,6 +27,30 @@
 .nlu-empty h2, .nlu-summary h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 500; margin: 12px 0; }
 .nlu-empty > p:last-child { color: var(--nlu-muted); max-width: 38rem; margin: 0 auto; }
 .nlu-workspace { margin: 32px 0 24px; padding: 0; }
+.nlu-study-preview { margin: 28px 0; }
+.nlu-lesson { margin: 0 0 32px; border: 1px solid var(--nlu-border); border-radius: 4px; background: var(--nlu-panel); overflow-wrap: anywhere; }
+.nlu-lesson > summary { cursor: pointer; padding: 20px 24px; scroll-margin-top: 100px; }
+.nlu-lesson > summary > .nlu-eyebrow { margin-right: 12px; }
+.nlu-lesson-title { font-size: 17px; font-weight: 550; line-height: 1.8; }
+.nlu-lesson-title > span { display: block; margin-top: 4px; color: var(--nlu-muted); font-size: 12px; font-weight: 400; }
+.nlu-lesson[open] > summary { border-bottom: 1px solid var(--nlu-border); }
+.nlu-lesson-body { padding: 8px 24px 24px; font-size: 15px; line-height: 1.95; }
+.nlu-lesson-body p { margin: 12px 0; white-space: pre-line; }
+.nlu-lesson-intro { color: var(--nlu-ink); }
+.nlu-lesson-points { display: grid; gap: 12px; margin: 20px 0; }
+.nlu-lesson-body h3 { font-size: 14px; font-weight: 600; margin: 0; line-height: 1.8; }
+.nlu-lesson-points p { margin: 4px 0 0; }
+.nlu-lesson-formula { padding: 12px 16px; margin: 18px 0; background: var(--nlu-bg); border: 1px solid var(--nlu-border); border-radius: 3px; }
+.nlu-lesson-formula .nlu-formula { margin: 0; font: 14px/1.9 var(--font-mono, monospace); white-space: pre-wrap; }
+.nlu-lesson-formula p:last-child { font-size: 13px; color: var(--nlu-muted); margin: 8px 0 0; }
+.nlu-lesson-example { margin: 24px 0 16px; padding-left: 16px; border-left: 2px solid var(--nlu-accent); }
+.nlu-lesson-example p { margin-top: 6px; }
+.nlu-lesson-pitfall { font-size: 13px; color: var(--nlu-muted); }
+.nlu-lesson .nlu-sources { margin-top: 20px; }
+.nlu-lesson-actions { display: flex; gap: 8px; margin-top: 20px; }
+.nlu-lesson-actions button, .nlu-app .nlu-read-lesson { font-size: 13px; }
+.nlu-app .nlu-read-lesson { min-height: 36px; padding: 6px 10px; margin: 0 0 12px; background: transparent; }
+@media (max-width: 640px) { .nlu-lesson > summary { padding: 16px; }.nlu-lesson-body { padding: 4px 16px 20px; font-size: 14px; }.nlu-lesson-title { font-size: 16px; }.nlu-lesson-formula { padding: 12px; }.nlu-lesson-formula .nlu-formula { font-size: 12px; } }
 .nlu-session-line { display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 13px; color: var(--nlu-muted); }
 .nlu-timer { font: 500 22px var(--font-mono, monospace); color: var(--nlu-ink); font-variant-numeric: tabular-nums; }
 .nlu-timer.is-urgent { color: var(--nlu-accent); }
