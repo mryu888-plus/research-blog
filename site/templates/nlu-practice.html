@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block extra_styles %}<link rel="stylesheet" href="{{ get_url(path='nlu-practice/style.css', cachebust=true) }}">{% endblock extra_styles %}
+{% block content %}
+<div id="nlu-app" class="nlu-app" data-bank-url="{{ get_url(path='nlu-practice/bank.json', cachebust=true) }}">
+  <header class="nlu-header"><p class="nlu-eyebrow">STUDY / NATURAL LANGUAGE UNDERSTANDING</p><h1>NLU 刷题室</h1><p>先辨清概念，再练熟判断。英文题干 · 中文解析 · 逐题回到讲义。</p></header>
+  <p id="nlu-status" class="nlu-status" role="status" aria-live="polite">正在载入题库…</p>
+  <div id="nlu-content"></div>
+  <noscript><p>刷题室需要 JavaScript 来记录选择并展示解析。请启用 JavaScript 后刷新页面。</p></noscript>
+</div>
+<script defer src="{{ get_url(path='nlu-practice/app.js', cachebust=true) }}"></script>
+{% endblock content %}
