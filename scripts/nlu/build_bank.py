@@ -11,7 +11,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-VERSION = '2026-10-03.3'
+VERSION = '2026-10-03.4'
 RETIRED_IDS = {
     'general-07', 'microtext-03', 'sbd-04', 'pos-03', 'concept-06',
     'anaphora-04', 'anaphora-06', 'subjectivity-04', 'sarcasm-06',
@@ -34,9 +34,37 @@ def lecture_for(page):
     return next((lec['id'] for lec in LECTURES if lec['pages'][0] <= page <= lec['pages'][1]), 1)
 
 
+def text_values(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for child in value.values():
+            yield from text_values(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from text_values(child)
+
+
+def validate_lesson_audit(bank):
+    """Check audit completeness and quoted evidence; semantic review is manual."""
+    questions = {question['id']: question for question in bank['questions']}
+    lessons = {topic['id']: topic['lesson'] for topic in bank['topics']}
+    records = [record for part in ('early', 'tasks', 'late') for record in read(f'audit-lessons-{part}.json')['questions']]
+    assert len(records) == len({record['questionId'] for record in records}) == len(questions), 'Every question needs its own lesson audit'
+    assert {record['questionId'] for record in records} == set(questions), 'Audit/question mismatch'
+    for record in records:
+        question = questions[record['questionId']]
+        assert record['topic'] == question['topic'], question['id']
+        assert record['requiredConcepts'] and all(concept.strip() for concept in record['requiredConcepts']), question['id']
+        assert record['priorGapZh'].strip() and record['reasoningZh'].strip(), question['id']
+        text = list(text_values(lessons[question['topic']]))
+        assert record['evidence'] and all(len(quote.strip()) >= 8 and any(quote in paragraph for paragraph in text) for quote in record['evidence']), ('Missing quoted lesson evidence', question['id'])
+    return records
+
+
 def build():
     baseline = read('baseline-bank.json')
-    bank = {**copy.deepcopy(baseline), 'version': VERSION, 'compatibleVersions': [baseline['version'], '2026-10-03.2'], 'lectures': LECTURES, 'retiredQuestionIds': sorted(RETIRED_IDS)}
+    bank = {**copy.deepcopy(baseline), 'version': VERSION, 'compatibleVersions': [baseline['version'], '2026-10-03.2', '2026-10-03.3'], 'lectures': LECTURES, 'retiredQuestionIds': sorted(RETIRED_IDS)}
     bank['questions'] = [q for q in bank['questions'] if q['id'] not in RETIRED_IDS]
     natural_stems = {q['id']: q['prompt'] for name in ('content-a.json', 'content-b.json') for q in read(name)['questions']}
     natural_stems.update({
@@ -77,13 +105,17 @@ def build():
     for lesson in lessons:
         topic = topics[lesson['topic']]
         assert lesson['introZh'].strip() and lesson['pitfallZh'].strip(), topic['id']
-        assert 3 <= len(lesson['keyPoints']) <= 5, topic['id']
+        assert 3 <= len(lesson['keyPoints']) <= 8, topic['id']
         assert all(point['title'].strip() and point['body'].strip() for point in lesson['keyPoints']), topic['id']
         assert lesson['example']['title'].strip() and lesson['example']['body'].strip(), topic['id']
         assert isinstance(lesson['formulas'], list) and all(formula['expression'].strip() and formula['explanationZh'].strip() for formula in lesson['formulas']), topic['id']
         assert lesson['pages'] and len(lesson['pages']) == len(set(lesson['pages'])), topic['id']
         assert all(isinstance(page, int) and 1 <= page <= 400 for page in lesson['pages']), topic['id']
         assert set(lesson['pages']) & set(topic['pages']), ('Lesson source mismatch', topic['id'])
+        assert 2 <= len(lesson['prerequisites']) <= 8 and all(item['term'].strip() and item['explanationZh'].strip() for item in lesson['prerequisites']), topic['id']
+        assert 3 <= len(lesson['decisionSteps']) <= 6 and all(step.strip() for step in lesson['decisionSteps']), topic['id']
+        assert 2 <= len(lesson['contrasts']) <= 6 and all(item['items'].strip() and item['differenceZh'].strip() and item['cueZh'].strip() for item in lesson['contrasts']), topic['id']
+        assert lesson['workedExamples'] and all(example['title'].strip() and example['takeawayZh'].strip() and len(example['steps']) >= 3 and all(step.strip() for step in example['steps']) for example in lesson['workedExamples']), topic['id']
         topic['lesson'] = {key: value for key, value in lesson.items() if key != 'topic'}
     qs = {q['id']: q for q in bank['questions']}
     assert len(topics) == len(bank['topics']), 'Duplicate topic id'
@@ -143,6 +175,7 @@ def build():
     audit['pageAudit'].sort(key=lambda p: p['page'])
     audit['knowledgePoints'].sort(key=lambda p: (min(p['pages']), p['id']))
     bank['coverage'] = audit
+    validate_lesson_audit(bank)
     return bank
 
 

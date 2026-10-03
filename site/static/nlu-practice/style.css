@@ -46,6 +46,19 @@
 .nlu-lesson-example { margin: 24px 0 16px; padding-left: 16px; border-left: 2px solid var(--nlu-accent); }
 .nlu-lesson-example p { margin-top: 6px; }
 .nlu-lesson-pitfall { font-size: 13px; color: var(--nlu-muted); }
+.nlu-lesson-foundation, .nlu-lesson-contrasts, .nlu-lesson-decisions, .nlu-lesson-worked { margin: 28px 0; border-top: 1px solid var(--nlu-border); padding-top: 20px; }
+.nlu-lesson-foundation dl { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; margin: 16px 0 0; }
+.nlu-lesson-foundation dt { font-size: 13px; font-weight: 600; }
+.nlu-lesson-foundation dd { margin: 4px 0 0; font-size: 13px; line-height: 1.9; color: var(--nlu-muted); }
+.nlu-lesson-body h4 { font-size: 14px; line-height: 1.8; font-weight: 550; margin: 0 0 8px; }
+.nlu-lesson-contrasts section { padding: 16px 0 4px; }
+.nlu-lesson-contrasts section + section { border-top: 1px dashed var(--nlu-border); }
+.nlu-decision-cue { font-size: 13px; color: var(--nlu-muted); }
+.nlu-lesson-body ol { padding-left: 24px; margin: 14px 0; }
+.nlu-lesson-body li { padding-left: 4px; margin: 10px 0; white-space: pre-line; }
+.nlu-worked-example { padding: 18px; margin-top: 16px; border: 1px solid var(--nlu-border); border-radius: 4px; background: var(--nlu-bg); }
+.nlu-example-takeaway { font-size: 13px; color: var(--nlu-muted); padding-top: 12px; border-top: 1px solid var(--nlu-border); }
+@media (max-width: 640px) { .nlu-lesson-foundation dl { grid-template-columns: 1fr; }.nlu-worked-example { padding: 14px; }.nlu-lesson-body ol { padding-left: 20px; } }
 .nlu-lesson .nlu-sources { margin-top: 20px; }
 .nlu-lesson-actions { display: flex; gap: 8px; margin-top: 20px; }
 .nlu-lesson-actions button, .nlu-app .nlu-read-lesson { font-size: 13px; }

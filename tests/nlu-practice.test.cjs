@@ -236,7 +236,7 @@ test('question stems ask knowledge rather than slide-specific recall', () => {
   for (const q of b.questions) assert(!recall.test(q.prompt), q.id + ': slide-recall wording');
 });
 
-test('every topic has a substantive lesson with examples, bilingual terms and source pages', () => {
+test('every topic has structured teaching sections, examples, bilingual terms and source pages', () => {
   const b = JSON.parse(fs.readFileSync(bankPath, 'utf8'));
   assert.equal(b.topics.length, 80);
   for (const t of b.topics) {
@@ -251,6 +251,10 @@ test('every topic has a substantive lesson with examples, bilingual terms and so
     assert(lesson.formulas.every(f => f.expression && f.explanationZh), t.id);
     assert(lesson.pages.length > 0 && lesson.pages.every(p => Number.isInteger(p) && p >= 1 && p <= 400), t.id);
     assert(lesson.pages.some(p => t.pages.includes(p)), t.id + ': source overlap');
+    assert(lesson.prerequisites.length >= 2 && lesson.prerequisites.every(p => p.term && p.explanationZh.length >= 12), t.id + ': prerequisites');
+    assert(lesson.decisionSteps.length >= 3 && lesson.decisionSteps.every(p => p.length >= 12), t.id + ': decision procedure');
+    assert(lesson.contrasts.length >= 2 && lesson.contrasts.every(p => p.items && p.differenceZh.length >= 12 && p.cueZh.length >= 8), t.id + ': discriminating concepts');
+    assert(lesson.workedExamples.length >= 1 && lesson.workedExamples.every(e => e.title && e.steps.length >= 3 && e.steps.every(s => s.length >= 8) && e.takeawayZh.length >= 12), t.id + ': worked reasoning');
     const text = JSON.stringify(lesson);
     assert(/[A-Za-z]{3}/.test(text), t.id + ': English terms');
     assert(!/不是[^。！？\n]{0,120}而是/.test(text), t.id + ': unwanted phrasing');
@@ -258,6 +262,7 @@ test('every topic has a substantive lesson with examples, bilingual terms and so
     const html = core.topicLessonHtml(t, b.source);
     assert(html.includes('data-lesson-topic="' + t.id + '" open'));
     assert(html.includes('开始做题'));
+    for (const label of ['基础概念', '概念辨析', '判断步骤', '分步例题']) assert(html.includes(label), t.id + ': ' + label);
     assert(html.includes('https://sentic.net/nlu-slides.pdf#page=' + lesson.pages[0]));
   }
 });
@@ -280,6 +285,10 @@ test('lesson content is escaped and unsafe links are suppressed', () => {
   t.lesson.introZh = '<img src=x onerror=alert(1)>';
   t.lesson.formulas = [{ expression: '<svg/onload=1>', explanationZh: 'A < B' }];
   t.lesson.keyPoints[0].title = '<script>bad()</script>';
+  t.lesson.prerequisites[0].term = '<svg onload=1>';
+  t.lesson.decisionSteps[0] = '<img src=x onerror=1>';
+  t.lesson.contrasts[0].cueZh = '<script>bad()</script>';
+  t.lesson.workedExamples[0].steps[0] = '<svg onload=2>';
   const html = core.topicLessonHtml(t, { ...b.source, lectureUrl: 'javascript:alert(1)' });
   assert(!html.includes('<img'));
   assert(!html.includes('<script>'));
@@ -291,6 +300,7 @@ test('lesson content is escaped and unsafe links are suppressed', () => {
 test('lesson-only update remains compatible with all answers in the 475-question version', () => {
   const b = JSON.parse(fs.readFileSync(bankPath, 'utf8'));
   assert(b.compatibleVersions.includes('2026-10-03.2'));
+  assert(b.compatibleVersions.includes('2026-10-03.3'));
   const q = b.questions[150];
   const s = core.createSession(b.questions.slice(140, 160).map(q => q.id), 'exam', 1000, '2026-10-03.2');
   s.cursor = 10; s.answers[q.id] = q.answer;

@@ -4,404 +4,2492 @@
       "topic": "wsd",
       "introZh": "词义消歧（Word Sense Disambiguation, WSD）解决同一个词在不同语境中表达不同意义的问题。输入包含目标词和上下文，输出通常是预先定义的候选词义之一；句子里的搭配、词性和篇章话题都能帮助选择。",
       "keyPoints": [
-        {"title": "候选词义 Sense Inventory", "body": "先确定系统允许输出哪些词义，再判断当前用法。WordNet 用同义词集及语义关系组织词汇知识；它能提供候选义与释义。SemCor 则提供词在实际文本中的词义标注，适合训练和评测。"},
-        {"title": "知识与监督 Knowledge-based / Supervised", "body": "知识式方法比较语境与释义或词义关系；监督式方法从带标签实例学习上下文到词义的映射。上下文编码器也可以结合显式词义知识，利用两类信息。"},
-        {"title": "语义归纳 Sense Induction", "body": "对上下文表示聚类可以发现不同用法，例如 K-means 得到多个语境簇。簇编号需要进一步对齐，才能作为词典中的标准词义标签；检索、翻译和情感分析可能依赖这一结果。"}
+        {
+          "title": "候选词义 Sense Inventory",
+          "body": "先确定系统允许输出哪些词义，再判断当前用法。WordNet 用同义词集及语义关系组织词汇知识；它能提供候选义与释义。SemCor 则提供词在实际文本中的词义标注，适合训练和评测。"
+        },
+        {
+          "title": "知识与监督 Knowledge-based / Supervised",
+          "body": "知识式方法比较语境与释义或词义关系；监督式方法从带标签实例学习上下文到词义的映射。上下文编码器也可以结合显式词义知识，利用两类信息。"
+        },
+        {
+          "title": "语义归纳 Sense Induction",
+          "body": "对上下文表示聚类可以发现不同用法，例如 K-means 得到多个语境簇。簇编号需要进一步对齐，才能作为词典中的标准词义标签；检索、翻译和情感分析可能依赖这一结果。"
+        },
+        {
+          "title": "上下文依赖 Context Dependence",
+          "body": "Cool language 是课程用来描述较依赖上下文、共享知识与情境才能理解的语言表达的用语。cool 在此处指理解所需的信息来源；温度和表情数量与这个术语无关。"
+        },
+        {
+          "title": "从输入辨认方法",
+          "body": "出现人工参考词义标签 gold sense labels，就具备监督学习的训练信号；只用释义或词义关系可做知识式消歧；只按无标签语境相似度聚类，则先得到词义簇。K-means 反复按距离分组和更新簇中心，簇编号本身没有词典义名称。"
+        }
       ],
-      "example": {"title": "同一个词的两种用法", "body": "“She placed the letter in a drawer.”中的 letter 指信件；“The final letter is Z.”中的 letter 指字母。placed、drawer 与 final、Z 为词义选择提供了不同线索。"},
+      "example": {
+        "title": "同一个词的两种用法",
+        "body": "“She placed the letter in a drawer.”中的 letter 指信件；“The final letter is Z.”中的 letter 指字母。placed、drawer 与 final、Z 为词义选择提供了不同线索。"
+      },
       "pitfallZh": "仅根据目标词出现频率选择最常见词义，会忽略当前语境。比较结果时还要核对候选词义粒度与测试领域。",
-      "formulas": [{"expression": "Accuracy = 正确词义预测数 / 全部待消歧实例数", "explanationZh": "例如 60 个实例中判对 48 个，准确率为 0.80；实例粒度与候选义集合必须保持一致。"}],
-      "pages": [237, 238, 239, 240]
+      "formulas": [
+        {
+          "expression": "Accuracy = 正确词义预测数 / 全部待消歧实例数",
+          "explanationZh": "例如 60 个实例中判对 48 个，准确率为 0.80；实例粒度与候选义集合必须保持一致。"
+        }
+      ],
+      "pages": [
+        237,
+        238,
+        239,
+        240
+      ],
+      "prerequisites": [
+        {
+          "term": "目标词与词义",
+          "explanationZh": "目标词是待解释的词形；词义是该次出现所表达的意义。相同词形能对应多个意义，必须逐次结合语境判断。"
+        },
+        {
+          "term": "标签与知识库",
+          "explanationZh": "标签将某一次出现与正确词义配对，知识库则列出候选义和它们的关系。LexNorm 关注规范化，LIWC 提供心理语言词类，二者不能替代 SemCor 的词义标注。"
+        }
+      ],
+      "decisionSteps": [
+        "先锁定输出是否为目标词的候选词义；句界、实体类型和情感方向各有独立输出。",
+        "列出候选释义，再用搭配、语法位置和话题逐项检查相容性。",
+        "辨认信息来源：实例标签、词典关系、无标签聚类分别支持监督式、知识式和词义归纳。",
+        "评价时用正确数除以全部实例数，转换为百分数；错误率则用错误数作分子。"
+      ],
+      "contrasts": [
+        {
+          "items": "WSD / NER",
+          "differenceZh": "WSD 选择词义，NER 给名称跨度标人物或组织等类别。",
+          "cueZh": "看到 sense 先找候选释义；看到 PERSON/ORG 先找实体类型。"
+        },
+        {
+          "items": "Sense induction / Sense disambiguation",
+          "differenceZh": "归纳先发现语境簇，消歧通常需要在已定义词义中作选择。",
+          "cueZh": "聚类得到 cluster 1 后，还需解释并对齐到 sense inventory。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "给 seal 选择意义",
+          "steps": [
+            "读句子“The keeper fed the seal with fish”，先列出海豹和印章两个候选义。",
+            "keeper、fed、fish 共同支持动物解释；不能仅因 seal 常作名词就确定具体义。",
+            "若训练数据直接标明这个实例为动物义，可用监督学习；若只比较两条释义，则属于知识式方法。",
+            "另有 24 个实例，判对 18 个，准确率为 18/24=75%，余下 25% 为错误率。"
+          ],
+          "takeawayZh": "先判断词义与语境是否相容，再分清方法所用的监督信息。"
+        }
+      ]
     },
     {
       "topic": "general",
       "introZh": "自然语言处理（NLP）涵盖语言数据的分析与处理，自然语言理解（NLU）更聚焦表达的意义、意图和语境。讲义以七大支柱与行李箱模型组织这一目标，把可学习的模块与可解释的知识连接起来。",
       "keyPoints": [
-        {"title": "跨学科与分解 Multidisciplinarity / Task Decomposition", "body": "语言理解结合语言学、心理学、逻辑等视角。复杂应用可拆成边界识别、词义、实体、指代和情感等子任务，分别开发与评估，并关注它们之间的依赖。"},
-        {"title": "平行类比与接地 Parallel Analogy / Symbol Grounding", "body": "平行类比把两个领域中对应的关系结构联系起来，课程也使用 panalogy 这一称呼。符号接地关注词语与感知、行动和经验的联系，帮助符号获得可理解的意义。"},
-        {"title": "相似性与意图 Similarity / Intention Awareness", "body": "相似性可同时考察向量距离、邻域和图结构；一个数值难以表达全部语义关系。意图感知进一步推断说话者希望完成的事情，并在证据不足时通过对话确认。"},
-        {"title": "可信性与分层 Trustworthiness / Suitcase Model", "body": "可信性涉及解释、可靠性及对用户的影响。行李箱模型按句法、语义、语用组织任务，模块可独立维护，系统级测试负责检查它们组合后的表现。"}
+        {
+          "title": "跨学科与分解 Multidisciplinarity / Task Decomposition",
+          "body": "语言理解结合语言学、心理学、逻辑等视角。复杂应用可拆成边界识别、词义、实体、指代和情感等子任务，分别开发与评估，并关注它们之间的依赖。"
+        },
+        {
+          "title": "平行类比与接地 Parallel Analogy / Symbol Grounding",
+          "body": "平行类比把两个领域中对应的关系结构联系起来，课程也使用 panalogy 这一称呼。符号接地关注词语与感知、行动和经验的联系，帮助符号获得可理解的意义。"
+        },
+        {
+          "title": "相似性与意图 Similarity / Intention Awareness",
+          "body": "相似性可同时考察向量距离、邻域和图结构；一个数值难以表达全部语义关系。意图感知进一步推断说话者希望完成的事情，并在证据不足时通过对话确认。"
+        },
+        {
+          "title": "可信性与分层 Trustworthiness / Suitcase Model",
+          "body": "可信性涉及解释、可靠性及对用户的影响。行李箱模型按句法、语义、语用组织任务，模块可独立维护，系统级测试负责检查它们组合后的表现。"
+        },
+        {
+          "title": "层次与结构线索",
+          "body": "NLP 包含语言数据处理、生成与分析等广泛工作，NLU 属于其中关注意义的分支。句法 syntax 问词怎样组成句子，语义 semantics 问表达什么，语用 pragmatics 问在当前情境下想传达什么。拓扑 topology 指图的连接方式与邻域组织，拓扑感知相似性会比较这些关系；拼写相同或余弦较大都无法独立保证同义。"
+        }
       ],
-      "example": {"title": "从一句话到一个需求", "body": "用户说“我明早要赶第一班车”，系统可以识别时间和出行事件，结合对话判断是否需要查询时刻或设置提醒，再询问用户确认具体目标。"},
+      "example": {
+        "title": "从一句话到一个需求",
+        "body": "用户说“我明早要赶第一班车”，系统可以识别时间和出行事件，结合对话判断是否需要查询时刻或设置提醒，再询问用户确认具体目标。"
+      },
       "pitfallZh": "任务分解需要明确模块接口；局部模块各自表现良好，仍可能因上下文丢失或错误传递导致整体理解失败。",
       "formulas": [],
-      "pages": [198, 200, 204, 207, 210]
+      "pages": [
+        198,
+        200,
+        204,
+        207,
+        210
+      ],
+      "prerequisites": [
+        {
+          "term": "模块 Module",
+          "explanationZh": "模块是一段有明确输入、输出和责任的处理过程，例如实体模块输出名称及类型，检索模块返回相关文档。"
+        },
+        {
+          "term": "类比 Analogy",
+          "explanationZh": "类比寻找两个情境之间的关系对应。例如水在管道中流动与电荷在电路中流动，迁移的是对应关系。"
+        },
+        {
+          "term": "符号 Symbol",
+          "explanationZh": "符号是文字或内部标记。接地将标记与可感知、可行动的经验联系起来，打破词典词语循环解释的局限。"
+        }
+      ],
+      "decisionSteps": [
+        "先判断问题在问系统设计原则、语言任务还是知识表示。",
+        "复杂流程拆成不同职责时，检查任务分解与模块接口；共享同一预测器联合训练才涉及多任务学习设计。",
+        "跨领域关系对应归入平行类比，感知行动连接归入符号接地，用户行动目标归入意图感知。",
+        "设计完整系统时，把句法、语义、语用结果连接起来，并检查错误是否向后传播。"
+      ],
+      "contrasts": [
+        {
+          "items": "Panalogy / Parallel computing",
+          "differenceZh": "Panalogy 即 parallel analogy，关注概念结构对应；并行计算关注同时运行计算。",
+          "cueZh": "两个领域的相似关系支持类比，多个 CPU 同时执行支持并行计算。"
+        },
+        {
+          "items": "Entity / Intention",
+          "differenceZh": "实体是表达提到的对象，意图是用户希望实现的目标。",
+          "cueZh": "识别日期可为提醒任务提供参数，是否想设置提醒仍需意图判断。"
+        },
+        {
+          "items": "Task decomposition / Multi-task learning",
+          "differenceZh": "任务分解划分职责；多任务学习描述多个目标如何共同训练模型。",
+          "cueZh": "先看题干在谈模块组织还是共享参数和训练目标。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "理解一条出行请求",
+          "steps": [
+            "用户说“航班六点起飞，我怕睡过头”，先提取时间和航班等实体。",
+            "结合担忧和出行目标，推测可能需要起床提醒，再确认具体时间。",
+            "把识别实体、推断意图和执行提醒分成模块，这体现任务分解。",
+            "若语音时间识别有误，即使提醒模块按接口工作，整体也会出错，所以还需端到端验证。"
+          ],
+          "takeawayZh": "分清对象、目标和模块责任，便能判断系统描述对应哪个概念。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-layers",
       "introZh": "设计 NLU 系统时，需要同时明确任务处理的语言层次、产生的结构以及结果如何被下游使用。同一模型家族可以用于多个任务，监督标签与评价协议则必须围绕具体输出设计。",
       "keyPoints": [
-        {"title": "句法、语义、语用 Syntax / Semantics / Pragmatics", "body": "句法层组织词性、短语和句子边界；语义层处理词义、概念、实体和指代；语用层利用说话者、情境与目的理解隐喻、反讽和评价。各层可以互相提供约束。"},
-        {"title": "语义的三个视角 Semantic Perspectives", "body": "词汇语义关注词义、歧义及词间关系，结构语义考察语法结构怎样参与意义构成，认知语义借助框架、情景和概念化解释表达。同一句话可从这些视角共同分析。"},
-        {"title": "下游角色 Feature / Parser / Explainability", "body": "一个模块可提供分类特征、输出可操作的解析结构，或为预测给出解释依据。评估需要对应这些角色：标签准确率、结构匹配和解释质量回答的问题各有侧重。"},
-        {"title": "模块与整体 Module / End-to-end", "body": "替换模块后，应检查输入输出格式、局部指标及最终应用效果。剩余难例常涉及常识和跨任务依赖，继续提高质量需要分析错误构成，并关注领域变化。"}
+        {
+          "title": "句法、语义、语用 Syntax / Semantics / Pragmatics",
+          "body": "句法层组织词性、短语和句子边界；语义层处理词义、概念、实体和指代；语用层利用说话者、情境与目的理解隐喻、反讽和评价。各层可以互相提供约束。"
+        },
+        {
+          "title": "语义的三个视角 Semantic Perspectives",
+          "body": "词汇语义关注词义、歧义及词间关系，结构语义考察语法结构怎样参与意义构成，认知语义借助框架、情景和概念化解释表达。同一句话可从这些视角共同分析。"
+        },
+        {
+          "title": "下游角色 Feature / Parser / Explainability",
+          "body": "一个模块可提供分类特征、输出可操作的解析结构，或为预测给出解释依据。评估需要对应这些角色：标签准确率、结构匹配和解释质量回答的问题各有侧重。"
+        },
+        {
+          "title": "模块与整体 Module / End-to-end",
+          "body": "替换模块后，应检查输入输出格式、局部指标及最终应用效果。剩余难例常涉及常识和跨任务依赖，继续提高质量需要分析错误构成，并关注领域变化。"
+        },
+        {
+          "title": "判断任务归属",
+          "body": "词性标签 noun/verb 描述语法形式，词义 sense 描述词在这里表达什么，意图 intent 描述交际目标。自然语言理解通常从形式走向意义再走向语境，但实际系统可以通过联合建模让各层互相反馈。"
+        },
+        {
+          "title": "质量提升与误差分析",
+          "body": "简单模式被解决后，剩余难例可能需要常识、跨句关系和用户背景，每一点改进的代价可能上升。应检查错误类型与领域，任何固定百分比分界都无法普遍定义系统是否真正理解。"
+        }
       ],
-      "example": {"title": "一次错误怎样传递", "body": "系统把药品缩写后的点误判为句末，后续实体模型只能看到被切断的名称，指代模块也失去完整上下文。分别检查分句、实体跨度和最终问答，可以定位故障来源。"},
+      "example": {
+        "title": "一次错误怎样传递",
+        "body": "系统把药品缩写后的点误判为句末，后续实体模型只能看到被切断的名称，指代模块也失去完整上下文。分别检查分句、实体跨度和最终问答，可以定位故障来源。"
+      },
       "pitfallZh": "跨任务比较分数前，先核对输出粒度和评价条件；词元级准确率很高的模块，仍可能留下影响整句理解的关键错误。",
       "formulas": [],
-      "pages": [208, 210, 212, 235, 262]
+      "pages": [
+        208,
+        210,
+        212,
+        235,
+        262
+      ],
+      "prerequisites": [
+        {
+          "term": "输出结构",
+          "explanationZh": "标签给一个对象分类；跨度标起止位置；树、关系或实体表进一步表示对象之间的结构。评测单位应与这些输出匹配。"
+        },
+        {
+          "term": "规则、统计与神经模型",
+          "explanationZh": "规则显式写条件，统计模型从计数或特征估计规律，神经模型学习表示。同一家族能适配多个任务，仍需各自标签和输入输出规范。"
+        }
+      ],
+      "decisionSteps": [
+        "从题干输出反推任务：词性看语法形式，候选义看语义，交际目标看语用。",
+        "区分下游拿到的是数值特征、可操作结构还是解释依据。",
+        "替换模块时核对字段、标签集及边界定义，再测局部质量和端到端效果。",
+        "比较性能先对齐任务、数据、指标与监督设定，再分析剩余错误。"
+      ],
+      "contrasts": [
+        {
+          "items": "Lexical / Structural / Cognitive semantics",
+          "differenceZh": "词汇语义研究词义及词间关系；结构语义研究组合结构如何构成意义；认知语义研究框架、情景和概念化。",
+          "cueZh": "word senses 指向词汇层，frames and situations 指向认知层。"
+        },
+        {
+          "items": "Component / Whole system",
+          "differenceZh": "模块输出只解决系统的一部分，最终效果还依赖输入质量和后续使用方式。",
+          "cueZh": "某部件更准后要复测下游，不能按名称或模型大小判断改进。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "替换客服系统的一个模块",
+          "steps": [
+            "旧词元化器把不规则动词还原错误，新模型在单元测试上修正该错误。",
+            "先检查新旧接口是否仍输出逐词词元及相同词序，避免检索器字段读错。",
+            "再比较检索召回和最终回答正确率，确认修正是否真的帮助客服。",
+            "把仍失败的含省略请求单独分析，发现需要篇章和意图信息，增加词形准确率已难以独立解决。"
+          ],
+          "takeawayZh": "局部性能、结构接口和系统收益需分别验证。"
+        }
+      ]
     },
     {
       "topic": "microtext",
       "introZh": "微文本规范化（Microtext Normalization）把短信和社交媒体里的缩写、非标准拼写、字符替代及表情表达转换为便于后续处理的形式。目标是在减少表面差异的同时保留原句意义。",
       "keyPoints": [
-        {"title": "形式归一 Text Normalization", "body": "常见操作包括展开缩写、纠正拼写和统一书写变体。规则或词典适合稳定对应关系；同一个缩写拥有多个展开时，需要周围词语与话题帮助选择。"},
-        {"title": "编辑与发音 Edit / Phonetic Similarity", "body": "编辑距离计算从一个字符串变成另一个所需的最少插入、删除和替换次数，可用于生成候选。数字、字母或借词转写还可能依据发音对应，因此音素信息能补充字符相似度。"},
-        {"title": "资源与检索 Resources / Retrieval", "body": "LexNorm 提供文本规范化样本；CMUdict 是发音词典，可帮助连接书写与发音。同义词资源可支持查询扩展或索引扩展，使不同表达指向相关内容。"}
+        {
+          "title": "形式归一 Text Normalization",
+          "body": "常见操作包括展开缩写、纠正拼写和统一书写变体。规则或词典适合稳定对应关系；同一个缩写拥有多个展开时，需要周围词语与话题帮助选择。"
+        },
+        {
+          "title": "编辑与发音 Edit / Phonetic Similarity",
+          "body": "编辑距离计算从一个字符串变成另一个所需的最少插入、删除和替换次数，可用于生成候选。数字、字母或借词转写还可能依据发音对应，因此音素信息能补充字符相似度。"
+        },
+        {
+          "title": "资源与检索 Resources / Retrieval",
+          "body": "LexNorm 提供文本规范化样本；CMUdict 是发音词典，可帮助连接书写与发音。同义词资源可支持查询扩展或索引扩展，使不同表达指向相关内容。"
+        },
+        {
+          "title": "检索两端的扩展",
+          "body": "查询扩展 query expansion 在用户提交查询时加入同义词，索引扩展 index expansion 在文档入库时为其增加别名入口。两者都可提高召回，但发生位置不同。拼写变体归一处理同一词的写法，同义扩展连接不同词汇的相近意义。"
+        },
+        {
+          "title": "编辑距离怎样数",
+          "body": "从原串到目标串找成本最低的编辑序列。插入一个字符、删除一个字符、替换一个字符各计一次，已经相同的字符计零。标准 Levenshtein 没有单独的交换操作，因此交换相邻字符通常要两次编辑。"
+        }
       ],
-      "example": {"title": "从候选到语境选择", "body": "“pls send teh file”可得到“please send the file”：pls 通过缩写展开处理，teh 通过拼写候选处理。若信息涉及专业缩写，则应结合领域词典和上下文，保留具有特定意义的缩写。"},
+      "example": {
+        "title": "从候选到语境选择",
+        "body": "“pls send teh file”可得到“please send the file”：pls 通过缩写展开处理，teh 通过拼写候选处理。若信息涉及专业缩写，则应结合领域词典和上下文，保留具有特定意义的缩写。"
+      },
       "pitfallZh": "编辑距离小只说明字符变化少，不能保证含义合适；规范化若删除否定词或误展开缩写，会直接改变下游情感和意图判断。",
-      "formulas": [{"expression": "d(a,b) = 把字符串 a 转为 b 的最少单位编辑次数", "explanationZh": "单位编辑包括插入、删除、替换；这里使用标准 Levenshtein 定义，字符交换需按相应编辑步骤计数。"}],
-      "pages": [213, 214, 215, 216, 217]
+      "formulas": [
+        {
+          "expression": "d(a,b) = 把字符串 a 转为 b 的最少单位编辑次数",
+          "explanationZh": "单位编辑包括插入、删除、替换；这里使用标准 Levenshtein 定义，字符交换需按相应编辑步骤计数。"
+        }
+      ],
+      "pages": [
+        213,
+        214,
+        215,
+        216,
+        217
+      ],
+      "prerequisites": [
+        {
+          "term": "规范化 Normalization",
+          "explanationZh": "输出仍是原表达的标准语言形式，保留对象、否定、时间等意义；给实体分类或寻找代词先行词属于别的输出目标。"
+        },
+        {
+          "term": "发音词典 Pronunciation Lexicon",
+          "explanationZh": "CMUdict 给出英语词与音素序列对应，可帮助寻找字面差异较大但读音相近的候选。LexNorm 提供非标准文本与规范形式的样例。"
+        }
+      ],
+      "decisionSteps": [
+        "识别变化来自缩写、拼写、书写变体还是发音转写，选择相应候选生成方式。",
+        "计算单位编辑次数时逐字符对齐，找最少修改路径。",
+        "把候选放回原句检查意义，尤其保留否定和领域缩写。",
+        "检索题检查操作发生在用户查询端还是文档索引端。"
+      ],
+      "contrasts": [
+        {
+          "items": "Edit distance / Semantic similarity",
+          "differenceZh": "编辑距离测字符变化，语义相似性测意义关联；距离小的候选可能完全不合句意。",
+          "cueZh": "题干提供上下文时，不可只靠字符数排序。"
+        },
+        {
+          "items": "Query / Index expansion",
+          "differenceZh": "查询端增加搜索表达；索引端增加文档可被命中的入口。",
+          "cueZh": "看被修改的是 query 还是 indexed document。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "规范化并检索一条短消息",
+          "steps": [
+            "消息“plz find a flat”中的 plz 可通过缩写表展开为 please。",
+            "flat 在住房语境中可与 apartment 建立同义联系，轮胎语境需要别的解释。",
+            "搜索时同时提交 flat 和 apartment 属于查询扩展；若事先为住房文档加两种索引词，则属于索引扩展。",
+            "另一个拼写“aprtment”变为“apartment”仅需插入 a，一次编辑生成候选后还要检查语境。"
+          ],
+          "takeawayZh": "候选来源、语境选择和检索扩展位置是三个独立判断。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-normalization",
       "introZh": "较完整的规范化系统通常先发现异常表达，再生成候选、利用上下文排序，最后输出标准形式。这一过程连接字符串、发音、词义和领域知识，评估时需要区分候选覆盖与最终首选质量。",
       "keyPoints": [
-        {"title": "候选生成 Candidate Generation", "body": "字符编辑、形态规则和发音匹配各自捕捉不同变体。借词的多种转写尤其适合结合音素相似度；ARPABET 是音素编码体系，CMUdict 是提供词与发音对应的具体词典。"},
-        {"title": "上下文排序 Contextual Ranking", "body": "候选进入当前句子后，应与邻词搭配和整体话题相容。colour/color 一类属于书写变体，同义词扩展还涉及不同词汇之间的意义联系，处理策略可分别设计。"},
-        {"title": "评测粒度 Top-k / Word Error Rate", "body": "Top-1 检查第一候选，Top-k 检查前 k 个候选是否包含正确结果。词错误率进一步按替换、删除、插入计分。比较系统应使用相同领域、切词方式及测试协议。"}
+        {
+          "title": "候选生成 Candidate Generation",
+          "body": "字符编辑、形态规则和发音匹配各自捕捉不同变体。借词的多种转写尤其适合结合音素相似度；ARPABET 是音素编码体系，CMUdict 是提供词与发音对应的具体词典。"
+        },
+        {
+          "title": "上下文排序 Contextual Ranking",
+          "body": "候选进入当前句子后，应与邻词搭配和整体话题相容。colour/color 一类属于书写变体，同义词扩展还涉及不同词汇之间的意义联系，处理策略可分别设计。"
+        },
+        {
+          "title": "评测粒度 Top-k / Word Error Rate",
+          "body": "Top-1 检查第一候选，Top-k 检查前 k 个候选是否包含正确结果。词错误率进一步按替换、删除、插入计分。比较系统应使用相同领域、切词方式及测试协议。"
+        },
+        {
+          "title": "错误类型与分母",
+          "body": "替换 S 是把一个参考词写成另一个词；删除 D 是漏掉参考词；插入 I 是增加参考文本没有的词。WER 分母固定使用参考词数 N，不能换成系统输出长度；它衡量错误比例，越低越好。"
+        },
+        {
+          "title": "编码与资源",
+          "body": "音素 phoneme 是区分语音的单位，ARPABET 是用字符编码音素的体系；CMUdict 是存储具体词发音条目的词典。编码规范告诉你怎样写，词典告诉你某个词怎样读。"
+        }
       ],
-      "example": {"title": "首选质量和候选覆盖", "body": "10 个待规范化表达中，6 个首选正确，另外 3 个的正确形式只排在第二位。此时 Top-1 为 60%，Top-2 为 90%；扩大列表提高了覆盖，排序仍有改进空间。"},
+      "example": {
+        "title": "首选质量和候选覆盖",
+        "body": "10 个待规范化表达中，6 个首选正确，另外 3 个的正确形式只排在第二位。此时 Top-1 为 60%，Top-2 为 90%；扩大列表提高了覆盖，排序仍有改进空间。"
+      },
       "pitfallZh": "短信、新闻与专业文本中的缩写和错误分布不同。较低词错误率也可能掩盖少量意义改变严重的错误，需要结合下游效果检查。",
-      "formulas": [{"expression": "WER = (S + D + I) / N", "explanationZh": "S、D、I 分别是替换、删除和插入数，N 为参考文本词数；插入较多时，WER 可以超过 1。"}],
-      "pages": [214, 215, 216, 217]
+      "formulas": [
+        {
+          "expression": "WER = (S + D + I) / N",
+          "explanationZh": "S、D、I 分别是替换、删除和插入数，N 为参考文本词数；插入较多时，WER 可以超过 1。"
+        }
+      ],
+      "pages": [
+        214,
+        215,
+        216,
+        217
+      ],
+      "prerequisites": [
+        {
+          "term": "Candidate / Rank",
+          "explanationZh": "候选是可能的标准形式，排名是系统认为它们正确的顺序。正确形式被生成与被排第一是两种能力。"
+        },
+        {
+          "term": "Context",
+          "explanationZh": "邻词、语法结构和话题提供意义限制，可以区分同音或编辑距离相同的词。"
+        }
+      ],
+      "decisionSteps": [
+        "按字符、发音和书写规则生成候选，先检查正确形式是否可能被覆盖。",
+        "利用邻词与句意排序，避免用字母顺序或固定替换消除语义差异。",
+        "Top-k 只检查正确形式的名次是否不大于 k；Top-1 专门检查首位。",
+        "WER 先累计 S、D、I，再除以参考词数，比较结果时保持领域与切词规则相同。"
+      ],
+      "contrasts": [
+        {
+          "items": "Spelling variants / Synonyms",
+          "differenceZh": "书写变体表达同一词的不同拼写；同义词以不同词汇表达相近意义。",
+          "cueZh": "colour/color 属于拼写差异，别名和近义词扩展需要语义知识。"
+        },
+        {
+          "items": "Top-k / WER",
+          "differenceZh": "Top-k 评价候选覆盖；WER 评价输出词序列中的编辑错误。",
+          "cueZh": "一个正确候选排在第二位能通过 Top-2，首选输出仍可能产生 WER 错误。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "拆开候选质量与最终输出质量",
+          "steps": [
+            "对一个噪声词生成三条候选，正确标准形式排在第三位。",
+            "这一例 Top-1 和 Top-2 记错，Top-3 记对；候选覆盖足够，但排序仍有问题。",
+            "再看一个 16 词参考句，输出有 1 次替换、2 次删除和 1 次插入。",
+            "WER=(1+2+1)/16=0.25；输出词数为 15 也不改变分母。"
+          ],
+          "takeawayZh": "候选名次判断与序列错误计算分别评价不同阶段。"
+        }
+      ]
     },
     {
       "topic": "sbd",
       "introZh": "句子边界识别（Sentence Boundary Disambiguation, SBD）确定一段文本应在哪里切成句子。句点可能出现在缩写、人名首字母或小数中；准确断句为后续词性、实体、指代与情感分析提供完整上下文，也影响模型每次接收的输入范围。",
       "keyPoints": [
-        {"title": "句界线索 Boundary Cues", "body": "句末标点、下一个词的大小写、缩写表和上下文结构可以共同参与判断。单独使用“句点后有大写字母”规则容易把称谓与姓名拆开；缩写后的点也可能同时承担句末作用。"},
-        {"title": "任务粒度 Sentence / Word Tokenization", "body": "句子切分得到完整句子，词切分继续把句子分成词元。SBD 可使用规则、词汇或句法特征以及学习模型；语音文本还可以借助停顿和语调。"},
-        {"title": "语料与评价 Corpus / Evaluation", "body": "讲义列有 Brown、WSJ、MIMIC 等语料及语音转写资源。WSJ 主要反映新闻书面语，MIMIC 相关文本用于临床场景。语料本身也是一种数据集，应用时需要明确具体文本与边界标注。"}
+        {
+          "title": "句界线索 Boundary Cues",
+          "body": "句末标点、下一个词的大小写、缩写表和上下文结构可以共同参与判断。单独使用“句点后有大写字母”规则容易把称谓与姓名拆开；缩写后的点也可能同时承担句末作用。"
+        },
+        {
+          "title": "任务粒度 Sentence / Word Tokenization",
+          "body": "句子切分得到完整句子，词切分继续把句子分成词元。SBD 可使用规则、词汇或句法特征以及学习模型；语音文本还可以借助停顿和语调。"
+        },
+        {
+          "title": "语料与评价 Corpus / Evaluation",
+          "body": "讲义列有 Brown、WSJ、MIMIC 等语料及语音转写资源。WSJ 主要反映新闻书面语，MIMIC 相关文本用于临床场景。语料本身也是一种数据集，应用时需要明确具体文本与边界标注。"
+        },
+        {
+          "title": "从候选标点到完整句子",
+          "body": "可先把句点、问号、感叹号设为候选，再检查前词是否缩写、后词是否继续同一个短语，以及前后是否各自成句。人名首字母、称谓、小数和时间缩写内的点都需要辨别；缩写处于句尾时，点可同时结束缩写和句子。"
+        },
+        {
+          "title": "比较指标先找计分对象",
+          "body": "Accuracy 可按候选边界分类计算；Precision 检查预测句界有多少正确，Recall 检查标准句界找回多少，F1 平衡两者。不同语料的候选范围、标注和指标定义会改变数值的含义。"
+        }
       ],
-      "example": {"title": "同一个句点的不同作用", "body": "“Prof. Chen arrived early. The room was empty.”含两句：Prof. 后的点属于称谓缩写，early. 后的点结束第一句。把每个点都切开会产生没有完整含义的片段。"},
+      "example": {
+        "title": "同一个句点的不同作用",
+        "body": "“Prof. Chen arrived early. The room was empty.”含两句：Prof. 后的点属于称谓缩写，early. 后的点结束第一句。把每个点都切开会产生没有完整含义的片段。"
+      },
       "pitfallZh": "不同系统报告的 Accuracy、F1 或其他指标采用的计分单位可能不同；核对语料、边界定义与指标后，再比较结果。",
       "formulas": [],
-      "pages": [218, 219, 221]
+      "pages": [
+        218,
+        219,
+        221
+      ],
+      "prerequisites": [
+        {
+          "term": "Sentence / Token",
+          "explanationZh": "句子切分输出句子列表，词元切分把每句继续分成词或子词。分句错误会先改变后续模型可见的上下文。"
+        },
+        {
+          "term": "Abbreviation / Capitalization",
+          "explanationZh": "缩写会自带句点，人名和机构名在句中也可大写。大写是证据之一，不能独立确认新句开始。"
+        }
+      ],
+      "decisionSteps": [
+        "标出可能的句界位置，识别称谓、姓名首字母、小数和时间表达。",
+        "检查标点两边的语法与意义是否构成完整句子，尤其判断缩写是否恰好位于句末。",
+        "保留称谓和姓名、实体名称及相应谓语的上下文联系。",
+        "比较系统时同时核对数据领域、边界标准、计分单位和实验条件。"
+      ],
+      "contrasts": [
+        {
+          "items": "Sentence tokenizer / Word tokenizer",
+          "differenceZh": "前者找到句界，后者找到词元界，两类边界粒度不同。",
+          "cueZh": "输出整句列表对应 SBD，输出逐词列表对应词元化。"
+        },
+        {
+          "items": "Clue / Rule guarantee",
+          "differenceZh": "有用线索提高某种解释的可能性，保证性规则要求所有情形都成立。",
+          "cueZh": "句中专名大写、句尾缩写等反例足以否定单线索万能规则。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "判断缩写附近的两个点",
+          "steps": [
+            "读“Ms. Huang teaches chemistry. Her lab opens late.”，先把三个句点视为候选。",
+            "Ms. 是称谓，Huang 是它后面的姓名，这个点不切断两者。",
+            "chemistry. 后已形成完整主谓结构，Her 开始新的句子，因此在此处分句。",
+            "若把 Ms. 单独送入实体模型，模型失去称谓与姓名的连接，错误会传给后续分析。"
+          ],
+          "takeawayZh": "边界决策依靠组合证据，并直接决定下游上下文。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-syntax",
       "introZh": "断句、词性标注和浅层解析共享词汇与上下文信息，但输出结构逐步增加：先确定句界，再确定词的语法类别，最后组合局部短语。稳健系统还要处理未登录词、领域变化和序列标签之间的约束。",
       "keyPoints": [
-        {"title": "多源句界证据 Prosodic / Syntactic Cues", "body": "在语音中，停顿、语调和句法结构可以互补；说话者犹豫也会造成停顿，因此需综合判断。缩写位于句末时，同一个句点可以兼任缩写符号和句界。"},
-        {"title": "未登录词与领域 OOV / Domain Shift", "body": "未见过的词缺少整词统计，字符片段、前后缀和邻词仍能提供词性线索。新闻、社交文本和 GENIA 等生物医学语料的表达分布不同，目标领域评估十分重要。"},
-        {"title": "标签一致性 Structured Prediction", "body": "组块模型可以结合前后词、POS 和相邻块标签。全局解码可惩罚不合理的标签转移，从而减少短语边界冲突；词性错误也可能沿处理链传到组块结果。"},
-        {"title": "输出对应指标 Token / Span", "body": "词性常用词元准确率，组块常按完整短语跨度计算 Precision、Recall 和 F1。一个边界错位可能只影响少量词，却导致整个短语无法精确匹配。"}
+        {
+          "title": "多源句界证据 Prosodic / Syntactic Cues",
+          "body": "在语音中，停顿、语调和句法结构可以互补；说话者犹豫也会造成停顿，因此需综合判断。缩写位于句末时，同一个句点可以兼任缩写符号和句界。"
+        },
+        {
+          "title": "未登录词与领域 OOV / Domain Shift",
+          "body": "未见过的词缺少整词统计，字符片段、前后缀和邻词仍能提供词性线索。新闻、社交文本和 GENIA 等生物医学语料的表达分布不同，目标领域评估十分重要。"
+        },
+        {
+          "title": "标签一致性 Structured Prediction",
+          "body": "组块模型可以结合前后词、POS 和相邻块标签。全局解码可惩罚不合理的标签转移，从而减少短语边界冲突；词性错误也可能沿处理链传到组块结果。"
+        },
+        {
+          "title": "输出对应指标 Token / Span",
+          "body": "词性常用词元准确率，组块常按完整短语跨度计算 Precision、Recall 和 F1。一个边界错位可能只影响少量词，却导致整个短语无法精确匹配。"
+        },
+        {
+          "title": "序列标签怎样连接",
+          "body": "给每个词独立预测标签容易产生互相冲突的边界。组块可采用 B-NP 开始名词块、I-NP 延续同块、O 表示块外；联合解码会考虑邻近标签的相容性，例如避免没有开头却突然延续新名词块。"
+        },
+        {
+          "title": "两种指标的分母",
+          "body": "Token accuracy 以全部词元为分母；跨度评价先要求起止点及类型完整匹配，再以预测块数计算 Precision、以标准块数计算 Recall。词性全部正确并不使遗漏边界自动正确。"
+        }
       ],
-      "example": {"title": "标签正确仍可能分块错误", "body": "“those small wooden boxes”中的词性都被正确识别，组块器却只输出“wooden boxes”。词性指标仍可满分，完整名词短语跨度的召回已经受损。"},
+      "example": {
+        "title": "标签正确仍可能分块错误",
+        "body": "“those small wooden boxes”中的词性都被正确识别，组块器却只输出“wooden boxes”。词性指标仍可满分，完整名词短语跨度的召回已经受损。"
+      },
       "pitfallZh": "把新闻数据上的高分直接沿用到临床记录，容易忽略缩写、句式和术语的变化。应分别查看领域内结果与跨领域结果。",
       "formulas": [],
-      "pages": [219, 221, 222, 223, 224]
+      "pages": [
+        219,
+        221,
+        222,
+        223,
+        224
+      ],
+      "prerequisites": [
+        {
+          "term": "Prosody 韵律",
+          "explanationZh": "语音中的停顿、重音、节奏和语调能补充无标点转写；犹豫也可造成停顿，须结合句法。"
+        },
+        {
+          "term": "OOV 未登录词",
+          "explanationZh": "训练词表没收录的词缺少整词统计，但字符、前后缀和邻词仍可提供类别信息。"
+        },
+        {
+          "term": "Domain shift 领域偏移",
+          "explanationZh": "训练和应用的词汇、拼写及句法分布发生变化。WSJ 新闻、非正式社交文本和 GENIA 生物医学文本需要分领域评价。"
+        }
+      ],
+      "decisionSteps": [
+        "识别当前输出层次：句界、逐词词性或短语跨度。",
+        "缺少标点时增加韵律信息，词汇稀少时增加字符与形态信息。",
+        "对序列输出检查相邻标签与边界是否一致，同时保留上下文以消除歧义。",
+        "选择与错误层次对应的指标，再用目标领域数据验证迁移。"
+      ],
+      "contrasts": [
+        {
+          "items": "POS / Chunking",
+          "differenceZh": "POS 给词标语法类别，chunking 将多个词组织为局部短语。",
+          "cueZh": "逐词标签正确时仍需检查词被如何分组。"
+        },
+        {
+          "items": "Abbreviation / Sentence end",
+          "differenceZh": "缩写属性与句末属性可以同时成立。",
+          "cueZh": "时间缩写后若开始另一完整句子，该句点也充当句界。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "评估陌生领域的解析器",
+          "steps": [
+            "在植物学文本中遇到新术语“flowerlike”，模型虽然没见过整词，后缀 -like 和邻近名词可提示形容词用法。",
+            "字符线索提出候选词性，再结合该词在句中是否修饰名词确认。",
+            "输出名词块时，即使每词 POS 正确，若漏掉限定词，完整跨度仍与标准答案不匹配。",
+            "分别报告目标领域的词元准确率与跨度 F1，才能发现是词性识别还是边界组合出了问题。"
+          ],
+          "takeawayZh": "补充信息要对应瓶颈，评价单位要对应实际输出。"
+        }
+      ]
     },
     {
       "topic": "pos",
       "introZh": "词性标注（Part-of-Speech Tagging, POS）为每个词元赋予它在当前句子中的语法类别，例如名词、动词、形容词或副词。输入是带上下文的词序列，输出是同长度的标签序列。",
       "keyPoints": [
-        {"title": "上下文决定用法 Contextual Category", "body": "一个词形可以承担多种词性。判断时综合邻词、所在短语和句法位置，比只查看词典中的常见词性更可靠；词义与词性也会相互约束。"},
-        {"title": "词汇与形态 Lexical / Morphological Features", "body": "整词、大小写、前后缀、字符片段及邻词都可作为特征。词元化和词性分析可以相互提供信息，尤其有助于处理屈折变化和不规则形式。"},
-        {"title": "标签与资源 Tagset / Corpus", "body": "Penn Treebank 是常用的词性与句法资源；NN、VB 等标签来自相应标注体系。模型可采用序列概率模型或神经编码器，训练和测试必须使用兼容的标签定义。"}
+        {
+          "title": "上下文决定用法 Contextual Category",
+          "body": "一个词形可以承担多种词性。判断时综合邻词、所在短语和句法位置，比只查看词典中的常见词性更可靠；词义与词性也会相互约束。"
+        },
+        {
+          "title": "词汇与形态 Lexical / Morphological Features",
+          "body": "整词、大小写、前后缀、字符片段及邻词都可作为特征。词元化和词性分析可以相互提供信息，尤其有助于处理屈折变化和不规则形式。"
+        },
+        {
+          "title": "标签与资源 Tagset / Corpus",
+          "body": "Penn Treebank 是常用的词性与句法资源；NN、VB 等标签来自相应标注体系。模型可采用序列概率模型或神经编码器，训练和测试必须使用兼容的标签定义。"
+        },
+        {
+          "title": "读懂标签与句法位置",
+          "body": "常见标签 NN 表示单数或不可数名词，VB 表示动词原形，JJ 表示形容词，RB 表示副词。名词常作主语或宾语，形容词常修饰名词或作表语，副词可修饰动作、性质或整句。介词后接的完整名词短语通常以名词为中心，物主限定词 my/his 后也可接形容词再接名词，必须定位中心词。"
+        },
+        {
+          "title": "情态助动词与实义动词",
+          "body": "will/can/may 等情态助动词后通常接动词原形；实义动词承担动作或状态含义。同一词形也可在别处作名词或助动词，当前词义和句法位置共同决定标签。"
+        }
       ],
-      "example": {"title": "由位置判断词性", "body": "“They paint the fence.”中的 paint 表示动作，是动词；“The paint is dry.”中的 paint 是被谈论的材料，为名词。词形相同，邻词与句法位置提供了不同证据。"},
+      "example": {
+        "title": "由位置判断词性",
+        "body": "“They paint the fence.”中的 paint 表示动作，是动词；“The paint is dry.”中的 paint 是被谈论的材料，为名词。词形相同，邻词与句法位置提供了不同证据。"
+      },
       "pitfallZh": "POS 标签描述语法类别；实体类别描述人物、组织或地点等语义类型。一个人名可同时拥有专有名词词性和人物实体标签。",
-      "formulas": [{"expression": "Token Accuracy = 正确词性标签数 / 总词元数", "explanationZh": "若 150 个词元中有 141 个标签正确，准确率为 94%。统计前需要固定分词结果和标签集。"}],
-      "pages": [220, 221, 222]
+      "formulas": [
+        {
+          "expression": "Token Accuracy = 正确词性标签数 / 总词元数",
+          "explanationZh": "若 150 个词元中有 141 个标签正确，准确率为 94%。统计前需要固定分词结果和标签集。"
+        }
+      ],
+      "pages": [
+        220,
+        221,
+        222
+      ],
+      "prerequisites": [
+        {
+          "term": "Token / Tag",
+          "explanationZh": "Token 是分词后的分析单位，tag 是该位置的类别。词形相同的两个 token 可以获得不同标签。"
+        },
+        {
+          "term": "三类输入特征",
+          "explanationZh": "Lexical 指词本身，contextual 指左右邻词及所在结构，morphological 指词内部前后缀等形态；这些是输入线索，PERSON 或 positive 则属于其他任务的输出标签。"
+        }
+      ],
+      "decisionSteps": [
+        "先解释目标词在句中指对象、动作、性质还是修饰成分。",
+        "观察前面的限定词、介词或助动词，并定位它所属短语的中心。",
+        "把语法角色映射为相应标签；不要根据它在别处的常用词性直接决定。",
+        "计分时正确词元数除以总词元数；标签集和分词结果必须相同。"
+      ],
+      "contrasts": [
+        {
+          "items": "POS / NER",
+          "differenceZh": "NN、VB 等刻画语法用法，PER、ORG 等刻画名称的实体类型。",
+          "cueZh": "姓名可以同时是专有名词和人物实体，两个标注回答不同问题。"
+        },
+        {
+          "items": "Lexical verb / Modal auxiliary",
+          "differenceZh": "实义动词提供动作或状态，情态助动词表达可能、能力等语法意义。",
+          "cueZh": "遇到 will 后的歧义词，先考虑它是否承担实义动词原形的角色。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "同形词的两种语法身份",
+          "steps": [
+            "“Please water the plants”中的 water 表示浇水动作，后接宾语 the plants，标为动词。",
+            "“The water is cold”中的 water 是被谈论的物质，作主语核心，标为名词。",
+            "“They will water the garden”里 will 是情态助动词，water 仍为实义动词原形。",
+            "若 80 个词元判对 72 个，token accuracy=72/80=90%，错误率为10%。"
+          ],
+          "takeawayZh": "先解释当前用法，再用周围结构验证标签。"
+        }
+      ]
     },
     {
       "topic": "chunk",
       "introZh": "文本组块（Text Chunking）又称浅层解析（Shallow Parsing），把连续的词组织为名词短语、动词短语等局部块。输入通常包含词序列及词性，输出标明每个块的边界与类型。",
       "keyPoints": [
-        {"title": "局部短语 Phrase Chunks", "body": "组块描述句子的局部结构，例如“限定词＋形容词＋名词”常构成名词短语。它可以给实体识别和关系分析提供候选跨度，重点在清楚划定块边界。"},
-        {"title": "序列建模 Sequence Modelling", "body": "规则可根据 POS 模式组合词；学习方法则利用词、标签和上下文。HMM 以块标签为隐状态，用状态转移表示标签关系，用发射概率连接标签与观测词。"},
-        {"title": "训练与跨度评价 Benchmark / Span F1", "body": "CoNLL-2000 是常用组块基准，Penn Treebank 也为相关句法资源提供基础。精确匹配通常要求预测块的起点、终点及类型全部正确，再计算跨度级 Precision、Recall 和 F1。"}
+        {
+          "title": "局部短语 Phrase Chunks",
+          "body": "组块描述句子的局部结构，例如“限定词＋形容词＋名词”常构成名词短语。它可以给实体识别和关系分析提供候选跨度，重点在清楚划定块边界。"
+        },
+        {
+          "title": "序列建模 Sequence Modelling",
+          "body": "规则可根据 POS 模式组合词；学习方法则利用词、标签和上下文。HMM 以块标签为隐状态，用状态转移表示标签关系，用发射概率连接标签与观测词。"
+        },
+        {
+          "title": "训练与跨度评价 Benchmark / Span F1",
+          "body": "CoNLL-2000 是常用组块基准，Penn Treebank 也为相关句法资源提供基础。精确匹配通常要求预测块的起点、终点及类型全部正确，再计算跨度级 Precision、Recall 和 F1。"
+        },
+        {
+          "title": "名词块的内部边界",
+          "body": "简单名词短语通常由限定词、可选形容词和中心名词构成，如“these green bottles”。动词一旦引入新的谓语关系，通常已跨出这个简单名词块；介词短语附着和深层嵌套则涉及更完整的句法分析。"
+        },
+        {
+          "title": "HMM 与 CRF 的建模对象",
+          "body": "HMM 即 Hidden Markov Model，以不可直接观察的标签为隐状态，通过转移概率 P(yₜ|yₜ₋₁) 连接相邻状态，用发射概率 P(xₜ|yₜ) 生成观测词。CRF 即 Conditional Random Field，直接给定观测序列预测条件标签分布 P(y|x)，也能建模标签依赖。"
+        }
       ],
-      "example": {"title": "给句子加上局部结构", "body": "“A quiet visitor opened the door.”可以标出名词块“A quiet visitor”和“the door”，以及动词块“opened”。这些块为后续判断谁执行动作、动作影响什么提供结构线索。"},
+      "example": {
+        "title": "给句子加上局部结构",
+        "body": "“A quiet visitor opened the door.”可以标出名词块“A quiet visitor”和“the door”，以及动词块“opened”。这些块为后续判断谁执行动作、动作影响什么提供结构线索。"
+      },
       "pitfallZh": "词性标签正确也可能出现短语边界错误；浅层块本身还未给出整句中所有嵌套关系和依存关系。",
-      "formulas": [{"expression": "F1 = 2 × Precision × Recall / (Precision + Recall)", "explanationZh": "组块评价中的“正确”通常按完整块计数；预测数量决定精确率分母，标准块数量决定召回率分母。"}],
-      "pages": [223, 224]
+      "formulas": [
+        {
+          "expression": "F1 = 2 × Precision × Recall / (Precision + Recall)",
+          "explanationZh": "组块评价中的“正确”通常按完整块计数；预测数量决定精确率分母，标准块数量决定召回率分母。"
+        }
+      ],
+      "pages": [
+        223,
+        224
+      ],
+      "prerequisites": [
+        {
+          "term": "POS 与 Chunk",
+          "explanationZh": "POS 给每词标名词、动词等语法类别，chunk 把相邻词组合为 NP 名词块、VP 动词块等局部结构。"
+        },
+        {
+          "term": "Span 与 Entity",
+          "explanationZh": "跨度记录一段连续文本的开始和结束；名词块可作为实体候选，但普通名词块也可能没有人物、组织等实体身份。"
+        }
+      ],
+      "decisionSteps": [
+        "先根据词性定位中心名词与修饰成分，检查候选是否跨过谓语边界。",
+        "判断输出是局部短语块还是完整句法树，明确浅层解析的范围。",
+        "方法题查生成式的转移/发射描述，或条件标签分布及标签依赖描述。",
+        "资源选择按任务匹配，跨度评价要求整个边界和类型正确。"
+      ],
+      "contrasts": [
+        {
+          "items": "HMM / Independent classifier",
+          "differenceZh": "HMM 的状态转移连接相邻标签，独立词元分类器逐词决定标签而忽略这种转移结构。",
+          "cueZh": "hidden state、transition、emission 是识别 HMM 的组合线索。"
+        },
+        {
+          "items": "CoNLL-2000 / SemCor / LexNorm",
+          "differenceZh": "CoNLL-2000 评测组块；SemCor 提供词义实例；LexNorm 提供规范化样例。",
+          "cueZh": "按标注目标区分基准，LIWC 则是心理语言词类资源。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "先分块，再判断实体",
+          "steps": [
+            "在“Those helpful doctors visited the clinic”中，Those 为限定词、helpful 为形容词、doctors 为中心名词。",
+            "三词组成一个 NP，visited 开始谓语，不能把它并入这个名词块。",
+            "“the clinic”是另一个 NP；候选块可交给 NER，但并非每个医生或诊所描述都构成专名。",
+            "若预测5块、标准6块、完整匹配4块，则 P=4/5、R=4/6、F1=8/11≈0.727。"
+          ],
+          "takeawayZh": "语法类别支撑边界，边界正确后再判断实体类型。"
+        }
+      ]
     },
     {
       "topic": "lemma",
       "introZh": "词形还原（Lemmatization）把词的屈折形式映射到词典词条形，例如复数名词还原为单数、过去式动词还原为原形。词干提取（Stemming）则利用词缀规则合并相关形式，常用于检索预处理。统一相关形式可以减少词汇稀疏性，但需要同时关注语义信息的保留。",
       "keyPoints": [
-        {"title": "词元与词干 Lemma / Stem", "body": "词元化通常利用词典、词性和形态信息，输出可作为词典条目的形式。词干器更注重简化表面形式，输出可能是非完整单词；不同算法也可能产生不同词干。"},
-        {"title": "不规则变化与词性 Irregular Forms / POS", "body": "不规则形式难以仅靠去后缀恢复。相同词形处于不同词性或词义时，还原结果也可能改变，因此应保留上下文，并向工具提供合适的词性参数。"},
-        {"title": "工具与资源 Tools / Morphological Resources", "body": "Porter 是常见英语词干算法，NLTK 提供 WordNetLemmatizer。SIGMORPHON、Universal Dependencies 和 UniMorph 等资源支持词元及形态研究，适用语言与标注字段各有范围。"}
+        {
+          "title": "词元与词干 Lemma / Stem",
+          "body": "词元化通常利用词典、词性和形态信息，输出可作为词典条目的形式。词干器更注重简化表面形式，输出可能是非完整单词；不同算法也可能产生不同词干。"
+        },
+        {
+          "title": "不规则变化与词性 Irregular Forms / POS",
+          "body": "不规则形式难以仅靠去后缀恢复。相同词形处于不同词性或词义时，还原结果也可能改变，因此应保留上下文，并向工具提供合适的词性参数。"
+        },
+        {
+          "title": "工具与资源 Tools / Morphological Resources",
+          "body": "Porter 是常见英语词干算法，NLTK 提供 WordNetLemmatizer。SIGMORPHON、Universal Dependencies 和 UniMorph 等资源支持词元及形态研究，适用语言与标注字段各有范围。"
+        },
+        {
+          "title": "不规则屈折与规则词干",
+          "body": "词元化需要知道不规则范式：be 的形式包括 am、are、is、was、were；see 的过去式是 saw。名词 saw 表示工具时词元仍是 saw。Porter 的 sses→ss、ies→i 是词干规则，输出中的 i 无需恢复为词典拼写 y；带条件的规则还必须满足条件才执行。"
+        }
       ],
-      "example": {"title": "恢复词典形", "body": "“The children brought their notebooks.”中的 children 可还原为 child，brought 还原为 bring，notebooks 还原为 notebook。前两项需要不规则形态知识，统一删除后缀无法完成。"},
+      "example": {
+        "title": "恢复词典形",
+        "body": "“The children brought their notebooks.”中的 children 可还原为 child，brought 还原为 bring，notebooks 还原为 notebook。前两项需要不规则形态知识，统一删除后缀无法完成。"
+      },
       "pitfallZh": "把多个词压缩成相同形式可能损失词性、语义或情感差别；需要根据检索、情感分析等下游目标决定归一化程度。",
       "formulas": [],
-      "pages": [226, 227, 228, 229, 231]
+      "pages": [
+        226,
+        227,
+        228,
+        229,
+        231
+      ],
+      "prerequisites": [
+        {
+          "term": "Inflection / Headword",
+          "explanationZh": "屈折改变时态、数等语法形式，headword 是词典选择的标准条目。名词复数和动词过去式均可词元化。"
+        },
+        {
+          "term": "Library / Resource / Algorithm",
+          "explanationZh": "NLTK 是 Python 工具库，其中的 WordNetLemmatizer 使用词汇形态知识；WordNet 是词汇知识资源；Porter 是去词缀算法，三者层次不同。"
+        }
+      ],
+      "decisionSteps": [
+        "先用上下文确定词性和词义，再查其所属屈折范式。",
+        "若目标是词典形，保留派生词的独立词元；若指定词干算法，严格执行其规则。",
+        "遇不规则词用词典或形态模型恢复原形，避免拼接词形或只删字符。",
+        "选资源时匹配形态分析需求：SIGMORPHON 2019 包含词元化共享任务，LexNorm、NER 基准和情感知识库对应其他任务。"
+      ],
+      "contrasts": [
+        {
+          "items": "Lemmatization / Stemming",
+          "differenceZh": "词元化恢复词典条目，词干提取允许产生非完整单词，两者都可能改变下游的表示。",
+          "cueZh": "题目要求 headword 时检查是否为标准词条；指定 Porter 时检查规则。"
+        },
+        {
+          "items": "POS argument / Default guess",
+          "differenceZh": "词元化器的词性参数限制应查哪种形态关系，省略或指定错误词性可能使动词形式无法正确还原。",
+          "cueZh": "NLTK 调用中 pos='v' 指动词，可将动词屈折形式映射到原形。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "两种工具处理同一批词",
+          "steps": [
+            "词元化句子“The geese were landing”：geese→goose，were→be，landing 按动词处理得到 land。",
+            "这些映射分别用到不规则名词、不规则 be 范式和动词词性，统一截尾无法完成。",
+            "使用 Porter 处理“classes”时，匹配 sses→ss 得到 class；处理“stories”时，匹配 ies→i 得到 stori。",
+            "stori 显示词干算法可输出非词典拼写，不能按词元化的要求擅自改成 story。"
+          ],
+          "takeawayZh": "先明确输出目标，再选择词典形态映射或指定词干规则。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-morphology",
       "introZh": "形态归一把词的形式变化与词元、语法特征联系起来。设计方法时，需要区分屈折与派生、理解规则的适用条件，并评估归一化是否保留了任务真正需要的意义。",
       "keyPoints": [
-        {"title": "屈折与派生 Inflection / Derivation", "body": "屈折常表达数、时态等语法信息，多个形式可以共享词元；派生可能创造新词或改变词性。无条件合并派生词，容易把具有不同用法的词汇压成同一个表示。"},
-        {"title": "条件规则与转换 Rules / Transduction", "body": "Porter 类规则会检查词干结构、后缀长度和处理阶段。可学习的词元化还可预测编辑脚本，或进行字符序列到字符序列转换，结合上下文选择输出。"},
-        {"title": "多语言资源与评价 Multilingual Evaluation", "body": "UD 提供句法与形态标注，UniMorph 组织形态范式，SIGMORPHON 共享任务提供相关评测。不同语言的形态复杂度和数据量不同，应报告逐语言结果及明确的汇总方式。"}
+        {
+          "title": "屈折与派生 Inflection / Derivation",
+          "body": "屈折常表达数、时态等语法信息，多个形式可以共享词元；派生可能创造新词或改变词性。无条件合并派生词，容易把具有不同用法的词汇压成同一个表示。"
+        },
+        {
+          "title": "条件规则与转换 Rules / Transduction",
+          "body": "Porter 类规则会检查词干结构、后缀长度和处理阶段。可学习的词元化还可预测编辑脚本，或进行字符序列到字符序列转换，结合上下文选择输出。"
+        },
+        {
+          "title": "多语言资源与评价 Multilingual Evaluation",
+          "body": "UD 提供句法与形态标注，UniMorph 组织形态范式，SIGMORPHON 共享任务提供相关评测。不同语言的形态复杂度和数据量不同，应报告逐语言结果及明确的汇总方式。"
+        },
+        {
+          "title": "规则次序与条件",
+          "body": "规则写作“条件 ⇒ 变换”时，后缀字母匹配只是必要步骤，还需满足词干结构条件。Porter 按阶段顺序处理，同组规则可能选最长适用后缀；条件失败就跳过该规则，不能删整词或无条件截尾。"
+        },
+        {
+          "title": "两种平均的影响",
+          "body": "设语言 A 测100词正确90个，语言 B 测10词正确5个；逐语言等权宏平均为(0.90+0.50)/2=0.70，样本加权为95/110≈0.864。后一个总分更受大语料影响，均不能推出所有语言同样好。"
+        }
       ],
-      "example": {"title": "保留派生差别", "body": "“teachers”与“teacher”通常共享名词词元 teacher；“teach”是动词，与 teacher 存在派生关系。检索时可利用这类关联，语法分析时仍需要保留它们各自的类别和角色。"},
+      "example": {
+        "title": "保留派生差别",
+        "body": "“teachers”与“teacher”通常共享名词词元 teacher；“teach”是动词，与 teacher 存在派生关系。检索时可利用这类关联，语法分析时仍需要保留它们各自的类别和角色。"
+      },
       "pitfallZh": "语言平均分会隐藏低资源语言的困难。宏平均让每种语言等权，按样本数加权则更受大语料语言影响，两者需标明。",
-      "formulas": [{"expression": "Macro Accuracy = (A₁ + … + Aₗ) / L", "explanationZh": "Aₗ 表示某语言的准确率，L 为语言数；按样本加权平均则用各语言测试样本数作为权重。"}],
-      "pages": [227, 228, 229, 231, 232]
+      "formulas": [
+        {
+          "expression": "Macro Accuracy = (A₁ + … + Aₗ) / L",
+          "explanationZh": "Aₗ 表示某语言的准确率，L 为语言数；按样本加权平均则用各语言测试样本数作为权重。"
+        }
+      ],
+      "pages": [
+        227,
+        228,
+        229,
+        231,
+        232
+      ],
+      "prerequisites": [
+        {
+          "term": "Lemma 与 Derivation",
+          "explanationZh": "词元 lemma 是屈折词形共享的词典条目，派生 derivation 可以创造新词义或词性，如动词与表示从业者的名词分别保留词元。"
+        },
+        {
+          "term": "Sequence transduction 序列转换",
+          "explanationZh": "把输入字符序列转换成另一字符序列，例如“walked”到“walk”，可预测删除后缀的编辑动作，也可直接逐字符生成输出。"
+        }
+      ],
+      "decisionSteps": [
+        "检查变化表达语法信息还是产生新词汇意义，决定是否应共享词元。",
+        "按规则顺序检查条件和后缀，禁止只看字母相同就截断。",
+        "若模型生成词元字符序列，将其识别为序列转换，并检查词性和上下文条件。",
+        "评价时同时看逐语言指标、样本数和平均方式，并检验情感等下游是否因合并而失真。"
+      ],
+      "contrasts": [
+        {
+          "items": "Inflection / Derivation",
+          "differenceZh": "复数、时态等屈折通常不创造新词条，派生可创造新类别或新意义。",
+          "cueZh": "同一词族不意味着所有成员都有相同词元。"
+        },
+        {
+          "items": "UniMorph / UD / SIGMORPHON",
+          "differenceZh": "UniMorph 组织词元及其屈折范式，UD 语料含词元与形态句法标注，SIGMORPHON 共享任务提供形态学习和评测数据。",
+          "cueZh": "需要多语言形式-词元配对时，应核对这些资源的具体字段。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "归一化的收益与损失",
+          "steps": [
+            "比较“happiness”和“happy”：它们意义相关但词性不同，分别保留各自词元有助于句法分析。",
+            "“happier”作为形容词比较级则可映射到 happy，属于屈折形式还原。",
+            "若某截尾规则要求词干满足长度或结构条件，先验证条件，失败就保留该阶段输入。",
+            "再检查下游情感预测，确保没有因过度归一而把带否定、贬义或不同内涵的形式错误合并。"
+          ],
+          "takeawayZh": "归一化既要遵循形态规则，也要保住任务需要的意义区别。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-senses",
       "introZh": "深入理解词义消歧，需要知道候选义怎样表示、语境怎样提供证据，以及多词之间如何共同选择相容的解释。知识式、监督式与混合式方法为这些环节提供了不同工具。",
       "keyPoints": [
-        {"title": "释义重叠 Gloss Overlap", "body": "Lesk 类方法比较候选词义释义与上下文的词语重叠，选择更匹配的解释。词形归一、停用词处理和扩展释义会影响匹配结果，短语境则可能提供较少证据。"},
-        {"title": "图上的协调 Graph-based WSD", "body": "将候选义及语义关系组织成图，可以利用连通性或 PageRank 类排序寻找相互支持的词义组合。这种方法需要关注图覆盖范围及与当前领域的适配程度。"},
-        {"title": "知识与实例 Knowledge / Labelled Instances", "body": "WordNet、FrameNet、BabelNet 提供词义、框架或跨语言关系；SemCor 提供语境与词义标签的对应。混合模型可把上下文表示与候选义知识共同用于预测。"},
-        {"title": "下游验证 Downstream Effects", "body": "消歧结果可作为翻译、检索或情感模型的特征和解释。应同时观察词义准确率与下游表现，以确定显式消歧是否改善实际应用。"}
+        {
+          "title": "释义重叠 Gloss Overlap",
+          "body": "Lesk 类方法比较候选词义释义与上下文的词语重叠，选择更匹配的解释。词形归一、停用词处理和扩展释义会影响匹配结果，短语境则可能提供较少证据。"
+        },
+        {
+          "title": "图上的协调 Graph-based WSD",
+          "body": "将候选义及语义关系组织成图，可以利用连通性或 PageRank 类排序寻找相互支持的词义组合。这种方法需要关注图覆盖范围及与当前领域的适配程度。"
+        },
+        {
+          "title": "知识与实例 Knowledge / Labelled Instances",
+          "body": "WordNet、FrameNet、BabelNet 提供词义、框架或跨语言关系；SemCor 提供语境与词义标签的对应。混合模型可把上下文表示与候选义知识共同用于预测。"
+        },
+        {
+          "title": "下游验证 Downstream Effects",
+          "body": "消歧结果可作为翻译、检索或情感模型的特征和解释。应同时观察词义准确率与下游表现，以确定显式消歧是否改善实际应用。"
+        },
+        {
+          "title": "释义匹配的操作单位",
+          "body": "Gloss 是候选词义的文字解释。Lesk-style 方法把语境与每条 gloss 的内容词作比较，选择重叠较多的候选。它直接使用词典知识；只有当训练样例带有该次出现的 gold sense label 时，才具备标准监督式 WSD 的实例信号。"
+        },
+        {
+          "title": "图与神经表示如何分工",
+          "body": "词义图以候选 sense 为节点、语义关系为边；图排序偏向与周围词义连接协调的候选。神经上下文编码器把整句用法压成向量，知识图提供明确的词义关系，两种信息可以互补，覆盖缺口仍须检查。"
+        }
       ],
-      "example": {"title": "用释义区分候选", "body": "“The crane lifted steel beams.”中，lifted、steel、beams 与起重机械的释义更契合；若句子包含 wings、wetland 等词，则更支持鸟类义。图式方法还可让周围概念相互支持。"},
+      "example": {
+        "title": "用释义区分候选",
+        "body": "“The crane lifted steel beams.”中，lifted、steel、beams 与起重机械的释义更契合；若句子包含 wings、wetland 等词，则更支持鸟类义。图式方法还可让周围概念相互支持。"
+      },
       "pitfallZh": "同形词也可能具有不同发音；仅保留拼写会丢失一部分证据。知识库收录了某个词，也不保证覆盖当前语境需要的细分词义。",
       "formulas": [],
-      "pages": [237, 238, 239, 240]
+      "pages": [
+        237,
+        238,
+        239,
+        240
+      ],
+      "prerequisites": [
+        {
+          "term": "Ambiguity 歧义",
+          "explanationZh": "同一拼写可能有多个词义，有时发音也不同。句法位置、搭配对象和篇章主题共同限制当前解释。"
+        },
+        {
+          "term": "Gold label 参考标签",
+          "explanationZh": "标注者为一个具体词实例选择的正确候选义。释义清单只列出可选项，没有说明每个句中实例应选哪一项。"
+        }
+      ],
+      "decisionSteps": [
+        "列出候选义，逐一检查语法位置与语境语义相容性。",
+        "方法若比较释义重叠，识别 Lesk 类知识式路径；若连接多个候选义，识别图排序路径。",
+        "训练材料若只含定义而无上下文-标签对应，指出监督实例仍缺失。",
+        "把最终词义交给翻译或检索，再验证用错候选义造成的下游错误是否减少。"
+      ],
+      "contrasts": [
+        {
+          "items": "WordNet / SemCor",
+          "differenceZh": "WordNet 存储词义与关系，SemCor 存储带词义标注的文本出现。",
+          "cueZh": "词典知识提供选项，语料标签提供训练监督。"
+        },
+        {
+          "items": "Contextual encoder / Lexical graph",
+          "differenceZh": "编码器表示当前用法，词义图表示显式知识关系；两者不要求内容完全重复。",
+          "cueZh": "结合能增加证据来源，无法自动保证未知领域准确率。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "区分 mouse 的候选义",
+          "steps": [
+            "句子“The mouse stopped responding after the cable broke”含 mouse 的动物义和电脑设备义候选。",
+            "将 cable、responding 等上下文与两条释义比较，设备释义相关词更多，支持设备义。",
+            "若知识图还连接 cable 与 peripheral，周围概念关系可进一步支持这一选择。",
+            "翻译时再选择目标语言中的设备词，避免把动物词带入下游句子。"
+          ],
+          "takeawayZh": "词义选择的证据来自具体语境与候选知识，结果影响后续任务。"
+        }
+      ]
     },
     {
       "topic": "ner",
       "introZh": "命名实体识别（Named Entity Recognition, NER）从文本中找出实体提及的起止位置，并赋予人物、组织、地点等类别。它输出的是带类型的文本跨度，可支持知识抽取、指代和意见目标识别。",
       "keyPoints": [
-        {"title": "边界与类别 Span / Type", "body": "多词名称需要整体识别，模型同时判断从哪里开始、在哪里结束以及属于何类。CoNLL-2003 是常用 NER 基准，具体类别集合随语料和领域变化。"},
-        {"title": "BIO 序列标注", "body": "B 表示实体开头，I 表示同一实体内部，O 表示实体之外，并附上 PER、ORG 等类型。CRF 可以建模相邻标签之间的依赖，常与神经上下文编码器结合。"},
-        {"title": "跨度评价与应用 Span Evaluation", "body": "精确匹配通常要求实体边界和类型都正确。识别出的类型可以约束后续指代候选，实体跨度也能帮助确定评论针对哪个对象；后续仍需结合上下文推理。"}
+        {
+          "title": "边界与类别 Span / Type",
+          "body": "多词名称需要整体识别，模型同时判断从哪里开始、在哪里结束以及属于何类。CoNLL-2003 是常用 NER 基准，具体类别集合随语料和领域变化。"
+        },
+        {
+          "title": "BIO 序列标注",
+          "body": "B 表示实体开头，I 表示同一实体内部，O 表示实体之外，并附上 PER、ORG 等类型。CRF 可以建模相邻标签之间的依赖，常与神经上下文编码器结合。"
+        },
+        {
+          "title": "跨度评价与应用 Span Evaluation",
+          "body": "精确匹配通常要求实体边界和类型都正确。识别出的类型可以约束后续指代候选，实体跨度也能帮助确定评论针对哪个对象；后续仍需结合上下文推理。"
+        },
+        {
+          "title": "CRF 的名字与作用",
+          "body": "CRF 全称 Conditional Random Field，中文为条件随机场。线性链 CRF 在给定整句词序列 x 时对标签序列 y 计算条件分布 P(y|x)，同时考虑词特征与相邻标签转移。它可接在 LSTM 等上下文编码器之后，减少实体类型或边界标签冲突。"
+        },
+        {
+          "title": "精确匹配怎样计数",
+          "body": "一个预测只有起点、终点和类型全部与标准实体相同才记为正确 C。正确数 C 同时进入精确率和召回率的分子；预测数 P 与标准数 G 分别作分母。F1=2C/(P+G) 可以直接计算，无须先将中间小数四舍五入。"
+        }
       ],
-      "example": {"title": "从句子提取实体", "body": "“Lena Ortiz joined Orion Labs.”可将 Lena 标为 B-PER、Ortiz 标为 I-PER，将 Orion 标为 B-ORG、Labs 标为 I-ORG；joined 和句末标点位于实体之外。"},
+      "example": {
+        "title": "从句子提取实体",
+        "body": "“Lena Ortiz joined Orion Labs.”可将 Lena 标为 B-PER、Ortiz 标为 I-PER，将 Orion 标为 B-ORG、Labs 标为 I-ORG；joined 和句末标点位于实体之外。"
+      },
       "pitfallZh": "只识别出名称的一部分会影响跨度匹配；把一个提及标为人物，也还没有确定它对应现实世界中的哪一位同名人物。",
-      "formulas": [{"expression": "Precision = C / P；Recall = C / G；F1 = 2C / (P + G)", "explanationZh": "C 为完全匹配的实体数，P 为预测实体数，G 为标准实体数；公式适用于相同跨度与类型匹配协议。"}],
-      "pages": [241, 242, 243, 244]
+      "formulas": [
+        {
+          "expression": "Precision = C / P；Recall = C / G；F1 = 2C / (P + G)",
+          "explanationZh": "C 为完全匹配的实体数，P 为预测实体数，G 为标准实体数；公式适用于相同跨度与类型匹配协议。"
+        }
+      ],
+      "pages": [
+        241,
+        242,
+        243,
+        244
+      ],
+      "prerequisites": [
+        {
+          "term": "Named entity / Mention",
+          "explanationZh": "人物、组织、地点等现实对象在文本中的名称出现称为实体提及。同一对象可以出现多次，NER 先找每次出现的跨度与类型。"
+        },
+        {
+          "term": "BIO / Type suffix",
+          "explanationZh": "B 是 Begin，I 是 Inside，O 是 Outside；PER、ORG、LOC 等后缀给出类型。两个相邻 B-PER 通常意味着两个实体开头，而一个名字第二词应延续 I-PER。"
+        }
+      ],
+      "decisionSteps": [
+        "先找完整名称边界，再根据语义确定人物、组织或地点类别。",
+        "对每个跨度，第一个词用 B-type，后续词用 I-type，外部词用 O。",
+        "方法题把 CRF 的条件标签依赖与 HMM 的转移/发射生成模型、独立词分类及聚类区分。",
+        "评测按完整实体匹配，资源按任务选择；CoNLL-2003 用于 NER，CoNLL-2000 用于组块。"
+      ],
+      "contrasts": [
+        {
+          "items": "NER / POS / Coreference",
+          "differenceZh": "NER 找名称类型，POS 找语法类别，共指将多个提及归给同一对象。",
+          "cueZh": "人物名称既可有名词词性，也可为后续代词提供候选，但 NER 不决定所有代词所指。"
+        },
+        {
+          "items": "CRF / K-means",
+          "differenceZh": "CRF 对序列标签作条件建模，K-means 在向量空间进行无监督分组。",
+          "cueZh": "顺序标签与转移约束指向 CRF，无标签中心分组指向聚类。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "标注并评价一个多词姓名",
+          "steps": [
+            "在“Eva Stone visited Pine Harbor”中，Eva Stone 是人物提及，Pine Harbor 是地点提及。",
+            "人物对应 B-PER、I-PER；visited 标 O；地点对应 B-LOC、I-LOC。",
+            "模型若只输出 Stone 为人物，类型虽对但边界不完整，精确匹配记错。",
+            "若全测试集预测12个实体、标准15个、正确9个，P=9/12、R=9/15、F1=18/27≈0.667。"
+          ],
+          "takeawayZh": "实体评价同时要求边界与类型，词元级局部正确不能替代跨度正确。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-entities",
       "introZh": "复杂实体识别需要处理单词实体、多词实体、嵌套结构和低资源领域。输出表示是否足够表达目标结构，往往与模型本身同样重要；实体与关系也可以共同建模。",
       "keyPoints": [
-        {"title": "BIOES 与嵌套 Nested Entities", "body": "BIOES 用 B、I、E 标记多词实体的开始、内部和结束，用 S 标记单词实体，O 表示实体外部。一个跨度包含另一个实体时，可采用多层标签、跨度模型或超图表示。"},
-        {"title": "提示学习 Prompt-based NER", "body": "提示方法借助预训练语言模型的知识，将识别过程转成合适的预测形式。少样本使用仍需明确实体边界、类别到标签词的映射，并检查领域名称是否被正确处理。"},
-        {"title": "联合抽取 Joint Extraction", "body": "表填充等结构能让实体跨度与实体间关系共享表示。实体端点和关系共同预测，有助于利用结构约束，也要求评价完整的实体与关系输出。"},
-        {"title": "领域资源 Domain Knowledge", "body": "药物、疾病、地理和金融任务有各自知识资源，例如 DrugBank、UMLS 与 GeoNames。标注语料提供训练实例，知识库补充实体概念与关系，两者可协同使用。"}
+        {
+          "title": "BIOES 与嵌套 Nested Entities",
+          "body": "BIOES 用 B、I、E 标记多词实体的开始、内部和结束，用 S 标记单词实体，O 表示实体外部。一个跨度包含另一个实体时，可采用多层标签、跨度模型或超图表示。"
+        },
+        {
+          "title": "提示学习 Prompt-based NER",
+          "body": "提示方法借助预训练语言模型的知识，将识别过程转成合适的预测形式。少样本使用仍需明确实体边界、类别到标签词的映射，并检查领域名称是否被正确处理。"
+        },
+        {
+          "title": "联合抽取 Joint Extraction",
+          "body": "表填充等结构能让实体跨度与实体间关系共享表示。实体端点和关系共同预测，有助于利用结构约束，也要求评价完整的实体与关系输出。"
+        },
+        {
+          "title": "领域资源 Domain Knowledge",
+          "body": "药物、疾病、地理和金融任务有各自知识资源，例如 DrugBank、UMLS 与 GeoNames。标注语料提供训练实例，知识库补充实体概念与关系，两者可协同使用。"
+        },
+        {
+          "title": "为什么平面标签不够",
+          "body": "一层 BIO 每个词只有一个位置标签和一个类型。内层地点与外层组织重叠时，同一词同时承担两层边界身份，单标签无法完整表达；跨度集合可用多组(start,end,type) 保存，或采用多层标签和超图。"
+        },
+        {
+          "title": "资源选择与实体链接",
+          "body": "UMLS 整合医学术语与概念关系，SNOMED CT 提供系统化临床术语，DrugBank 组织药物知识；GeoNames 关注地理实体。NER 判定类型后，entity linking 还要选择知识库中具体实体 ID，常需上下文解决同名地点或人物。"
+        }
       ],
-      "example": {"title": "内外层实体共存", "body": "“University of Riverdale”整体可作为组织名称，其中 Riverdale 又是地名。只允许每个词拥有一个平面标签时，很难同时保留这两层信息；跨度表示能分别记录它们。"},
+      "example": {
+        "title": "内外层实体共存",
+        "body": "“University of Riverdale”整体可作为组织名称，其中 Riverdale 又是地名。只允许每个词拥有一个平面标签时，很难同时保留这两层信息；跨度表示能分别记录它们。"
+      },
       "pitfallZh": "实体类型、实体链接和共指各有输出目标。完成类别预测后，同名歧义与跨句指向仍需要进一步处理。",
       "formulas": [],
-      "pages": [242, 243, 244]
+      "pages": [
+        242,
+        243,
+        244
+      ],
+      "prerequisites": [
+        {
+          "term": "BIOES 编码",
+          "explanationZh": "B 开始、I 内部、E 结束、S 单词独立跨度、O 外部。长度1用S、长度2用B-E、长度3用B-I-E，标签通常附实体类型。"
+        },
+        {
+          "term": "Prompt / Label mapping",
+          "explanationZh": "提示把任务改写为语言模型可预测的句式，输出标签词如“city”后，再映射到系统的 LOC 类别。类型提示并未自动发现所有实体跨度。"
+        }
+      ],
+      "decisionSteps": [
+        "先确定需要平面实体还是嵌套实体，选择能表达目标的标注结构。",
+        "按跨度长度分配 BIOES 标签，并检查内部词是否还属于另一层实体。",
+        "使用提示时明确候选跨度、提示模板及标签词映射；使用表填充时分别定义实体与关系格子。",
+        "按领域选择术语知识，再对具体名称做消歧链接，避免把粗类型当实体身份。"
+      ],
+      "contrasts": [
+        {
+          "items": "Joint extraction / Separate tasks",
+          "differenceZh": "联合实体关系抽取共享结构表示并共同预测端点和关系；它仍需要确定关系两端指向哪些实体。",
+          "cueZh": "表格不同位置承载跨度和关系，可利用两种信号相互约束。"
+        },
+        {
+          "items": "Type / Identity",
+          "differenceZh": "LOCATION 只说明类别，知识库 ID 才定位具体地点。",
+          "cueZh": "同名城市和州可以拥有同一类型，却对应不同实体。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "表示嵌套名称并链接",
+          "steps": [
+            "文本含“Eastport Medical College”，整体是一家组织，Eastport 是内嵌地名。",
+            "给整体三词跨度可标 B-ORG、I-ORG、E-ORG；内层地名还需要单独 S-LOC 身份。",
+            "一层标签无法在 Eastport 上同时表达两个完整实体，改用两层或跨度集合。",
+            "再结合国家和医学背景，将地点与学院分别链接到正确知识库条目；仅有 ORG/LOC 类型不足以完成链接。"
+          ],
+          "takeawayZh": "先让表示容纳结构，再完成类型、关系和身份的不同预测。"
+        }
+      ]
     },
     {
       "topic": "concept",
       "introZh": "概念抽取（Concept Extraction）识别文本中具有整体意义的词或短语，包括关键术语、动作表达和领域概念。它帮助系统保留值得分析的语义单元，输出范围可以覆盖命名实体之外的普通概念。",
       "keyPoints": [
-        {"title": "多词表达 Multiword Expression", "body": "几个词组合后可能形成特定意义，动词与介词的搭配尤其常见。抽取时应保留有效的组合边界，避免把概念拆散后仅靠孤立词的意义拼接。"},
-        {"title": "候选评分 TF-IDF", "body": "TF 表示词在当前文档中的出现情况，IDF 反映它在整个文档集合中的稀有程度。两者结合可为候选关键词排序，但语义重要性还依赖上下文和任务。"},
-        {"title": "预处理与资源 Preprocessing / Resources", "body": "停用词、大小写和标点有时承载关系或名称信息，应按任务决定保留范围。NLTK 提供常用文本处理工具；MIMIC 相关临床文本可以服务于临床概念抽取，知识库则补充术语语义。"}
+        {
+          "title": "多词表达 Multiword Expression",
+          "body": "几个词组合后可能形成特定意义，动词与介词的搭配尤其常见。抽取时应保留有效的组合边界，避免把概念拆散后仅靠孤立词的意义拼接。"
+        },
+        {
+          "title": "候选评分 TF-IDF",
+          "body": "TF 表示词在当前文档中的出现情况，IDF 反映它在整个文档集合中的稀有程度。两者结合可为候选关键词排序，但语义重要性还依赖上下文和任务。"
+        },
+        {
+          "title": "预处理与资源 Preprocessing / Resources",
+          "body": "停用词、大小写和标点有时承载关系或名称信息，应按任务决定保留范围。WHO 是 World Health Organization（世界卫生组织）的缩写，who 是英语代词；统一转成小写会丢掉区分两者的形式线索。实际识别仍需上下文，因为全大写也可能只是排版强调。NLTK 提供常用文本处理工具；MIMIC 相关临床文本可以服务于临床概念抽取，知识库则补充术语语义。"
+        },
+        {
+          "title": "TF-IDF 的分工",
+          "body": "TF 是词在当前文档中出现的次数或归一频率，DF 是全语料中包含这个词的文档数。固定 N 时，DF 越小，log(N/DF) 越大；在单篇文档中反复出现会增加 TF，但不会因此直接决定 IDF。"
+        },
+        {
+          "title": "任务化资源匹配",
+          "body": "Clinical Concept Extraction（ClCE）面向病历中的诊断、治疗等医学概念，MIMIC 临床记录适用于这一场景。Course Concept Extraction（CoCE）面向课程概念，Patent Concept Extraction（PCE）面向专利技术概念，通用 Keyphrase Extraction（KE）面向文档关键词。"
+        }
       ],
-      "example": {"title": "保留一个表达的关系", "body": "“a flight from Tokyo to Seoul”包含出发地和目的地关系。如果把 from、to 一起删除，两个城市仍在文本中，但关系方向变得难以恢复。概念处理需要保留这些组合线索。"},
+      "example": {
+        "title": "保留一个表达的关系",
+        "body": "“a flight from Tokyo to Seoul”包含出发地和目的地关系。如果把 from、to 一起删除，两个城市仍在文本中，但关系方向变得难以恢复。概念处理需要保留这些组合线索。"
+      },
       "pitfallZh": "统一小写可提高匹配覆盖，也可能混淆缩写、专名和普通词；词频高或稀有都不能单独证明一个候选是关键概念。",
-      "formulas": [{"expression": "TF-IDF(t,d) = TF(t,d) × log(N / DF(t))", "explanationZh": "N 为文档总数，DF(t) 为包含词 t 的文档数；实际实现常加入平滑和归一化，需要统一版本再比较。"}],
-      "pages": [245, 246, 248, 249, 251]
+      "formulas": [
+        {
+          "expression": "TF-IDF(t,d) = TF(t,d) × log(N / DF(t))",
+          "explanationZh": "N 为文档总数，DF(t) 为包含词 t 的文档数；实际实现常加入平滑和归一化，需要统一版本再比较。"
+        }
+      ],
+      "pages": [
+        245,
+        246,
+        248,
+        249,
+        251
+      ],
+      "prerequisites": [
+        {
+          "term": "Concept / Named entity",
+          "explanationZh": "概念可为普通事物、动作和多词表达，命名实体通常是人物、地点、机构等专名。保留短语意义的范围比只识别专名广。"
+        },
+        {
+          "term": "Stopword / Casefolding",
+          "explanationZh": "停用词是高频功能词，可能表达方向和关系；casefolding 统一大小写，可能抹去缩写、专名与普通词的身份区别。"
+        }
+      ],
+      "decisionSteps": [
+        "先识别完整语义单元，检查动作和介词是否构成整体多词表达。",
+        "预处理前看功能词、大小写和连字符是否承载关系、名称或否定信息。",
+        "候选评分分别计算单篇频率与跨文档稀有度，切勿交换 TF 与 IDF。",
+        "根据文本领域和目标概念选择语料与知识资源，临床概念需识别诊断、药物或治疗等。"
+      ],
+      "contrasts": [
+        {
+          "items": "TF / IDF",
+          "differenceZh": "TF 强调词在当前文档中的出现，IDF 强调词在整个语料中的区分度。",
+          "cueZh": "问出现于多少文档就看 DF/IDF，问同篇重复次数就看 TF。"
+        },
+        {
+          "items": "Case-sensitive identity / Surface normalization",
+          "differenceZh": "统一小写可增加匹配，但大写缩写与同形普通词可能表达不同概念。",
+          "cueZh": "例如 US 与 us，前者可为国家缩写，后者为代词。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "选择旅行文本中的概念",
+          "steps": [
+            "文档写“trains from Lima to Cusco”，应同时保留出发和到达关系。",
+            "删掉 from/to 后两个地名仍在，但方向信息丢失；因此先识别关系再决定清洗。",
+            "若语料共100篇，rail 出现于10篇，则 IDF=log(10)；常见词出现于全部100篇时 IDF=log(1)=0。",
+            "即使某个罕见拼写 IDF 高，仍需语境判断它是有用概念还是噪声。"
+          ],
+          "takeawayZh": "概念抽取将结构意义与统计排序结合，不能只按删除规则或稀有度决定。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-concepts",
       "introZh": "概念抽取的输出可以是原文跨度、规范化概念或生成的关键词。先确定输出形态，才能设计预处理、知识连接与评价方式；不同领域也会影响什么内容值得作为概念保留。",
       "keyPoints": [
-        {"title": "组合语义 Compositional Meaning", "body": "动词搭配、前后缀与多词表达共同决定概念含义。字符层面的清洗应保留可能承载否定、方向或实体身份的成分，再由语境决定适当的合并方式。"},
-        {"title": "抽取与生成 Extractive / Generative", "body": "抽取式方法从原文选择已有跨度，生成式方法还能输出文中没有逐字出现的关键词。生成结果需要检查与文档事实和主题的一致性，并处理等义表达的评价问题。"},
-        {"title": "领域知识 Domain Resources", "body": "临床记录、课程描述与专利具有不同术语结构。领域语料提供真实表达，词汇知识库、百科和知识图谱提供关联；候选匹配后仍需消歧和质量验证。"},
-        {"title": "评价协议 Evaluation Protocol", "body": "关键词抽取可限制只评价前 k 个预测，结构化概念任务则可能采用特定匹配规则。排名长度、标准答案粒度和规范化方式会改变分数含义。"}
+        {
+          "title": "组合语义 Compositional Meaning",
+          "body": "动词搭配、前后缀与多词表达共同决定概念含义。字符层面的清洗应保留可能承载否定、方向或实体身份的成分，再由语境决定适当的合并方式。"
+        },
+        {
+          "title": "抽取与生成 Extractive / Generative",
+          "body": "抽取式方法从原文选择已有跨度，生成式方法还能输出文中没有逐字出现的关键词。生成结果需要检查与文档事实和主题的一致性，并处理等义表达的评价问题。"
+        },
+        {
+          "title": "领域知识 Domain Resources",
+          "body": "临床记录、课程描述与专利具有不同术语结构。领域语料提供真实表达，词汇知识库、百科和知识图谱提供关联；候选匹配后仍需消歧和质量验证。"
+        },
+        {
+          "title": "评价协议 Evaluation Protocol",
+          "body": "关键词抽取可限制只评价前 k 个预测，结构化概念任务则可能采用特定匹配规则。排名长度、标准答案粒度和规范化方式会改变分数含义。"
+        },
+        {
+          "title": "关键词输出范围",
+          "body": "抽取式系统的候选必须是原文实际出现的跨度，因此无法直接给未出现的标准术语；生成式系统可以概括出上位概念或改写术语，代价是必须检查输出是否受文本支持。"
+        },
+        {
+          "title": "F1@k 的计分条件",
+          "body": "F1@k 只在排名前 k 个预测中计匹配，先算这组预测的 Precision 与 Recall，再取调和平均。k、同义词归并规则、标准关键词数量和数据集都会影响结果；结构化解析的另一指标不能凭打印数值直接比较。"
+        }
       ],
-      "example": {"title": "原文表达与概括标签", "body": "一篇短文反复描述“solar panels”和“wind turbines”。抽取式方法可以选择这两个短语，生成式方法可能概括为“renewable energy”。评测前应明确是否接受这种上位概念。"},
+      "example": {
+        "title": "原文表达与概括标签",
+        "body": "一篇短文反复描述“solar panels”和“wind turbines”。抽取式方法可以选择这两个短语，生成式方法可能概括为“renewable energy”。评测前应明确是否接受这种上位概念。"
+      },
       "pitfallZh": "把 F1@5 与不限制输出数量的 F1 直接比较，会混合不同评价条件。知识库命中也不能独立证明概念在当前文档中重要。",
       "formulas": [],
-      "pages": [245, 246, 249, 250, 251]
+      "pages": [
+        245,
+        246,
+        249,
+        250,
+        251
+      ],
+      "prerequisites": [
+        {
+          "term": "Multiword expression 多词表达",
+          "explanationZh": "一个短语可共享约定整体含义，动词与介词的搭配尤其容易被逐词拆分破坏。"
+        },
+        {
+          "term": "Domain adaptation 领域适配",
+          "explanationZh": "调整词表、知识资源或模型，使其符合目标领域的术语与概念关系。课程、临床和专利对重要概念的定义各异。"
+        }
+      ],
+      "decisionSteps": [
+        "从任务要求确定输出是原文跨度、规范概念还是可生成的关键词。",
+        "检查预处理是否会删掉关系词、短语边界或有区分意义的大小写。",
+        "选择领域语料与知识关系，核对候选是否符合当前文档而非仅存在于词表。",
+        "比较模型时固定输出数量限制、匹配规则、任务和测试数据。"
+      ],
+      "contrasts": [
+        {
+          "items": "Extractive / Generative",
+          "differenceZh": "抽取式选择已有文字，生成式可输出未逐字出现的概括术语。",
+          "cueZh": "题目明确 absent keyphrase 时，需要能生成或映射到原文外术语的机制。"
+        },
+        {
+          "items": "Knowledge coverage / Extraction correctness",
+          "differenceZh": "知识库收录概念只证明资源中存在它，是否应从当前文档输出还取决于语义与重要性。",
+          "cueZh": "领域知识提供候选和关联，仍需上下文核验。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "给课程简介生成关键词",
+          "steps": [
+            "简介写到“sorting lists efficiently”和“finding shortest routes”，但未出现“algorithm design”。",
+            "抽取式系统可以返回这两个实际短语；生成式系统可以概括为算法设计。",
+            "检查课程内容确实围绕方法设计，避免无依据生成“computer vision”等不相关术语。",
+            "若评测只接收前5个关键词，就用一致的 F1@5 协议比较另一系统，不能混用无限制输出分数。"
+          ],
+          "takeawayZh": "输出形式决定可回答什么，评价协议决定分数能比较什么。"
+        }
+      ]
     },
     {
       "topic": "anaphora",
       "introZh": "指代消解（Anaphora Resolution）寻找某个表达所依赖的先行表达。例如读到“它”“他们”或“这家公司”时，系统需要根据上下文确定谈论的对象，使跨句信息可以连接起来，并把动作、属性和评价归到正确对象。",
       "keyPoints": [
-        {"title": "先行词与提及 Antecedent / Mention", "body": "先行词是当前指代表达回指的候选，提及可以是专名、普通名词短语或代词。NER 提供名称和类型线索，普通对象与未命名参与者同样可能参与指代。"},
-        {"title": "一致性与常识 Agreement / Commonsense", "body": "数、性及语法位置可排除部分候选；多个候选都兼容时，还需要事件语义、语篇焦点及世界知识。靠最近距离选择，容易忽略动作和属性的实际关系。"},
-        {"title": "数据与应用 Data / Applications", "body": "OntoNotes 等语料提供指代或共指标注，WordNet、SenticNet 等资源补充词义或概念知识。解析结果可帮助翻译代词、合并摘要信息，并把评价连接到正确对象。"}
+        {
+          "title": "先行词与提及 Antecedent / Mention",
+          "body": "先行词是当前指代表达回指的候选，提及可以是专名、普通名词短语或代词。NER 提供名称和类型线索，普通对象与未命名参与者同样可能参与指代。"
+        },
+        {
+          "title": "一致性与常识 Agreement / Commonsense",
+          "body": "数、性及语法位置可排除部分候选；多个候选都兼容时，还需要事件语义、语篇焦点及世界知识。靠最近距离选择，容易忽略动作和属性的实际关系。"
+        },
+        {
+          "title": "数据与应用 Data / Applications",
+          "body": "OntoNotes 等语料提供指代或共指标注，WordNet、SenticNet 等资源补充词义或概念知识。解析结果可帮助翻译代词、合并摘要信息，并把评价连接到正确对象。"
+        },
+        {
+          "title": "用因果解释选择先行词",
+          "body": "当两候选都满足单复数或性别条件时，把代词分别替换为候选，检查整个事件是否合理。容器-物体关系中，装不下可能因物体太大或容器太小；相同语法结构下，属性变化会改变最合理指向。"
+        },
+        {
+          "title": "语料标签与知识关系",
+          "body": "OntoNotes 提供文本提及及共指链，可用于学习和评测；WordNet 提供词汇关系，ConceptNet 等提供常识关系，SenticNet 提供概念情感知识。后三者可支持推理，但不等于这类提及链标注语料。"
+        }
       ],
-      "example": {"title": "把后句属性归给前句对象", "body": "“Rui bought a bicycle yesterday. It has a red frame.”中，It 指向 a bicycle，红色车架这一属性因此应归到自行车。人物与物品类型、句间主题连续性都支持这个解释。"},
+      "example": {
+        "title": "把后句属性归给前句对象",
+        "body": "“Rui bought a bicycle yesterday. It has a red frame.”中，It 指向 a bicycle，红色车架这一属性因此应归到自行车。人物与物品类型、句间主题连续性都支持这个解释。"
+      },
       "pitfallZh": "数和性一致只能提供筛选条件。两个候选都满足一致性时，需要继续使用语境，不能直接宣布指代唯一确定。",
       "formulas": [],
-      "pages": [241, 252, 253, 254]
+      "pages": [
+        241,
+        252,
+        253,
+        254
+      ],
+      "prerequisites": [
+        {
+          "term": "Antecedent / Anaphor",
+          "explanationZh": "Antecedent 是提供所指的先行表达，anaphor 是依赖它解释的后续表达。被描述的属性和动作不自动成为先行词。"
+        },
+        {
+          "term": "Number agreement 数一致",
+          "explanationZh": "单数或复数形式可以排除不兼容候选。多个复数名词都能和 they 一致，过滤完成后仍可能剩多个候选。"
+        }
+      ],
+      "decisionSteps": [
+        "圈出指代表达，向前列出人物、物体以及普通名词短语候选。",
+        "用数、性别及语法位置排除明显不兼容者，保留全部合理候选。",
+        "把每个候选代入后句，根据物体属性、事件因果和篇章焦点比较解释。",
+        "将最终指向用于连接属性和意见目标，遇证据不足时保留歧义。"
+      ],
+      "contrasts": [
+        {
+          "items": "Agreement / Resolution",
+          "differenceZh": "一致性是形式筛选，消解还须确定语境中的所指。",
+          "cueZh": "两候选都通过筛选时，继续用语义和常识判断。"
+        },
+        {
+          "items": "NER / Anaphora resolution",
+          "differenceZh": "NER 提供专名类型；指代还涉及普通名词、代词及其他表达。",
+          "cueZh": "无专名的物体仍可以成为 it 的先行词。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "相同候选、不同属性",
+          "steps": [
+            "“The vase did not fit in the cupboard because it was too tall”有 vase 和 cupboard 两个单数候选。",
+            "数一致无法筛掉任何一个，距离也不能独立确定。",
+            "将 it 换为 vase：花瓶太高解释了放不进去；换为 cupboard 太高通常不解释失败。",
+            "因此花瓶是更合理的所指；若改为“too low”，就要重新评估容器高度的限制。"
+          ],
+          "takeawayZh": "可通过替换候选检验因果关系，避免把最近名词当固定答案。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-coreference",
       "introZh": "跨句理解需要把指向同一对象的多次提及组织成共指簇（Coreference Cluster）。这会把局部的先行词选择扩展为篇章结构问题：多个判断必须彼此协调，还可能需要恢复没有写出的参与者。",
       "keyPoints": [
-        {"title": "篇章与常识 Discourse / Commonsense", "body": "语法一致性过滤候选后，事件因果、对象属性及语篇焦点继续帮助推理。不同上下文中的同一代词，可能因事件描述改变而指向不同对象。"},
-        {"title": "零代词 Zero Pronoun", "body": "某些语言允许省略句中参与者，例如连续分句中的主语。系统需从句法和篇章恢复缺省提及及其所指，显式代词扫描无法覆盖这类表达。"},
-        {"title": "全局结构 Entity-level Modelling", "body": "提及排序、实体级模型和端到端方法能够综合多个提及的证据。OntoNotes、ARRAU、GAP 提供不同类型的数据，OMCS 或词汇知识图可补充常识。"},
-        {"title": "聚类评价 Cluster Metrics", "body": "MUC、B³、CEAF 从不同角度比较预测共指簇与标准簇。比较系统前应明确是否使用标准提及、具体指标变体及汇总方式，避免混淆提及发现与聚类能力。"}
+        {
+          "title": "篇章与常识 Discourse / Commonsense",
+          "body": "语法一致性过滤候选后，事件因果、对象属性及语篇焦点继续帮助推理。不同上下文中的同一代词，可能因事件描述改变而指向不同对象。"
+        },
+        {
+          "title": "零代词 Zero Pronoun",
+          "body": "某些语言允许省略句中参与者，例如连续分句中的主语。系统需从句法和篇章恢复缺省提及及其所指，显式代词扫描无法覆盖这类表达。"
+        },
+        {
+          "title": "全局结构 Entity-level Modelling",
+          "body": "提及排序、实体级模型和端到端方法能够综合多个提及的证据。OntoNotes、ARRAU、GAP 提供不同类型的数据，OMCS 或词汇知识图可补充常识。"
+        },
+        {
+          "title": "聚类评价 Cluster Metrics",
+          "body": "MUC、B³、CEAF 从不同角度比较预测共指簇与标准簇。比较系统前应明确是否使用标准提及、具体指标变体及汇总方式，避免混淆提及发现与聚类能力。"
+        },
+        {
+          "title": "全局一致性与传递性",
+          "body": "同指关系表示相同实体身份，应满足传递性：A与B同指且B与C同指时，三者应可归到同一簇。逐对独立判断可能出现A-B同指、B-C同指、A-C不同指的冲突，簇级推断需协调这些决定。"
+        },
+        {
+          "title": "三种簇指标的侧重点",
+          "body": "MUC 关注把提及连成簇所需的链接，B³ 从每个提及所在预测簇与标准簇的重叠出发，CEAF 对齐预测簇与标准簇后评分。CoNLL 风格分数常对三种 F1 等权平均，它们的平均值衡量簇结构，不能当逐词标签准确率。"
+        }
       ],
-      "example": {"title": "建立同一个人的提及簇", "body": "“陈老师走进教室。她放下书包，随后开始讲课。”中，陈老师、她以及最后一个分句省略的主语都指向同一个人。完整结果应把这些信息连成一致的实体表示。"},
+      "example": {
+        "title": "建立同一个人的提及簇",
+        "body": "“陈老师走进教室。她放下书包，随后开始讲课。”中，陈老师、她以及最后一个分句省略的主语都指向同一个人。完整结果应把这些信息连成一致的实体表示。"
+      },
       "pitfallZh": "独立比较每对提及可能产生冲突。若 A 与 B、B 与 C 均被判同指，实体簇结构还要求检查三者能否协调。",
       "formulas": [],
-      "pages": [252, 253, 254]
+      "pages": [
+        252,
+        253,
+        254
+      ],
+      "prerequisites": [
+        {
+          "term": "Mention / Cluster",
+          "explanationZh": "Mention 是文本一次提及，cluster 是指向同一实体的提及集合。一个簇可以包含专名、普通名词短语和代词。"
+        },
+        {
+          "term": "Zero pronoun 零代词",
+          "explanationZh": "句中参与者可以省略字面形式，仍需从篇章恢复“谁”或“什么”在承担动作。"
+        },
+        {
+          "term": "Annotated corpus / Commonsense",
+          "explanationZh": "OntoNotes、ARRAU、GAP 提供不同形式的指代实例，WordNet 与 OMCS 等知识资源补充词汇或常识。知识和实例分别服务推理与监督。"
+        }
+      ],
+      "decisionSteps": [
+        "找出显式提及及可能省略的参与者，再列出合理先行候选。",
+        "通过一致性筛选，使用事件语义、属性及语篇焦点继续消歧。",
+        "把局部决定合成实体簇，检查传递性及整个篇章是否自洽。",
+        "明确标准提及还是预测提及、具体簇指标与平均方法后评价。"
+      ],
+      "contrasts": [
+        {
+          "items": "Pair decision / Entity cluster",
+          "differenceZh": "一对提及的相似只提供局部证据，实体簇要求多对关系相互一致。",
+          "cueZh": "看到 independently 或 separately 时检查能否产生矛盾三角。"
+        },
+        {
+          "items": "Agreement / World knowledge",
+          "differenceZh": "一致性利用形式限制，世界知识判断事件和对象属性是否合理。",
+          "cueZh": "多个同数同性候选共存时，额外语义证据仍有作用。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "恢复省略并检查簇",
+          "steps": [
+            "“林医生检查了病人。她记录了结果，然后离开。”中，末句动作的主语未写出。",
+            "根据前句主语延续，推断记录和离开的参与者均是林医生。",
+            "把“林医生”“她”和省略参与者连入同一簇，同时与病人的提及分开。",
+            "若局部模型把“她”与病人相连却把省略参与者连林医生，就需用篇章证据解决结构冲突。"
+          ],
+          "takeawayZh": "恢复指向之外，还要保证多次提及形成一致的实体结构。"
+        }
+      ]
     },
     {
       "topic": "subjectivity",
       "introZh": "主观性检测（Subjectivity Detection）判断一段文本是否表达观点、评价或态度，常建模为 subjective 与 objective 的二分类。它有助于先发现意见性内容，再进一步分析情感方向和目标，具体分类粒度可以是句子或其他规定的文本单元。",
       "keyPoints": [
-        {"title": "主观性与极性 Subjectivity / Polarity", "body": "赞赏和批评都可以属于主观表达；极性进一步区分正面与负面方向。客观陈述也可能涉及令人愉快或不快的事件，因此要看具体表达方式和标注定义。"},
-        {"title": "中性与矛盾情绪 Neutral / Ambivalent", "body": "把正面和负面看作两个维度时，两者都弱接近中性，两者都强表示矛盾情绪。只计算正负分数差，容易把强烈的爱憎并存压成接近零。"},
-        {"title": "线索与资源 Clues / Resources", "body": "形容词、副词、情态动词和评价表达可提供线索，结合 TF-IDF、POS 或上下文表示进行分类。MPQA Subjectivity Lexicon 提供词项级主观性线索，标注语料提供样本级监督。"}
+        {
+          "title": "主观性与极性 Subjectivity / Polarity",
+          "body": "赞赏和批评都可以属于主观表达；极性进一步区分正面与负面方向。客观陈述也可能涉及令人愉快或不快的事件，因此要看具体表达方式和标注定义。"
+        },
+        {
+          "title": "中性与矛盾情绪 Neutral / Ambivalent",
+          "body": "把正面和负面看作两个维度时，两者都弱接近中性，两者都强表示矛盾情绪。只计算正负分数差，容易把强烈的爱憎并存压成接近零。"
+        },
+        {
+          "title": "线索与资源 Clues / Resources",
+          "body": "形容词、副词、情态动词和评价表达可提供线索，结合 TF-IDF、POS 或上下文表示进行分类。MPQA Subjectivity Lexicon 提供词项级主观性线索，标注语料提供样本级监督。"
+        },
+        {
+          "title": "先认特征类别",
+          "body": "POS-based features 统计语法类别，例如形容词、副词和情态动词频数；TF-IDF 为词项计算频率-稀有度权重；词典特征统计主观或情感词命中。三者可同时输入分类器，但提供的证据来源不同。"
+        },
+        {
+          "title": "F1 的计算步骤",
+          "body": "Precision=P=被预测为主观且确实主观的数量/预测主观总数；Recall=R=找回的主观数量/标准主观总数。F1=2PR/(P+R)，先乘再除，最后四舍五入；(P+R)/2 是算术平均，P与R不等时通常高于F1。"
+        }
       ],
-      "example": {"title": "事实和评价", "body": "“The museum opens at nine.”陈述开放时间；“The museum is wonderfully designed.”明确表达评价；“I admire the design but dislike the crowds.”同时包含正面和负面态度。"},
+      "example": {
+        "title": "事实和评价",
+        "body": "“The museum opens at nine.”陈述开放时间；“The museum is wonderfully designed.”明确表达评价；“I admire the design but dislike the crowds.”同时包含正面和负面态度。"
+      },
       "pitfallZh": "某个词出现在主观词典中，只提供先验线索。它在引用、否定或不同词义下可能有不同作用，需要结合当前语境。",
-      "formulas": [{"expression": "F1 = 2PR / (P + R)", "explanationZh": "P 为所关注类别的精确率，R 为召回率；F1 使用调和平均，对二者明显不平衡的情况较敏感。"}],
-      "pages": [255, 256, 257, 258]
+      "formulas": [
+        {
+          "expression": "F1 = 2PR / (P + R)",
+          "explanationZh": "P 为所关注类别的精确率，R 为召回率；F1 使用调和平均，对二者明显不平衡的情况较敏感。"
+        }
+      ],
+      "pages": [
+        255,
+        256,
+        257,
+        258
+      ],
+      "prerequisites": [
+        {
+          "term": "Subjective / Objective",
+          "explanationZh": "主观表达包含意见、态度或评价；客观表达陈述事实性信息。正负方向是进一步的极性维度。"
+        },
+        {
+          "term": "Lexicon / Corpus",
+          "explanationZh": "MPQA Subjectivity Lexicon 是词项及主观性线索的列表；逐文档标注语料把实际文本和参考类别配对，可提供监督训练实例。"
+        }
+      ],
+      "decisionSteps": [
+        "判断文本是否表达评价，再判断评价的正负方向，避免将两个分类目标混用。",
+        "分别观察正向和负向强度，双高保留为矛盾情绪，双低才接近中性。",
+        "识别输入证据属于词性、TF-IDF 还是词典线索，并用语境检查线索是否生效。",
+        "计算类别 F1 时明确 P/R 的分母，按调和平均公式计算。"
+      ],
+      "contrasts": [
+        {
+          "items": "Subjectivity / Polarity",
+          "differenceZh": "赞同和批评均可主观，极性区分态度方向。",
+          "cueZh": "“这是一部好电影”与“糟糕电影”在主观性上可同类，在极性上不同。"
+        },
+        {
+          "items": "Neutral / Ambivalent",
+          "differenceZh": "中性意味着正负都弱，矛盾情绪意味着正负都强。",
+          "cueZh": "正负差值接近零不能独立判断属于哪种。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "从评价到分数",
+          "steps": [
+            "“The exhibition runs for two weeks”陈述时长；“The exhibition is brilliant but exhausting”表达两种态度。",
+            "后句有正面 brilliant 和负面 exhausting，应保存正负并存，避免抵消为无意见。",
+            "若某模型对主观类 P=0.75、R=0.60，F1=2×0.75×0.60/(0.75+0.60)。",
+            "计算得0.9/1.35≈0.667，算术平均0.675对应另一种汇总。"
+          ],
+          "takeawayZh": "先分清目标和情绪结构，再用对应指标评价。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-opinion",
       "introZh": "主观性会受到词义、语篇、语言和表达模态影响。稳健的意见分析应同时关注文本线索的适用范围，以及模型在跨语、多模态和偏差检测任务中的迁移条件。",
       "keyPoints": [
-        {"title": "词义与语境 Context-dependent Subjectivity", "body": "词典给出评价线索的先验，具体词义和句中关系决定它是否真的表达态度。上下文模型与主观性词义消歧可减少只按词表匹配造成的误判。"},
-        {"title": "跨语言迁移 Cross-lingual Transfer", "body": "翻译和多语言表示可以扩展可用训练材料，但语气、模态和文化表达可能在迁移中变化。需要检查标签是否保持，并在目标语言数据上评价。"},
-        {"title": "多模态证据 Multimodal Evidence", "body": "词汇之外，韵律、音素和视觉行为也可能表达态度。融合时需处理时间对齐和缺失模态，避免把单独某种表情或语调视为固定标签。"},
-        {"title": "偏差与情绪 Bias / Affect", "body": "偏差可能体现在措辞、事实选择和叙述框架中。LIWC 类心理语言特征、POS 和语境模型可提供线索；主观性、情感方向和偏差程度应分别定义。"}
+        {
+          "title": "词义与语境 Context-dependent Subjectivity",
+          "body": "词典给出评价线索的先验，具体词义和句中关系决定它是否真的表达态度。上下文模型与主观性词义消歧可减少只按词表匹配造成的误判。"
+        },
+        {
+          "title": "跨语言迁移 Cross-lingual Transfer",
+          "body": "翻译和多语言表示可以扩展可用训练材料，但语气、模态和文化表达可能在迁移中变化。需要检查标签是否保持，并在目标语言数据上评价。"
+        },
+        {
+          "title": "多模态证据 Multimodal Evidence",
+          "body": "词汇之外，韵律、音素和视觉行为也可能表达态度。融合时需处理时间对齐和缺失模态，避免把单独某种表情或语调视为固定标签。"
+        },
+        {
+          "title": "偏差与情绪 Bias / Affect",
+          "body": "偏差可能体现在措辞、事实选择和叙述框架中。LIWC 类心理语言特征、POS 和语境模型可提供线索；主观性、情感方向和偏差程度应分别定义。"
+        },
+        {
+          "title": "偏差与心理语言资源",
+          "body": "Bias 可来自选择哪些事实、把责任归给谁、用怎样的框架叙述；一句平静、语法完整的陈述也可能片面。LIWC 按心理语言词类统计线索，POS 给出语法模式，情感词典提供正负先验，这些都需结合语篇才能分析偏差。"
+        },
+        {
+          "title": "信息压缩的不可逆性",
+          "body": "设正面强度p和负面强度n均在[0,1]，单分数s=p−n会把(p,n)=(0,0)与(0.9,0.9)都变为0。第一种接近中性，第二种强烈矛盾；保留两个维度和评价对象可以避免这种损失。"
+        }
       ],
-      "example": {"title": "正负并存的信息", "body": "一位观众说“表演让我很感动，但票价让我很恼火”。文本同时包含明显正面与负面体验。保留两种强度及其对象，可以更完整地描述观点，也方便后续按方面分析。"},
+      "example": {
+        "title": "正负并存的信息",
+        "body": "一位观众说“表演让我很感动，但票价让我很恼火”。文本同时包含明显正面与负面体验。保留两种强度及其对象，可以更完整地描述观点，也方便后续按方面分析。"
+      },
       "pitfallZh": "压缩为一个正负差值会丢失矛盾情绪；完全客观的措辞也可能通过选择性呈现事实形成偏差，需要查看更广的语篇。",
       "formulas": [],
-      "pages": [255, 256, 257, 258, 259]
+      "pages": [
+        255,
+        256,
+        257,
+        258,
+        259
+      ],
+      "prerequisites": [
+        {
+          "term": "Prior / Context",
+          "explanationZh": "词典给出词的常见评价倾向，具体词义、否定、引用和语篇可改变它在某次出现中的作用。"
+        },
+        {
+          "term": "Prosody / Alignment",
+          "explanationZh": "韵律包括音高、重音、语速和停顿，可能透露犹豫或讽刺；多模态对齐要使文本、声音和画面指向同一次表达。"
+        },
+        {
+          "term": "Cross-lingual transfer",
+          "explanationZh": "将一种语言的数据或模型用于另一语言，需检查翻译是否保留态度线索以及目标语言表达分布。"
+        }
+      ],
+      "decisionSteps": [
+        "分开记录是否主观、正负强度和是否有偏差，明确各自标签。",
+        "遇多义词先确定词义及语境，检查固定词典标签是否适用。",
+        "迁移时审查翻译后的语气、模态和标签，再用目标语言测试。",
+        "有音视频时检查对齐和缺失情况，比较多种模态的互补证据。"
+      ],
+      "contrasts": [
+        {
+          "items": "Sentiment / Bias",
+          "differenceZh": "情感是态度方向，偏差涉及叙述选择及框架，两者可能相关也可分离。",
+          "cueZh": "没有情绪词仍可能片面；负面事实也可客观准确。"
+        },
+        {
+          "items": "Neutral wording / Neutral delivery",
+          "differenceZh": "字面措辞中性时，犹豫语调、重音或表情仍可提供态度线索。",
+          "cueZh": "只看词袋无法使用声音中的额外证据。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "审查跨语言会议记录",
+          "steps": [
+            "原句用中性词描述方案，但语音中长停顿和上扬语调提示说话者保留意见。",
+            "若翻译把委婉模态删掉，文本标签所依赖的主观线索也会变化，需要人工核对。",
+            "结合对齐音频与前文可恢复迟疑证据，再在目标语言资料上测预测效果。",
+            "若摘要只保留反对意见而省略支持理由，即使措辞平静，也可能因事实选择形成偏差。"
+          ],
+          "takeawayZh": "词义、模态、语言和框架会共同影响态度理解。"
+        }
+      ]
     },
     {
       "topic": "metaphor",
       "introZh": "隐喻理解（Metaphor Understanding）借助一个概念领域的结构理解另一个领域。源域（Source Domain）提供可迁移的经验和关系，目标域（Target Domain）是当前需要解释的对象。输出可以是隐喻位置、概念对应或贴合语境的释义，具体形式由任务决定。",
       "keyPoints": [
-        {"title": "跨域映射 Conceptual Mapping", "body": "理解隐喻时，提取源域中与语境相关的性质，再映射到目标域。具体哪些性质成立，取决于说话者意图、上下文与共同经验。"},
-        {"title": "词义、角色与多词表达 WSD / SRL / MWE", "body": "词义消歧帮助确定候选含义，语义角色标注说明谁实施动作、谁受影响，多词表达识别保留约定俗成的整体意义。这些信息共同支持隐喻解释。"},
-        {"title": "知识资源与文化 Knowledge / Culture", "body": "WordNet 提供词义关系，FrameNet 组织框架与角色，ConceptNet 可补充常识，SenticNet 提供相关情感知识。文化约定会影响表达的解释，跨语言处理尤其需要注意。"}
+        {
+          "title": "跨域映射 Conceptual Mapping",
+          "body": "理解隐喻时，提取源域中与语境相关的性质，再映射到目标域。具体哪些性质成立，取决于说话者意图、上下文与共同经验。"
+        },
+        {
+          "title": "词义、角色与多词表达 WSD / SRL / MWE",
+          "body": "词义消歧帮助确定候选含义，语义角色标注说明谁实施动作、谁受影响，多词表达识别保留约定俗成的整体意义。这些信息共同支持隐喻解释。"
+        },
+        {
+          "title": "知识资源与文化 Knowledge / Culture",
+          "body": "WordNet 提供词义关系，FrameNet 组织框架与角色，ConceptNet 可补充常识，SenticNet 提供相关情感知识。文化约定会影响表达的解释，跨语言处理尤其需要注意。"
+        },
+        {
+          "title": "源域与目标域的方向",
+          "body": "在“A 是 B”的概念隐喻里，通常 A 是待理解的目标域，B 是提供关系结构的源域。判断依据是“借谁理解谁”，不按词在句中的先后给 source/target 编号。只迁移适合语境的特征，例如成长、路径、阻力或价值。"
+        },
+        {
+          "title": "角色与资源怎样帮助解释",
+          "body": "SRL 全称 Semantic Role Labeling，标记谓词的参与者角色：施事 Agent 执行动作，受事 Patient 受到影响。WordNet 提供词义与语义关系，FrameNet 提供框架和参与角色；ConceptNet 补充常识，SenticNet 补充概念情感知识。"
+        }
       ],
-      "example": {"title": "选出适合迁移的性质", "body": "“The classroom was a beehive before the show.”借蜂巢理解教室里的忙碌、活跃和多人协作。目标域是教室活动，源域是蜂巢；具体解释可写为“演出前教室里大家都在忙碌准备”。"},
+      "example": {
+        "title": "选出适合迁移的性质",
+        "body": "“The classroom was a beehive before the show.”借蜂巢理解教室里的忙碌、活跃和多人协作。目标域是教室活动，源域是蜂巢；具体解释可写为“演出前教室里大家都在忙碌准备”。"
+      },
       "pitfallZh": "隐喻映射通常只使用相关性质。把源域的所有字面属性逐项带入，会产生与语境无关甚至荒谬的解释。",
       "formulas": [],
-      "pages": [263, 264, 265, 266]
+      "pages": [
+        263,
+        264,
+        265,
+        266
+      ],
+      "prerequisites": [
+        {
+          "term": "Literal / Figurative",
+          "explanationZh": "字面义按通常概念类别理解，修辞义利用跨域联系表达含义。明确目标对象和上下文后才选择适合的解释。"
+        },
+        {
+          "term": "WSD / MWE",
+          "explanationZh": "WSD 在候选词义中选择当前用法；MWE 即 Multiword Expression，将约定俗成的多词短语作为整体，防止独立逐词解释丢失意义。"
+        }
+      ],
+      "decisionSteps": [
+        "找出当前要解释的对象作为目标域，再找提供经验结构的源域。",
+        "用词义、语义角色和多词表达分析恢复“谁以何种关系影响谁”。",
+        "从源域挑选与语境相关的性质，排除材料、形状等无关字面细节。",
+        "写成保留原意的释义，并检查文化背景是否为解释所必需。"
+      ],
+      "contrasts": [
+        {
+          "items": "Source / Target",
+          "differenceZh": "源域提供理解框架，目标域接受解释。",
+          "cueZh": "问“把什么看成什么”，前者通常为目标，后者为源。"
+        },
+        {
+          "items": "SRL / POS / NER",
+          "differenceZh": "SRL 给参与者语义角色，POS 给词语法类别，NER 给名称类型。",
+          "cueZh": "谁行动和谁受影响由角色说明，单有名词标签无法回答。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "解释“研究是一段航程”",
+          "steps": [
+            "待理解的对象是研究，所以目标域为研究；航程提供经验结构，是源域。",
+            "把目的地映射为研究目标，把路线选择映射为方法选择，把风浪映射为困难。",
+            "不必推断研究者真的坐船，也不把船体材料迁移到研究项目。",
+            "若某文化用当地独有航海典故，解释还需补充共同背景，字面翻译可能无法传达含义。"
+          ],
+          "takeawayZh": "方向看解释对象，内容看相关关系，文化知识决定某些映射是否可理解。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-metaphor",
       "introZh": "隐喻处理可以进一步拆成定位表达、识别源域与目标域、选择可迁移属性和生成语境释义。识别准确只是一个环节，完整理解还要求输出连贯、恰当且保持原意的解释。",
       "keyPoints": [
-        {"title": "识别到解释 Identification / Interpretation", "body": "识别阶段找到可能的隐喻词或短语，解释阶段恢复其语境含义。方法可结合多词表达、词义配对和属性提取，再把局部释义整合回句子。"},
-        {"title": "选择偏好 Selectional Preferences", "body": "谓词常与特定语义类型的论元搭配。某种搭配偏离常见字面用法，可提示隐喻候选；仍需语境判断这种偏离来自修辞、歧义还是其他表达。"},
-        {"title": "属性选择 Property Extraction", "body": "概念映射需要挑出与目标相关的源域属性。词义、框架、常识知识与语言模型可生成候选，语境负责约束哪些属性适合解释当前表达。"},
-        {"title": "解释评价 Interpretation Evaluation", "body": "除标签准确性，还应评价释义的意义保持、适切性、可接受性和连贯性。翻译、政治话语与情感分析等下游应用，可帮助检验解释是否真正有用。"}
+        {
+          "title": "识别到解释 Identification / Interpretation",
+          "body": "识别阶段找到可能的隐喻词或短语，解释阶段恢复其语境含义。方法可结合多词表达、词义配对和属性提取，再把局部释义整合回句子。"
+        },
+        {
+          "title": "选择偏好 Selectional Preferences",
+          "body": "谓词常与特定语义类型的论元搭配。某种搭配偏离常见字面用法，可提示隐喻候选；仍需语境判断这种偏离来自修辞、歧义还是其他表达。"
+        },
+        {
+          "title": "属性选择 Property Extraction",
+          "body": "概念映射需要挑出与目标相关的源域属性。词义、框架、常识知识与语言模型可生成候选，语境负责约束哪些属性适合解释当前表达。"
+        },
+        {
+          "title": "解释评价 Interpretation Evaluation",
+          "body": "除标签准确性，还应评价释义的意义保持、适切性、可接受性和连贯性。翻译、政治话语与情感分析等下游应用，可帮助检验解释是否真正有用。"
+        },
+        {
+          "title": "从异常到候选而非结论",
+          "body": "Selectional preference 指谓词倾向搭配某类论元，例如物理吃喝动作通常作用于可摄取对象。遇抽象概念作论元时，字面搭配异常可触发隐喻候选；专业术语、引用和新语境也可造成异常，仍需上下文验证。"
+        },
+        {
+          "title": "释义应保存什么",
+          "body": "高质量解释保持参与者、动作关系和态度，只将隐喻表达转成适切意思。评价看意义保持、语境适切性、可接受性和连贯性，逐字复制、字符数相同或都用高频词都不能代替这些要求。"
+        }
       ],
-      "example": {"title": "从不协调搭配恢复含义", "body": "“A new idea blossomed during the discussion.”中，idea 与植物开花动作的字面搭配不典型。结合讨论语境，可将 blossomed 解释为“逐渐形成并发展”，保留想法成长这一关系。"},
+      "example": {
+        "title": "从不协调搭配恢复含义",
+        "body": "“A new idea blossomed during the discussion.”中，idea 与植物开花动作的字面搭配不典型。结合讨论语境，可将 blossomed 解释为“逐渐形成并发展”，保留想法成长这一关系。"
+      },
       "pitfallZh": "少见搭配也可能来自技术术语或新语境。仅以搭配异常判定隐喻会误报，释义也需避免加入原文没有表达的细节。",
       "formulas": [],
-      "pages": [263, 264, 265, 266]
+      "pages": [
+        263,
+        264,
+        265,
+        266
+      ],
+      "prerequisites": [
+        {
+          "term": "Identification / Interpretation",
+          "explanationZh": "识别定位哪里出现隐喻，解释恢复这段表达想传达的含义。输出一个 metaphor 标签尚未给出完整释义。"
+        },
+        {
+          "term": "Source / Target / Property",
+          "explanationZh": "源域提供知识，目标域是当前被解释的对象，property 是可迁移性质。映射需要选择与当前句意相关的部分。"
+        }
+      ],
+      "decisionSteps": [
+        "定位字面搭配异常或约定多词表达，提出候选解释。",
+        "明确源域和目标域，列出可能可迁移的性质。",
+        "根据参与者角色、上下文和文化筛选性质，避免把全部字面属性带入。",
+        "生成自然释义，逐项检查是否保持原意与篇章连贯。"
+      ],
+      "contrasts": [
+        {
+          "items": "Detection / Paraphrase",
+          "differenceZh": "检测只给位置或类别，释义还给出语境意义。",
+          "cueZh": "标出某动词为隐喻后，仍要解释它在当前句子表示什么。"
+        },
+        {
+          "items": "Unusual / Metaphorical",
+          "differenceZh": "非常规搭配可能提示隐喻，也可能是技术用语或新情况。",
+          "cueZh": "必须用语境和合理释义支持判断，异常自身不足以定类。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "解释“争论点燃了团队的热情”",
+          "steps": [
+            "字面点燃作用于可燃物，热情是抽象状态，搭配差异提示修辞解释。",
+            "源域是火开始燃烧，目标域是团队热情的产生和增强。",
+            "迁移“由弱转强、被激发”的性质，不加入温度或物理灼伤等无关信息。",
+            "释义为“争论激发了团队投入讨论的热情”，再检查它保留了原因和情绪变化。"
+          ],
+          "takeawayZh": "用选择偏好发现候选，用属性筛选和语境检验形成解释。"
+        }
+      ]
     },
     {
       "topic": "sarcasm",
       "introZh": "反讽检测（Sarcasm Detection）识别字面表达与说话者态度之间的错位。积极词语可能用于表达不满，否定语句也可能带有亲昵意味，因此需要把内容放回事件、对话和说话者背景中理解。",
       "keyPoints": [
-        {"title": "语义与情感冲突 Incongruity", "body": "一句话中的积极措辞与负面情境发生冲突时，可形成反讽线索。词典分数、情感词或标点都能提供证据，最终判断仍取决于整体含义。"},
-        {"title": "内容与上下文 Content / Context Modelling", "body": "内容编码表示当前话语，上下文编码可加入此前对话、话题及说话者信息，分类器融合这些表示。RNN 等序列模型可以学习词序依赖，上下文缺失仍会限制理解。"},
-        {"title": "情感知识与数据 Affective Knowledge / Data", "body": "SenticNet 的概念情感先验可帮助发现字面意义与情境之间的差异；反讽标注语料提供实例级监督。语音和视觉信息也可补充文字无法传递的表达方式。"}
+        {
+          "title": "语义与情感冲突 Incongruity",
+          "body": "一句话中的积极措辞与负面情境发生冲突时，可形成反讽线索。词典分数、情感词或标点都能提供证据，最终判断仍取决于整体含义。"
+        },
+        {
+          "title": "内容与上下文 Content / Context Modelling",
+          "body": "内容编码表示当前话语，上下文编码可加入此前对话、话题及说话者信息，分类器融合这些表示。RNN 等序列模型可以学习词序依赖，上下文缺失仍会限制理解。"
+        },
+        {
+          "title": "情感知识与数据 Affective Knowledge / Data",
+          "body": "SenticNet 的概念情感先验可帮助发现字面意义与情境之间的差异；反讽标注语料提供实例级监督。语音和视觉信息也可补充文字无法传递的表达方式。"
+        },
+        {
+          "title": "RNN 如何利用顺序",
+          "body": "RNN 即 Recurrent Neural Network，循环神经网络。它逐词更新隐藏状态 hₜ=f(Wxₜ+Uhₜ₋₁+b)，xₜ 表示当前词，hₜ₋₁ 携带前文信息。词序不同可导致状态不同，因此有能力学习话语中的转折和情感冲突；能力仍受训练数据与长程依赖限制。"
+        },
+        {
+          "title": "说话者与语篇的表示",
+          "body": "User embedding 把说话者相关特征编码为向量，discourse feature 表示前文、话轮或话题关系；content representation 编码当前表达。将它们融合，可比较字面赞扬与说话者已知处境是否协调。"
+        }
       ],
-      "example": {"title": "一句称赞怎样表达不满", "body": "电梯刚坏，住在顶楼的人说：“Excellent, my daily mountain climb starts here.”积极措辞与被迫爬楼的情境形成冲突，结合说话者处境可理解其抱怨。"},
+      "example": {
+        "title": "一句称赞怎样表达不满",
+        "body": "电梯刚坏，住在顶楼的人说：“Excellent, my daily mountain climb starts here.”积极措辞与被迫爬楼的情境形成冲突，结合说话者处境可理解其抱怨。"
+      },
       "pitfallZh": "正面词出现在负面事件附近也可能是真诚安慰或引用。检测出某处反讽后，也应结合目标分析情感，避免整体机械翻转。",
       "formulas": [],
-      "pages": [267, 268, 269, 270]
+      "pages": [
+        267,
+        268,
+        269,
+        270
+      ],
+      "prerequisites": [
+        {
+          "term": "Incongruity 不协调",
+          "explanationZh": "反讽线索常来自正面字面评价与负面事件之间的矛盾，需要两侧证据共同成立。"
+        },
+        {
+          "term": "Knowledge / Supervision",
+          "explanationZh": "SenticNet 提供概念语义及情感先验；反讽标注语料将具体表达及上下文配上参考标签。前者可增强模型，后者用于训练和评价。"
+        }
+      ],
+      "decisionSteps": [
+        "先理解事件对说话者是否有利，再读出当前表达的字面态度。",
+        "比较两者是否冲突，继续查看前文、说话者背景、语调或画面。",
+        "区分正面词累加与序列/上下文建模，说明哪种信息能解释错位。",
+        "最后根据反讽对象修正极性，避免对所有赞美无差别翻转。"
+      ],
+      "contrasts": [
+        {
+          "items": "Positive word / Positive intent",
+          "differenceZh": "积极词可用于真诚赞赏，也可在不利情境中表达抱怨。",
+          "cueZh": "需要明确的事件与态度冲突，单词 positive 无法确定意图。"
+        },
+        {
+          "items": "Word bag / Recurrent sequence",
+          "differenceZh": "词袋忽略排列与跨词依赖，RNN 通过隐藏状态传递顺序信息。",
+          "cueZh": "题干强调 ordered sequence、state update 时对应循环序列建模。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "判断一句礼貌称赞",
+          "steps": [
+            "餐厅把预约弄丢，顾客等了一小时后说“Your organization is truly impressive”。",
+            "字面上 impressive 为正面，事件却明显违背顾客期待，形成冲突。",
+            "结合顾客此前抱怨及重读语气，可支持它在表达不满；仅统计积极词会漏掉这层关系。",
+            "系统应针对预约服务判断负面态度，不能据此把顾客对餐点的其他评价一并翻转。"
+          ],
+          "takeawayZh": "反讽判断依赖说话内容与情境的关系，知识先验和序列表示分别提供部分证据。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-sarcasm",
       "introZh": "反讽的证据可能分散在当前文本、上一轮对话、说话者历史、语调和画面中。多源建模的关键是把这些信息对齐，再判断它们之间的关系是否支持某种交际意图。",
       "keyPoints": [
-        {"title": "上下文融合 Context Fusion", "body": "内容与上下文分别编码后，模型可分析它们的相容程度。例如当前话语表达赞赏，前文却说明期待落空，这种冲突有助于识别潜在反讽。"},
-        {"title": "多模态对齐 Multimodal Alignment", "body": "文本、声学和视觉信号需要对应同一次表达及相关上下文。MUStARD 等数据支持多模态研究，融合时还要考虑缺失模态、噪声与时间错位。"},
-        {"title": "不一致的解释 Semantic Incongruity", "body": "图文或语气与文本的不一致可能支持反讽，也可能来自错误配图、引用或其他修辞。模型应结合情境与说话者线索，避免只检测表面不匹配。"},
-        {"title": "下游用途 Downstream Use", "body": "反讽识别可改善情感分析、对话及广告分析。使用时需检查它对评价对象与情感方向的具体影响，并在真实应用中验证收益。"}
+        {
+          "title": "上下文融合 Context Fusion",
+          "body": "内容与上下文分别编码后，模型可分析它们的相容程度。例如当前话语表达赞赏，前文却说明期待落空，这种冲突有助于识别潜在反讽。"
+        },
+        {
+          "title": "多模态对齐 Multimodal Alignment",
+          "body": "文本、声学和视觉信号需要对应同一次表达及相关上下文。MUStARD 等数据支持多模态研究，融合时还要考虑缺失模态、噪声与时间错位。"
+        },
+        {
+          "title": "不一致的解释 Semantic Incongruity",
+          "body": "图文或语气与文本的不一致可能支持反讽，也可能来自错误配图、引用或其他修辞。模型应结合情境与说话者线索，避免只检测表面不匹配。"
+        },
+        {
+          "title": "下游用途 Downstream Use",
+          "body": "反讽识别可改善情感分析、对话及广告分析。使用时需检查它对评价对象与情感方向的具体影响，并在真实应用中验证收益。"
+        },
+        {
+          "title": "多模态样本需要哪些字段",
+          "body": "完整研究样本可包含目标话语、前文对话、对齐音频、视频片段及反讽标签。MUStARD 支持这样的多模态反讽研究。只有词典情感条目无法评价说话方式，只有时间戳也缺少表达内容。"
+        },
+        {
+          "title": "先处理不一致的其他原因",
+          "body": "文本、声音或图像不协调时，先检查它们是否描述同一事件、是否有引用或配图错误。真正反讽推断还涉及说话者态度；一个失配信号能提高怀疑，无法独立排除其他解释。"
+        }
       ],
-      "example": {"title": "三个模态共同提供证据", "body": "用户配着一张拥堵街道照片写“Such a relaxing commute”，视频里又出现无奈的叹气。文字、场景与声音相互补充；若只有文字，模型对说话者态度的把握通常更弱。"},
+      "example": {
+        "title": "三个模态共同提供证据",
+        "body": "用户配着一张拥堵街道照片写“Such a relaxing commute”，视频里又出现无奈的叹气。文字、场景与声音相互补充；若只有文字，模型对说话者态度的把握通常更弱。"
+      },
       "pitfallZh": "用户历史可帮助理解习惯表达，也可能引入身份捷径。评测需要检查换用户、换话题或缺少某个模态时的表现。",
       "formulas": [],
-      "pages": [267, 268, 269, 270]
+      "pages": [
+        267,
+        268,
+        269,
+        270
+      ],
+      "prerequisites": [
+        {
+          "term": "Content / Context",
+          "explanationZh": "Content 是当前评论本身，context 包括前几轮对话、说话者和事件背景。礼貌回复可能依赖前文期待才能解释。"
+        },
+        {
+          "term": "Semantic incongruity",
+          "explanationZh": "语义或情感不协调来自两个信息源的冲突，例如负面事件却配积极评价。"
+        },
+        {
+          "term": "Alignment 对齐",
+          "explanationZh": "将文字、声音、表情及前文对应到同一话轮与时间范围，避免模型融合无关信号。"
+        }
+      ],
+      "decisionSteps": [
+        "读当前话语并恢复前文期待，找到可能的字面态度与事件冲突。",
+        "确认文本、音频和视频已对齐，检查缺失或噪声模态。",
+        "对比反讽与引用、真诚安慰、错误配图等竞争解释。",
+        "在情感分类前加入语境化解释，只修正被讽刺对象的态度。"
+      ],
+      "contrasts": [
+        {
+          "items": "Mismatch / Sarcasm",
+          "differenceZh": "模态失配是一类线索，反讽还要求合理的交际意图解释。",
+          "cueZh": "every mismatch is sarcastic 这类绝对规则排除了现实中的其他成因。"
+        },
+        {
+          "items": "Sarcasm-aware sentiment / Mechanical flip",
+          "differenceZh": "前者结合上下文恢复评价，后者把所有积极表达都改负面。",
+          "cueZh": "真诚赞扬应保留；只针对有反讽证据的评价修正。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "审查视频评论的三种信息",
+          "steps": [
+            "视频画面显示露营帐篷被雨淋湿，评论是“A perfectly dry holiday”。",
+            "先核对文字对应这个片段，排除字幕来自另一段录像的情况。",
+            "再听说话者叹气并查看前文对天气的期待，语调、事件与字面评价共同支持反讽。",
+            "输出对露营天气的负面态度；若画面和音频缺失，则应降低对这一解释的把握。"
+          ],
+          "takeawayZh": "可靠融合先对齐证据，再解释冲突对说话意图的意义。"
+        }
+      ]
     },
     {
       "topic": "personality",
       "introZh": "人格识别（Personality Recognition）利用一个人的语言行为估计较稳定的特质倾向。训练数据通常把文本与人格测量结果对应起来，模型可用于用户画像、个性化情感分析和表达习惯建模。",
       "keyPoints": [
-        {"title": "五大人格 Big Five / OCEAN", "body": "O 是开放性 Openness，C 是尽责性 Conscientiousness，E 是外向性 Extraversion，A 是宜人性 Agreeableness，N 是神经质 Neuroticism。五个维度分别描述不同倾向，可以同时取值。"},
-        {"title": "类型偏好 MBTI", "body": "MBTI 使用 E/I、S/N、T/F、J/P 四组偏好：能量导向、信息感知、判断以及处理外部世界的方式。学习时需将这套框架的术语与 Big Five 的连续特质区分清楚。"},
-        {"title": "测量与模型 Measurement / Prediction", "body": "BFI、TIPI 通过条目测量特质，反向题需先调整分数方向。文本配合测量标签可训练 SVM、CNN 或序列模型，输出质量受标注、样本与文本覆盖范围影响。"}
+        {
+          "title": "五大人格 Big Five / OCEAN",
+          "body": "O 是开放性 Openness，C 是尽责性 Conscientiousness，E 是外向性 Extraversion，A 是宜人性 Agreeableness，N 是神经质 Neuroticism。五个维度分别描述不同倾向，可以同时取值。"
+        },
+        {
+          "title": "类型偏好 MBTI",
+          "body": "MBTI 使用 E/I、S/N、T/F、J/P 四组偏好：能量导向、信息感知、判断以及处理外部世界的方式。学习时需将这套框架的术语与 Big Five 的连续特质区分清楚。"
+        },
+        {
+          "title": "测量与模型 Measurement / Prediction",
+          "body": "BFI、TIPI 通过条目测量特质，反向题需先调整分数方向。文本配合测量标签可训练 SVM、CNN 或序列模型，输出质量受标注、样本与文本覆盖范围影响。"
+        },
+        {
+          "title": "五维含义与组合",
+          "body": "开放性涉及好奇、新体验和想象；尽责性涉及组织、可靠、坚持；外向性涉及社交活跃；宜人性涉及合作、体谅；神经质涉及负面情绪敏感性。OCEAN 各维度分别计分，一个人可以在多个维度同时得高分，单次心情无法替代稳定特质测量。"
+        },
+        {
+          "title": "文本资源怎样提供标签",
+          "body": "Pennebaker and King 的 essays 资源将作文文本与 Big Five 人格测量对应，可用于文本人格预测；文献条目为 Pennebaker and King（1999），数据规模为 2,479 篇作文。Kaggle MBTI 把社交帖子与 MBTI 类型对应，标签体系不同。选择训练资源时先匹配文本类型和标签体系。WSC 测共指常识，LexNorm 提供规范化文本，WordNet 提供词义同义集，均不提供同样的作文-五维特质配对。"
+        },
+        {
+          "title": "模型选择依据输出",
+          "body": "SVM 可基于文本特征做分类或回归，CNN 可提取局部词序模式，RNN/BiLSTM 可编码序列上下文；它们都可能用于人格预测。数据是否有可靠测量标签、文本是否覆盖稳定行为，比某个模型名称更先决定任务是否成立。"
+        }
       ],
-      "example": {"title": "从重复行为理解倾向", "body": "一段文本写到喜欢尝试陌生活动，可以为开放性提供线索；多次记录按计划完成任务，可为尽责性提供线索。实际估计应结合更充分的文本和测量，保留不确定性。"},
+      "example": {
+        "title": "从重复行为理解倾向",
+        "body": "一段文本写到喜欢尝试陌生活动，可以为开放性提供线索；多次记录按计划完成任务，可为尽责性提供线索。实际估计应结合更充分的文本和测量，保留不确定性。"
+      },
       "pitfallZh": "一次愤怒、兴奋或沉默可能由当前情境引起。短时情绪与较稳定特质处于不同时间尺度，少量文本不能支持确定的人格结论。",
-      "formulas": [{"expression": "反向得分 = 量表下界 + 量表上界 − 原得分", "explanationZh": "BFI 的 1–5 计分对应 6−x；先完成反向转换，再按该量表规定汇总相应条目。"}],
-      "pages": [271, 272, 273, 274, 275]
+      "formulas": [
+        {
+          "expression": "反向得分 = 量表下界 + 量表上界 − 原得分",
+          "explanationZh": "BFI 的 1–5 计分对应 6−x；先完成反向转换，再按该量表规定汇总相应条目。"
+        }
+      ],
+      "pages": [
+        271,
+        272,
+        273,
+        274,
+        275
+      ],
+      "prerequisites": [
+        {
+          "term": "Trait / State",
+          "explanationZh": "Trait 是较稳定的特质倾向，state 是当下焦虑、兴奋等状态；多次语言行为和问卷可提供比单句更充分的特质证据。"
+        },
+        {
+          "term": "Reverse-coded item 反向条目",
+          "explanationZh": "措辞方向与特质方向相反的条目先翻转量表，再与正向题合成同向分数。R 表示反向标记。"
+        }
+      ],
+      "decisionSteps": [
+        "先确认标签体系为五个 Big Five 维度还是 MBTI 四组偏好。",
+        "将行为描述映射到维度含义，而非按缩写字母随意联想。",
+        "计分时查量表上下界和反向标记，按 L+U−x 变换后再汇总。",
+        "选择含目标人格标签的文本资源并训练适当模型，推断时区分短时状态与稳定倾向。"
+      ],
+      "contrasts": [
+        {
+          "items": "OCEAN / MBTI",
+          "differenceZh": "OCEAN 描述五项特质；MBTI 用 E/I、S/N、T/F、J/P 四组偏好。",
+          "cueZh": "MBTI 的 N 表示 intuition，OCEAN 的 N 表示 neuroticism，须结合所属体系。"
+        },
+        {
+          "items": "Judging / Perceiving",
+          "differenceZh": "J 偏好规划与定案，P 偏好开放、灵活应变；这描述该框架中的处事偏好。",
+          "cueZh": "尽责性高低属于 Big Five，不能直接当 MBTI 的正式二分名称。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "从文本到可测量特质",
+          "steps": [
+            "多篇日记反复描述制定清单、按时完成责任，可为尽责性提供线索；一次紧张消息主要描述当下状态。",
+            "若目标是预测五大人格，选择有 Big Five 问卷标签的作文配对数据。",
+            "在1–5量表中，一个反向条目原得分为1，转换为1+5−1=5。",
+            "再按量表规则与同维度正向条目合成分数，用文本特征训练并在独立用户上测试。"
+          ],
+          "takeawayZh": "文本提供行为线索，量表提供标签定义，两者连接后才形成可评价任务。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-personality",
       "introZh": "人格建模需要把测量过程、文本特征与评价目标连接起来。不同问卷和人格框架产生的标签含义各异；在建模前，应先确认预测的是哪个维度、分数还是类别，以及面向已有用户还是新用户。",
       "keyPoints": [
-        {"title": "特质含义 Trait Interpretation", "body": "尽责性涉及组织性、可靠性与坚持，外向性涉及活跃社交，开放性涉及好奇与新体验，宜人性涉及合作与体谅，神经质涉及情绪敏感等倾向。多个维度可同时较高。"},
-        {"title": "偏好框架 Preference Framework", "body": "MBTI 的 J/P 讨论组织、定案与开放灵活的处事偏好，T/F 讨论判断偏好。理解术语时需放回所属框架，避免按日常字面意思给人贴标签。"},
-        {"title": "条目对齐 Reverse Scoring", "body": "正向与反向措辞的条目需要先统一方向，再汇总特质分数。TIPI 的 1–7 范围使用 8−x 进行反向计分，具体条目归属由量表规定。"},
-        {"title": "用户级泛化 User-level Evaluation", "body": "同一用户的文本若同时进入训练与测试，模型可能利用作者线索获得偏高分数。评估新用户时应按用户划分，并明确分类、相关性或连续误差等指标。"}
+        {
+          "title": "特质含义 Trait Interpretation",
+          "body": "尽责性涉及组织性、可靠性与坚持，外向性涉及活跃社交，开放性涉及好奇与新体验，宜人性涉及合作与体谅，神经质涉及情绪敏感等倾向。多个维度可同时较高。"
+        },
+        {
+          "title": "偏好框架 Preference Framework",
+          "body": "MBTI 的 J/P 讨论组织、定案与开放灵活的处事偏好，T/F 讨论判断偏好。理解术语时需放回所属框架，避免按日常字面意思给人贴标签。"
+        },
+        {
+          "title": "条目对齐 Reverse Scoring",
+          "body": "正向与反向措辞的条目需要先统一方向，再汇总特质分数。TIPI 的 1–7 范围使用 8−x 进行反向计分，具体条目归属由量表规定。"
+        },
+        {
+          "title": "用户级泛化 User-level Evaluation",
+          "body": "同一用户的文本若同时进入训练与测试，模型可能利用作者线索获得偏高分数。评估新用户时应按用户划分，并明确分类、相关性或连续误差等指标。"
+        },
+        {
+          "title": "两套缩写的完整含义",
+          "body": "Big Five/OCEAN：Openness 开放性、Conscientiousness 尽责性、Extraversion 外向性、Agreeableness 宜人性、Neuroticism 神经质。MBTI：E/I 为外倾/内倾，S/N 为感觉/直觉，T/F 为思考/情感判断，J/P 为判断/知觉处事偏好；T/F关注决策依据，J/P关注规划定案与开放灵活。"
+        },
+        {
+          "title": "从测量到无泄漏评价",
+          "body": "每位作者的多篇文本共享同一人格测量时，应按用户划分训练和测试，确保新用户完全未被训练见过。随机拆帖子可能把作者习惯甚至重复内容泄漏到测试中，从而夸大新用户泛化。"
+        }
       ],
-      "example": {"title": "先反向再汇总", "body": "某维度有一个正向条目得 5 分、一个 1–7 反向条目得 3 分。反向后为 8−3＝5，两项平均为 5；直接平均原始分数会把相反措辞方向混在一起。"},
+      "example": {
+        "title": "先反向再汇总",
+        "body": "某维度有一个正向条目得 5 分、一个 1–7 反向条目得 3 分。反向后为 8−3＝5，两项平均为 5；直接平均原始分数会把相反措辞方向混在一起。"
+      },
       "pitfallZh": "预测分数反映文本与测量之间的统计关系；文本量不足、场景单一或标签噪声都会限制对稳定特质的解释。",
-      "formulas": [{"expression": "xʳ = L + U − x；维度得分 = 对齐后条目分数的规定汇总", "explanationZh": "L、U 为量表下界与上界，xʳ 为反向得分；需要先核对哪些条目带有反向标记。"}],
-      "pages": [272, 273, 274, 275, 276]
+      "formulas": [
+        {
+          "expression": "xʳ = L + U − x；维度得分 = 对齐后条目分数的规定汇总",
+          "explanationZh": "L、U 为量表下界与上界，xʳ 为反向得分；需要先核对哪些条目带有反向标记。"
+        }
+      ],
+      "pages": [
+        272,
+        273,
+        274,
+        275,
+        276
+      ],
+      "prerequisites": [
+        {
+          "term": "Stable trait 稳定特质",
+          "explanationZh": "倾向是在多个情境和较长时间尺度上观察的统计模式。一个愤怒或焦虑句子不能独立确定整个人格。"
+        },
+        {
+          "term": "Scale / Reverse score",
+          "explanationZh": "量表的下界 L 与上界 U 决定反向公式 L+U−x；先反向统一措辞方向，再计算平均。TIPI 的1–7尺度对应8−x。"
+        }
+      ],
+      "decisionSteps": [
+        "确认题干描述的是当下状态还是长期特质，避免跨时间尺度推断。",
+        "行为匹配维度：组织可靠看尽责，社交活跃看外向，好奇新体验看开放。",
+        "MBTI 题先识别决策、信息来源、能量导向或处事方式，再选对应二分。",
+        "计算先反向后平均；评测先按用户隔离，再选分类或连续预测指标。"
+      ],
+      "contrasts": [
+        {
+          "items": "Conscientiousness / Extraversion / Neuroticism",
+          "differenceZh": "尽责性偏向组织和坚持，外向性偏向社交活跃，神经质偏向情绪敏感。",
+          "cueZh": "可靠守时不能单靠字面积极就归外向或开放。"
+        },
+        {
+          "items": "Post split / User split",
+          "differenceZh": "帖子级随机划分可让同一作者跨集合，用户级划分把同一人的所有帖子放在同一集合。",
+          "cueZh": "目标为 unseen people 时，测试作者必须整体留出。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "构造人格预测测试集",
+          "steps": [
+            "有40名作者，每人多篇随笔和人格量表分数，目标是预测未见过的人。",
+            "按作者选择训练和测试成员，把各人的所有文本整体分配，防止作者身份泄漏。",
+            "某维度有1–7量表两项，正向得4、反向原得1；反向变为8−1=7。",
+            "维度平均为(4+7)/2=5.5，再用这一同向标签训练文本模型，而非直接平均4与1。"
+          ],
+          "takeawayZh": "测量方向一致与用户级隔离分别保证标签含义和泛化评价可信。"
+        }
+      ]
     },
     {
       "topic": "aspect",
       "introZh": "方面抽取（Aspect Extraction）找出评论正在评价的对象或属性，例如屏幕、服务、续航。把评价与方面连接后，同一句话中的不同观点就能分别保留，支持细粒度的产品比较和推荐。输出可以包含方面跨度或方面类别，随后再为每个方面聚合意见。",
       "keyPoints": [
-        {"title": "方面与情感 Aspect / Sentiment", "body": "方面回答“评价什么”，情感回答“怎样评价”。一个评论可以同时赞赏某方面、批评另一个方面，整句标签难以完整呈现这种结构。"},
-        {"title": "序列标注与主题模型 Tagging / Topic Models", "body": "显式方面可标成文本跨度，BIOES 中 S 表示单词跨度，B、I、E 组织多词跨度。LDA 利用共现发现潜在主题，可辅助发现方面，主题与人工类别通常还需对齐。"},
-        {"title": "方面级分析 Aspect-based Sentiment Analysis", "body": "ABSA 可以围绕已知方面预测情感，也可以联合识别方面与极性。Sentic GCN 利用情感知识增强图卷积，为方面相关的情感表示提供信息。"}
+        {
+          "title": "方面与情感 Aspect / Sentiment",
+          "body": "方面回答“评价什么”，情感回答“怎样评价”。一个评论可以同时赞赏某方面、批评另一个方面，整句标签难以完整呈现这种结构。"
+        },
+        {
+          "title": "序列标注与主题模型 Tagging / Topic Models",
+          "body": "显式方面可标成文本跨度，BIOES 中 S 表示单词跨度，B、I、E 组织多词跨度。LDA 利用共现发现潜在主题，可辅助发现方面，主题与人工类别通常还需对齐。"
+        },
+        {
+          "title": "方面级分析 Aspect-based Sentiment Analysis",
+          "body": "ABSA 可以围绕已知方面预测情感，也可以联合识别方面与极性。Sentic GCN 利用情感知识增强图卷积，为方面相关的情感表示提供信息。"
+        },
+        {
+          "title": "LDA 的混合结构",
+          "body": "LDA 即 Latent Dirichlet Allocation，潜在狄利克雷分配。它把一篇文档表示成多个主题的概率混合，每个主题又是词的概率分布；共现词群可提示续航、显示或服务等方面，之后仍需把主题解释为人工方面类别。"
+        },
+        {
+          "title": "图卷积与情感知识",
+          "body": "GCN 即 Graph Convolutional Network，图卷积网络，沿图边聚合相邻节点信息。Sentic GCN 在方面级情感分析中用情感知识增强图卷积表示，以支持给定方面的极性预测；其图建模与只按线性词序编码、只抽方面边界或 LDA 主题发现承担不同作用。"
+        }
       ],
-      "example": {"title": "把一句评论展开", "body": "“The laptop has a crisp display, but its fan is noisy.”包含 display 的正面评价，以及 fan 的负面评价。按方面保存后，可以分别比较显示效果与噪声，满足不同用户的偏好。"},
+      "example": {
+        "title": "把一句评论展开",
+        "body": "“The laptop has a crisp display, but its fan is noisy.”包含 display 的正面评价，以及 fan 的负面评价。按方面保存后，可以分别比较显示效果与噪声，满足不同用户的偏好。"
+      },
       "pitfallZh": "某些 ABSA 模型以已给定的方面为输入，重点学习其情感；评估时需要确认系统是否还承担从原文发现方面跨度的任务。",
       "formulas": [],
-      "pages": [277, 278, 279, 281, 302]
+      "pages": [
+        277,
+        278,
+        279,
+        281,
+        302
+      ],
+      "prerequisites": [
+        {
+          "term": "Aspect / Opinion / Polarity",
+          "explanationZh": "方面是评价对象或属性，意见词说明评价依据，极性概括正负方向。需要保持方面与评价的对应关系。"
+        },
+        {
+          "term": "BIOES",
+          "explanationZh": "B 开始、I 内部、E 结束、S 表示单词构成完整跨度、O 表示非方面词。两个词的完整方面用B-E，单词方面用S。"
+        }
+      ],
+      "decisionSteps": [
+        "先圈出被评价对象，再找到与每个对象相连的意见表达和情感方向。",
+        "需要边界时按跨度长度做 BIOES；不要把积极形容词当被评价方面。",
+        "方法描述含文档-主题-词分布时认出LDA，含图邻域与情感知识融合时认出Sentic GCN。",
+        "对比产品时保留逐方面得失，根据用户偏好权衡，避免只看总平均。"
+      ],
+      "contrasts": [
+        {
+          "items": "Aspect extraction / Aspect polarity",
+          "differenceZh": "前者找到评价对象，后者判断该对象的情感，两者可以分开或联合建模。",
+          "cueZh": "给定方面再预测情感的模型，不自动证明它会从原文发现全部方面。"
+        },
+        {
+          "items": "LDA / Sequence tagging",
+          "differenceZh": "LDA 从词共现学习主题混合，BIO/CRF 标注模型在词序列中预测边界。",
+          "cueZh": "latent topics 和 document mixture 是主题模型的核心描述。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "比较两款耳机",
+          "steps": [
+            "评论写“the cushions are comfortable, but the microphone is weak”，提取 cushions 与 microphone 两个方面。",
+            "comfortable 支持前者正面，weak 在此语境支持后者负面，不能给整句一个标签就结束。",
+            "两个方面各为单词跨度，都可标 S；若出现“noise cancellation”，则用B-E。",
+            "另一款耳机舒适度较差但麦克风好时，按通话或长时间佩戴需求分别权衡，整体均分无法展示这种差别。"
+          ],
+          "takeawayZh": "从目标到意见到极性的对应结构，是细粒度分析的核心。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-aspects",
       "introZh": "细粒度方面分析需要区分原文术语、归纳类别、意见表达和极性。定义清楚输出字段之后，才能处理显式与隐式方面、设计联合抽取，并比较不同方法是否完成相同任务。",
       "keyPoints": [
-        {"title": "术语与类别 Term / Category", "body": "方面术语是文本中的具体跨度，方面类别是归纳标签。AE 关注术语抽取，AC 关注类别识别，ATP 和 ACP 分别围绕术语与类别预测极性。"},
-        {"title": "显式与隐式 Explicit / Implicit", "body": "显式方面有直接出现的词语，隐式方面需要由描述推断。描述携带是否方便可能间接涉及尺寸或重量，常识和语境有助于判断适合的方面类别。"},
-        {"title": "联合结构 Joint Extraction", "body": "把方面、意见和极性组成结构化输出，可以保留每条评价的指向。有些任务进一步加入类别，模型需同时解决跨度识别、关系配对及情感判断。"},
-        {"title": "知识与比较 Knowledge / Comparison", "body": "概念与实体知识帮助推断方面，情感知识提供极性线索。方面级评分展开整体平均背后的优劣，使用户能够按自己的关注点比较产品。"}
+        {
+          "title": "术语与类别 Term / Category",
+          "body": "方面术语是文本中的具体跨度，方面类别是归纳标签。AE 关注术语抽取，AC 关注类别识别，ATP 和 ACP 分别围绕术语与类别预测极性。"
+        },
+        {
+          "title": "显式与隐式 Explicit / Implicit",
+          "body": "显式方面有直接出现的词语，隐式方面需要由描述推断。描述携带是否方便可能间接涉及尺寸或重量，常识和语境有助于判断适合的方面类别。"
+        },
+        {
+          "title": "联合结构 Joint Extraction",
+          "body": "把方面、意见和极性组成结构化输出，可以保留每条评价的指向。有些任务进一步加入类别，模型需同时解决跨度识别、关系配对及情感判断。"
+        },
+        {
+          "title": "知识与比较 Knowledge / Comparison",
+          "body": "概念与实体知识帮助推断方面，情感知识提供极性线索。方面级评分展开整体平均背后的优劣，使用户能够按自己的关注点比较产品。"
+        },
+        {
+          "title": "四个子任务的输入输出",
+          "body": "AE=Aspect Extraction，找原文方面术语跨度；AC=Aspect Category detection，预测如DISPLAY、SERVICE等类别；ATP=Aspect Term Polarity，对给定术语判断情感；ACP=Aspect Category Polarity，对给定类别判断情感。类别是预定义标签，即使原文没写出对应名称也可被推断。"
+        },
+        {
+          "title": "知识资源的不同贡献",
+          "body": "概念关系可把“可随身携带”等表达连接到重量、尺寸或便携性，情感知识则为表达的好坏提供线索。Probase 等概念知识与通用实体图偏向概念及关系，SenticNet 等情感资源提供概念情感先验；融合后仍须依据句内关系把意见配给正确方面。"
+        }
       ],
-      "example": {"title": "同时表示显式与隐式评价", "body": "“The keyboard feels comfortable, and I can carry it all day without effort.”可得到键盘舒适的显式评价，并从第二部分推断便携性或重量方面的正面评价。后一项可能没有对应的直接方面词。"},
+      "example": {
+        "title": "同时表示显式与隐式评价",
+        "body": "“The keyboard feels comfortable, and I can carry it all day without effort.”可得到键盘舒适的显式评价，并从第二部分推断便携性或重量方面的正面评价。后一项可能没有对应的直接方面词。"
+      },
       "pitfallZh": "隐式方面可能存在多种合理粒度，需按数据集类别规范处理；联合模型也要防止把某个意见错误配给句中另一方面。",
       "formulas": [],
-      "pages": [277, 278, 279, 280, 281]
+      "pages": [
+        277,
+        278,
+        279,
+        280,
+        281
+      ],
+      "prerequisites": [
+        {
+          "term": "Term / Category",
+          "explanationZh": "术语是输入中实际出现的词或短语，类别是归纳后的评价维度。一个类别可对应多个术语表达。"
+        },
+        {
+          "term": "Explicit / Implicit",
+          "explanationZh": "显式方面有可指认的原文跨度，隐式方面由事件或属性推断；隐式类别有时没有可标注的方面词。"
+        },
+        {
+          "term": "Opinion triplet",
+          "explanationZh": "三元组把方面、意见表达、极性绑定，例如(座椅,支撑很好,正面)，保留谁被怎样评价的关系。"
+        }
+      ],
+      "decisionSteps": [
+        "检查是否有直接方面词；有则识别跨度，无则从描述推断类别。",
+        "把术语、类别、意见词和极性分别填入字段，不互相替换。",
+        "对联合抽取检查意见与方面配对是否合理，一句多方面时逐一判断。",
+        "按各方面比较产品优劣，并按数据集约定处理隐式类别粒度。"
+      ],
+      "contrasts": [
+        {
+          "items": "Term / Opinion expression",
+          "differenceZh": "方面术语命名目标，意见表达提供评价证据。",
+          "cueZh": "“lens”可为目标，“sharp”可为评价，二者不能调换功能。"
+        },
+        {
+          "items": "Overall / Aspect-level",
+          "differenceZh": "总分压缩所有方面，方面级输出保存分项差异。",
+          "cueZh": "相同总分可来自完全不同的优缺点组合。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "处理没有直接方面词的评论",
+          "steps": [
+            "“This speaker can fill a large hall, but I struggle to carry it upstairs”有音量能力和搬运困难两条评价。",
+            "第一部分可映射到音量或输出能力类别，第二部分可推断重量或便携性类别。",
+            "逐条记录支持表达和相应极性，避免把“大”本身固定当负面，也避免要求原文必须出现 weight。",
+            "若数据集将第二条统一归PORTABILITY，就按该类别规范输出，并保留“struggle to carry”作为意见证据。"
+          ],
+          "takeawayZh": "隐式方面靠语义映射，结构化输出保存推断依据和评价指向。"
+        }
+      ]
     },
     {
       "topic": "polarity",
       "introZh": "极性检测（Polarity Detection）判断表达的情感方向，如正面、负面或中性；连续预测还估计情感强度。输入可以是词、句子、文档或带方面的表达，输出与评价方法需随任务粒度明确。",
       "keyPoints": [
-        {"title": "方向与强度 Direction / Intensity", "body": "离散标签概括方向，区间 [−1, +1] 的分数还可表示程度：符号对应方向，绝对值描述强度。不同系统的分数尺度需要校准，不能只凭数值大小跨系统解释。"},
-        {"title": "先验与组合 Lexicon / Composition", "body": "情感词典和 SenticNet 等概念资源提供先验，句子中的否定、转折、词义与评价对象会改变实际含义。上下文模型可以结合这些组合关系进行预测。"},
-        {"title": "评价与用途 Metrics / Applications", "body": "分类常用准确率和 F1，类别不平衡时可分别查看各类指标及 Macro-F1。情感结果可服务于推荐或对话，也可作为其他分类器的输入特征。"}
+        {
+          "title": "方向与强度 Direction / Intensity",
+          "body": "离散标签概括方向，区间 [−1, +1] 的分数还可表示程度：符号对应方向，绝对值描述强度。不同系统的分数尺度需要校准，不能只凭数值大小跨系统解释。"
+        },
+        {
+          "title": "先验与组合 Lexicon / Composition",
+          "body": "情感词典和 SenticNet 等概念资源提供先验，句子中的否定、转折、词义与评价对象会改变实际含义。上下文模型可以结合这些组合关系进行预测。"
+        },
+        {
+          "title": "评价与用途 Metrics / Applications",
+          "body": "分类常用准确率和 F1，类别不平衡时可分别查看各类指标及 Macro-F1。情感结果可服务于推荐或对话，也可作为其他分类器的输入特征。"
+        },
+        {
+          "title": "极性、置信度与任务标签",
+          "body": "连续情感分数在[−1,+1]时，正负号代表方向，绝对值代表强弱。模型对正类的置信度通常在[0,1]且描述预测把握，两者含义不同。Spam filtering 的标签是 spam/ham，极性标签是正/负/中性；情感可作为垃圾邮件模型的一项特征。"
+        },
+        {
+          "title": "Macro-F1 的计算顺序",
+          "body": "对每个类别分别用该类 Precision 和 Recall 算 F1，再对K个F1等权平均。类别频率不改变宏平均权重；Micro-F1 则先汇总各类的TP、FP、FN计数再算分数，所以高频类的影响方式不同。"
+        }
       ],
-      "example": {"title": "同一评价词的不同贡献", "body": "“The instructions are clear.”通常表达正面评价；“The instructions are not clear.”中，否定作用于 clear，改变了其情感贡献。若评论再加入别的方面，应分别确定评价的指向。"},
+      "example": {
+        "title": "同一评价词的不同贡献",
+        "body": "“The instructions are clear.”通常表达正面评价；“The instructions are not clear.”中，否定作用于 clear，改变了其情感贡献。若评论再加入别的方面，应分别确定评价的指向。"
+      },
       "pitfallZh": "词典分数提供局部信息；独立标注的测试集才用于评价预测质量。反讽、否定范围和不同方面会使简单加总产生误判。",
-      "formulas": [{"expression": "Macro-F1 = (F1₁ + … + F1ₖ) / K", "explanationZh": "分别计算 K 个类别的 F1，再等权平均。它与先汇总全部类别的预测计数所得到的微平均不同。"}],
-      "pages": [282, 283, 284]
+      "formulas": [
+        {
+          "expression": "Macro-F1 = (F1₁ + … + F1ₖ) / K",
+          "explanationZh": "分别计算 K 个类别的 F1，再等权平均。它与先汇总全部类别的预测计数所得到的微平均不同。"
+        }
+      ],
+      "pages": [
+        282,
+        283,
+        284
+      ],
+      "prerequisites": [
+        {
+          "term": "Lexicon prior 词典先验",
+          "explanationZh": "词或概念在常见用法下的情感值。SenticNet 提供概念级情感知识，可作为输入特征，独立标注的评论测试集才提供实例级评测答案。"
+        },
+        {
+          "term": "Negation scope 否定范围",
+          "explanationZh": "否定词影响哪个词或命题决定了情感组合。“not”附近存在积极词时，需要先确定其作用对象。"
+        }
+      ],
+      "decisionSteps": [
+        "先确定目标输出是方向类别、连续强度，还是情感以外的标签。",
+        "检查词义、否定范围、转折与评价对象，再组合局部词典信息。",
+        "分类题选准确率/F1；宏平均题先算逐类F1再等权平均。",
+        "选择资源时分清概念情感先验与带真实标签的测试实例。"
+      ],
+      "contrasts": [
+        {
+          "items": "Intensity / Confidence",
+          "differenceZh": "强度描述态度有多强，置信度描述模型对预测有多确定。",
+          "cueZh": "绝对值无法单独区分正负；高置信度也不代表强烈情感。"
+        },
+        {
+          "items": "Knowledge base / Evaluation set",
+          "differenceZh": "知识库帮助形成预测，测试集检验预测是否正确。",
+          "cueZh": "资源名出现情感信息，不代表它知道任意新句的金标准答案。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "读取连续分数并做宏平均",
+          "steps": [
+            "某评论对服务的强度为−0.7，负号表示负面，0.7表示程度，不能把它读成负的概率。",
+            "句子“the arrangement is not convenient”中，先确认not作用于convenient，再评估组合情感。",
+            "两个类别的F1分别为0.8与0.4，Macro-F1=(0.8+0.4)/2=0.6。",
+            "即使第一类样本更多，宏平均仍给两类相同权重，用来观察对少数类的表现。"
+          ],
+          "takeawayZh": "清楚定义分数含义，才能正确解释输出、选择资源和计算指标。"
+        }
+      ]
     },
     {
       "topic": "taskdetail-polarity",
       "introZh": "更深入的情感建模既要处理强度尺度，也要融合上下文、词典与逻辑关系。神经符号方法（Neurosymbolic Methods）把可学习表示与显式知识结合，使模型有机会利用词义、依存和常识约束。",
       "keyPoints": [
-        {"title": "连续预测 Continuous Prediction", "body": "强度输出需要同时考虑方向和数值距离。MAE 等误差指标反映预测偏离标准分数的程度，分类指标则衡量标签判断，选用时应对应目标输出。"},
-        {"title": "知识融合 Knowledge Integration", "body": "神经编码器捕捉上下文，词典提供情感先验，依存关系和显式规则补充组合结构。逻辑张量网络等方法还可把逻辑关系纳入学习，但融合效果仍需实验验证。"},
-        {"title": "预训练与提示 Pretraining / Prompting", "body": "预训练模型和提示方法可复用语言知识，遇到领域词义、反讽和隐含对象时仍需检验。比较方案应保持数据与评价条件一致，并分析具体错误类型。"},
-        {"title": "下游证据 Downstream Evidence", "body": "情感结果可作为推荐、人机交互或金融预测中的特征，也可形成解释线索。相关预测表现只支持相应实验条件下的结论，应用还需结合其他信息。"}
+        {
+          "title": "连续预测 Continuous Prediction",
+          "body": "强度输出需要同时考虑方向和数值距离。MAE 等误差指标反映预测偏离标准分数的程度，分类指标则衡量标签判断，选用时应对应目标输出。"
+        },
+        {
+          "title": "知识融合 Knowledge Integration",
+          "body": "神经编码器捕捉上下文，词典提供情感先验，依存关系和显式规则补充组合结构。逻辑张量网络等方法还可把逻辑关系纳入学习，但融合效果仍需实验验证。"
+        },
+        {
+          "title": "预训练与提示 Pretraining / Prompting",
+          "body": "预训练模型和提示方法可复用语言知识，遇到领域词义、反讽和隐含对象时仍需检验。比较方案应保持数据与评价条件一致，并分析具体错误类型。"
+        },
+        {
+          "title": "下游证据 Downstream Evidence",
+          "body": "情感结果可作为推荐、人机交互或金融预测中的特征，也可形成解释线索。相关预测表现只支持相应实验条件下的结论，应用还需结合其他信息。"
+        },
+        {
+          "title": "误差符号与尺度",
+          "body": "单例绝对误差是|预测−标准|，绝对值使距离非负。遇到负标准值时先保留括号，减去负数等于加其正值；MAE把各例绝对误差求平均。方向分类正确也可能有强度误差，因此不能用正负命中率替代MAE。"
+        },
+        {
+          "title": "预测关联与因果",
+          "body": "金融或其他时间序列中，情感特征改善预测仅支持特定数据、划分和指标下的预测用途。价格还受共同原因、市场结构等因素影响，预测成绩本身无法证明情感造成全部变化，也无法保证未来收益。"
+        }
       ],
-      "example": {"title": "计算连续强度误差", "body": "两个样本的标准强度分别是 −0.6 和 0.8，模型预测为 −0.2 和 0.5。绝对误差是 0.4 和 0.3，平均为 0.35；两次方向都对，强度依然存在偏差。"},
+      "example": {
+        "title": "计算连续强度误差",
+        "body": "两个样本的标准强度分别是 −0.6 和 0.8，模型预测为 −0.2 和 0.5。绝对误差是 0.4 和 0.3，平均为 0.35；两次方向都对，强度依然存在偏差。"
+      },
       "pitfallZh": "情感与用户意图、长期状态及未来行为分别对应不同推断目标。将情感用作下游特征时，需要继续验证模型整体效果。",
-      "formulas": [{"expression": "MAE = (1/N) × Σ |ŷᵢ − yᵢ|", "explanationZh": "yᵢ 为标准强度，ŷᵢ 为预测强度，N 为样本数；MAE 越低表示平均数值偏差越小。"}],
-      "pages": [282, 283, 284]
+      "formulas": [
+        {
+          "expression": "MAE = (1/N) × Σ |ŷᵢ − yᵢ|",
+          "explanationZh": "yᵢ 为标准强度，ŷᵢ 为预测强度，N 为样本数；MAE 越低表示平均数值偏差越小。"
+        }
+      ],
+      "pages": [
+        282,
+        283,
+        284
+      ],
+      "prerequisites": [
+        {
+          "term": "Neural / Symbolic",
+          "explanationZh": "神经表示从数据学习上下文向量，符号成分明确表达规则、关系或逻辑约束。把二者共同纳入模型即神经符号建模。"
+        },
+        {
+          "term": "Contextual composition",
+          "explanationZh": "上下文决定词义、否定作用范围和评价目标；固定词典提供局部先验，上下文编码器可以根据邻词改变表示。"
+        },
+        {
+          "term": "Feature / Decision",
+          "explanationZh": "情感结果可作为决策的一项输入；用户目的、对话状态和安全条件仍需独立考虑。"
+        }
+      ],
+      "decisionSteps": [
+        "看输出是否连续，连续分数题按数轴距离算绝对误差及MAE。",
+        "看到学习到的向量与显式否定/关系规则结合，识别两类信息分别发挥什么作用。",
+        "对下游应用保留任务、用户意图和安全背景，不把情感标签当成完整命令。",
+        "解释实验只覆盖已检验的预测条件，区分相关预测、因果结论与未来保证。"
+      ],
+      "contrasts": [
+        {
+          "items": "MAE / Accuracy",
+          "differenceZh": "MAE衡量数值偏离，accuracy衡量离散标签是否命中。",
+          "cueZh": "预测正负都对也可能强度差很大；绝对误差永不为负。"
+        },
+        {
+          "items": "Lexicon / Context model",
+          "differenceZh": "词典给出固定先验，上下文模型可以依据周围词与组合调整解释。",
+          "cueZh": "模型互补不等于任何一个永远正确，领域与反讽仍需验证。"
+        }
+      ],
+      "workedExamples": [
+        {
+          "title": "从强度误差到对话使用",
+          "steps": [
+            "标准情感强度为−0.3，预测为0.4，绝对误差=|0.4−(−0.3)|=0.7。",
+            "另一例误差为0.1，两例MAE=(0.7+0.1)/2=0.4。",
+            "若机器人检测到用户沮丧，可把结果与任务失败记录一起用于选择道歉或澄清回应。",
+            "仍要确认用户想完成什么，并遵守安全限制；沮丧标签无法直接给出行动授权或原因。"
+          ],
+          "takeawayZh": "模型输出先按正确指标评价，再作为有限证据进入下游。"
+        }
+      ]
     }
   ]
 }

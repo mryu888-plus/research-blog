@@ -100,7 +100,24 @@
       const href = lectureLink(source, page, base);
       return href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">p. ' + page + ' ↗</a>' : '';
     }).join('');
-    return '<details id="nlu-lesson" class="nlu-lesson" data-lesson-topic="' + esc(topic.id) + '"' + (open ? ' open' : '') + '><summary><span class="nlu-eyebrow">主题讲解</span><span class="nlu-lesson-title">' + esc(topic.nameZh) + '<span lang="en">' + esc(topic.nameEn) + '</span></span></summary><div class="nlu-lesson-body"><p class="nlu-lesson-intro">' + esc(lesson.introZh) + '</p><div class="nlu-lesson-points">' + lesson.keyPoints.map(point => '<section><h3>' + esc(point.title) + '</h3><p>' + esc(point.body) + '</p></section>').join('') + '</div>' + lesson.formulas.map(formula => '<div class="nlu-lesson-formula"><p class="nlu-formula">' + esc(formula.expression) + '</p><p>' + esc(formula.explanationZh) + '</p></div>').join('') + '<section class="nlu-lesson-example"><h3>' + esc(lesson.example.title) + '</h3><p>' + esc(lesson.example.body) + '</p></section><p class="nlu-lesson-pitfall"><strong>易混淆点：</strong>' + esc(lesson.pitfallZh) + '</p><div class="nlu-sources"><span>相关讲义</span>' + links + '</div><div class="nlu-lesson-actions">' + (preview ? '<button class="nlu-primary" data-action="topic" data-topic="' + esc(topic.id) + '">开始本主题练习</button>' : '<button data-action="skip-lesson">开始做题 ↓</button>') + '</div></div></details>';
+    const prerequisites = (lesson.prerequisites || []).map(item => '<div><dt>' + esc(item.term) + '</dt><dd>' + esc(item.explanationZh) + '</dd></div>').join('');
+    const contrasts = (lesson.contrasts || []).map(item => '<section><h4>' + esc(item.items) + '</h4><p>' + esc(item.differenceZh) + '</p><p class="nlu-decision-cue"><strong>判断线索：</strong>' + esc(item.cueZh) + '</p></section>').join('');
+    const decisionSteps = (lesson.decisionSteps || []).map(step => '<li>' + esc(step) + '</li>').join('');
+    const worked = (lesson.workedExamples || []).map(example => '<section class="nlu-worked-example"><h4>' + esc(example.title) + '</h4><ol>' + example.steps.map(step => '<li>' + esc(step) + '</li>').join('') + '</ol><p class="nlu-example-takeaway">' + esc(example.takeawayZh) + '</p></section>').join('');
+    return [
+      '<details id="nlu-lesson" class="nlu-lesson" data-lesson-topic="' + esc(topic.id) + '"' + (open ? ' open' : '') + '>',
+      '<summary><span class="nlu-eyebrow">主题讲解</span><span class="nlu-lesson-title">' + esc(topic.nameZh) + '<span lang="en">' + esc(topic.nameEn) + '</span></span></summary>',
+      '<div class="nlu-lesson-body"><p class="nlu-lesson-intro">' + esc(lesson.introZh) + '</p>',
+      prerequisites ? '<section class="nlu-lesson-foundation"><h3>基础概念</h3><dl>' + prerequisites + '</dl></section>' : '',
+      '<div class="nlu-lesson-points">' + lesson.keyPoints.map(point => '<section><h3>' + esc(point.title) + '</h3><p>' + esc(point.body) + '</p></section>').join('') + '</div>',
+      lesson.formulas.map(formula => '<div class="nlu-lesson-formula"><p class="nlu-formula">' + esc(formula.expression) + '</p><p>' + esc(formula.explanationZh) + '</p></div>').join(''),
+      '<section class="nlu-lesson-example"><h3>' + esc(lesson.example.title) + '</h3><p>' + esc(lesson.example.body) + '</p></section>',
+      contrasts ? '<section class="nlu-lesson-contrasts"><h3>概念辨析</h3>' + contrasts + '</section>' : '',
+      decisionSteps ? '<section class="nlu-lesson-decisions"><h3>判断步骤</h3><ol>' + decisionSteps + '</ol></section>' : '',
+      worked ? '<section class="nlu-lesson-worked"><h3>分步例题</h3>' + worked + '</section>' : '',
+      '<p class="nlu-lesson-pitfall"><strong>易混淆点：</strong>' + esc(lesson.pitfallZh) + '</p><div class="nlu-sources"><span>相关讲义</span>' + links + '</div>',
+      '<div class="nlu-lesson-actions">' + (preview ? '<button class="nlu-primary" data-action="topic" data-topic="' + esc(topic.id) + '">开始本主题练习</button>' : '<button data-action="skip-lesson">开始做题 ↓</button>') + '</div></div></details>',
+    ].join('');
   }
 
   async function boot(doc) {
