@@ -230,7 +230,7 @@ pub fn initialize(
         .ok_or_else(|| anyhow::anyhow!("目标目录无效。"))?;
     fs::create_dir_all(parent)?;
     check_path(parent)?;
-    let stage = crate::builder::ScratchDir::new(parent, ".research-blog-init-")?;
+    let stage = crate::builder::ScratchDir::unlocked(parent, ".research-blog-init-")?;
     for (relative, data) in files {
         let target = relative
             .split('/')
@@ -251,9 +251,16 @@ pub fn initialize(
     });
     fs::write(&config, content.as_bytes())?;
     // The publishing workflow downloads the blogctl release that created the site.
-    let workflow = stage.path().join(".github").join("workflows").join("pages.yml");
+    let workflow = stage
+        .path()
+        .join(".github")
+        .join("workflows")
+        .join("pages.yml");
     let text = fs::read_to_string(&workflow)?;
-    fs::write(&workflow, text.replace("__BLOGCTL_VERSION__", env!("CARGO_PKG_VERSION")))?;
+    fs::write(
+        &workflow,
+        text.replace("__BLOGCTL_VERSION__", env!("CARGO_PKG_VERSION")),
+    )?;
     check_path(&destination)?;
     if destination.exists() {
         if !is_empty_dir(&destination)? {

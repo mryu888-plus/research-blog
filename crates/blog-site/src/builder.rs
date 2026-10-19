@@ -15,10 +15,30 @@ static FIGURE: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r#"<fig\s+[^>]*?id="([a-zA-Z0-9_-]+)""#).unwrap());
 
 /// A directory under `parent` that is removed when dropped.
-pub struct ScratchDir(PathBuf);
+///
+/// A locked scratch directory holds an exclusive lock on `.lock` inside it
+/// while in use. Creating one removes earlier directories with the same
+/// prefix whose lock is free, which happens when blogctl was killed.
+pub struct ScratchDir {
+    path: PathBuf,
+    lock: Option<fs::File>,
+}
+
+const LOCK_FILE: &str = ".lock";
 
 impl ScratchDir {
     pub fn new(parent: &Path, prefix: &str) -> Result<Self> {
+        fs::create_dir_all(parent)?;
+        remove_stale(&absolute(parent)?, prefix);
+        let mut scratch = Self::unlocked(parent, prefix)?;
+        let lock = fs::File::create(scratch.path.join(LOCK_FILE))?;
+        lock.lock()?;
+        scratch.lock = Some(lock);
+        Ok(scratch)
+    }
+
+    /// A scratch directory without a lock, for one that is renamed into place.
+    pub fn unlocked(parent: &Path, prefix: &str) -> Result<Self> {
         fs::create_dir_all(parent)?;
         let parent = absolute(parent)?;
         for attempt in 0u32.. {
@@ -30,7 +50,7 @@ impl ScratchDir {
                 std::process::id()
             ));
             match fs::create_dir(&path) {
-                Ok(()) => return Ok(ScratchDir(path)),
+                Ok(()) => return Ok(ScratchDir { path, lock: None }),
                 Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => continue,
                 Err(error) => return Err(error.into()),
             }
@@ -39,13 +59,46 @@ impl ScratchDir {
     }
 
     pub fn path(&self) -> &Path {
-        &self.0
+        &self.path
     }
 }
 
 impl Drop for ScratchDir {
     fn drop(&mut self) {
-        let _ = fs::remove_dir_all(&self.0);
+        drop(self.lock.take());
+        let _ = fs::remove_dir_all(&self.path);
+    }
+}
+
+/// Remove scratch directories left behind by a killed blogctl. A directory
+/// without a lock file is only removed once it is a minute old, so one that
+/// another process is still setting up is left alone.
+fn remove_stale(parent: &Path, prefix: &str) {
+    let Ok(entries) = fs::read_dir(parent) else {
+        return;
+    };
+    for entry in entries.flatten() {
+        let path = entry.path();
+        let is_ours = entry.file_name().to_string_lossy().starts_with(prefix)
+            && entry.file_type().is_ok_and(|kind| kind.is_dir());
+        if !is_ours {
+            continue;
+        }
+        let stale = match fs::OpenOptions::new()
+            .write(true)
+            .open(path.join(LOCK_FILE))
+        {
+            Ok(file) => file.try_lock().is_ok(),
+            Err(_) => entry
+                .metadata()
+                .and_then(|metadata| metadata.modified())
+                .ok()
+                .and_then(|time| time.elapsed().ok())
+                .is_some_and(|age| age > std::time::Duration::from_secs(60)),
+        };
+        if stale {
+            let _ = fs::remove_dir_all(&path);
+        }
     }
 }
 
@@ -195,4 +248,32 @@ pub fn build(root: &Path, options: &BuildOptions) -> Result<()> {
         compile_figures(&site, root)?;
     }
     render_site(&site, options.base_url, root)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn stale_scratch_directories_are_removed_but_live_ones_kept() {
+        let parent = std::env::temp_dir().join(format!("blog-scratch-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&parent);
+        let live = ScratchDir::new(&parent, "math-preview-").unwrap();
+        // A directory whose owner died: its lock file exists but is unlocked.
+        let dead = parent.join("math-preview-1-dead-0");
+        fs::create_dir_all(dead.join("site")).unwrap();
+        fs::write(dead.join(LOCK_FILE), b"").unwrap();
+        // A directory still being set up: no lock file yet, and fresh.
+        let fresh = parent.join("math-preview-2-fresh-0");
+        fs::create_dir_all(&fresh).unwrap();
+        let other = ScratchDir::new(&parent, "math-preview-").unwrap();
+        assert!(!dead.exists());
+        assert!(fresh.exists());
+        assert!(live.path().exists());
+        let path = other.path().to_path_buf();
+        drop(other);
+        assert!(!path.exists());
+        drop(live);
+        fs::remove_dir_all(&parent).unwrap();
+    }
 }
