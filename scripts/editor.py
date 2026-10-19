@@ -14,11 +14,12 @@ import tempfile
 from build_site import ROOT, build
 from build_profile import build_profile
 from prepare_site import PreparedSite
+from zen import sync_design
+from site_features import profile_enabled, read_config, require_profile_source, tool_command
 
 
-def zola():
-    bundled = ROOT / '.tools' / 'zola' / 'zola.exe'
-    return os.environ.get('ZOLA') or (str(bundled) if bundled.exists() else (shutil.which('zola') or 'zola'))
+def zola(root=ROOT):
+    return tool_command('zola', root)
 
 
 def profile_snapshot(root=ROOT):
@@ -42,12 +43,16 @@ def profile_snapshot(root=ROOT):
     return snapshot
 
 
-def generate_resume():
-    build_profile(root=ROOT)
-    print(f'个人资料源文件：{ROOT / "profile/cv.typ"}', flush=True)
-    print(f'本地简历：{ROOT / "output/pdf/resume.pdf"}', flush=True)
-    print(f'公开简历：{ROOT / "output/pdf/resume-public.pdf"}', flush=True)
-    print(f'网站简历：{ROOT / "site/static/resume.pdf"}', flush=True)
+def generate_resume(root=ROOT):
+    root = Path(root).resolve()
+    if not profile_enabled(read_config(root / 'site')):
+        raise ValueError('个人资料功能未启用。请先添加 profile/cv.typ，并在 site/config.toml 中设置 extra.profile_enabled = true。')
+    require_profile_source(root)
+    build_profile(root=root)
+    print(f'个人资料源文件：{root / "profile/cv.typ"}', flush=True)
+    print(f'本地简历：{root / "output/pdf/resume.pdf"}', flush=True)
+    print(f'公开简历：{root / "output/pdf/resume-public.pdf"}', flush=True)
+    print(f'网站简历：{root / "site/static/resume.pdf"}', flush=True)
     print('个人介绍数据已更新；运行预览或构建网站即可查看 /about/。', flush=True)
 
 
@@ -98,7 +103,24 @@ tags = []
     return article
 
 
-def preview(open_browser=True):
+def trigger_content_reload(site):
+    """Prompt a Zola rebuild after load_data changes without creating a page."""
+    content = Path(site) / 'content'
+    entry = content / '_index.md'
+    if not entry.is_file():
+        entry = next(content.rglob('*.md'), None)
+    if entry is not None:
+        entry.touch()
+
+
+def preview(open_browser=True, *, root=ROOT):
+    root = Path(root).resolve()
+    site = root / 'site'
+    enabled = profile_enabled(read_config(site))
+    if enabled:
+        require_profile_source(root)
+    sync_design(root=root)
+    previous_zen = (root / 'ZEN.md').stat().st_mtime_ns
     port = None
     for candidate in range(1111, 1121):
         with socket.socket() as probe:
@@ -114,14 +136,15 @@ def preview(open_browser=True):
     server = None
     editor_server = None
     prepared_directory = None
-    typst = os.environ.get('TYPST', 'typst')
+    typst = tool_command('typst', root)
 
     def refresh_profile():
         try:
-            build_profile(root=ROOT)
+            require_profile_source(root)
+            build_profile(root=root)
             # Zola watches content, but may not watch files read by load_data.
             # Updating only mtime triggers a rebuild without rewriting the page.
-            (ROOT / 'site/content/about.md').touch()
+            trigger_content_reload(site)
             print('个人介绍与简历已更新。', flush=True)
             return True
         except Exception as error:
@@ -130,41 +153,41 @@ def preview(open_browser=True):
             return False
 
     def sync_figures():
-        sources = set((ROOT / 'site/content/posts').glob('*/figures/*.typ'))
+        sources = set((site / 'content/posts').rglob('figures/*.typ'))
         for source in list(watchers):
             if source not in sources:
                 watchers.pop(source).terminate()
         for source in sources - watchers.keys():
             output = source.parent.parent / (source.stem + '.svg')
             # Finish the first SVG before Zola renders its corresponding page.
-            subprocess.run([typst, 'compile', str(source), str(output), '--format', 'svg'], cwd=ROOT, check=False)
-            watchers[source] = subprocess.Popen([typst, 'watch', str(source), str(output), '--format', 'svg'], cwd=ROOT)
+            subprocess.run([typst, 'compile', str(source), str(output), '--root', str(root), '--format', 'svg'], cwd=root, check=False)
+            watchers[source] = subprocess.Popen([typst, 'watch', str(source), str(output), '--root', str(root), '--format', 'svg'], cwd=root)
     try:
-        initial_profile = refresh_profile()
-        if not initial_profile and not (ROOT / 'site/data/profile.json').exists():
+        initial_profile = refresh_profile() if enabled else True
+        if not initial_profile and not (site / 'data/profile.json').exists():
             raise RuntimeError('首次生成个人资料失败，请修正上面的错误后重新运行预览。')
-        previous_profile = profile_snapshot()
+        previous_profile = profile_snapshot(root)
         profile_changed_at = None
         sync_figures()
         print(f'网页实时预览：http://127.0.0.1:{port}/ （含草稿）', flush=True)
         print('保存 Markdown 或 Typst 后自动编译、刷新网页。Ctrl+C 停止。', flush=True)
-        preview_output = (ROOT / '.tools/site-preview').resolve()
-        if not preview_output.is_relative_to((ROOT / '.tools').resolve()):
+        preview_output = (root / '.tools/site-preview').resolve()
+        if not preview_output.is_relative_to((root / '.tools').resolve()):
             raise RuntimeError('预览输出目录必须位于博客的 .tools 目录内。')
-        scratch = ROOT / '.tools'
+        scratch = root / '.tools'
         scratch.mkdir(exist_ok=True)
         prepared_directory = tempfile.TemporaryDirectory(prefix='math-preview-', dir=scratch)
         if not Path(prepared_directory.name).resolve().is_relative_to(scratch.resolve()):
             raise RuntimeError('预览输入目录必须位于博客的 .tools 目录内。')
-        prepared = PreparedSite(ROOT / 'site', Path(prepared_directory.name) / 'site')
+        prepared = PreparedSite(site, Path(prepared_directory.name) / 'site')
         prepared.sync()
-        editor_entry = ROOT / 'extensions/research-blog/dist/preview-server.cjs'
+        editor_entry = root / 'extensions/research-blog/dist/preview-server.cjs'
         if not editor_entry.is_file():
             raise RuntimeError('请先运行 npm --prefix extensions/research-blog run build，生成预览编辑服务。')
         editor_server = subprocess.Popen(
             [os.environ.get('NODE') or shutil.which('node') or 'node', str(editor_entry),
-             str(ROOT / 'site/content'), f'http://127.0.0.1:{port}'],
-            cwd=ROOT, stdout=subprocess.PIPE, text=True, encoding='utf-8')
+             str(site / 'content'), f'http://127.0.0.1:{port}'],
+            cwd=root, stdout=subprocess.PIPE, text=True, encoding='utf-8')
         editor_config = editor_server.stdout.readline()
         if not editor_config:
             raise RuntimeError('本地系列编辑服务未能启动，请查看上面的错误。')
@@ -172,25 +195,42 @@ def preview(open_browser=True):
         # site/static or the public build. PreparedSite leaves unmanaged files alone.
         (prepared.target / 'static/preview-editor.json').write_text(
             json.dumps(json.loads(editor_config)), encoding='utf-8')
-        command = [zola(), '--root', str(prepared.target), 'serve', '--drafts', '--output-dir', str(preview_output), '--force', '--interface', '127.0.0.1', '--port', str(port), '--debounce', '1']
+        command = [zola(root), '--root', str(prepared.target), 'serve', '--drafts', '--output-dir', str(preview_output), '--force', '--interface', '127.0.0.1', '--port', str(port), '--debounce', '1']
         if open_browser:
             command.append('--open')
-        server = subprocess.Popen(command, cwd=ROOT)
+        server = subprocess.Popen(command, cwd=root)
         last_sync_error = None
         while server.poll() is None:
+            current_zen = (root / 'ZEN.md').stat().st_mtime_ns
+            if current_zen != previous_zen:
+                previous_zen = current_zen
+                try:
+                    sync_design(root=root)
+                except (OSError, subprocess.CalledProcessError, RuntimeError) as error:
+                    print(f'ZEN 更新失败，请修正 ZEN.md 后保存重试：{error}', file=sys.stderr, flush=True)
             sync_figures()
-            current_profile = profile_snapshot()
+            try:
+                current_enabled = profile_enabled(read_config(site))
+            except (OSError, ValueError):
+                # A config edit may briefly be incomplete; PreparedSite reports
+                # the render error while we retain the previous feature state.
+                current_enabled = enabled
+            if current_enabled and not enabled:
+                refresh_profile()
+            enabled = current_enabled
+            current_profile = profile_snapshot(root)
             if current_profile != previous_profile:
                 previous_profile = current_profile
                 profile_changed_at = time.monotonic()
             elif profile_changed_at is not None and time.monotonic() - profile_changed_at >= 0.4:
-                refresh_profile()
+                if enabled:
+                    refresh_profile()
                 profile_changed_at = None
             try:
                 changed = prepared.sync()
                 # load_data inputs may not be watched by Zola itself.
                 if any(path.parts[0] == 'data' for path in changed):
-                    (prepared.target / 'content/about.md').touch()
+                    trigger_content_reload(prepared.target)
                 last_sync_error = None
             except (OSError, ValueError) as error:
                 # An editor can atomically replace a file during our scan.
@@ -225,20 +265,27 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('action', choices=['new', 'preview', 'check', 'resume'])
     parser.add_argument('slug', nargs='?', help='文章标题，支持中文、空格和标点')
+    parser.add_argument('--root', type=Path, default=ROOT,
+                        help='Project root containing site/, scripts/ and ZEN.md')
+    parser.add_argument('--no-open', action='store_true', help='Do not open a browser for preview')
     args = parser.parse_args()
+    root = args.root.resolve()
     if args.action == 'new':
         try:
-            article = create_article(args.slug or '')
+            article = create_article(args.slug or '', posts_dir=root / 'site/content/posts')
         except ValueError as error:
             parser.error(str(error))
         print(f"已创建草稿：{article}", flush=True)
     elif args.action == 'check':
-        build()
-        subprocess.run([sys.executable, str(ROOT / 'scripts/check_site.py')], cwd=ROOT, check=True)
+        build(root=root)
+        subprocess.run([sys.executable, str(root / 'scripts/check_site.py'), '--site', str(root / 'site')], cwd=root, check=True)
     elif args.action == 'resume':
-        generate_resume()
+        try:
+            generate_resume(root)
+        except ValueError as error:
+            parser.error(str(error))
     else:
-        preview()
+        preview(open_browser=not args.no_open, root=root)
 
 
 if __name__ == '__main__':

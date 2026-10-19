@@ -18,6 +18,7 @@ style = "inline"
 theme = "ayu-dark"
 
 [extra]
+profile_enabled = true
 author = "Researcher"
 enable_katex = true
 agent_endpoint = ""

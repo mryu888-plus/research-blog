@@ -1,0 +1,16 @@
+/* Bibliography layout uses the shared ZEN/Apollo tokens. */
+.citation { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.citation a { scroll-margin-top: 7rem; }
+.article-references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--surface-3); }
+.article-references ol, .reference-library { padding-left: 2rem; }
+.article-references li, .reference-library li { padding-left: .35rem; margin: 1.3rem 0; overflow-wrap: anywhere; scroll-margin-top: 7rem; color: var(--text-secondary); }
+.article-references li::marker, .reference-library li::marker { color: var(--text-muted); font-family: var(--font-mono); }
+.reference-title { color: var(--text-primary); }
+.reference-links, .reference-backlinks { display: inline-flex; gap: .4rem; font-size: .875rem; }
+.reference-articles { margin-top: .55rem; color: var(--text-muted); font-size: .875rem; }
+.reference-search { display: grid; gap: .6rem; max-width: 38rem; color: var(--text-secondary); font-size: .875rem; }
+.reference-search input { width: 100%; padding: .8rem 1rem; border: 1px solid var(--surface-3); color: var(--text-primary); background: var(--surface-1); border-radius: 4px; }
+.reference-search input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.reference-search-status, .reference-empty { color: var(--text-muted); }
+.reference-library [hidden] { display: none; }
+@media (max-width: 600px) { .article-references ol, .reference-library { padding-left: 1.6rem; } }

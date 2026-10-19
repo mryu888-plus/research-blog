@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
 {% block extra_styles %}
+{% if config.extra.profile_enabled | default(value=false) %}
 <link rel="stylesheet" href="{{ get_url(path='about.css', cachebust=true) }}">
 <script defer src="{{ get_url(path='about.js', cachebust=true) }}"></script>
+{% endif %}
 {% endblock extra_styles %}
 {% block content %}
+{% if config.extra.profile_enabled | default(value=false) %}
 {% set profile = load_data(path="data/profile.json") %}
 <article class="profile">
   <header class="home-header page-header profile-header">
@@ -108,4 +111,5 @@
   {% endif %}
   {% if profile.tagline is defined and profile.tagline %}<p class="profile-tagline">{{ profile.tagline }}</p>{% endif %}
 </article>
+{% else %}<article class="profile"><header class="home-header page-header"><h1>{{ page.title }}</h1></header><div class="article-content">{{ page.content | safe }}</div></article>{% endif %}
 {% endblock content %}

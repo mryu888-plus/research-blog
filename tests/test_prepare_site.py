@@ -1,5 +1,6 @@
 """Staging must protect formulas without changing the author's source tree."""
 
+import json
 import os
 from pathlib import Path
 import stat
@@ -11,7 +12,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from prepare_site import PreparedSite, _reject_link
+from prepare_site import ORIGINAL_BODIES, PreparedSite, _reject_link
 
 
 class PreparedSiteTests(unittest.TestCase):
@@ -71,14 +72,14 @@ class PreparedSiteTests(unittest.TestCase):
         self.write('static/new.txt', 'added')
         self.write('data/profile.json', '{"name":"Updated"}')
         self.assertEqual(stage.sync(), [Path('content/posts/a/index.md'),
-                                        Path('data/profile.json'), Path('static/new.txt')])
+                                        ORIGINAL_BODIES, Path('data/profile.json'), Path('static/new.txt')])
         # Generated output is not owned by the mirror.
         generated = self.target / 'public/keep.html'
         generated.parent.mkdir()
         generated.write_text('generated', encoding='utf-8')
         article.unlink()
         article.parent.rmdir()
-        self.assertEqual(stage.sync(), [Path('content/posts/a/index.md')])
+        self.assertEqual(stage.sync(), [Path('content/posts/a/index.md'), ORIGINAL_BODIES])
         self.assertFalse(output.exists())
         self.assertFalse(output.parent.exists())
         self.assertTrue(generated.exists())
@@ -90,9 +91,36 @@ class PreparedSiteTests(unittest.TestCase):
                          'content/public/old.html'):
             self.write(relative, 'local secret')
         stage = PreparedSite(self.source, self.target)
-        self.assertEqual(stage.sync(), [Path('config.toml')])
-        self.assertEqual([path for path in self.target.rglob('*') if path.is_file()],
-                         [self.target / 'config.toml'])
+        self.assertEqual(stage.sync(), [Path('config.toml'), ORIGINAL_BODIES])
+        self.assertEqual({path.relative_to(self.target) for path in self.target.rglob('*') if path.is_file()},
+                         {Path('config.toml'), ORIGINAL_BODIES})
+        self.assertEqual(json.loads((self.target / ORIGINAL_BODIES).read_text(encoding='utf-8')), {})
+
+    def test_reading_data_generated_without_placeholder_and_tracks_edits_and_deletes(self):
+        original = '+++\ntitle = "Fresh note"\n+++\n\nRaw $x_i$ and 汉字.\n'
+        article = self.write('content/posts/fresh/index.md', original)
+        article.write_bytes(original.encode('utf-8'))
+        self.assertFalse((self.source / 'data').exists())
+        stage = PreparedSite(self.source, self.target)
+        self.assertIn(ORIGINAL_BODIES, stage.sync())
+        data = self.target / ORIGINAL_BODIES
+        self.assertEqual(json.loads(data.read_text(encoding='utf-8')),
+                         {'posts/fresh/index.md': '\nRaw $x_i$ and 汉字.\n'})
+        self.assertEqual(article.read_text(encoding='utf-8'), original)
+        self.assertFalse((self.source / 'data').exists())
+        before = data.stat().st_mtime_ns
+        with patch('prepare_site._markdown_body', side_effect=AssertionError('Unchanged body should use cache')):
+            self.assertEqual(stage.sync(), [])
+        self.assertEqual(data.stat().st_mtime_ns, before)
+        article.write_bytes(b'+++\ntitle = "Fresh note"\n+++\nChanged $y$\n')
+        self.assertIn(ORIGINAL_BODIES, stage.sync())
+        self.assertEqual(json.loads(data.read_text(encoding='utf-8')),
+                         {'posts/fresh/index.md': 'Changed $y$\n'})
+        article.unlink()
+        self.assertIn(ORIGINAL_BODIES, stage.sync())
+        self.assertEqual(json.loads(data.read_text(encoding='utf-8')), {})
+        self.assertIn(Path('data'), stage._directories)
+        self.assertEqual(stage.sync(), [])
 
     def test_overlapping_and_nonempty_targets_are_rejected(self):
         for target in (self.source, self.source / 'stage', self.root):
@@ -136,7 +164,7 @@ class PreparedSiteTests(unittest.TestCase):
         self.protect.side_effect = ValueError('temporary input error')
         with self.assertRaises(ValueError):
             stage.sync()
-        # The config was already copied before the failing article; it must
+        # The generated reading data and config precede the failing article; they must
         # remain owned and must not prevent a retry after the article is fixed.
         self.protect.side_effect = lambda text: 'PROTECTED\n' + text
         self.assertEqual(stage.sync(), [Path('content/article.md')])

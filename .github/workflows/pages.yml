@@ -41,6 +41,8 @@ jobs:
         run: python scripts/build_site.py
       - name: Verify public links and content
         run: python scripts/check_site.py
+      - name: Exercise a fresh research workstation
+        run: python scripts/check_starter.py --destination .tools/starter-ci
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

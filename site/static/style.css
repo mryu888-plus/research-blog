@@ -1,34 +1,4 @@
-:root {
-  --surface-0: #05070c;
-  --surface-1: #0a0d12;
-  --surface-2: #0f131c;
-  --surface-3: #161d2b;
-  --surface-4: #1e2636;
-
-  --accent: #38bdf8;
-  --accent-muted: #6ee7b7;
-
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-
-  --font-sans:
-    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: "Cascadia Code", "Fira Code", Consolas, Monaco, monospace;
-
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-full: 999px;
-
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.75rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-}
+/* Shared tokens: zen.css, generated from ZEN.md. */
 
 * {
   margin: 0;
@@ -384,8 +354,6 @@ body {
   }
 }
 /* Reading surfaces and navigation */
-:root { --surface-0:#0b1018; --surface-1:#101722; --surface-2:#182231; --surface-3:#263345; --text-primary:#e8eef5; --text-secondary:#a4b2c4; --text-muted:#91a1b6; --accent:#64d5ee; }
-:root[data-theme="light"] { --surface-0:#fbfcfe; --surface-1:#fff; --surface-2:#edf2f8; --surface-3:#d7e0eb; --text-primary:#182b42; --text-secondary:#4e637b; --text-muted:#586d84; --accent:#006a83; --accent-muted:#086850; color-scheme:light; }
 html { scroll-padding-top:7rem; }
 body { min-height:100vh; display:flex; flex-direction:column; }
 a { color:var(--accent); text-underline-offset:4px; }

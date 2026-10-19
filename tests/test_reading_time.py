@@ -66,7 +66,7 @@ class ReadingTimeTests(unittest.TestCase):
 
     def build(self, source):
         result = subprocess.run([self.zola, '--root', str(source), 'build'],
-                                capture_output=True, text=True)
+                                capture_output=True, text=True, encoding='utf-8')
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         values = {}
         for path in (source / 'public').rglob('index.html'):
@@ -117,6 +117,19 @@ class ReadingTimeTests(unittest.TestCase):
         article.unlink()
         self.assertIn(ORIGINAL_BODIES, self.prepared.sync())
         self.assertNotIn('math.md', json.loads(data.read_text()))
+
+    def test_fresh_site_without_reading_placeholder_renders_real_zola(self):
+        (self.source / ORIGINAL_BODIES).unlink()
+        (self.source / 'data').rmdir()
+        article = self.article('fresh', '汉' * 440 + '\n\n$x_i$')
+        original = article.read_bytes()
+        self.prepared.sync()
+        rendered = self.build(self.prepared.target)
+        self.assertEqual(rendered['fresh'][0], 2)
+        self.assertTrue(rendered['fresh'][2])
+        self.assertEqual(article.read_bytes(), original)
+        self.assertFalse((self.source / 'data').exists())
+        self.assertFalse(list((self.prepared.target / 'public').rglob('original-bodies.json')))
 
     def test_other_languages_keep_native_fallback(self):
         (self.source / 'config.toml').write_text(

@@ -9,6 +9,7 @@ import stat
 import tempfile
 
 from math_markdown import protect_math
+from references import prepare_references
 
 
 INPUT_DIRECTORIES = ('content', 'templates', 'static', 'sass', 'data', 'themes')
@@ -121,28 +122,36 @@ class PreparedSite:
 
     def sync(self):
         files, directories = self._scan()
+        references = prepare_references(self.source, files)
         _reject_link_parents(self.target)
         if not self.target.is_dir():
             raise ValueError(f'Staging target is missing: {self.target}')
-        original_data = None
-        if ORIGINAL_BODIES in files:
-            # Only the private staging data contains original Markdown. Templates
-            # use it to preserve Zola's reading-time semantics before math markup.
-            bodies = {}
-            body_cache = {}
-            for relative, fingerprint in files.items():
-                if relative.parts[0] != 'content' or relative.suffix.lower() != '.md':
-                    continue
-                cached = self._body_cache.get(relative)
-                if cached is not None and cached[0] == fingerprint:
-                    body = cached[1]
-                else:
-                    body = _markdown_body((self.source / relative).read_bytes().decode('utf-8'))
-                body_cache[relative] = (fingerprint, body)
-                bodies[relative.relative_to('content').as_posix()] = body
-            self._body_cache = body_cache
-            original_data = json.dumps(bodies, ensure_ascii=False, sort_keys=True).encode('utf-8')
-            files[ORIGINAL_BODIES] = hashlib.sha256(original_data).digest()
+        # Reading-time templates always use this private generated input. A new
+        # site does not need to supply a placeholder or even a data directory.
+        # Source Markdown and any legacy placeholder remain untouched.
+        if ORIGINAL_BODIES in directories:
+            raise ValueError(f'Reserved reading data path must be a file: {ORIGINAL_BODIES}')
+        bodies = {}
+        body_cache = {}
+        for relative, fingerprint in files.items():
+            if relative.parts[0] != 'content' or relative.suffix.lower() != '.md':
+                continue
+            cached = self._body_cache.get(relative)
+            if cached is not None and cached[0] == fingerprint:
+                body = cached[1]
+            else:
+                body = _markdown_body((self.source / relative).read_bytes().decode('utf-8'))
+            body_cache[relative] = (fingerprint, body)
+            bodies[relative.relative_to('content').as_posix()] = body
+        self._body_cache = body_cache
+        original_data = json.dumps(bodies, ensure_ascii=False, sort_keys=True).encode('utf-8')
+        files[ORIGINAL_BODIES] = hashlib.sha256(original_data).digest()
+        directories.add(ORIGINAL_BODIES.parent)
+        for relative in references.excluded:
+            files.pop(relative, None)
+        for relative, data in references.overrides.items():
+            files[relative] = hashlib.sha256(data).digest()
+            directories.update(parent for parent in relative.parents if parent != Path('.'))
         changed = []
         # Deletions first also support changing a file into a directory.
         for relative in sorted(self._snapshot.keys() - files.keys()):
@@ -179,7 +188,12 @@ class PreparedSite:
                 continue
             if destination.exists() and relative not in self._snapshot:
                 raise ValueError(f'Refusing to replace an unowned staging file: {destination}')
-            data = original_data if relative == ORIGINAL_BODIES else (self.source / relative).read_bytes()
+            if relative == ORIGINAL_BODIES:
+                data = original_data
+            elif relative in references.overrides:
+                data = references.overrides[relative]
+            else:
+                data = (self.source / relative).read_bytes()
             if relative.parts[0] == 'content' and relative.suffix.lower() == '.md':
                 data = protect_math(data.decode('utf-8')).encode('utf-8')
             # Zola 0.23.4 ignores paired Linux rename events. Stage writes in an

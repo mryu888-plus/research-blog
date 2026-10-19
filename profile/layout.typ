@@ -7,10 +7,10 @@
 #let sans = sys.inputs.at("body-font", default: "Noto Sans CJK SC")
 #let body-font = sans
 #let serif-font = sys.inputs.at("serif-font", default: "Noto Serif CJK SC")
-#let venue-column-width = 118pt
+#let venue-column-width = 172pt
 
 #let section(title) = {
-  v(8pt)
+  v(6pt)
   grid(
     columns: (auto, 1fr),
     column-gutter: 8pt,
@@ -18,7 +18,7 @@
     text(title, font: sans, fill: blue, weight: "semibold", size: 15.3pt, tracking: 0.035em),
     line(length: 100%, stroke: 0.7pt + blue),
   )
-  v(4pt)
+  v(3pt)
 }
 
 #let bullet(body) = {
@@ -29,7 +29,7 @@
     text([•], fill: blue, weight: "bold", size: 8.5pt),
     body,
   )
-  v(2.7pt)
+  v(2pt)
 }
 
 #let education(entry) = {
@@ -44,7 +44,7 @@
   text(entry.degree, font: sans, weight: "semibold", size: 11.4pt)
   v(1pt)
   text(entry.detail, size: 10.7pt, fill: ink)
-  v(6pt)
+  v(4pt)
 }
 
 #let venue-heading(venue, status) = {
@@ -78,17 +78,17 @@
     #v(1.5pt)
     #text(entry.paper_title, font: sans, fill: ink, weight: "bold", size: 12.2pt)
   ]
-  v(4pt)
+  v(3pt)
   for item in entry.bullets {
     bullet(item)
   }
-  v(6pt)
+  v(4pt)
 }
 
 #let render-resume(profile, phone: "") = {
   set page(paper: "a4", margin: (x: 1.45cm, y: 1.15cm))
-  set text(font: body-font, size: 11.4pt, fill: ink, tracking: 0.008em)
-  set par(leading: 0.90em, spacing: 0.5em)
+  set text(font: body-font, size: 10.8pt, fill: ink, tracking: 0.008em)
+  set par(leading: 0.65em, spacing: 0.5em)
   show link: set text(fill: ink)
 
   grid(

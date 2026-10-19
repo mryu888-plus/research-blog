@@ -13,3 +13,7 @@ fig(id, caption="", alt="") %}
   {% endif %}
 </figure>
 {% endcomponent fig %}
+
+{% component reference_link(path, anchor, label) %}
+<a href="{{ get_url(path=path) }}#{{ anchor }}">{{ label | safe }}</a>
+{% endcomponent reference_link %}

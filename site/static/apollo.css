@@ -1,57 +1,17 @@
 /* Apollo-inspired presentation, adapted to the existing Zola reading tools.
    Effects are static background layers; article text is never filtered. */
-:root {
-  color-scheme: dark;
-  --surface-0: #121213;
-  --surface-1: #171719;
-  --surface-2: #1e1e21;
-  --surface-3: #2c2c30;
-  --surface-4: #424247;
-  --text-primary: #ededee;
-  --text-secondary: #aaaab2;
-  --text-muted: #92929b;
-  --accent: #de8b82;
-  --accent-muted: #babac3;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  --font-mono: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --radius-sm: 3px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --halo: rgb(207 211 225 / .07);
-  --scanline: rgb(229 230 238 / .055);
-  --nav-background: rgb(18 18 19 / .88);
-  --edge-light: rgb(255 255 255 / .035);
-  --panel-shadow: 0 16px 48px rgb(0 0 0 / .12);
-}
-:root[data-theme="light"] {
-  color-scheme: light;
-  --surface-0: #f8f7f4;
-  --surface-1: #fff;
-  --surface-2: #efeeeb;
-  --surface-3: #deddd8;
-  --surface-4: #bcbcc4;
-  --text-primary: #242427;
-  --text-secondary: #5e5e68;
-  --text-muted: #666670;
-  --accent: #9d4941;
-  --accent-muted: #5e5e68;
-  --halo: rgb(76 79 95 / .04);
-  --scanline: rgb(56 56 70 / .035);
-  --nav-background: rgb(248 247 244 / .88);
-  --edge-light: rgb(255 255 255 / .65);
-  --panel-shadow: 0 16px 48px rgb(45 41 35 / .045);
-}
+/* Shared tokens: zen.css, generated from ZEN.md. */
 html { scroll-padding-top: 7rem; }
-body { font-size: 1rem; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+body { font-size: 1rem; line-height: var(--body-line-height); -webkit-font-smoothing: antialiased; }
 ::selection { color: var(--text-primary); background: var(--surface-4); }
 a { color: var(--text-primary); text-decoration-thickness: 1px; text-underline-offset: .3em; }
 a:hover { color: var(--accent); }
 button { border-radius: 4px; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button, input, textarea, select { font: inherit; }
-button { transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease; }
+button { transition: color var(--feedback-duration) ease, border-color var(--feedback-duration) ease, background-color var(--feedback-duration) ease; }
 .nav { background: var(--nav-background); border-bottom-color: var(--surface-3); backdrop-filter: blur(18px); }
-.nav-content { max-width: 1040px; min-height: 88px; padding: 1rem 2rem; gap: 1.5rem; }
+.nav-content { max-width: var(--page-width); min-height: 88px; padding: 1rem 2rem; gap: 1.5rem; }
 .nav-title { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 600; letter-spacing: -.045em; gap: .8rem; white-space: nowrap; }
 .brand-mark { font: 400 1.7rem var(--font-mono); color: var(--accent); }
 .nav-links { gap: 1.4rem; font-size: .875rem; }
@@ -67,7 +27,7 @@ button { transition: color 160ms ease, border-color 160ms ease, background-color
 .nav-tools kbd { margin-left: .55rem; font: .75rem var(--font-mono); opacity: .75; }
 .theme-moon, [data-theme="light"] .theme-sun { display: none; }
 [data-theme="light"] .theme-moon { display: block; }
-.main { max-width: 1040px; padding: 3rem 2rem 6rem; }
+.main { max-width: var(--page-width); padding: 3rem 2rem 6rem; }
 .home-header { max-width: none; padding: 2.5rem 0 4rem; }
 .home-header h1 { font-size: clamp(2.2rem, 4.2vw, 3.6rem); font-weight: 550; letter-spacing: -.055em; line-height: 1.45; text-wrap: balance; }
 .home-description { max-width: 38rem; font-size: 1rem; line-height: 1.9; margin-top: 1.3rem; }
@@ -88,7 +48,7 @@ button { transition: color 160ms ease, border-color 160ms ease, background-color
 .home-theorem-note > summary { width: fit-content; margin-inline: auto; padding: .4rem .25rem; color: var(--text-muted); font-size: .75rem; line-height: 1.8; letter-spacing: .07em; list-style: none; cursor: pointer; }
 .home-theorem-note > summary::-webkit-details-marker { display: none; }
 .home-theorem-note > summary:hover, .home-theorem-note[open] > summary { color: var(--text-secondary); }
-.theorem-note-toggle { display: inline-block; margin-left: .55rem; color: var(--accent); font: .8rem var(--font-mono); transition: transform 160ms ease; }
+.theorem-note-toggle { display: inline-block; margin-left: .55rem; color: var(--accent); font: .8rem var(--font-mono); transition: transform var(--feedback-duration) ease; }
 .home-theorem-note[open] .theorem-note-toggle { transform: rotate(45deg); }
 .theorem-explanation { margin-top: 1rem; padding: 1.25rem 0 .3rem; border-top: 1px solid var(--surface-3); text-align: left; color: var(--text-secondary); font-size: .8125rem; line-height: 1.9; letter-spacing: normal; }
 .theorem-explanation p { margin: 0; }
@@ -131,8 +91,8 @@ button { transition: color 160ms ease, border-color 160ms ease, background-color
 .article-description:empty { display: none; }
 .article-meta { gap: .55rem 1.2rem; font-size: .8rem; color: var(--text-muted); margin: 1.3rem 0 .8rem; }
 .article-meta time { font-family: var(--font-mono); }
-.reading-layout { grid-template-columns: minmax(0, 700px) minmax(160px, 1fr); gap: 3rem; }
-.article-content { font-size: 1.0625rem; line-height: 1.95; letter-spacing: .008em; }
+.reading-layout { grid-template-columns: minmax(0, var(--article-width)) minmax(160px, 1fr); gap: 3rem; }
+.article-content { font-size: 1.0625rem; line-height: var(--article-line-height); letter-spacing: .008em; }
 .article-content h1, .article-content h2, .article-content h3, .article-content h4 { font-weight: 600; line-height: 1.6; letter-spacing: -.025em; }
 .article-content h2 { margin: 2.8rem 0 1.1rem; font-size: 1.5rem; }
 .article-content h3 { margin: 2.2rem 0 .85rem; font-size: 1.2rem; }
@@ -184,13 +144,13 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(8px); }
 .rss-actions a { font-size: .8125rem; color: var(--text-secondary); }
 #rss-status { min-height: 3.4em; margin-top: 1rem; }
 #search-input { border-radius: 4px; padding: .8rem 1rem; }
-.search-result { padding: 1.2rem .5rem; border-radius: 3px; transition: background-color 160ms ease; }
+.search-result { padding: 1.2rem .5rem; border-radius: 3px; transition: background-color var(--feedback-duration) ease; }
 .search-result:hover, .search-result:focus-visible { background: var(--surface-2); }
 .search-result strong { font-weight: 550; }
 .agent-panel { box-shadow: -20px 0 80px rgb(0 0 0 / .16); }
 .agent-input button, .ask-trigger { background: var(--text-primary); color: var(--surface-0); border-radius: 4px; box-shadow: none; }
 .ask-trigger:hover { transform: none; }
-@media (min-width: 851px) { .article-connections, .article-end { max-width: 700px; } }
+@media (min-width: 851px) { .article-connections, .article-end { max-width: var(--article-width); } }
 @media (max-width: 1088px) { .site-footer { width: calc(100% - 4rem); } }
 @media (max-width: 760px) { .home-header.page-header { padding: 1.3rem 0 2rem; } }
 @media (max-width: 850px) {
@@ -222,7 +182,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(8px); }
   .post-info p { margin: .65rem 0; }
   .article-header { padding-bottom: 1.7rem; margin-bottom: 1.7rem; }
   .article-header h1 { font-size: 1.9rem; }
-  .article-content { font-size: 1rem; line-height: 1.95; }
+  .article-content { font-size: 1rem; line-height: var(--article-line-height); }
   .article-description { font-size: 1rem; }
   .article-content h2 { font-size: 1.35rem; }
   .back-link { margin-bottom: 2rem; }
@@ -234,14 +194,11 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(8px); }
 }
 @media (prefers-contrast: more) {
   .home-intro::before, .home-intro::after { display: none; }
-  :root { --text-secondary: #d6d6dc; --text-muted: #bcbcc6; --surface-3: #666670; }
-  :root[data-theme="light"] { --text-secondary: #33333b; --text-muted: #454550; --surface-3: #90909a; }
 }
 @media print {
-  :root, :root[data-theme="light"] { --text-primary: #000; --text-secondary: #333; --text-muted: #444; --accent: #000; --surface-0: #fff; --surface-1: #fff; --surface-2: #eee; --surface-3: #ccc; }
   .nav, .toc, .site-footer, .article-end, .back-link, .copy-code, .agent-panel, dialog { display: none !important; }
   .home-intro::before, .home-intro::after { display: none; }
-  body { background: white; color: black; }
+  body { background: var(--surface-0); color: var(--text-primary); }
   .main { max-width: none; padding: 0; }
   .reading-layout { display: block; }
 }

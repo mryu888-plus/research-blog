@@ -4,7 +4,7 @@
 // 电话只通过本地构建输入传入，不写入此文件或公开页面的数据。
 #import "layout.typ": render-resume
 
-#let current-research = "目前在 NTU 的 Cong Gao 教授指导下，从事轨迹抽取与知识复用研究。"
+#let current-research = "目前在 NTU 的 Cong Gao 教授指导下，研究大规模 Agent 轨迹数据管理与复用，围绕统一数据库、语义层与物化优化开展系统建设和基准评测，目标投稿 SIGMOD Industry Track。"
 
 #let profile = (
   schema_version: 1,
@@ -16,13 +16,13 @@
   github: "https://github.com/mryu888-plus",
   email: "aolianjijuzi@gmail.com",
   location: "中国 / 新加坡",
-  tagline: "轨迹抽取 · 知识复用 · 智能体系统 · 生成式建模",
+  tagline: "智能体数据管理 · 技能图谱 · 智能体系统 · 生成式建模",
   education: (
     (
       degree: "人工智能理学硕士",
       school: "新加坡南洋理工大学",
       date: "2026.08 - 2027.08（预计）",
-      detail: "人工智能硕士在读。" + current-research,
+      detail: "人工智能硕士在读，研究方向为智能体数据管理与复用。",
     ),
     (
       degree: "高级计算荣誉学士（一等荣誉）｜Dalyell Scholar",
@@ -33,20 +33,38 @@
   ),
   experiences: (
     (
+      kind: "research",
+      org: "南洋理工大学",
+      role: "研究项目｜导师：Cong Gao 教授",
+      date: "进行中",
+      venue: "SIGMOD Industry",
+      status: "目标投稿",
+      paper_title: "大规模 Agent 轨迹数据管理与复用",
+      bullets: (
+        "负责面向大规模 Agent 轨迹的统一数据库设计与建设，支持执行数据的组织、查询与复用。",
+        "设计面向智能体应用的语义层，关联任务上下文与历史执行经验，支持任务相关的信息检索。",
+        "围绕数据物化与查询效率开展系统优化，负责基准评测方案设计与性能分析。",
+      ),
+      web_title: "大规模 Agent 轨迹数据管理与复用",
+      summary: "在 Cong Gao 教授指导下，负责面向大规模 Agent 轨迹的统一数据库设计与建设，支持执行数据的组织、查询与复用；设计关联任务上下文与历史经验的语义层，并围绕数据物化与查询效率开展系统优化、基准评测方案设计及性能分析。目标投稿 SIGMOD Industry Track。",
+    ),
+    (
       kind: "internship",
       org: "阿里巴巴集团 · 淘天集团",
       role: "人工智能研发实习｜论文第一作者",
       date: "2026.05 - 2026.08",
       venue: "ICLR 2027",
-      status: "待投稿",
+      status: "已投稿",
       paper_title: "SkillWorld: World-Indexed Skill Graphs with Governed Self-Evolution",
       bullets: (
-        "设计类型化 SkillManifest，统一描述能力、输入/输出端口、前置条件与效果；由 Datalog 规则编译带推导证据的不可变潜在图。",
-        "实现确定性的 Strong-Kleene 世界状态投影，输出 confirmed / unknown / rejected；以证据门控和 Lean 4 约束演化、修复与发布。",
-        "在 SkillsBench 静态构建、134 项 ALFWorld 状态条件执行及 500 项 Skill 工业语料评测中取得当前 SOTA 表现。",
+        "提出 SkillWorld 项目，作为主要贡献者完成全部代码实现与论文撰写。",
+        "构建技能知识层，以类型化技能描述与共享本体为基础，通过 Datalog / Soufflé 编译五类可溯源关系；以三值投影判断关系在当前执行状态下的适用性。",
+        "构建证据驱动的本体演化流程：源一致性核验、选择性重抽取与关系重编译；结合 Lean 4 检查器校验精确写入与模型良构性，再原子发布更新。",
+        "在 72 项 SkillsBench 任务上，成功率较各模型最强所测基线提升 11.1-15.3 个百分点；ALFWorld 15 次环境动作内成功率达 85.1%-85.8%，无效动作较 BM25 减少 43.5%-72.4%。",
+        "系统部署于企业内部服务平台，基于 903 项技能，在 36 项困难任务上取得 72.2% 平均成功率（三次运行），较 SkillDAG 提升 5.6 个百分点。",
       ),
       web_title: "SkillWorld · 智能体技能图谱",
-      summary: "用图谱组织 Agent 的技能，描述每项技能的输入输出、前置条件和效果。根据当前状态判断技能是否可用，并通过规则和证据约束技能的更新。",
+      summary: "提出 SkillWorld 项目，作为主要贡献者完成全部代码实现与论文撰写。构建智能体技能知识层，从类型化技能描述与共享本体推导关系，按当前执行状态判断关系是否适用，并依据源证据更新本体与图谱。系统已部署于企业内部服务平台，在 903 项技能支持的 36 项困难任务上取得 72.2% 平均成功率（三次运行）。",
     ),
     (
       kind: "research",
