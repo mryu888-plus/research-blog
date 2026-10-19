@@ -44,3 +44,6 @@ site/data/profile.json
 site/static/resume.pdf
 profile/contact.local.json
 profile/*.pdf
+
+# Local scratch: screenshots and PDF renders, may contain private data
+tmp/
