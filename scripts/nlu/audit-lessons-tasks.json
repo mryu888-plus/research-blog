@@ -1,0 +1,2354 @@
+{
+  "lectureRange": [
+    4
+  ],
+  "questions": [
+    {
+      "questionId": "wsd-01",
+      "topic": "wsd",
+      "requiredConcepts": [
+        "候选词义",
+        "语境搭配",
+        "任务输出"
+      ],
+      "priorGapZh": "已覆盖WSD输入输出及搭配作用；新增步骤帮助排除实体、句界、极性输出。",
+      "evidence": [
+        "句界、实体类型和情感方向各有独立输出。",
+        "列出候选释义，再用搭配、语法位置和话题逐项检查相容性。"
+      ],
+      "reasoningZh": "把目标词候选义放回河流语境选择相容释义，句界和极性与该输出粒度无关，机构标签也未利用当前用法。"
+    },
+    {
+      "questionId": "wsd-02",
+      "topic": "wsd",
+      "requiredConcepts": [
+        "Gold sense label",
+        "监督WSD",
+        "知识式与无监督"
+      ],
+      "priorGapZh": "旧稿说明监督学习但未显式解释gold label及预训练、聚类之间的区别。",
+      "evidence": [
+        "出现人工参考词义标签 gold sense labels，就具备监督学习的训练信号",
+        "只用释义或词义关系可做知识式消歧"
+      ],
+      "reasoningZh": "训练材料含逐实例参考词义，归入监督学习；没有标签的预训练或聚类不满足这种监督形式，只查释义属于另一信息来源。"
+    },
+    {
+      "questionId": "wsd-03",
+      "topic": "wsd",
+      "requiredConcepts": [
+        "SemCor",
+        "WordNet",
+        "资源用途"
+      ],
+      "priorGapZh": "已覆盖SemCor与WordNet用途；旧稿未交代干扰资源LexNorm和LIWC。",
+      "evidence": [
+        "SemCor 则提供词在实际文本中的词义标注，适合训练和评测。",
+        "LexNorm 关注规范化，LIWC 提供心理语言词类"
+      ],
+      "reasoningZh": "按文本实例标签与候选义知识区分两种资源，排除把WordNet当POS标签集或把SemCor当规范化集的互换。"
+    },
+    {
+      "questionId": "wsd-04",
+      "topic": "wsd",
+      "requiredConcepts": [
+        "Accuracy",
+        "正确率与错误率",
+        "百分比"
+      ],
+      "priorGapZh": "已覆盖准确率公式与计算例；新增错误率和倒置分母检查。",
+      "evidence": [
+        "Accuracy = 正确词义预测数 / 全部待消歧实例数",
+        "错误率则用错误数作分子。"
+      ],
+      "reasoningZh": "用40除以50得0.8并转80%，20%对应错误率，125%倒置分母，正确个数40也不能直接当百分比。"
+    },
+    {
+      "questionId": "wsd-05",
+      "topic": "wsd",
+      "requiredConcepts": [
+        "K-means",
+        "无监督词义归纳",
+        "sense inventory对齐"
+      ],
+      "priorGapZh": "已覆盖聚类需对齐；旧稿未解释K-means的分组机制与标签身份。",
+      "evidence": [
+        "K-means 反复按距离分组和更新簇中心，簇编号本身没有词典义名称。",
+        "聚类得到 cluster 1 后，还需解释并对齐到 sense inventory。"
+      ],
+      "reasoningZh": "无标签语境可形成簇，不能推定每例已有gold标签，也不能将簇编号自动当WordNet义名，句界识别与该聚类目标无关。"
+    },
+    {
+      "questionId": "wsd-06",
+      "topic": "wsd",
+      "requiredConcepts": [
+        "Cool language",
+        "上下文依赖"
+      ],
+      "priorGapZh": "旧稿完全没有cool language这一课程术语，读者无法由其他词义概念确定答案。",
+      "evidence": [
+        "Cool language 是课程用来描述较依赖上下文、共享知识与情境才能理解的语言表达的用语。"
+      ],
+      "reasoningZh": "用术语定义识别依赖上下文的性质；温度、表情数量和完全不需要背景知识均不符合定义。"
+    },
+    {
+      "questionId": "general-01",
+      "topic": "general",
+      "requiredConcepts": [
+        "NLP与NLU范围",
+        "意义意图语境"
+      ],
+      "priorGapZh": "已覆盖NLP/NLU目标，但包含关系表达不够直接；补明确分支关系。",
+      "evidence": [
+        "NLP 包含语言数据处理、生成与分析等广泛工作，NLU 属于其中关注意义的分支。"
+      ],
+      "reasoningZh": "范围关系直接决定NLU属于NLP，语音合成不足以代表二者，文本作为NLU输入也符合定义。"
+    },
+    {
+      "questionId": "general-02",
+      "topic": "general",
+      "requiredConcepts": [
+        "任务分解",
+        "模块",
+        "多任务学习"
+      ],
+      "priorGapZh": "已覆盖模块化原则；旧稿缺多任务学习与任务分解的明确对照。",
+      "evidence": [
+        "任务分解划分职责；多任务学习描述多个目标如何共同训练模型。"
+      ],
+      "reasoningZh": "实体识别、检索、答案抽取被划成不同职责，符合任务分解；题目未描述共享模型联合训练，摘要或WSD只是其他具体任务。"
+    },
+    {
+      "questionId": "general-03",
+      "topic": "general",
+      "requiredConcepts": [
+        "Panalogy",
+        "Parallel analogy",
+        "并行计算"
+      ],
+      "priorGapZh": "已覆盖panalogy对应关系类比；补充与parallel computing、平行语料的辨别。",
+      "evidence": [
+        "Panalogy 即 parallel analogy，关注概念结构对应；并行计算关注同时运行计算。"
+      ],
+      "reasoningZh": "概念间相似关系支持类比；CPU并发、双语对齐及字符计数分别处理计算、翻译资料或长度，均缺关系迁移。"
+    },
+    {
+      "questionId": "general-04",
+      "topic": "general",
+      "requiredConcepts": [
+        "Symbol grounding",
+        "感知行动",
+        "循环定义"
+      ],
+      "priorGapZh": "已覆盖符号与经验联系；补定义循环及实际判别步骤。",
+      "evidence": [
+        "接地将标记与可感知、可行动的经验联系起来，打破词典词语循环解释的局限。"
+      ],
+      "reasoningZh": "把标记和可操作物体连接解决符号意义来源；POS、停用词删除、句界只处理类别或形式，未建立经验联系。"
+    },
+    {
+      "questionId": "general-05",
+      "topic": "general",
+      "requiredConcepts": [
+        "Topology",
+        "邻域结构",
+        "相似性"
+      ],
+      "priorGapZh": "旧稿提邻域和图结构，但未解释topology对应连接组织及为何表面特征不足。",
+      "evidence": [
+        "拓扑 topology 指图的连接方式与邻域组织",
+        "拼写相同或余弦较大都无法独立保证同义。"
+      ],
+      "reasoningZh": "识别关系和邻域作为额外信息，排除仅词频、仅拼写及余弦必然等于语义相似性的选项。"
+    },
+    {
+      "questionId": "general-06",
+      "topic": "general",
+      "requiredConcepts": [
+        "Intention",
+        "Entity",
+        "用户目标"
+      ],
+      "priorGapZh": "已覆盖意图感知；新增对象与目标对照，便于排除实体识别。",
+      "evidence": [
+        "实体是表达提到的对象，意图是用户希望实现的目标。",
+        "是否想设置提醒仍需意图判断。"
+      ],
+      "reasoningZh": "题干要求从表达推测行动目标并确认，实体可提供时间等参数，词形还原及句界无法确定目标。"
+    },
+    {
+      "questionId": "general-08",
+      "topic": "general",
+      "requiredConcepts": [
+        "Suitcase Model",
+        "三层",
+        "模块依赖"
+      ],
+      "priorGapZh": "已覆盖三层及模块独立维护；新增完整流程例说明依赖和误差传播。",
+      "evidence": [
+        "把句法、语义、语用结果连接起来，并检查错误是否向后传播。"
+      ],
+      "reasoningZh": "选择不同职责且相互协作的三层架构，排除只有纠错、各任务完全独立或模块做同一工作的方案。"
+    },
+    {
+      "questionId": "taskdetail-layers-01",
+      "topic": "taskdetail-layers",
+      "requiredConcepts": [
+        "Syntax",
+        "Semantics",
+        "Pragmatics",
+        "输出顺序"
+      ],
+      "priorGapZh": "已覆盖三层定义，新增从标签直接反推层次的操作。",
+      "evidence": [
+        "词性标签 noun/verb 描述语法形式，词义 sense 描述词在这里表达什么，意图 intent 描述交际目标。"
+      ],
+      "reasoningZh": "按语法形式→词义→语境意图排序，其他序列或反向或混入无关字符操作。"
+    },
+    {
+      "questionId": "taskdetail-layers-02",
+      "topic": "taskdetail-layers",
+      "requiredConcepts": [
+        "剩余难例",
+        "错误分析",
+        "边际改进"
+      ],
+      "priorGapZh": "已提剩余难例涉及常识，缺乏成本递增与固定阈值的明确关系。",
+      "evidence": [
+        "每一点改进的代价可能上升。",
+        "任何固定百分比分界都无法普遍定义系统是否真正理解。"
+      ],
+      "reasoningZh": "从容易模式已被解决推导剩余语境难例更难修复，排除固定理解阈值、等成本改进或简单样本代表全部错误。"
+    },
+    {
+      "questionId": "taskdetail-layers-03",
+      "topic": "taskdetail-layers",
+      "requiredConcepts": [
+        "词汇语义",
+        "认知语义",
+        "框架"
+      ],
+      "priorGapZh": "已覆盖三个语义视角，新增识别题干关键词的对照。",
+      "evidence": [
+        "词汇语义研究词义及词间关系；结构语义研究组合结构如何构成意义；认知语义研究框架、情景和概念化。"
+      ],
+      "reasoningZh": "word meaning与sense对应词汇语义，frames/situations对应认知语义；编码、发音、断句并非这两者的定义。"
+    },
+    {
+      "questionId": "taskdetail-layers-04",
+      "topic": "taskdetail-layers",
+      "requiredConcepts": [
+        "结构化输出",
+        "下游组件",
+        "整体系统"
+      ],
+      "priorGapZh": "已覆盖feature/parser/explainability，但旧稿未展示单组件为何无法替代系统。",
+      "evidence": [
+        "标签给一个对象分类；跨度标起止位置；树、关系或实体表进一步表示对象之间的结构。",
+        "模块输出只解决系统的一部分"
+      ],
+      "reasoningZh": "实体表为对话提供可解释操作单位，属于结构分析组件；它没有定义全部对话目标，也不保证端到端正确，更不是数据划分。"
+    },
+    {
+      "questionId": "taskdetail-layers-05",
+      "topic": "taskdetail-layers",
+      "requiredConcepts": [
+        "方法家族复用",
+        "任务标签",
+        "可比评价"
+      ],
+      "priorGapZh": "已覆盖家族可复用；补规则、统计、神经各自作用使前置概念自足。",
+      "evidence": [
+        "规则显式写条件，统计模型从计数或特征估计规律，神经模型学习表示。",
+        "仍需各自标签和输入输出规范。"
+      ],
+      "reasoningZh": "方法能适配不同任务，但必须定义各自监督输出；神经方法不取消标注规范，也不能把不同指标数值直接等同。"
+    },
+    {
+      "questionId": "taskdetail-layers-06",
+      "topic": "taskdetail-layers",
+      "requiredConcepts": [
+        "模块替换",
+        "接口",
+        "局部与下游验证"
+      ],
+      "priorGapZh": "已覆盖接口与局部整体测试；新例展开了先核字段再测检索的具体路径。",
+      "evidence": [
+        "替换模块时核对字段、标签集及边界定义，再测局部质量和端到端效果。"
+      ],
+      "reasoningZh": "换词元化器同时测试其输出和下游效果，模型大小不反映行为，名字相同不确保接口，自动改进无依据。"
+    },
+    {
+      "questionId": "microtext-01",
+      "topic": "microtext",
+      "requiredConcepts": [
+        "规范化",
+        "非标准表达",
+        "输出目标"
+      ],
+      "priorGapZh": "已覆盖任务定义及缩写展开；补与其他任务输出对比。",
+      "evidence": [
+        "输出仍是原表达的标准语言形式，保留对象、否定、时间等意义"
+      ],
+      "reasoningZh": "非正式表达改写为标准词语属于规范化，既没有找先行词、人格，也没有给专名分类。"
+    },
+    {
+      "questionId": "microtext-02",
+      "topic": "microtext",
+      "requiredConcepts": [
+        "Levenshtein",
+        "单位插入",
+        "最短编辑"
+      ],
+      "priorGapZh": "已覆盖距离定义，但缺实际对齐和最小路径说明。",
+      "evidence": [
+        "插入一个字符、删除一个字符、替换一个字符各计一次，已经相同的字符计零。"
+      ],
+      "reasoningZh": "原串只缺一个字符，插入即可匹配目标，所以最少为1；非零差异排除0，多步路径不优于单次插入。"
+    },
+    {
+      "questionId": "microtext-04",
+      "topic": "microtext",
+      "requiredConcepts": [
+        "CMUdict",
+        "发音词典",
+        "语料"
+      ],
+      "priorGapZh": "已覆盖CMUdict用途；补词与音素的输入输出形态。",
+      "evidence": [
+        "CMUdict 给出英语词与音素序列对应，可帮助寻找字面差异较大但读音相近的候选。"
+      ],
+      "reasoningZh": "需要词发音条目时选词典；规范化样例和新闻、短信语料不直接提供同样的词-音素词典结构。"
+    },
+    {
+      "questionId": "microtext-05",
+      "topic": "microtext",
+      "requiredConcepts": [
+        "Query expansion",
+        "Index expansion",
+        "同义扩展"
+      ],
+      "priorGapZh": "旧稿只泛称查询或索引扩展，缺操作发生位置，难区分两个强干扰项。",
+      "evidence": [
+        "查询扩展 query expansion 在用户提交查询时加入同义词，索引扩展 index expansion 在文档入库时为其增加别名入口。"
+      ],
+      "reasoningZh": "修改查询增加同义搜索词符合查询扩展；给文档预加词为索引扩展，纠拼写或截词干没有增加同义查询。"
+    },
+    {
+      "questionId": "microtext-06",
+      "topic": "microtext",
+      "requiredConcepts": [
+        "歧义缩写",
+        "候选排序",
+        "上下文"
+      ],
+      "priorGapZh": "已覆盖语境帮助选择多义展开；补先生成再检查意义的流程。",
+      "evidence": [
+        "同一个缩写拥有多个展开时，需要周围词语与话题帮助选择。"
+      ],
+      "reasoningZh": "固定映射无法随语境选不同展开；大小写、实体标签或词典单项均无法保证反讽和所有缩写解释。"
+    },
+    {
+      "questionId": "taskdetail-normalization-01",
+      "topic": "taskdetail-normalization",
+      "requiredConcepts": [
+        "发音相似",
+        "借词转写",
+        "上下文"
+      ],
+      "priorGapZh": "已覆盖音素线索与借词变体；新增编码/词典区别及生成排序步骤。",
+      "evidence": [
+        "借词的多种转写尤其适合结合音素相似度",
+        "利用邻词与句意排序，避免用字母顺序或固定替换消除语义差异。"
+      ],
+      "reasoningZh": "相近发音跨越拼写差异，上下文筛除同音异义；精确字符相等、标点、句数不捕捉这种关联。"
+    },
+    {
+      "questionId": "taskdetail-normalization-02",
+      "topic": "taskdetail-normalization",
+      "requiredConcepts": [
+        "书写变体",
+        "同义词"
+      ],
+      "priorGapZh": "已覆盖两类变化；新增直观对照和判断提示。",
+      "evidence": [
+        "书写变体表达同一词的不同拼写；同义词以不同词汇表达相近意义。"
+      ],
+      "reasoningZh": "英美写法统一与不同词的近义关系来自两种依据，代词、性别、情感翻转及分句不是题述操作。"
+    },
+    {
+      "questionId": "taskdetail-normalization-03",
+      "topic": "taskdetail-normalization",
+      "requiredConcepts": [
+        "CMUdict",
+        "ARPABET",
+        "发音信息"
+      ],
+      "priorGapZh": "已覆盖ARPABET与CMUdict，补编码规范和词典内容的区别。",
+      "evidence": [
+        "ARPABET 是用字符编码音素的体系；CMUdict 是存储具体词发音条目的词典。"
+      ],
+      "reasoningZh": "候选发音评分需要具体词发音映射，反讽标签、话题类别、人格量表均不提供该字段。"
+    },
+    {
+      "questionId": "taskdetail-normalization-04",
+      "topic": "taskdetail-normalization",
+      "requiredConcepts": [
+        "编辑距离",
+        "候选歧义",
+        "语境排序"
+      ],
+      "priorGapZh": "已覆盖候选与上下文，但缺等距离不等语义的直接对照。",
+      "evidence": [
+        "邻词、语法结构和话题提供意义限制，可以区分同音或编辑距离相同的词。"
+      ],
+      "reasoningZh": "距离并列时比较语境相容性，固定替换和字母排序无语义依据，数值同距也不能推导意义相同。"
+    },
+    {
+      "questionId": "taskdetail-normalization-05",
+      "topic": "taskdetail-normalization",
+      "requiredConcepts": [
+        "Top-1",
+        "Top-k",
+        "覆盖与排序"
+      ],
+      "priorGapZh": "已覆盖定义和数字例；新版进一步按名次逐项判定。",
+      "evidence": [
+        "Top-k 只检查正确形式的名次是否不大于 k；Top-1 专门检查首位。"
+      ],
+      "reasoningZh": "正确项名次2超出Top-1但在Top-3内；生成了候选不等于排在首位，也不能宣称候选不评测。"
+    },
+    {
+      "questionId": "taskdetail-normalization-06",
+      "topic": "taskdetail-normalization",
+      "requiredConcepts": [
+        "WER",
+        "S/D/I",
+        "参考分母"
+      ],
+      "priorGapZh": "旧稿有WER公式但未分别解释S/D/I操作，也未强调参考分母。",
+      "evidence": [
+        "替换 S 是把一个参考词写成另一个词；删除 D 是漏掉参考词；插入 I 是增加参考文本没有的词。",
+        "WER 分母固定使用参考词数 N"
+      ],
+      "reasoningZh": "累计四次错误除以20得0.20，漏计某种编辑会得到错误结果，0.80则把错误率误作正确率。"
+    },
+    {
+      "questionId": "sbd-01",
+      "topic": "sbd",
+      "requiredConcepts": [
+        "句界",
+        "sentence tokenizer",
+        "word tokenizer"
+      ],
+      "priorGapZh": "已覆盖两种切分粒度，新加明确输出对照。",
+      "evidence": [
+        "句子切分输出句子列表，词元切分把每句继续分成词或子词。"
+      ],
+      "reasoningZh": "SBD直接输出文本分句，词义同义集、人格和方面情感分别属于其他任务。"
+    },
+    {
+      "questionId": "sbd-02",
+      "topic": "sbd",
+      "requiredConcepts": [
+        "称谓缩写",
+        "句点",
+        "上下文"
+      ],
+      "priorGapZh": "已覆盖称谓缩写例，新增逐候选点验证完整结构的步骤。",
+      "evidence": [
+        "人名首字母、称谓、小数和时间缩写内的点都需要辨别",
+        "检查前词是否缩写、后词是否继续同一个短语"
+      ],
+      "reasoningZh": "Dr.与姓名属于同一称谓结构，后两处完成句子；每个点都分句会割裂称谓姓名。"
+    },
+    {
+      "questionId": "sbd-03",
+      "topic": "sbd",
+      "requiredConcepts": [
+        "大小写线索",
+        "专名",
+        "非充分条件"
+      ],
+      "priorGapZh": "已覆盖姓名大写不一定句首，增加clue与guarantee的逻辑对照。",
+      "evidence": [
+        "人名和机构名在句中也可大写。大写是证据之一，不能独立确认新句开始。"
+      ],
+      "reasoningZh": "一句内的人名构成反例，否定所有大写词必为句首的规则；大小写也不等同主谓识别或全领域语境替代。"
+    },
+    {
+      "questionId": "sbd-05",
+      "topic": "sbd",
+      "requiredConcepts": [
+        "错误断句",
+        "上下文丢失",
+        "误差传播"
+      ],
+      "priorGapZh": "已覆盖断句对后续任务影响，新增称谓姓名割裂的因果链。",
+      "evidence": [
+        "若把 Ms. 单独送入实体模型，模型失去称谓与姓名的连接，错误会传给后续分析。"
+      ],
+      "reasoningZh": "把称谓和姓名分离改变模型输入语境，无法保证原句结构，不能当纯格式差异或免除POS上下文需求。"
+    },
+    {
+      "questionId": "sbd-06",
+      "topic": "sbd",
+      "requiredConcepts": [
+        "可比评价",
+        "数据",
+        "指标",
+        "实验设置"
+      ],
+      "priorGapZh": "已提不同指标不可直接比；新加Accuracy/P/R/F1计分单位解释。",
+      "evidence": [
+        "不同语料的候选范围、标注和指标定义会改变数值的含义。",
+        "同时核对数据领域、边界标准、计分单位和实验条件。"
+      ],
+      "reasoningZh": "对齐数据、计分和设定才可比较，标题位置、神经模型名和数字大小本身不足。"
+    },
+    {
+      "questionId": "taskdetail-syntax-01",
+      "topic": "taskdetail-syntax",
+      "requiredConcepts": [
+        "缩写与句界共存",
+        "语境结构"
+      ],
+      "priorGapZh": "已覆盖缩写点兼句界，新增对照强调两个属性不互斥。",
+      "evidence": [
+        "缩写属性与句末属性可以同时成立。"
+      ],
+      "reasoningZh": "p.m.结束时间缩写也完成前句，后面是另一完整句；排除缩写永不在句尾或每内部点都分句的绝对规则。"
+    },
+    {
+      "questionId": "taskdetail-syntax-02",
+      "topic": "taskdetail-syntax",
+      "requiredConcepts": [
+        "Prosody",
+        "停顿语调",
+        "语音SBD"
+      ],
+      "priorGapZh": "已覆盖韵律可补句界，新加韵律定义和停顿反例。",
+      "evidence": [
+        "语音中的停顿、重音、节奏和语调能补充无标点转写"
+      ],
+      "reasoningZh": "无可靠标点时音频韵律提供额外边界证据；字母排序、排版和文档情感缺少与语音边界的直接关系。"
+    },
+    {
+      "questionId": "taskdetail-syntax-03",
+      "topic": "taskdetail-syntax",
+      "requiredConcepts": [
+        "Domain shift",
+        "词汇句式分布",
+        "目标领域测试"
+      ],
+      "priorGapZh": "已覆盖领域偏移，新增OOV和领域数据定义便于自足理解。",
+      "evidence": [
+        "训练和应用的词汇、拼写及句法分布发生变化。"
+      ],
+      "reasoningZh": "新闻训练无法覆盖所有社交写法和句式，字体无关，低表现不证明非正式语言不能标词性。"
+    },
+    {
+      "questionId": "taskdetail-syntax-04",
+      "topic": "taskdetail-syntax",
+      "requiredConcepts": [
+        "字符特征",
+        "形态",
+        "未登录词"
+      ],
+      "priorGapZh": "已覆盖前后缀可帮助，新增带后缀新词的分步例。",
+      "evidence": [
+        "训练词表没收录的词缺少整词统计，但字符、前后缀和邻词仍可提供类别信息。"
+      ],
+      "reasoningZh": "稀有词缺整词统计时内部模式提供补充，不能保证唯一词性、推断人格或取消语境。"
+    },
+    {
+      "questionId": "taskdetail-syntax-05",
+      "topic": "taskdetail-syntax",
+      "requiredConcepts": [
+        "标签依赖",
+        "BIO",
+        "边界一致性"
+      ],
+      "priorGapZh": "旧稿说全局解码可改善一致性，缺标签序列为何会冲突的实例机制。",
+      "evidence": [
+        "组块可采用 B-NP 开始名词块、I-NP 延续同块、O 表示块外",
+        "联合解码会考虑邻近标签的相容性"
+      ],
+      "reasoningZh": "相邻标签能约束块起止，减少不合法延续；不改变为NER类型，也不要求整句同块或无视词序。"
+    },
+    {
+      "questionId": "taskdetail-syntax-06",
+      "topic": "taskdetail-syntax",
+      "requiredConcepts": [
+        "词元准确率",
+        "跨度匹配",
+        "不同错误层次"
+      ],
+      "priorGapZh": "已覆盖指标区别，旧例有跨度遗漏；新版补两个分母和精确匹配条件。",
+      "evidence": [
+        "Token accuracy 以全部词元为分母；跨度评价先要求起止点及类型完整匹配"
+      ],
+      "reasoningZh": "词性全对但介词分组错需跨度评价发现，拼写、词数和情感不检验短语边界。"
+    },
+    {
+      "questionId": "pos-01",
+      "topic": "pos",
+      "requiredConcepts": [
+        "POS语法类别",
+        "NER实体类型"
+      ],
+      "priorGapZh": "已覆盖POS/NER对比，新增具体常见标签定义。",
+      "evidence": [
+        "NN、VB 等刻画语法用法，PER、ORG 等刻画名称的实体类型。"
+      ],
+      "reasoningZh": "名词动词形容词是POS输出；人组织、情感、代词链接各属其他任务。"
+    },
+    {
+      "questionId": "pos-02",
+      "topic": "pos",
+      "requiredConcepts": [
+        "NN/JJ/VB/RB",
+        "介词短语",
+        "名词中心"
+      ],
+      "priorGapZh": "旧稿只举paint名动转换，没教NN/JJ/RB含义及如何从on my结构判断。",
+      "evidence": [
+        "常见标签 NN 表示单数或不可数名词，VB 表示动词原形，JJ 表示形容词，RB 表示副词。",
+        "介词后接的完整名词短语通常以名词为中心"
+      ],
+      "reasoningZh": "on引出介词短语，my限定被谈论的身体部位，back为该名词短语中心；其余标签与当前角色不符。"
+    },
+    {
+      "questionId": "pos-04",
+      "topic": "pos",
+      "requiredConcepts": [
+        "情态助动词",
+        "实义动词",
+        "原形"
+      ],
+      "priorGapZh": "旧稿未解释情态助动词后接动词原形，无法充分区分can的多词性。",
+      "evidence": [
+        "will/can/may 等情态助动词后通常接动词原形；实义动词承担动作或状态含义。"
+      ],
+      "reasoningZh": "will之后can承担装罐动作并接宾语，选实义动词原形；容器名词、形容词和代词均不满足该句法语义。"
+    },
+    {
+      "questionId": "pos-05",
+      "topic": "pos",
+      "requiredConcepts": [
+        "Lexical",
+        "Contextual",
+        "Morphological"
+      ],
+      "priorGapZh": "已列三类特征但解释分散，新增一一对应定义。",
+      "evidence": [
+        "Lexical 指词本身，contextual 指左右邻词及所在结构，morphological 指词内部前后缀等形态"
+      ],
+      "reasoningZh": "题目三部分与输入特征逐一对应；极性、实体类别、人格维度属于其他输出标签。"
+    },
+    {
+      "questionId": "pos-06",
+      "topic": "pos",
+      "requiredConcepts": [
+        "Token accuracy",
+        "百分比",
+        "错误率"
+      ],
+      "priorGapZh": "已覆盖公式和计算例，新增与错误率对照。",
+      "evidence": [
+        "Token Accuracy = 正确词性标签数 / 总词元数",
+        "token accuracy=72/80=90%，错误率为10%。"
+      ],
+      "reasoningZh": "正确190除以总200得95%；5%为错误率，原始个数不能直接写成百分比。"
+    },
+    {
+      "questionId": "chunk-01",
+      "topic": "chunk",
+      "requiredConcepts": [
+        "Shallow parsing",
+        "局部短语",
+        "完整结构"
+      ],
+      "priorGapZh": "已覆盖浅层解析定义，新增词性-块-深层结构的范围对照。",
+      "evidence": [
+        "重点在清楚划定块边界。",
+        "浅层块本身还未给出整句中所有嵌套关系和依存关系。"
+      ],
+      "reasoningZh": "组块增加局部短语结构但不要求完整深层解析，既没有丢弃全部结构，也没有产完整知识图或翻译。"
+    },
+    {
+      "questionId": "chunk-02",
+      "topic": "chunk",
+      "requiredConcepts": [
+        "NP",
+        "限定词形容词名词",
+        "谓语边界"
+      ],
+      "priorGapZh": "旧稿有短语例却未明确如何判断候选跨谓语；补结构规则及分步推导。",
+      "evidence": [
+        "简单名词短语通常由限定词、可选形容词和中心名词构成",
+        "动词一旦引入新的谓语关系，通常已跨出这个简单名词块"
+      ],
+      "reasoningZh": "从The到student组成限定词-形容词-名词结构，solved开始谓语，其他候选跨越主谓界或不完整。"
+    },
+    {
+      "questionId": "chunk-03",
+      "topic": "chunk",
+      "requiredConcepts": [
+        "POS标签",
+        "流水线",
+        "短语边界"
+      ],
+      "priorGapZh": "已覆盖输入词性和组块用途，新增前置任务的明确定义。",
+      "evidence": [
+        "POS 给每词标名词、动词等语法类别，chunk 把相邻词组合为 NP 名词块、VP 动词块等局部结构。"
+      ],
+      "reasoningZh": "需要语法类别作为边界线索时使用POS，讽刺、人格和方面情感提供不同标签。"
+    },
+    {
+      "questionId": "chunk-04",
+      "topic": "chunk",
+      "requiredConcepts": [
+        "CoNLL-2000",
+        "基准用途",
+        "资源区分"
+      ],
+      "priorGapZh": "已覆盖CoNLL-2000但旧稿未区分另外三个资源。",
+      "evidence": [
+        "CoNLL-2000 评测组块；SemCor 提供词义实例；LexNorm 提供规范化样例。",
+        "LIWC 则是心理语言词类资源"
+      ],
+      "reasoningZh": "用任务用途匹配组块基准，其他选项提供词义、规范化和心理词类信息。"
+    },
+    {
+      "questionId": "chunk-05",
+      "topic": "chunk",
+      "requiredConcepts": [
+        "HMM",
+        "转移与发射",
+        "CRF条件分布"
+      ],
+      "priorGapZh": "旧稿介绍HMM但未区分可同做序列标注的CRF，是容易双选的缺口。",
+      "evidence": [
+        "用发射概率 P(xₜ|yₜ) 生成观测词。",
+        "CRF 即 Conditional Random Field，直接给定观测序列预测条件标签分布 P(y|x)"
+      ],
+      "reasoningZh": "隐状态转移加观测发射对应HMM生成描述；CRF虽有标签依赖却直接建条件分布，聚类和独立分类缺该序列生成结构。"
+    },
+    {
+      "questionId": "chunk-06",
+      "topic": "chunk",
+      "requiredConcepts": [
+        "候选跨度",
+        "NP与实体差别",
+        "下游NER"
+      ],
+      "priorGapZh": "已覆盖组块提供实体候选，新增普通名词块未必专名的解释。",
+      "evidence": [
+        "名词块可作为实体候选，但普通名词块也可能没有人物、组织等实体身份。"
+      ],
+      "reasoningZh": "组块把多词组合供NER再判断，不能证明每个NP是人名或省去边界判断，情感分数无关。"
+    },
+    {
+      "questionId": "lemma-01",
+      "topic": "lemma",
+      "requiredConcepts": [
+        "Lemma",
+        "be不规则范式",
+        "屈折"
+      ],
+      "priorGapZh": "旧稿有不规则形态原则但没教be这一具体范式，单靠定义无法恢复。",
+      "evidence": [
+        "be 的形式包括 am、are、is、was、were"
+      ],
+      "reasoningZh": "由这些表面形式属于同一范式映射到be；was/being仍为屈折形式，拼接词形没有词典依据。"
+    },
+    {
+      "questionId": "lemma-02",
+      "topic": "lemma",
+      "requiredConcepts": [
+        "词元与词干",
+        "词典形",
+        "输出合法性"
+      ],
+      "priorGapZh": "已覆盖核心区别；新加算法指定时输出目标判断。",
+      "evidence": [
+        "词元化恢复词典条目，词干提取允许产生非完整单词"
+      ],
+      "reasoningZh": "依据输出目标区别，排除按速度、限定词性或声称词干必为词典单词的定义。"
+    },
+    {
+      "questionId": "lemma-03",
+      "topic": "lemma",
+      "requiredConcepts": [
+        "Porter",
+        "sses→ss",
+        "ies→i"
+      ],
+      "priorGapZh": "旧稿仅提Porter名称，完全没有题目必需的具体规则。",
+      "evidence": [
+        "Porter 的 sses→ss、ies→i 是词干规则，输出中的 i 无需恢复为词典拼写 y"
+      ],
+      "reasoningZh": "逐后缀应用变换可得caress和poni，保留原样忽略规则，其他变换未按匹配后缀。"
+    },
+    {
+      "questionId": "lemma-04",
+      "topic": "lemma",
+      "requiredConcepts": [
+        "不规则动词",
+        "上下文词性",
+        "saw词义"
+      ],
+      "priorGapZh": "旧例无saw/see映射，原则之外缺恢复此不规则词的知识。",
+      "evidence": [
+        "see 的过去式是 saw。名词 saw 表示工具时词元仍是 saw。"
+      ],
+      "reasoningZh": "题干指定过去式动作义，恢复see；工具词元属于另一用法，bird是其他词，sawing仍非所需词典形。"
+    },
+    {
+      "questionId": "lemma-05",
+      "topic": "lemma",
+      "requiredConcepts": [
+        "NLTK",
+        "WordNetLemmatizer",
+        "工具归属"
+      ],
+      "priorGapZh": "已覆盖类所属NLTK，新增library/resource/algorithm层次区别。",
+      "evidence": [
+        "NLTK 是 Python 工具库，其中的 WordNetLemmatizer 使用词汇形态知识"
+      ],
+      "reasoningZh": "识别指定类所属工具库，其他库即使支持相关功能也不改变此类名归属。"
+    },
+    {
+      "questionId": "lemma-06",
+      "topic": "lemma",
+      "requiredConcepts": [
+        "SIGMORPHON",
+        "形态共享任务",
+        "资源用途"
+      ],
+      "priorGapZh": "已覆盖SIGMORPHON形态研究但没明确2019包含词元化，补充其任务适配。",
+      "evidence": [
+        "SIGMORPHON 2019 包含词元化共享任务，LexNorm、NER 基准和情感知识库对应其他任务。"
+      ],
+      "reasoningZh": "选提供形态词元任务的共享评测系列，排除规范化、情感知识或NER专项。"
+    },
+    {
+      "questionId": "taskdetail-morphology-01",
+      "topic": "taskdetail-morphology",
+      "requiredConcepts": [
+        "过度截尾",
+        "语义合并",
+        "下游情感"
+      ],
+      "priorGapZh": "已指出派生区别和任务信息保留，新增过度归一会合并不同情感内涵的检查流程。",
+      "evidence": [
+        "确保没有因过度归一而把带否定、贬义或不同内涵的形式错误合并。"
+      ],
+      "reasoningZh": "过度去后缀可压平语义和评价差别，不能假设每个后缀无意义、删越多越好或情感只依词长。"
+    },
+    {
+      "questionId": "taskdetail-morphology-02",
+      "topic": "taskdetail-morphology",
+      "requiredConcepts": [
+        "Inflection",
+        "Derivation",
+        "Lemma"
+      ],
+      "priorGapZh": "已覆盖屈折/派生区别，新增可迁移词例展示哪些应共享词元。",
+      "evidence": [
+        "复数、时态等屈折通常不创造新词条，派生可创造新类别或新意义。"
+      ],
+      "reasoningZh": "以是否改变词汇条目区分屈折和派生，意义相关或共享前缀都不充分，最短子串也非lemma定义。"
+    },
+    {
+      "questionId": "taskdetail-morphology-03",
+      "topic": "taskdetail-morphology",
+      "requiredConcepts": [
+        "条件规则",
+        "后缀匹配",
+        "执行次序"
+      ],
+      "priorGapZh": "旧稿仅提规则有条件，未明确条件失败时行为，补先检查再执行。",
+      "evidence": [
+        "条件失败就跳过该规则，不能删整词或无条件截尾。"
+      ],
+      "reasoningZh": "后缀文字相同尚不足以执行有前提规则；失败保留本阶段形式，不同时执行所有规则，也不丢整个词。"
+    },
+    {
+      "questionId": "taskdetail-morphology-04",
+      "topic": "taskdetail-morphology",
+      "requiredConcepts": [
+        "Sequence transduction",
+        "字符序列",
+        "词元"
+      ],
+      "priorGapZh": "已提字符转换但未解释transduction术语，新增输入输出和编辑动作定义。",
+      "evidence": [
+        "把输入字符序列转换成另一字符序列"
+      ],
+      "reasoningZh": "屈折形式到词元是序列到序列转换；句界、人格或无词形变化的实体链接均未产生该输出。"
+    },
+    {
+      "questionId": "taskdetail-morphology-05",
+      "topic": "taskdetail-morphology",
+      "requiredConcepts": [
+        "UniMorph",
+        "UD",
+        "SIGMORPHON",
+        "形态数据"
+      ],
+      "priorGapZh": "已覆盖三类资源用途，新增具体字段层次和范式含义。",
+      "evidence": [
+        "UniMorph 组织词元及其屈折范式，UD 语料含词元与形态句法标注，SIGMORPHON 共享任务提供形态学习和评测数据。"
+      ],
+      "reasoningZh": "形态配对需要词元、屈折和语法特征，地理坐标、图像和情感词典缺这种监督信息。"
+    },
+    {
+      "questionId": "taskdetail-morphology-06",
+      "topic": "taskdetail-morphology",
+      "requiredConcepts": [
+        "逐语言准确率",
+        "宏平均",
+        "样本加权"
+      ],
+      "priorGapZh": "已覆盖平均会掩盖差异，新增两语言数值演算让分母差异可理解。",
+      "evidence": [
+        "逐语言等权宏平均为(0.90+0.50)/2=0.70，样本加权为95/110≈0.864。"
+      ],
+      "reasoningZh": "平均受各语言权重影响，先看逐语言指标与平均规则，最高值、模型层数和小数位均不能支持各语言同样好。"
+    },
+    {
+      "questionId": "taskdetail-senses-01",
+      "topic": "taskdetail-senses",
+      "requiredConcepts": [
+        "同形歧义",
+        "词性",
+        "语义语境"
+      ],
+      "priorGapZh": "已覆盖上下文用法及不同发音，新增歧义定义和显式流程。",
+      "evidence": [
+        "同一拼写可能有多个词义，有时发音也不同。句法位置、搭配对象和篇章主题共同限制当前解释。"
+      ],
+      "reasoningZh": "tear在不同语境可指液体或撕裂，必须利用邻词与句法，拼写、长度和固定最情绪化解释不能决定。"
+    },
+    {
+      "questionId": "taskdetail-senses-02",
+      "topic": "taskdetail-senses",
+      "requiredConcepts": [
+        "Lesk",
+        "Gloss",
+        "知识式WSD"
+      ],
+      "priorGapZh": "已提Lesk释义重叠，新增逐义比较和与监督信号差别。",
+      "evidence": [
+        "Lesk-style 方法把语境与每条 gloss 的内容词作比较，选择重叠较多的候选。"
+      ],
+      "reasoningZh": "题中操作与释义匹配直接对应Lesk知识法，人格、标点和字符距离不比较候选义定义。"
+    },
+    {
+      "questionId": "taskdetail-senses-03",
+      "topic": "taskdetail-senses",
+      "requiredConcepts": [
+        "词义图",
+        "语义关系",
+        "一致解释"
+      ],
+      "priorGapZh": "已覆盖图连接与排序，新增节点/边定义和图-向量分工。",
+      "evidence": [
+        "词义图以候选 sense 为节点、语义关系为边；图排序偏向与周围词义连接协调的候选。"
+      ],
+      "reasoningZh": "图排序使用关系协调多个词义，无需拼写相同，删掉所有边反而丢证据，也不能确保每词只有一义。"
+    },
+    {
+      "questionId": "taskdetail-senses-04",
+      "topic": "taskdetail-senses",
+      "requiredConcepts": [
+        "词义定义",
+        "Gold标注实例",
+        "监督需求"
+      ],
+      "priorGapZh": "已区分知识与实例，新增参考标签必须对应具体出现的解释。",
+      "evidence": [
+        "释义清单只列出可选项，没有说明每个句中实例应选哪一项。"
+      ],
+      "reasoningZh": "有候选定义仍缺上下文实例与正确义配对，定义长度、消灭歧义或字符区分均非监督训练所缺信号。"
+    },
+    {
+      "questionId": "taskdetail-senses-05",
+      "topic": "taskdetail-senses",
+      "requiredConcepts": [
+        "上下文编码器",
+        "词义图",
+        "信息互补"
+      ],
+      "priorGapZh": "已提混合模型，新增两部分分别编码什么。",
+      "evidence": [
+        "神经上下文编码器把整句用法压成向量，知识图提供明确的词义关系"
+      ],
+      "reasoningZh": "两部分信息不同而互补，加入图不保证未知域正确、不取消候选定义，也无需完全重复知识。"
+    },
+    {
+      "questionId": "taskdetail-senses-06",
+      "topic": "taskdetail-senses",
+      "requiredConcepts": [
+        "WSD下游",
+        "语境适配",
+        "翻译词义"
+      ],
+      "priorGapZh": "已覆盖错误传播及下游验证，新增mouse翻译的实际推导。",
+      "evidence": [
+        "翻译时再选择目标语言中的设备词，避免把动物词带入下游句子。"
+      ],
+      "reasoningZh": "同理在河流句先纠正bank候选义可减少金融义误译；字形、页数和语速未影响词义选择。"
+    },
+    {
+      "questionId": "ner-01",
+      "topic": "ner",
+      "requiredConcepts": [
+        "实体跨度",
+        "PERSON/ORG",
+        "其他标签"
+      ],
+      "priorGapZh": "已覆盖NER示例和类别，新增mention及POS对照。",
+      "evidence": [
+        "NER 找名称类型，POS 找语法类别，共指将多个提及归给同一对象。"
+      ],
+      "reasoningZh": "人名和组织名需人物/组织类型，句号编号、动副词和极性分别不属于实体标签。"
+    },
+    {
+      "questionId": "ner-02",
+      "topic": "ner",
+      "requiredConcepts": [
+        "CRF全称",
+        "条件标签分布",
+        "依赖"
+      ],
+      "priorGapZh": "旧稿只出现CRF缩写没有展开名称和建模对象，补全定义。",
+      "evidence": [
+        "CRF 全称 Conditional Random Field，中文为条件随机场。",
+        "同时考虑词特征与相邻标签转移"
+      ],
+      "reasoningZh": "按全称识别条件随机场，HMM生成描述、独立分类及无监督聚类分别是其他建模结构。"
+    },
+    {
+      "questionId": "ner-03",
+      "topic": "ner",
+      "requiredConcepts": [
+        "CoNLL-2003",
+        "CoNLL-2000",
+        "任务基准"
+      ],
+      "priorGapZh": "已覆盖CoNLL-2003但未对照相邻组块基准，现明确两者任务。",
+      "evidence": [
+        "CoNLL-2003 用于 NER，CoNLL-2000 用于组块。"
+      ],
+      "reasoningZh": "区分同系列评测任务，规范化和词元形态数据也不直接对应NER。"
+    },
+    {
+      "questionId": "ner-04",
+      "topic": "ner",
+      "requiredConcepts": [
+        "BIO",
+        "多词姓名",
+        "实体延续"
+      ],
+      "priorGapZh": "已覆盖BIO但补Begin/Inside全称及两个B表示两个开头的反例。",
+      "evidence": [
+        "两个相邻 B-PER 通常意味着两个实体开头，而一个名字第二词应延续 I-PER。"
+      ],
+      "reasoningZh": "单一两词姓名先开始再延续，B-B拆成两个，I-B先延续后开始不符，O-O会遗漏。"
+    },
+    {
+      "questionId": "ner-05",
+      "topic": "ner",
+      "requiredConcepts": [
+        "实体精确匹配",
+        "Precision",
+        "Recall",
+        "F1"
+      ],
+      "priorGapZh": "已覆盖简化公式，但旧稿缺逐步计算和分母含义的完整演算。",
+      "evidence": [
+        "正确数 C 同时进入精确率和召回率的分子；预测数 P 与标准数 G 分别作分母。",
+        "F1=2C/(P+G)"
+      ],
+      "reasoningZh": "正确8、预测10、标准12，F1=16/22≈0.727；0.8为P、0.667为R，未全对不可能1。"
+    },
+    {
+      "questionId": "ner-06",
+      "topic": "ner",
+      "requiredConcepts": [
+        "NER候选",
+        "指代",
+        "意见目标"
+      ],
+      "priorGapZh": "已覆盖依赖链，补NER/POS/共指输出对照。",
+      "evidence": [
+        "人物名称既可有名词词性，也可为后续代词提供候选，但 NER 不决定所有代词所指。"
+      ],
+      "reasoningZh": "实体跨度和类别帮助后续链接评价对象，但不取消语境、删除人物提及或保证代词指最近名词。"
+    },
+    {
+      "questionId": "taskdetail-entities-01",
+      "topic": "taskdetail-entities",
+      "requiredConcepts": [
+        "BIOES",
+        "多词跨度",
+        "长度"
+      ],
+      "priorGapZh": "已覆盖五标签，补按长度1/2/3的操作式映射。",
+      "evidence": [
+        "长度1用S、长度2用B-E、长度3用B-I-E"
+      ],
+      "reasoningZh": "三词完整实体需要开始、内部、结束；多个B/S会拆成多实体，O会断开跨度。"
+    },
+    {
+      "questionId": "taskdetail-entities-02",
+      "topic": "taskdetail-entities",
+      "requiredConcepts": [
+        "平面BIO",
+        "一词一标",
+        "嵌套实体"
+      ],
+      "priorGapZh": "已覆盖嵌套表示，补为何同一词必须承担两个边界身份。",
+      "evidence": [
+        "内层地点与外层组织重叠时，同一词同时承担两层边界身份，单标签无法完整表达"
+      ],
+      "reasoningZh": "问题来自重叠需要多层结构，不是BIO只允许单词、实体不能重叠或不需边界。"
+    },
+    {
+      "questionId": "taskdetail-entities-03",
+      "topic": "taskdetail-entities",
+      "requiredConcepts": [
+        "Prompt",
+        "标签词映射",
+        "类型与边界"
+      ],
+      "priorGapZh": "旧稿提提示方法但未解释预测词到类型的映射和固定跨度条件。",
+      "evidence": [
+        "输出标签词如“city”后，再映射到系统的 LOC 类别。类型提示并未自动发现所有实体跨度。"
+      ],
+      "reasoningZh": "将实体类型改写成LM填词并映射标签是核心；边界仍需另外设计，few-shot不要求百万新标例，字母排序无关。"
+    },
+    {
+      "questionId": "taskdetail-entities-04",
+      "topic": "taskdetail-entities",
+      "requiredConcepts": [
+        "表填充",
+        "联合实体关系",
+        "端点"
+      ],
+      "priorGapZh": "已覆盖共同结构，新增实体端点仍必需的对照。",
+      "evidence": [
+        "联合实体关系抽取共享结构表示并共同预测端点和关系；它仍需要确定关系两端指向哪些实体。"
+      ],
+      "reasoningZh": "表格将边界与关系统一预测，不能无实体端点直接表示所有关系，也不把关系当拼写或每词对当句子。"
+    },
+    {
+      "questionId": "taskdetail-entities-05",
+      "topic": "taskdetail-entities",
+      "requiredConcepts": [
+        "UMLS",
+        "SNOMED CT",
+        "DrugBank",
+        "医学资源"
+      ],
+      "priorGapZh": "旧稿未提SNOMED CT且资源用途过简，补三医学资源与GeoNames用途。",
+      "evidence": [
+        "UMLS 整合医学术语与概念关系，SNOMED CT 提供系统化临床术语，DrugBank 组织药物知识"
+      ],
+      "reasoningZh": "疾病和药物需求应匹配医学资源，地理名录、人格问卷和拼写规范化缺目标概念。"
+    },
+    {
+      "questionId": "taskdetail-entities-06",
+      "topic": "taskdetail-entities",
+      "requiredConcepts": [
+        "实体类型",
+        "Entity linking",
+        "具体身份"
+      ],
+      "priorGapZh": "已覆盖类型与链接不同，新增知识库ID定义。",
+      "evidence": [
+        "LOCATION 只说明类别，知识库 ID 才定位具体地点。"
+      ],
+      "reasoningZh": "Washington已知地点类型仍要判具体同名指向，字符有无、代词最近原则和把地点变人物都未解决身份。"
+    },
+    {
+      "questionId": "concept-01",
+      "topic": "concept",
+      "requiredConcepts": [
+        "多词概念",
+        "整体意义",
+        "NER范围"
+      ],
+      "priorGapZh": "已覆盖多词表达整体意义，新增普通概念与专名明确范围。",
+      "evidence": [
+        "概念可为普通事物、动作和多词表达，命名实体通常是人物、地点、机构等专名。"
+      ],
+      "reasoningZh": "多词动作和普通职业概念强调语义单元，单词POS、截尾词干和只抽专名均不能完整实现。"
+    },
+    {
+      "questionId": "concept-02",
+      "topic": "concept",
+      "requiredConcepts": [
+        "TF",
+        "DF",
+        "IDF",
+        "语料稀有度"
+      ],
+      "priorGapZh": "已有TF-IDF公式，缺强调单篇频率不直接决定IDF，容易被强干扰项混淆。",
+      "evidence": [
+        "固定 N 时，DF 越小，log(N/DF) 越大",
+        "在单篇文档中反复出现会增加 TF，但不会因此直接决定 IDF。"
+      ],
+      "reasoningZh": "出现文档少使IDF高，同篇频繁决定TF；每篇都有则IDF低，名词身份不决定语料稀有度。"
+    },
+    {
+      "questionId": "concept-03",
+      "topic": "concept",
+      "requiredConcepts": [
+        "功能词",
+        "关系方向",
+        "停用词"
+      ],
+      "priorGapZh": "已用from/to解释方向，新增预处理判断流程与定义。",
+      "evidence": [
+        "停用词是高频功能词，可能表达方向和关系"
+      ],
+      "reasoningZh": "to连接航班与目的地，删除会丢关系；停用词并非只有标点或皆实体，删除也不构成翻译。"
+    },
+    {
+      "questionId": "concept-04",
+      "topic": "concept",
+      "requiredConcepts": [
+        "Casefolding",
+        "缩写",
+        "普通词"
+      ],
+      "priorGapZh": "旧稿泛提大小写混淆；首轮增加US/us后，盲审仍发现未教WHO的组织缩写身份，现已补齐该前提和上下文限制。",
+      "evidence": [
+        "例如 US 与 us，前者可为国家缩写，后者为代词。",
+        "WHO 是 World Health Organization（世界卫生组织）的缩写，who 是英语代词；统一转成小写会丢掉区分两者的形式线索。"
+      ],
+      "reasoningZh": "相同原理解释WHO/who下大小写身份丢失，和屈折、句界、代词先行词结构不同。"
+    },
+    {
+      "questionId": "concept-05",
+      "topic": "concept",
+      "requiredConcepts": [
+        "ClCE",
+        "MIMIC",
+        "领域目标"
+      ],
+      "priorGapZh": "旧稿只说MIMIC服务临床概念抽取，缺ClCE缩写与其他三个选项类型。",
+      "evidence": [
+        "Clinical Concept Extraction（ClCE）面向病历中的诊断、治疗等医学概念，MIMIC 临床记录适用于这一场景。"
+      ],
+      "reasoningZh": "诊断治疗属于临床概念，课程、专利和通用关键词的任务范围与所问专门领域不符。"
+    },
+    {
+      "questionId": "taskdetail-concepts-01",
+      "topic": "taskdetail-concepts",
+      "requiredConcepts": [
+        "MWE",
+        "约定意义",
+        "短语整体"
+      ],
+      "priorGapZh": "已覆盖整体语义，新增解释动词与介词搭配被拆分的风险。",
+      "evidence": [
+        "一个短语可共享约定整体含义，动词与介词的搭配尤其容易被逐词拆分破坏。"
+      ],
+      "reasoningZh": "关系语境中组合有整体意义，拆成无关概念会失真；功能词可参与意义，含get并不总物理获取，短语也不必专名。"
+    },
+    {
+      "questionId": "taskdetail-concepts-02",
+      "topic": "taskdetail-concepts",
+      "requiredConcepts": [
+        "标点停用词",
+        "关系",
+        "预处理损失"
+      ],
+      "priorGapZh": "已覆盖预处理风险，新增先检查承载功能再删除流程。",
+      "evidence": [
+        "检查预处理是否会删掉关系词、短语边界或有区分意义的大小写。"
+      ],
+      "reasoningZh": "盲删可破坏边界、关系和标题，无法保证正确边界或提升精度，也不能保留已删连字符的区别。"
+    },
+    {
+      "questionId": "taskdetail-concepts-03",
+      "topic": "taskdetail-concepts",
+      "requiredConcepts": [
+        "抽取式",
+        "生成式",
+        "Absent keyphrase"
+      ],
+      "priorGapZh": "已覆盖输出形式区别，新增生成上位概念的核验步骤。",
+      "evidence": [
+        "生成式系统可以概括出上位概念或改写术语"
+      ],
+      "reasoningZh": "原文没有目标词时，限选现有跨度的系统不能直接输出，需生成机制；小写化和分句均不产生新关键词。"
+    },
+    {
+      "questionId": "taskdetail-concepts-04",
+      "topic": "taskdetail-concepts",
+      "requiredConcepts": [
+        "Domain adaptation",
+        "课程概念",
+        "领域知识"
+      ],
+      "priorGapZh": "已覆盖域资源，新增概念定义随领域变化及知识命中不等正确。",
+      "evidence": [
+        "课程、临床和专利对重要概念的定义各异。",
+        "知识库收录概念只证明资源中存在它，是否应从当前文档输出还取决于语义与重要性。"
+      ],
+      "reasoningZh": "教育域资源覆盖目标术语关系可更适配，但不保证正确或取消评测，通用语言仍会出现。"
+    },
+    {
+      "questionId": "taskdetail-concepts-05",
+      "topic": "taskdetail-concepts",
+      "requiredConcepts": [
+        "F1@5",
+        "输出数限制",
+        "统一协议"
+      ],
+      "priorGapZh": "旧稿只说排名长度影响分数，没解释F1@k如何计算，现补计分过程。",
+      "evidence": [
+        "F1@k 只在排名前 k 个预测中计匹配",
+        "结构化解析的另一指标不能凭打印数值直接比较。"
+      ],
+      "reasoningZh": "需同任务定义、测试集、匹配和数量限制，不能当token accuracy或按名称/数字大小排名。"
+    },
+    {
+      "questionId": "anaphora-01",
+      "topic": "anaphora",
+      "requiredConcepts": [
+        "Antecedent",
+        "普通名词",
+        "属性归属"
+      ],
+      "priorGapZh": "已覆盖先行词和物品例，新增先行表达与属性区别。",
+      "evidence": [
+        "Antecedent 是提供所指的先行表达",
+        "被描述的属性和动作不自动成为先行词。"
+      ],
+      "reasoningZh": "it回指购入物体，属性very light描述物体而不提供实体先行词，动作bought也非所指对象。"
+    },
+    {
+      "questionId": "anaphora-02",
+      "topic": "anaphora",
+      "requiredConcepts": [
+        "数一致",
+        "多个候选",
+        "语境"
+      ],
+      "priorGapZh": "已覆盖两候选兼容，补一致性与消解对照。",
+      "evidence": [
+        "多个复数名词都能和 they 一致，过滤完成后仍可能剩多个候选。"
+      ],
+      "reasoningZh": "数一致仅筛单复数不相容者，两复数候选仍可行，不能推最近必对、排所有实体或没有先行词。"
+    },
+    {
+      "questionId": "anaphora-03",
+      "topic": "anaphora",
+      "requiredConcepts": [
+        "OntoNotes",
+        "共指标注",
+        "知识库"
+      ],
+      "priorGapZh": "已覆盖OntoNotes与知识库作用，但未明确ConceptNet及数据监督结构。",
+      "evidence": [
+        "OntoNotes 提供文本提及及共指链，可用于学习和评测",
+        "WordNet 提供词汇关系，ConceptNet 等提供常识关系，SenticNet 提供概念情感知识。"
+      ],
+      "reasoningZh": "需训练评测实例时选提及链语料，其他资源补语义关系或情感，不能替代同类标注。"
+    },
+    {
+      "questionId": "anaphora-05",
+      "topic": "anaphora",
+      "requiredConcepts": [
+        "NER范围",
+        "普通名词指代",
+        "上下文"
+      ],
+      "priorGapZh": "已覆盖普通对象指代，新加可迁移容器例说明NER信息不充分。",
+      "evidence": [
+        "NER 提供专名类型；指代还涉及普通名词、代词及其他表达。"
+      ],
+      "reasoningZh": "先行词可为未命名普通物体，选所指还需事件语境，所以NER不自动解决代词，也不限于专名或标点。"
+    },
+    {
+      "questionId": "anaphora-07",
+      "topic": "anaphora",
+      "requiredConcepts": [
+        "容纳常识",
+        "候选代入",
+        "语法不足"
+      ],
+      "priorGapZh": "旧稿只泛称世界知识，无容器大小推导，新增先代入再验因果的例子。",
+      "evidence": [
+        "装不下可能因物体太大或容器太小",
+        "把每个候选代入后句，根据物体属性、事件因果和篇章焦点比较解释。"
+      ],
+      "reasoningZh": "太宽的物体解释装不入信封，两个单数仅表示语法都兼容，最近的信封不是因距离自动正确，也无需两者同时为单数代词所指。"
+    },
+    {
+      "questionId": "taskdetail-coreference-01",
+      "topic": "taskdetail-coreference",
+      "requiredConcepts": [
+        "Agreement",
+        "常识",
+        "候选唯一性"
+      ],
+      "priorGapZh": "已覆盖形式筛选后用语义，新增机制对照。",
+      "evidence": [
+        "多个同数同性候选共存时，额外语义证据仍有作用。"
+      ],
+      "reasoningZh": "一致性无法保证唯一，多个兼容候选需事件与世界知识，最近规则和世界知识无用说都过强。"
+    },
+    {
+      "questionId": "taskdetail-coreference-02",
+      "topic": "taskdetail-coreference",
+      "requiredConcepts": [
+        "Zero pronoun",
+        "省略参与者",
+        "上下文恢复"
+      ],
+      "priorGapZh": "已覆盖零代词和示例，新增参与者定义及显式提及共同流程。",
+      "evidence": [
+        "句中参与者可以省略字面形式，仍需从篇章恢复“谁”或“什么”在承担动作。"
+      ],
+      "reasoningZh": "缺省主语仍有指称，需恢复隐含表达及先行对象；不是无参与者、发音标点或每词换义。"
+    },
+    {
+      "questionId": "taskdetail-coreference-03",
+      "topic": "taskdetail-coreference",
+      "requiredConcepts": [
+        "标注提及簇",
+        "知识推理",
+        "资源分工"
+      ],
+      "priorGapZh": "已覆盖语料与知识资源，新增二者分别提供监督与推理的定义。",
+      "evidence": [
+        "OntoNotes、ARRAU、GAP 提供不同形式的指代实例，WordNet 与 OMCS 等知识资源补充词汇或常识。"
+      ],
+      "reasoningZh": "开发系统需要提及结构标签与关系知识互补，编码、仅情感或无提及的拼写样例缺所需监督。"
+    },
+    {
+      "questionId": "taskdetail-coreference-04",
+      "topic": "taskdetail-coreference",
+      "requiredConcepts": [
+        "独立提及对",
+        "传递性",
+        "簇一致性"
+      ],
+      "priorGapZh": "旧稿只说局部冲突，未完整写出传递性矛盾三角，现明确。",
+      "evidence": [
+        "A与B同指且B与C同指时，三者应可归到同一簇。",
+        "逐对独立判断可能出现A-B同指、B-C同指、A-C不同指的冲突"
+      ],
+      "reasoningZh": "局部决定各自看似合理但组合不自洽，独立判定不自动保证传递，实体身份正依赖簇一致性。"
+    },
+    {
+      "questionId": "taskdetail-coreference-05",
+      "topic": "taskdetail-coreference",
+      "requiredConcepts": [
+        "MUC",
+        "B³",
+        "CEAF",
+        "簇分数"
+      ],
+      "priorGapZh": "旧稿只列三指标名，没教其评价对象或平均意义。",
+      "evidence": [
+        "MUC 关注把提及连成簇所需的链接，B³ 从每个提及所在预测簇与标准簇的重叠出发，CEAF 对齐预测簇与标准簇后评分。"
+      ],
+      "reasoningZh": "三种角度的F1平均仍衡量簇结构，不是拼写数或token accuracy，更不是情感召回或每文档全对保证。"
+    },
+    {
+      "questionId": "subjectivity-01",
+      "topic": "subjectivity",
+      "requiredConcepts": [
+        "Subjective",
+        "Objective",
+        "Polarity"
+      ],
+      "priorGapZh": "已覆盖主观性与极性区别，新增先判断是否评价再判方向的步骤。",
+      "evidence": [
+        "主观表达包含意见、态度或评价；客观表达陈述事实性信息。正负方向是进一步的极性维度。"
+      ],
+      "reasoningZh": "主客观是直接分类目标；正负区分已识别意见的方向，词义隐喻与共指是不同任务。"
+    },
+    {
+      "questionId": "subjectivity-02",
+      "topic": "subjectivity",
+      "requiredConcepts": [
+        "Ambivalence",
+        "Neutrality",
+        "二维情感"
+      ],
+      "priorGapZh": "已覆盖正负双高与双低，新增避免差值抵消的明确流程。",
+      "evidence": [
+        "中性意味着正负都弱，矛盾情绪意味着正负都强。"
+      ],
+      "reasoningZh": "对两方面强烈爱憎同时存在符合矛盾情绪，抵消为中性/无情感或因为提两个方面就客观均丢失态度。"
+    },
+    {
+      "questionId": "subjectivity-03",
+      "topic": "subjectivity",
+      "requiredConcepts": [
+        "POS-based feature",
+        "词类",
+        "其他输入"
+      ],
+      "priorGapZh": "旧稿列POS特征却未一一对应形容词副词情态动词，现补定义与对照。",
+      "evidence": [
+        "POS-based features 统计语法类别，例如形容词、副词和情态动词频数"
+      ],
+      "reasoningZh": "统计题述类别即POS线索，TF-IDF、极性词典和编辑距离分别不使用这些语法类别定义。"
+    },
+    {
+      "questionId": "subjectivity-05",
+      "topic": "subjectivity",
+      "requiredConcepts": [
+        "Precision",
+        "Recall",
+        "调和平均F1"
+      ],
+      "priorGapZh": "旧稿有公式无计算演算或算术平均干扰解释，现补流程与例子。",
+      "evidence": [
+        "F1=2PR/(P+R)，先乘再除，最后四舍五入；(P+R)/2 是算术平均"
+      ],
+      "reasoningZh": "代入0.8与0.5得0.8/1.3≈0.6154，保留两位0.62；0.65是算术平均，1.3是分母，0.3为差值。"
+    },
+    {
+      "questionId": "subjectivity-06",
+      "topic": "subjectivity",
+      "requiredConcepts": [
+        "MPQA Lexicon",
+        "词项线索",
+        "文档监督"
+      ],
+      "priorGapZh": "已覆盖词典与标注语料但缺“命中非保证”的操作含义，新增定义。",
+      "evidence": [
+        "MPQA Subjectivity Lexicon 是词项及主观性线索的列表；逐文档标注语料把实际文本和参考类别配对"
+      ],
+      "reasoningZh": "词典提供局部线索，可作为分类器特征但不自动给任意文档标签，不能保证每次出现主观，也不限定视频。"
+    },
+    {
+      "questionId": "taskdetail-opinion-01",
+      "topic": "taskdetail-opinion",
+      "requiredConcepts": [
+        "二维情感",
+        "差值压缩",
+        "中性与矛盾"
+      ],
+      "priorGapZh": "已覆盖差值丢信息，新增数值构造证明零分歧义。",
+      "evidence": [
+        "单分数s=p−n会把(p,n)=(0,0)与(0.9,0.9)都变为0"
+      ],
+      "reasoningZh": "同一接近零的分数可来自双弱或双强，不能单独推无意见、客观或人格。"
+    },
+    {
+      "questionId": "taskdetail-opinion-02",
+      "topic": "taskdetail-opinion",
+      "requiredConcepts": [
+        "词义依赖",
+        "词典先验",
+        "语境"
+      ],
+      "priorGapZh": "已覆盖主观性词义消歧，新增prior/context定义及检查顺序。",
+      "evidence": [
+        "词典给出词的常见评价倾向，具体词义、否定、引用和语篇可改变它在某次出现中的作用。"
+      ],
+      "reasoningZh": "用词义与周围文本选择当前用法；永久标签、忽视邻句或形容词必主观规则均忽略歧义。"
+    },
+    {
+      "questionId": "taskdetail-opinion-03",
+      "topic": "taskdetail-opinion",
+      "requiredConcepts": [
+        "翻译标签保持",
+        "跨语言分布",
+        "目标测试"
+      ],
+      "priorGapZh": "已覆盖翻译风险，新增会议模态删失的具体迁移例。",
+      "evidence": [
+        "若翻译把委婉模态删掉，文本标签所依赖的主观线索也会变化，需要人工核对。"
+      ],
+      "reasoningZh": "检查线索和标签是否保存并在目标语言评价；不能保证翻译零噪声，也无需强迫保留原词序或省略目标评价。"
+    },
+    {
+      "questionId": "taskdetail-opinion-04",
+      "topic": "taskdetail-opinion",
+      "requiredConcepts": [
+        "Prosody",
+        "多模态",
+        "中性文本"
+      ],
+      "priorGapZh": "旧稿提韵律但没解释其物理线索和与字面态度差别，新增定义。",
+      "evidence": [
+        "韵律包括音高、重音、语速和停顿，可能透露犹豫或讽刺"
+      ],
+      "reasoningZh": "中性措辞之外的迟疑能由对齐音频提供，词袋或先丢音频无法使用该证据，中性文字不保证中性表达方式。"
+    },
+    {
+      "questionId": "taskdetail-opinion-05",
+      "topic": "taskdetail-opinion",
+      "requiredConcepts": [
+        "Bias",
+        "框架事实选择",
+        "情感词典局限"
+      ],
+      "priorGapZh": "已覆盖偏差通过选择框架表现，新添资源类别与平静片面例。",
+      "evidence": [
+        "Bias 可来自选择哪些事实、把责任归给谁、用怎样的框架叙述；一句平静、语法完整的陈述也可能片面。"
+      ],
+      "reasoningZh": "偏差无需显性情绪词，负面也可准确客观，所以正负词典独用不足，脏话必要或客观句式保证公正均不成立。"
+    },
+    {
+      "questionId": "metaphor-01",
+      "topic": "metaphor",
+      "requiredConcepts": [
+        "Source domain",
+        "Target domain",
+        "跨域映射"
+      ],
+      "priorGapZh": "已覆盖源目标定义和蜂巢例，补“A是B”中方向判断与关系选择。",
+      "evidence": [
+        "在“A 是 B”的概念隐喻里，通常 A 是待理解的目标域，B 是提供关系结构的源域。"
+      ],
+      "reasoningZh": "借金钱结构理解时间，按谁提供经验框架判源域，按谁被解释判目标域，反向或语法发音配对不符合映射。"
+    },
+    {
+      "questionId": "metaphor-02",
+      "topic": "metaphor",
+      "requiredConcepts": [
+        "WSD",
+        "语境词义",
+        "隐喻解释"
+      ],
+      "priorGapZh": "已覆盖词义支持隐喻，新增字面/修辞及WSD定义。",
+      "evidence": [
+        "WSD 在候选词义中选择当前用法",
+        "明确目标对象和上下文后才选择适合的解释。"
+      ],
+      "reasoningZh": "消歧依据语境避免不恰当字面义，为映射提供候选；固定最常见义、给说话者评分或消除全部修辞都非目的。"
+    },
+    {
+      "questionId": "metaphor-03",
+      "topic": "metaphor",
+      "requiredConcepts": [
+        "SRL",
+        "Agent",
+        "Patient",
+        "与POS差别"
+      ],
+      "priorGapZh": "旧稿说角色但未明确SRL全称与施受事，补参与者定义。",
+      "evidence": [
+        "SRL 全称 Semantic Role Labeling，标记谓词的参与者角色：施事 Agent 执行动作，受事 Patient 受到影响。"
+      ],
+      "reasoningZh": "谁动作谁受影响属于语义角色，POS标语法类别，NER标实体类型，单独WSD选词义均不直接给完整角色关系。"
+    },
+    {
+      "questionId": "metaphor-04",
+      "topic": "metaphor",
+      "requiredConcepts": [
+        "文化约定",
+        "共同经验",
+        "解释依赖"
+      ],
+      "priorGapZh": "已覆盖跨文化知识作用，新增不同背景读者的映射限制例。",
+      "evidence": [
+        "若某文化用当地独有航海典故，解释还需补充共同背景，字面翻译可能无法传达含义。"
+      ],
+      "reasoningZh": "某群体理解而另一些读者不懂说明缺共同知识，大小写、专名替换或普遍字面义要求未解决文化映射。"
+    },
+    {
+      "questionId": "metaphor-05",
+      "topic": "metaphor",
+      "requiredConcepts": [
+        "WordNet",
+        "FrameNet",
+        "词义与框架资源"
+      ],
+      "priorGapZh": "已覆盖两资源，但新增各自对SRL/义项支持的分工。",
+      "evidence": [
+        "WordNet 提供词义与语义关系，FrameNet 提供框架和参与角色"
+      ],
+      "reasoningZh": "按所需知识类型选词义和框架资源；其他选项的人格、规范化、临床、句法或指代数据用途不同。"
+    },
+    {
+      "questionId": "metaphor-06",
+      "topic": "metaphor",
+      "requiredConcepts": [
+        "MWE",
+        "短语整体",
+        "约定含义"
+      ],
+      "priorGapZh": "已覆盖MWE保留整体意义，新加全称与先识别后解释流程。",
+      "evidence": [
+        "MWE 即 Multiword Expression，将约定俗成的多词短语作为整体，防止独立逐词解释丢失意义。"
+      ],
+      "reasoningZh": "习惯表达应整体理解，不能逐词强制独立、删除所有习语或仅POS替代语义。"
+    },
+    {
+      "questionId": "taskdetail-metaphor-01",
+      "topic": "taskdetail-metaphor",
+      "requiredConcepts": [
+        "隐喻识别",
+        "隐喻释义",
+        "输出差别"
+      ],
+      "priorGapZh": "已覆盖定位与解释区别，新增两个输出明确对照。",
+      "evidence": [
+        "识别定位哪里出现隐喻，解释恢复这段表达想传达的含义。"
+      ],
+      "reasoningZh": "标出grasp为修辞仅完成定位，仍需恢复理解概念的意思；字符计数或逐字翻译不会提供该释义。"
+    },
+    {
+      "questionId": "taskdetail-metaphor-02",
+      "topic": "taskdetail-metaphor",
+      "requiredConcepts": [
+        "源域属性",
+        "目标相关性",
+        "选择性迁移"
+      ],
+      "priorGapZh": "已覆盖属性筛选，新增三步映射和物理属性排除。",
+      "evidence": [
+        "概念映射需要挑出与目标相关的源域属性。"
+      ],
+      "reasoningZh": "脆弱桥可迁移不稳定和支持不足，材料和全部物理性质无关，语法数也不解释论证质量。"
+    },
+    {
+      "questionId": "taskdetail-metaphor-03",
+      "topic": "taskdetail-metaphor",
+      "requiredConcepts": [
+        "Selectional preference",
+        "论元类型",
+        "异常候选"
+      ],
+      "priorGapZh": "旧稿定义选择偏好较简，新增可摄取物与抽象对象的具体机制。",
+      "evidence": [
+        "Selectional preference 指谓词倾向搭配某类论元",
+        "字面搭配异常可触发隐喻候选"
+      ],
+      "reasoningZh": "抽象概念被物理吞咽偏离常见论元类型，提供修辞线索；不等于拼写错误、大小写线索或禁止修辞。"
+    },
+    {
+      "questionId": "taskdetail-metaphor-04",
+      "topic": "taskdetail-metaphor",
+      "requiredConcepts": [
+        "释义评价",
+        "意义保持",
+        "连贯"
+      ],
+      "priorGapZh": "已覆盖评价指标，新增与长度/高频词等干扰维度的明确区别。",
+      "evidence": [
+        "评价看意义保持、语境适切性、可接受性和连贯性"
+      ],
+      "reasoningZh": "好的释义解释意图且连贯，保持原每词、字符数或只用最高频词都不足以评语义正确。"
+    },
+    {
+      "questionId": "taskdetail-metaphor-05",
+      "topic": "taskdetail-metaphor",
+      "requiredConcepts": [
+        "字面翻译",
+        "概念意义",
+        "文化"
+      ],
+      "priorGapZh": "已提翻译用途但未拆解为何字面保留仍会失意，新迁移例与前置定义补充。",
+      "evidence": [
+        "字面搭配异常可触发隐喻候选",
+        "生成自然释义，逐项检查是否保持原意与篇章连贯。"
+      ],
+      "reasoningZh": "翻译必须恢复隐喻语境义而非仅映射表面词，分词/POS正确并不提供文化适切释义，也不存在普遍相同字面对应。"
+    },
+    {
+      "questionId": "sarcasm-01",
+      "topic": "sarcasm",
+      "requiredConcepts": [
+        "积极措辞",
+        "负面事件",
+        "情感不协调"
+      ],
+      "priorGapZh": "已覆盖核心冲突，新增先读事件再读态度的步骤。",
+      "evidence": [
+        "反讽线索常来自正面字面评价与负面事件之间的矛盾，需要两侧证据共同成立。"
+      ],
+      "reasoningZh": "报告丢失与赞美同时构成线索，积极词单独、名字或副词均不能判断说话意图。"
+    },
+    {
+      "questionId": "sarcasm-02",
+      "topic": "sarcasm",
+      "requiredConcepts": [
+        "User embedding",
+        "Discourse feature",
+        "Content"
+      ],
+      "priorGapZh": "旧稿只泛说上下文含说话者，未解释两个题目术语对应具体信息。",
+      "evidence": [
+        "User embedding 把说话者相关特征编码为向量，discourse feature 表示前文、话轮或话题关系"
+      ],
+      "reasoningZh": "要同时考虑说话者与对话就需两者，孤立实体、情感汇总和POS缺对应信息源。"
+    },
+    {
+      "questionId": "sarcasm-03",
+      "topic": "sarcasm",
+      "requiredConcepts": [
+        "SenticNet",
+        "语义情感先验",
+        "训练标签"
+      ],
+      "priorGapZh": "已覆盖知识先验但补具体区分知识与实例监督。",
+      "evidence": [
+        "SenticNet 提供概念语义及情感先验；反讽标注语料将具体表达及上下文配上参考标签。"
+      ],
+      "reasoningZh": "概念知识能辅助发现冲突，不会提供任意新句gold标签、单词必然意图或仅长度决策。"
+    },
+    {
+      "questionId": "sarcasm-04",
+      "topic": "sarcasm",
+      "requiredConcepts": [
+        "RNN全称",
+        "状态更新",
+        "有序词序"
+      ],
+      "priorGapZh": "旧稿只有RNN可学序列依赖一句，缺前置结构和为什么能编码顺序。",
+      "evidence": [
+        "它逐词更新隐藏状态 hₜ=f(Wxₜ+Uhₜ₋₁+b)",
+        "词序不同可导致状态不同"
+      ],
+      "reasoningZh": "状态随有序输入更新，说明可学习跨词信息；不意味着无需训练、忽略词序或精通所有文化。"
+    },
+    {
+      "questionId": "sarcasm-05",
+      "topic": "sarcasm",
+      "requiredConcepts": [
+        "词袋",
+        "积极词",
+        "字面意图冲突"
+      ],
+      "priorGapZh": "已覆盖积极词累加误判，新增词袋与RNN/语境的操作对照。",
+      "evidence": [
+        "词袋忽略排列与跨词依赖",
+        "积极词可用于真诚赞赏，也可在不利情境中表达抱怨。"
+      ],
+      "reasoningZh": "只看Great易忽略长延误的事件冲突，从而错判积极；与名字或分句无关，更不表示已解决反讽。"
+    },
+    {
+      "questionId": "taskdetail-sarcasm-01",
+      "topic": "taskdetail-sarcasm",
+      "requiredConcepts": [
+        "对话上下文",
+        "当前回复",
+        "融合"
+      ],
+      "priorGapZh": "已覆盖内容与前文分别编码，新增前文期待定位。",
+      "evidence": [
+        "礼貌回复可能依赖前文期待才能解释。",
+        "读当前话语并恢复前文期待"
+      ],
+      "reasoningZh": "需要回复及相关前文共同揭示矛盾，孤立积极词、平台消息数和字母顺序不恢复交际关系。"
+    },
+    {
+      "questionId": "taskdetail-sarcasm-02",
+      "topic": "taskdetail-sarcasm",
+      "requiredConcepts": [
+        "多模态数据",
+        "对齐",
+        "参考标签"
+      ],
+      "priorGapZh": "已覆盖MUStARD和融合，旧稿未完整列一个可评测样本字段。",
+      "evidence": [
+        "完整研究样本可包含目标话语、前文对话、对齐音频、视频片段及反讽标签。"
+      ],
+      "reasoningZh": "研究文字声音表情前文需要对应模态和监督标签，长度时间戳、形态词典、词极性条目缺样本内容。"
+    },
+    {
+      "questionId": "taskdetail-sarcasm-03",
+      "topic": "taskdetail-sarcasm",
+      "requiredConcepts": [
+        "模态不协调",
+        "替代解释",
+        "不充分条件"
+      ],
+      "priorGapZh": "已覆盖错配原因，新增先检查是否同事件的验证步骤。",
+      "evidence": [
+        "文本、声音或图像不协调时，先检查它们是否描述同一事件、是否有引用或配图错误。"
+      ],
+      "reasoningZh": "积极标题配不利画面提示可能反讽，但其他原因未排除，不能保证反讽或积极意图，也不应丢弃图像。"
+    },
+    {
+      "questionId": "taskdetail-sarcasm-04",
+      "topic": "taskdetail-sarcasm",
+      "requiredConcepts": [
+        "Semantic incongruity",
+        "事件后果",
+        "评价"
+      ],
+      "priorGapZh": "已提semantic incongruity，补中文定义和两端信息来源。",
+      "evidence": [
+        "语义或情感不协调来自两个信息源的冲突，例如负面事件却配积极评价。"
+      ],
+      "reasoningZh": "事件含义与评价冲突直接符合不协调定义，编码、形态一致、年龄不描述该关系。"
+    },
+    {
+      "questionId": "taskdetail-sarcasm-05",
+      "topic": "taskdetail-sarcasm",
+      "requiredConcepts": [
+        "反讽感知情感",
+        "先解释后极性",
+        "对象"
+      ],
+      "priorGapZh": "已覆盖下游纠偏，新增与无差别翻转对照。",
+      "evidence": [
+        "在情感分类前加入语境化解释，只修正被讽刺对象的态度。"
+      ],
+      "reasoningZh": "加入语境反讽阶段能纠正假赞扬，不应删所有积极词、把所有称赞反转或仅增加积极同义词。"
+    },
+    {
+      "questionId": "personality-01",
+      "topic": "personality",
+      "requiredConcepts": [
+        "Big Five",
+        "OCEAN全称",
+        "五维"
+      ],
+      "priorGapZh": "已覆盖全称，但旧稿没解释五维行为含义；补维度语义和组合。",
+      "evidence": [
+        "O 是开放性 Openness，C 是尽责性 Conscientiousness，E 是外向性 Extraversion，A 是宜人性 Agreeableness，N 是神经质 Neuroticism。"
+      ],
+      "reasoningZh": "逐字母展开即可识别五个人格维度，其他列表是评价术语或NLU任务，未构成人格框架。"
+    },
+    {
+      "questionId": "personality-02",
+      "topic": "personality",
+      "requiredConcepts": [
+        "MBTI四组偏好",
+        "J/P",
+        "Big Five区别"
+      ],
+      "priorGapZh": "已列四组但处事含义较略，新增J/P及N缩写的体系对照。",
+      "evidence": [
+        "MBTI 使用 E/I、S/N、T/F、J/P 四组偏好",
+        "J 偏好规划与定案，P 偏好开放、灵活应变"
+      ],
+      "reasoningZh": "Judging/Perceiving为MBTI正式二分，尽责、宜人和情绪稳定相关表述属于特质维度，不能混为该体系的四组。"
+    },
+    {
+      "questionId": "personality-03",
+      "topic": "personality",
+      "requiredConcepts": [
+        "BFI",
+        "1–5反向",
+        "R标记"
+      ],
+      "priorGapZh": "已覆盖反向公式及BFI范围，新增先对齐再汇总演算。",
+      "evidence": [
+        "BFI 的 1–5 计分对应 6−x",
+        "R 表示反向标记。"
+      ],
+      "reasoningZh": "2经6−2变4，负号或原样保留都未在同一量表对齐，最大值5也不是此输入反向结果。"
+    },
+    {
+      "questionId": "personality-05",
+      "topic": "personality",
+      "requiredConcepts": [
+        "Pennebaker and King essays",
+        "Big Five标签",
+        "资源用途"
+      ],
+      "priorGapZh": "旧稿缺资源名称和标签体系；补齐用途后已能按标签选资源，盲审指出选项附带的文献年份与样本数仍无对应说明，已核对原表补成简短资源条目。",
+      "evidence": [
+        "Pennebaker and King 的 essays 资源将作文文本与 Big Five 人格测量对应，可用于文本人格预测；文献条目为 Pennebaker and King（1999），数据规模为 2,479 篇作文。"
+      ],
+      "reasoningZh": "按作文-五维标签配对识别资源，不依赖年份数量；WSC是共指、LexNorm规范化、WordNet词义，各有不同输出。"
+    },
+    {
+      "questionId": "personality-06",
+      "topic": "personality",
+      "requiredConcepts": [
+        "SVM",
+        "CNN",
+        "RNN",
+        "文本预测"
+      ],
+      "priorGapZh": "旧稿列模型名但未解释神经模型怎样用于文本，新增各自表示机制。",
+      "evidence": [
+        "SVM 可基于文本特征做分类或回归，CNN 可提取局部词序模式，RNN/BiLSTM 可编码序列上下文"
+      ],
+      "reasoningZh": "不同模型都能服务相同标签预测，排除数学禁止RNN、CNN不可处理文本或单句确定人格的绝对说法。"
+    },
+    {
+      "questionId": "taskdetail-personality-01",
+      "topic": "taskdetail-personality",
+      "requiredConcepts": [
+        "Trait",
+        "State",
+        "时间尺度"
+      ],
+      "priorGapZh": "已覆盖稳定特质与短时情绪，新增前置概念和多情境解释。",
+      "evidence": [
+        "一个愤怒或焦虑句子不能独立确定整个人格。"
+      ],
+      "reasoningZh": "一次焦虑可能来自暂时状态，不能用单句极性推出五维特质；人格影响语言与不能确定人格并不冲突。"
+    },
+    {
+      "questionId": "taskdetail-personality-02",
+      "topic": "taskdetail-personality",
+      "requiredConcepts": [
+        "Conscientiousness",
+        "其他维度差异"
+      ],
+      "priorGapZh": "已覆盖五维行为含义，新增针对组织可靠社交等的对照与步骤。",
+      "evidence": [
+        "尽责性偏向组织和坚持，外向性偏向社交活跃，神经质偏向情绪敏感。"
+      ],
+      "reasoningZh": "组织、可靠、坚持共同指向尽责，社交、焦虑、新体验分别不同维度，不能只看表述积极就混类。"
+    },
+    {
+      "questionId": "taskdetail-personality-03",
+      "topic": "taskdetail-personality",
+      "requiredConcepts": [
+        "J/P",
+        "T/F",
+        "E/I",
+        "S/N"
+      ],
+      "priorGapZh": "旧稿仅详细提J/P和T/F，干扰选项需完整解释其余两组。",
+      "evidence": [
+        "E/I 为外倾/内倾，S/N 为感觉/直觉，T/F 为思考/情感判断，J/P 为判断/知觉处事偏好"
+      ],
+      "reasoningZh": "规划定案与灵活自发是J/P，逻辑价值为T/F、外内导向为E/I、细节直觉为S/N，按提问维度匹配。"
+    },
+    {
+      "questionId": "taskdetail-personality-04",
+      "topic": "taskdetail-personality",
+      "requiredConcepts": [
+        "1–7反向",
+        "先反向再平均"
+      ],
+      "priorGapZh": "已覆盖具体TIPI计算，新增范围公式与另数字迁移例。",
+      "evidence": [
+        "TIPI 的1–7尺度对应8−x。",
+        "先反向统一措辞方向，再计算平均。"
+      ],
+      "reasoningZh": "第二项8−2=6，与第一项6平均得6；4是未反向原始平均，2或7未完成两步。"
+    },
+    {
+      "questionId": "taskdetail-personality-05",
+      "topic": "taskdetail-personality",
+      "requiredConcepts": [
+        "用户级划分",
+        "数据泄漏",
+        "新用户泛化"
+      ],
+      "priorGapZh": "已覆盖用户划分原则，新增作者重复内容如何造成高估。",
+      "evidence": [
+        "按用户划分训练和测试，确保新用户完全未被训练见过。",
+        "随机拆帖子可能把作者习惯甚至重复内容泄漏到测试中"
+      ],
+      "reasoningZh": "同人所有帖子整体进一个集合才能测未知作者，按帖子或同作者早晚拆分仍会共享身份，复制用户更泄漏。"
+    },
+    {
+      "questionId": "aspect-01",
+      "topic": "aspect",
+      "requiredConcepts": [
+        "Aspect",
+        "Opinion",
+        "Polarity",
+        "对应关系"
+      ],
+      "priorGapZh": "已覆盖方面极性配对，新增三个字段明确区分。",
+      "evidence": [
+        "方面是评价对象或属性，意见词说明评价依据，极性概括正负方向。"
+      ],
+      "reasoningZh": "touchscreen和battery life是对象，excellent/poor提供正负证据，保持配对才能保留相反评价，整句仅正或无意见均丢信息。"
+    },
+    {
+      "questionId": "aspect-02",
+      "topic": "aspect",
+      "requiredConcepts": [
+        "LDA全称",
+        "文档主题混合",
+        "词分布"
+      ],
+      "priorGapZh": "旧稿只有共现发现主题，未教LDA的生成层次，无法从描述稳健认算法。",
+      "evidence": [
+        "它把一篇文档表示成多个主题的概率混合，每个主题又是词的概率分布"
+      ],
+      "reasoningZh": "文档混合潜主题描述直接指LDA，CRF/HMM预测有序标签，词典查表没有潜主题分布。"
+    },
+    {
+      "questionId": "aspect-03",
+      "topic": "aspect",
+      "requiredConcepts": [
+        "BIOES",
+        "S",
+        "单词跨度"
+      ],
+      "priorGapZh": "已覆盖S单词，新增按长度标记并与O/内部明确对照。",
+      "evidence": [
+        "S 表示单词构成完整跨度、O 表示非方面词"
+      ],
+      "reasoningZh": "独立方面词从始至终一词用S，I需已有内部跨度、O排除方面，不能同位置先E再B。"
+    },
+    {
+      "questionId": "aspect-04",
+      "topic": "aspect",
+      "requiredConcepts": [
+        "GCN",
+        "图邻域聚合",
+        "情感知识增强",
+        "ABSA"
+      ],
+      "priorGapZh": "旧稿只复述模型题名，未解释图卷积和任务输入输出。",
+      "evidence": [
+        "图卷积网络，沿图边聚合相邻节点信息。",
+        "Sentic GCN 在方面级情感分析中用情感知识增强图卷积表示"
+      ],
+      "reasoningZh": "模型描述需要同时包含情感知识、图卷积及方面情感；仅主题共现、无线图词序、只抽边界均缺关键机制或目标。"
+    },
+    {
+      "questionId": "aspect-05",
+      "topic": "aspect",
+      "requiredConcepts": [
+        "方面级比较",
+        "整体平均",
+        "偏好"
+      ],
+      "priorGapZh": "已覆盖逐方面优劣，新增不同用户用途权衡的实例。",
+      "evidence": [
+        "按通话或长时间佩戴需求分别权衡，整体均分无法展示这种差别。"
+      ],
+      "reasoningZh": "相同逻辑用于相机逐方面比较，保留画质续航重量的权衡；不要求各方面同极性，也不能取消阅读或拒绝正负并存。"
+    },
+    {
+      "questionId": "taskdetail-aspects-01",
+      "topic": "taskdetail-aspects",
+      "requiredConcepts": [
+        "隐式方面",
+        "语义常识",
+        "无跨度"
+      ],
+      "priorGapZh": "已覆盖隐式类别，新加输入输出和无方面词情况。",
+      "evidence": [
+        "隐式方面由事件或属性推断；隐式类别有时没有可标注的方面词。"
+      ],
+      "reasoningZh": "能放入口袋可推尺寸/便携等隐式方面，只匹配size、抽作者或垃圾分类不能恢复未直说目标。"
+    },
+    {
+      "questionId": "taskdetail-aspects-02",
+      "topic": "taskdetail-aspects",
+      "requiredConcepts": [
+        "Term",
+        "Category",
+        "Polarity",
+        "任务缩写"
+      ],
+      "priorGapZh": "已覆盖四任务但缩写不全，新增完整英文及输入输出。",
+      "evidence": [
+        "术语是输入中实际出现的词或短语，类别是归纳后的评价维度。"
+      ],
+      "reasoningZh": "touchscreen是原文术语，DISPLAY是类别，positive是极性，评论长度属于统计信息。"
+    },
+    {
+      "questionId": "taskdetail-aspects-03",
+      "topic": "taskdetail-aspects",
+      "requiredConcepts": [
+        "整体压缩",
+        "分项权衡",
+        "用户偏好"
+      ],
+      "priorGapZh": "已覆盖平均掩盖优劣，新增overall/aspect-level对照。",
+      "evidence": [
+        "总分压缩所有方面，方面级输出保存分项差异。"
+      ],
+      "reasoningZh": "相同总评分无法呈现续航与画质相反的得失，不是丢掉产品存在、拼写或所有语法标签。"
+    },
+    {
+      "questionId": "taskdetail-aspects-04",
+      "topic": "taskdetail-aspects",
+      "requiredConcepts": [
+        "三元组",
+        "目标",
+        "意见证据",
+        "极性"
+      ],
+      "priorGapZh": "已覆盖联合结构，新增三元组定义及字段定位流程。",
+      "evidence": [
+        "三元组把方面、意见表达、极性绑定",
+        "对联合抽取检查意见与方面配对是否合理"
+      ],
+      "reasoningZh": "结构连接battery life目标、lasts all day证据和正面极性，保留评价指向；不保证其他方面正面，也不是只判语法。"
+    },
+    {
+      "questionId": "taskdetail-aspects-05",
+      "topic": "taskdetail-aspects",
+      "requiredConcepts": [
+        "概念关系",
+        "隐式方面推断",
+        "情感知识"
+      ],
+      "priorGapZh": "旧稿仅说知识辅助方面，缺常识图与情感资源各供什么信息。",
+      "evidence": [
+        "概念关系可把“可随身携带”等表达连接到重量、尺寸或便携性，情感知识则为表达的好坏提供线索。"
+      ],
+      "reasoningZh": "知识关系帮助从表达找方面，情感先验帮助评价；图边不必都是赞美，数量也不保证边界，语境仍需。"
+    },
+    {
+      "questionId": "polarity-01",
+      "topic": "polarity",
+      "requiredConcepts": [
+        "连续强度",
+        "符号绝对值",
+        "置信度"
+      ],
+      "priorGapZh": "已覆盖方向强度，缺置信度区别，补范围与含义对照。",
+      "evidence": [
+        "正负号代表方向，绝对值代表强弱。",
+        "模型对正类的置信度通常在[0,1]且描述预测把握"
+      ],
+      "reasoningZh": "连续实数表达程度，绝对值丢方向；强度不同于概率信心，也无需丢弃中性或混合态度。"
+    },
+    {
+      "questionId": "polarity-02",
+      "topic": "polarity",
+      "requiredConcepts": [
+        "情感标签",
+        "Spam/Ham",
+        "下游特征"
+      ],
+      "priorGapZh": "旧稿仅泛说下游特征，没教垃圾邮件目标，补两套标签。",
+      "evidence": [
+        "Spam filtering 的标签是 spam/ham，极性标签是正/负/中性；情感可作为垃圾邮件模型的一项特征。"
+      ],
+      "reasoningZh": "任务目标不同但可特征复用，中性也可能垃圾邮件，正负与spam/ham无固定对应。"
+    },
+    {
+      "questionId": "polarity-03",
+      "topic": "polarity",
+      "requiredConcepts": [
+        "词典先验",
+        "组合",
+        "语境"
+      ],
+      "priorGapZh": "已覆盖先验及否定转折，新增prior前置定义。",
+      "evidence": [
+        "词或概念在常见用法下的情感值。",
+        "句子中的否定、转折、词义与评价对象会改变实际含义。"
+      ],
+      "reasoningZh": "词典供局部情感关联，不能生成所有句法树、保证丢掉语境或知道任何作者意图。"
+    },
+    {
+      "questionId": "polarity-04",
+      "topic": "polarity",
+      "requiredConcepts": [
+        "Macro-F1",
+        "逐类等权平均"
+      ],
+      "priorGapZh": "已覆盖宏平均公式，新增顺序、权重与微平均区别。",
+      "evidence": [
+        "对每个类别分别用该类 Precision 和 Recall 算 F1，再对K个F1等权平均。"
+      ],
+      "reasoningZh": "(0.90+0.50)/2=0.70，0.45为乘积、1.4为未平均的和、0.9只取一类。"
+    },
+    {
+      "questionId": "polarity-05",
+      "topic": "polarity",
+      "requiredConcepts": [
+        "否定范围",
+        "局部情感先验",
+        "句子组合"
+      ],
+      "priorGapZh": "已覆盖not good语义，新增scope定义和先确定作用对象步骤。",
+      "evidence": [
+        "否定词影响哪个词或命题决定了情感组合。"
+      ],
+      "reasoningZh": "not作用good改变积极先验的当前贡献，有情感词也有合法语法，service本身不固定正面。"
+    },
+    {
+      "questionId": "polarity-06",
+      "topic": "polarity",
+      "requiredConcepts": [
+        "SenticNet",
+        "知识先验",
+        "独立测试集"
+      ],
+      "priorGapZh": "已覆盖知识和测试集区别，新增资源选择判断流程。",
+      "evidence": [
+        "SenticNet 提供概念级情感知识，可作为输入特征，独立标注的评论测试集才提供实例级评测答案。"
+      ],
+      "reasoningZh": "概念知识增强预测而不等价于评测集，无法自动给任意段落gold标签或保证无反讽错误。"
+    },
+    {
+      "questionId": "taskdetail-polarity-01",
+      "topic": "taskdetail-polarity",
+      "requiredConcepts": [
+        "绝对误差",
+        "负数相减",
+        "MAE"
+      ],
+      "priorGapZh": "已有MAE公式与两例演算，旧例未覆盖异号差，新增括号操作。",
+      "evidence": [
+        "遇到负标准值时先保留括号，减去负数等于加其正值"
+      ],
+      "reasoningZh": "|0.2−(−0.4)|=|0.6|=0.6，绝对误差非负，乘积或只取预测值未计算距离。"
+    },
+    {
+      "questionId": "taskdetail-polarity-02",
+      "topic": "taskdetail-polarity",
+      "requiredConcepts": [
+        "神经表示",
+        "符号规则",
+        "Neurosymbolic"
+      ],
+      "priorGapZh": "已覆盖融合思路，新增两成分前置定义。",
+      "evidence": [
+        "神经表示从数据学习上下文向量，符号成分明确表达规则、关系或逻辑约束。"
+      ],
+      "reasoningZh": "上下文嵌入与显式否定关系规则共同出现构成神经符号，既非无上下文查表也非排斥符号，更非仅发音。"
+    },
+    {
+      "questionId": "taskdetail-polarity-03",
+      "topic": "taskdetail-polarity",
+      "requiredConcepts": [
+        "Contextual model",
+        "组合",
+        "词典互补"
+      ],
+      "priorGapZh": "已覆盖模型可捕捉上下文，新增prior/context对照。",
+      "evidence": [
+        "词典给出固定先验，上下文模型可以依据周围词与组合调整解释。"
+      ],
+      "reasoningZh": "上下文条件化可改善歧义否定句，仍从文本学习，词典有价值，任何模型也无全领域保证。"
+    },
+    {
+      "questionId": "taskdetail-polarity-04",
+      "topic": "taskdetail-polarity",
+      "requiredConcepts": [
+        "情感特征",
+        "用户目的",
+        "任务安全上下文"
+      ],
+      "priorGapZh": "旧稿泛提人机交互和整体效果，缺把情感接入行动的边界；补feature/decision定义。",
+      "evidence": [
+        "情感结果可作为决策的一项输入；用户目的、对话状态和安全条件仍需独立考虑。"
+      ],
+      "reasoningZh": "检测沮丧提供选回应的证据，不是授权命令或完整对话状态，也不意味着所有沮丧同因。"
+    },
+    {
+      "questionId": "taskdetail-polarity-05",
+      "topic": "taskdetail-polarity",
+      "requiredConcepts": [
+        "预测相关",
+        "因果",
+        "外推限制"
+      ],
+      "priorGapZh": "旧稿说条件内结论但没解释预测与因果具体差别，补共同原因等机制。",
+      "evidence": [
+        "预测成绩本身无法证明情感造成全部变化，也无法保证未来收益。"
+      ],
+      "reasoningZh": "成功预测只支持被评价条件下的用途，不能推出全因果解释、盈利或未来表现不变。"
+    }
+  ]
+}

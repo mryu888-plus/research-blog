@@ -1,0 +1,2708 @@
+{
+  "knowledgePoints": [
+    {
+      "id": "middle-001",
+      "titleZh": "编码—解码与中间表示",
+      "pages": [
+        134,
+        135,
+        136
+      ],
+      "questionIds": [
+        "seq-encoding-01"
+      ]
+    },
+    {
+      "id": "middle-002",
+      "titleZh": "注意力缓解固定向量瓶颈",
+      "pages": [
+        137
+      ],
+      "questionIds": [
+        "seq-encoding-02"
+      ]
+    },
+    {
+      "id": "middle-003",
+      "titleZh": "提示学习与标签词映射",
+      "pages": [
+        138
+      ],
+      "questionIds": [
+        "seq-encoding-03"
+      ]
+    },
+    {
+      "id": "middle-004",
+      "titleZh": "跨模态序列转换",
+      "pages": [
+        139
+      ],
+      "questionIds": [
+        "seq-encoding-04"
+      ]
+    },
+    {
+      "id": "middle-005",
+      "titleZh": "贪心解码与下一词概率",
+      "pages": [
+        140
+      ],
+      "questionIds": [
+        "seq-encoding-05"
+      ]
+    },
+    {
+      "id": "middle-006",
+      "titleZh": "独热向量与嵌入查表",
+      "pages": [
+        141
+      ],
+      "questionIds": [
+        "seq-encoding-06"
+      ]
+    },
+    {
+      "id": "middle-007",
+      "titleZh": "规模与架构的区别",
+      "pages": [
+        142
+      ],
+      "questionIds": [
+        "seq-transformer-01"
+      ]
+    },
+    {
+      "id": "middle-008",
+      "titleZh": "多头注意力",
+      "pages": [
+        143,
+        144
+      ],
+      "questionIds": [
+        "seq-transformer-02"
+      ]
+    },
+    {
+      "id": "middle-009",
+      "titleZh": "注意力的查询键值",
+      "pages": [
+        143
+      ],
+      "questionIds": [
+        "seq-transformer-03"
+      ]
+    },
+    {
+      "id": "middle-010",
+      "titleZh": "自回归掩码与交叉注意力",
+      "pages": [
+        144
+      ],
+      "questionIds": [
+        "seq-transformer-04"
+      ]
+    },
+    {
+      "id": "middle-011",
+      "titleZh": "顺序与位置表示",
+      "pages": [
+        145,
+        144
+      ],
+      "questionIds": [
+        "seq-transformer-05"
+      ]
+    },
+    {
+      "id": "middle-012",
+      "titleZh": "自注意力与工具选择",
+      "pages": [
+        146,
+        147,
+        148
+      ],
+      "questionIds": [
+        "seq-transformer-06"
+      ]
+    },
+    {
+      "id": "middle-013",
+      "titleZh": "学习范式的任务区分",
+      "pages": [
+        150
+      ],
+      "questionIds": [
+        "cog-learning-01"
+      ]
+    },
+    {
+      "id": "middle-014",
+      "titleZh": "任务表现与具身理解",
+      "pages": [
+        151,
+        160
+      ],
+      "questionIds": [
+        "cog-learning-02"
+      ]
+    },
+    {
+      "id": "middle-015",
+      "titleZh": "偏差数据与部署反馈",
+      "pages": [
+        155,
+        156
+      ],
+      "questionIds": [
+        "cog-learning-03"
+      ]
+    },
+    {
+      "id": "middle-016",
+      "titleZh": "AI失败与证据检验",
+      "pages": [
+        152,
+        153,
+        154
+      ],
+      "questionIds": [
+        "cog-learning-04"
+      ]
+    },
+    {
+      "id": "middle-017",
+      "titleZh": "因果解释与预测表现",
+      "pages": [
+        157,
+        159
+      ],
+      "questionIds": [
+        "cog-learning-05"
+      ]
+    },
+    {
+      "id": "middle-018",
+      "titleZh": "风险比较与统计证据",
+      "pages": [
+        158
+      ],
+      "questionIds": [
+        "cog-learning-06"
+      ]
+    },
+    {
+      "id": "middle-019",
+      "titleZh": "性能相似不代表机制相同",
+      "pages": [
+        161,
+        176
+      ],
+      "questionIds": [
+        "cog-llm-01"
+      ]
+    },
+    {
+      "id": "middle-020",
+      "titleZh": "上下文共现与词义极性",
+      "pages": [
+        162
+      ],
+      "questionIds": [
+        "cog-llm-02"
+      ]
+    },
+    {
+      "id": "middle-021",
+      "titleZh": "流畅生成与事实核验",
+      "pages": [
+        163,
+        164
+      ],
+      "questionIds": [
+        "cog-llm-03"
+      ]
+    },
+    {
+      "id": "middle-022",
+      "titleZh": "情景记忆与个性化",
+      "pages": [
+        164,
+        165
+      ],
+      "questionIds": [
+        "cog-llm-04"
+      ]
+    },
+    {
+      "id": "middle-023",
+      "titleZh": "符号操作与理解之争",
+      "pages": [
+        165
+      ],
+      "questionIds": [
+        "cog-llm-05"
+      ]
+    },
+    {
+      "id": "middle-024",
+      "titleZh": "否定约束与生成验证",
+      "pages": [
+        166
+      ],
+      "questionIds": [
+        "cog-llm-06"
+      ]
+    },
+    {
+      "id": "middle-025",
+      "titleZh": "强弱语言相对论",
+      "pages": [
+        167,
+        168
+      ],
+      "questionIds": [
+        "cog-language-01"
+      ]
+    },
+    {
+      "id": "middle-026",
+      "titleZh": "语法范畴与跨语言表达",
+      "pages": [
+        167,
+        168
+      ],
+      "questionIds": [
+        "cog-language-02"
+      ]
+    },
+    {
+      "id": "middle-027",
+      "titleZh": "语言约定与人工语言",
+      "pages": [
+        169,
+        170
+      ],
+      "questionIds": [
+        "cog-language-03"
+      ]
+    },
+    {
+      "id": "middle-028",
+      "titleZh": "文字、发音与意义",
+      "pages": [
+        171,
+        172
+      ],
+      "questionIds": [
+        "cog-language-04"
+      ]
+    },
+    {
+      "id": "middle-029",
+      "titleZh": "语言学习与生物学证据",
+      "pages": [
+        173,
+        175
+      ],
+      "questionIds": [
+        "cog-language-05"
+      ]
+    },
+    {
+      "id": "middle-030",
+      "titleZh": "认知结构的实证比较",
+      "pages": [
+        176,
+        177
+      ],
+      "questionIds": [
+        "cog-language-06"
+      ]
+    },
+    {
+      "id": "middle-031",
+      "titleZh": "视觉类比与机制证据",
+      "pages": [
+        178,
+        179
+      ],
+      "questionIds": [
+        "cog-mind-01"
+      ]
+    },
+    {
+      "id": "middle-032",
+      "titleZh": "脑数据量与理论解释",
+      "pages": [
+        179
+      ],
+      "questionIds": [
+        "cog-mind-02"
+      ]
+    },
+    {
+      "id": "middle-033",
+      "titleZh": "心身二元论与心智社会",
+      "pages": [
+        181,
+        182
+      ],
+      "questionIds": [
+        "cog-mind-03"
+      ]
+    },
+    {
+      "id": "middle-034",
+      "titleZh": "人工通用智能的争论范围",
+      "pages": [
+        180
+      ],
+      "questionIds": [
+        "cog-mind-04"
+      ]
+    },
+    {
+      "id": "middle-035",
+      "titleZh": "智能水平与人类价值",
+      "pages": [
+        183,
+        184,
+        185,
+        186
+      ],
+      "questionIds": [
+        "cog-mind-05"
+      ]
+    },
+    {
+      "id": "middle-036",
+      "titleZh": "情绪模拟与用户体验",
+      "pages": [
+        187,
+        185,
+        186
+      ],
+      "questionIds": [
+        "cog-mind-06"
+      ]
+    },
+    {
+      "id": "middle-037",
+      "titleZh": "恐怖谷的非单调关系",
+      "pages": [
+        188
+      ],
+      "questionIds": [
+        "cog-risk-01"
+      ]
+    },
+    {
+      "id": "middle-038",
+      "titleZh": "治理目标与评价标准",
+      "pages": [
+        189,
+        190
+      ],
+      "questionIds": [
+        "cog-risk-02"
+      ]
+    },
+    {
+      "id": "middle-039",
+      "titleZh": "条件风险与不同预测",
+      "pages": [
+        191,
+        192,
+        193
+      ],
+      "questionIds": [
+        "cog-risk-03"
+      ]
+    },
+    {
+      "id": "middle-040",
+      "titleZh": "无敌意也可能造成伤害",
+      "pages": [
+        194
+      ],
+      "questionIds": [
+        "cog-risk-04"
+      ]
+    },
+    {
+      "id": "middle-041",
+      "titleZh": "工具性行为与目标约束",
+      "pages": [
+        195
+      ],
+      "questionIds": [
+        "cog-risk-05"
+      ]
+    },
+    {
+      "id": "middle-042",
+      "titleZh": "长期外部性与技术方向",
+      "pages": [
+        196,
+        197
+      ],
+      "questionIds": [
+        "cog-risk-06"
+      ]
+    },
+    {
+      "id": "middle-043",
+      "titleZh": "跨学科理解",
+      "pages": [
+        198,
+        199
+      ],
+      "questionIds": [
+        "cog-pillars-01"
+      ]
+    },
+    {
+      "id": "middle-044",
+      "titleZh": "任务分解与局部诊断",
+      "pages": [
+        200,
+        210
+      ],
+      "questionIds": [
+        "cog-pillars-02"
+      ]
+    },
+    {
+      "id": "middle-045",
+      "titleZh": "并行类比与多种表征",
+      "pages": [
+        201
+      ],
+      "questionIds": [
+        "cog-pillars-03"
+      ]
+    },
+    {
+      "id": "middle-046",
+      "titleZh": "抽象语义操作的组合",
+      "pages": [
+        202
+      ],
+      "questionIds": [
+        "cog-pillars-04"
+      ]
+    },
+    {
+      "id": "middle-047",
+      "titleZh": "相似性指标的假设",
+      "pages": [
+        203
+      ],
+      "questionIds": [
+        "cog-pillars-05"
+      ]
+    },
+    {
+      "id": "middle-048",
+      "titleZh": "信任、意图与推荐后果",
+      "pages": [
+        204,
+        205
+      ],
+      "questionIds": [
+        "cog-pillars-06"
+      ]
+    },
+    {
+      "id": "middle-049",
+      "titleZh": "句法、语义与语用",
+      "pages": [
+        207,
+        208,
+        211,
+        233,
+        260
+      ],
+      "questionIds": [
+        "taskdetail-layers-01"
+      ]
+    },
+    {
+      "id": "middle-050",
+      "titleZh": "精度提升的难度",
+      "pages": [
+        209
+      ],
+      "questionIds": [
+        "taskdetail-layers-02"
+      ]
+    },
+    {
+      "id": "middle-051",
+      "titleZh": "词汇、结构与认知语义",
+      "pages": [
+        235
+      ],
+      "questionIds": [
+        "taskdetail-layers-03"
+      ]
+    },
+    {
+      "id": "middle-052",
+      "titleZh": "下游中的特征、解析与解释",
+      "pages": [
+        236,
+        262
+      ],
+      "questionIds": [
+        "taskdetail-layers-04"
+      ]
+    },
+    {
+      "id": "middle-053",
+      "titleZh": "方法家族与任务独立",
+      "pages": [
+        212,
+        234,
+        261
+      ],
+      "questionIds": [
+        "taskdetail-layers-05"
+      ]
+    },
+    {
+      "id": "middle-054",
+      "titleZh": "模块更新与系统评估",
+      "pages": [
+        210,
+        208
+      ],
+      "questionIds": [
+        "taskdetail-layers-06"
+      ]
+    },
+    {
+      "id": "middle-055",
+      "titleZh": "发音变体与规范化",
+      "pages": [
+        214,
+        216
+      ],
+      "questionIds": [
+        "taskdetail-normalization-01"
+      ]
+    },
+    {
+      "id": "middle-056",
+      "titleZh": "词形变体和同义扩展",
+      "pages": [
+        215
+      ],
+      "questionIds": [
+        "taskdetail-normalization-02"
+      ]
+    },
+    {
+      "id": "middle-057",
+      "titleZh": "发音资源的选用",
+      "pages": [
+        216
+      ],
+      "questionIds": [
+        "taskdetail-normalization-03"
+      ]
+    },
+    {
+      "id": "middle-058",
+      "titleZh": "规范化的候选歧义",
+      "pages": [
+        216,
+        217
+      ],
+      "questionIds": [
+        "taskdetail-normalization-04"
+      ]
+    },
+    {
+      "id": "middle-059",
+      "titleZh": "Top-k与Top-1评价",
+      "pages": [
+        217
+      ],
+      "questionIds": [
+        "taskdetail-normalization-05"
+      ]
+    },
+    {
+      "id": "middle-060",
+      "titleZh": "词错误率与数据分布",
+      "pages": [
+        217
+      ],
+      "questionIds": [
+        "taskdetail-normalization-06"
+      ]
+    },
+    {
+      "id": "middle-061",
+      "titleZh": "句末缩写的双重角色",
+      "pages": [
+        218
+      ],
+      "questionIds": [
+        "taskdetail-syntax-01"
+      ]
+    },
+    {
+      "id": "middle-062",
+      "titleZh": "语音断句中的韵律线索",
+      "pages": [
+        219
+      ],
+      "questionIds": [
+        "taskdetail-syntax-02"
+      ]
+    },
+    {
+      "id": "middle-063",
+      "titleZh": "领域迁移与词性资源",
+      "pages": [
+        221,
+        222
+      ],
+      "questionIds": [
+        "taskdetail-syntax-03"
+      ]
+    },
+    {
+      "id": "middle-064",
+      "titleZh": "稀有词的字符与形态特征",
+      "pages": [
+        220,
+        222
+      ],
+      "questionIds": [
+        "taskdetail-syntax-04"
+      ]
+    },
+    {
+      "id": "middle-065",
+      "titleZh": "词组边界与标签一致性",
+      "pages": [
+        223,
+        224
+      ],
+      "questionIds": [
+        "taskdetail-syntax-05"
+      ]
+    },
+    {
+      "id": "middle-066",
+      "titleZh": "标注任务的错误层次",
+      "pages": [
+        223,
+        224
+      ],
+      "questionIds": [
+        "taskdetail-syntax-06"
+      ]
+    },
+    {
+      "id": "middle-067",
+      "titleZh": "词形归一与语义保真",
+      "pages": [
+        225,
+        227,
+        230
+      ],
+      "questionIds": [
+        "taskdetail-morphology-01"
+      ]
+    },
+    {
+      "id": "middle-068",
+      "titleZh": "屈折与派生的区别",
+      "pages": [
+        226,
+        229
+      ],
+      "questionIds": [
+        "taskdetail-morphology-02"
+      ]
+    },
+    {
+      "id": "middle-069",
+      "titleZh": "条件规则与规则次序",
+      "pages": [
+        228
+      ],
+      "questionIds": [
+        "taskdetail-morphology-03"
+      ]
+    },
+    {
+      "id": "middle-070",
+      "titleZh": "词元化的序列转换",
+      "pages": [
+        231,
+        232
+      ],
+      "questionIds": [
+        "taskdetail-morphology-04"
+      ]
+    },
+    {
+      "id": "middle-071",
+      "titleZh": "跨语言形态资源",
+      "pages": [
+        231
+      ],
+      "questionIds": [
+        "taskdetail-morphology-05"
+      ]
+    },
+    {
+      "id": "middle-072",
+      "titleZh": "多语言平均分的解释",
+      "pages": [
+        232
+      ],
+      "questionIds": [
+        "taskdetail-morphology-06"
+      ]
+    },
+    {
+      "id": "middle-073",
+      "titleZh": "同形异义与上下文",
+      "pages": [
+        237
+      ],
+      "questionIds": [
+        "taskdetail-senses-01"
+      ]
+    },
+    {
+      "id": "middle-074",
+      "titleZh": "Lesk的释义重叠",
+      "pages": [
+        238,
+        240
+      ],
+      "questionIds": [
+        "taskdetail-senses-02"
+      ]
+    },
+    {
+      "id": "middle-075",
+      "titleZh": "图式词义消歧",
+      "pages": [
+        238,
+        240
+      ],
+      "questionIds": [
+        "taskdetail-senses-03"
+      ]
+    },
+    {
+      "id": "middle-076",
+      "titleZh": "消歧语料与词义知识库",
+      "pages": [
+        239
+      ],
+      "questionIds": [
+        "taskdetail-senses-04"
+      ]
+    },
+    {
+      "id": "middle-077",
+      "titleZh": "混合消歧的互补信息",
+      "pages": [
+        240
+      ],
+      "questionIds": [
+        "taskdetail-senses-05"
+      ]
+    },
+    {
+      "id": "middle-078",
+      "titleZh": "消歧结果的下游作用",
+      "pages": [
+        240
+      ],
+      "questionIds": [
+        "taskdetail-senses-06"
+      ]
+    },
+    {
+      "id": "middle-079",
+      "titleZh": "BIOES完整跨度",
+      "pages": [
+        242
+      ],
+      "questionIds": [
+        "taskdetail-entities-01"
+      ]
+    },
+    {
+      "id": "middle-080",
+      "titleZh": "嵌套实体的结构表示",
+      "pages": [
+        243
+      ],
+      "questionIds": [
+        "taskdetail-entities-02"
+      ]
+    },
+    {
+      "id": "middle-081",
+      "titleZh": "少样本提示识别",
+      "pages": [
+        243,
+        244
+      ],
+      "questionIds": [
+        "taskdetail-entities-03"
+      ]
+    },
+    {
+      "id": "middle-082",
+      "titleZh": "实体关系联合抽取",
+      "pages": [
+        244
+      ],
+      "questionIds": [
+        "taskdetail-entities-04"
+      ]
+    },
+    {
+      "id": "middle-083",
+      "titleZh": "实体领域知识资源",
+      "pages": [
+        242
+      ],
+      "questionIds": [
+        "taskdetail-entities-05"
+      ]
+    },
+    {
+      "id": "middle-084",
+      "titleZh": "实体识别与实体消歧的界限",
+      "pages": [
+        241,
+        244
+      ],
+      "questionIds": [
+        "taskdetail-entities-06"
+      ]
+    },
+    {
+      "id": "middle-085",
+      "titleZh": "组合词义与短语单元",
+      "pages": [
+        245
+      ],
+      "questionIds": [
+        "taskdetail-concepts-01"
+      ]
+    },
+    {
+      "id": "middle-086",
+      "titleZh": "预处理与结构信息损失",
+      "pages": [
+        246,
+        247,
+        248
+      ],
+      "questionIds": [
+        "taskdetail-concepts-02"
+      ]
+    },
+    {
+      "id": "middle-087",
+      "titleZh": "抽取式与生成式关键词",
+      "pages": [
+        249,
+        251
+      ],
+      "questionIds": [
+        "taskdetail-concepts-03"
+      ]
+    },
+    {
+      "id": "middle-088",
+      "titleZh": "领域化概念抽取",
+      "pages": [
+        249,
+        250,
+        251
+      ],
+      "questionIds": [
+        "taskdetail-concepts-04"
+      ]
+    },
+    {
+      "id": "middle-089",
+      "titleZh": "跨任务指标的可比性",
+      "pages": [
+        251
+      ],
+      "questionIds": [
+        "taskdetail-concepts-05"
+      ]
+    },
+    {
+      "id": "middle-090",
+      "titleZh": "指代约束与常识",
+      "pages": [
+        252
+      ],
+      "questionIds": [
+        "taskdetail-coreference-01"
+      ]
+    },
+    {
+      "id": "middle-091",
+      "titleZh": "零代词指代",
+      "pages": [
+        254
+      ],
+      "questionIds": [
+        "taskdetail-coreference-02"
+      ]
+    },
+    {
+      "id": "middle-092",
+      "titleZh": "指代语料与常识资源",
+      "pages": [
+        253
+      ],
+      "questionIds": [
+        "taskdetail-coreference-03"
+      ]
+    },
+    {
+      "id": "middle-093",
+      "titleZh": "提及对与实体簇",
+      "pages": [
+        254
+      ],
+      "questionIds": [
+        "taskdetail-coreference-04"
+      ]
+    },
+    {
+      "id": "middle-094",
+      "titleZh": "共指评价中的组合指标",
+      "pages": [
+        254
+      ],
+      "questionIds": [
+        "taskdetail-coreference-05"
+      ]
+    },
+    {
+      "id": "middle-095",
+      "titleZh": "中性与情绪矛盾",
+      "pages": [
+        255
+      ],
+      "questionIds": [
+        "taskdetail-opinion-01"
+      ]
+    },
+    {
+      "id": "middle-096",
+      "titleZh": "语境依赖的主观性",
+      "pages": [
+        257,
+        258,
+        259
+      ],
+      "questionIds": [
+        "taskdetail-opinion-02"
+      ]
+    },
+    {
+      "id": "middle-097",
+      "titleZh": "跨语言迁移的风险",
+      "pages": [
+        256,
+        259
+      ],
+      "questionIds": [
+        "taskdetail-opinion-03"
+      ]
+    },
+    {
+      "id": "middle-098",
+      "titleZh": "多模态主观性",
+      "pages": [
+        256,
+        259
+      ],
+      "questionIds": [
+        "taskdetail-opinion-04"
+      ]
+    },
+    {
+      "id": "middle-099",
+      "titleZh": "观点、偏差与资源",
+      "pages": [
+        256,
+        257,
+        259
+      ],
+      "questionIds": [
+        "taskdetail-opinion-05"
+      ]
+    },
+    {
+      "id": "middle-100",
+      "titleZh": "隐喻识别与解释",
+      "pages": [
+        263
+      ],
+      "questionIds": [
+        "taskdetail-metaphor-01"
+      ]
+    },
+    {
+      "id": "middle-101",
+      "titleZh": "属性提取与概念映射",
+      "pages": [
+        264,
+        265
+      ],
+      "questionIds": [
+        "taskdetail-metaphor-02"
+      ]
+    },
+    {
+      "id": "middle-102",
+      "titleZh": "选择偏好违背",
+      "pages": [
+        265
+      ],
+      "questionIds": [
+        "taskdetail-metaphor-03"
+      ]
+    },
+    {
+      "id": "middle-103",
+      "titleZh": "释义知识和评价目标",
+      "pages": [
+        264,
+        265
+      ],
+      "questionIds": [
+        "taskdetail-metaphor-04"
+      ]
+    },
+    {
+      "id": "middle-104",
+      "titleZh": "隐喻理解的下游用途",
+      "pages": [
+        266
+      ],
+      "questionIds": [
+        "taskdetail-metaphor-05"
+      ]
+    },
+    {
+      "id": "middle-105",
+      "titleZh": "内容与语境的反讽融合",
+      "pages": [
+        267
+      ],
+      "questionIds": [
+        "taskdetail-sarcasm-01"
+      ]
+    },
+    {
+      "id": "middle-106",
+      "titleZh": "多模态证据与数据选择",
+      "pages": [
+        268
+      ],
+      "questionIds": [
+        "taskdetail-sarcasm-02"
+      ]
+    },
+    {
+      "id": "middle-107",
+      "titleZh": "图文不一致与非必然性",
+      "pages": [
+        269
+      ],
+      "questionIds": [
+        "taskdetail-sarcasm-03"
+      ]
+    },
+    {
+      "id": "middle-108",
+      "titleZh": "语义不协调与特征建模",
+      "pages": [
+        270
+      ],
+      "questionIds": [
+        "taskdetail-sarcasm-04"
+      ]
+    },
+    {
+      "id": "middle-109",
+      "titleZh": "反讽对下游任务的影响",
+      "pages": [
+        270
+      ],
+      "questionIds": [
+        "taskdetail-sarcasm-05"
+      ]
+    },
+    {
+      "id": "middle-110",
+      "titleZh": "特质与单次情绪的区别",
+      "pages": [
+        271,
+        272
+      ],
+      "questionIds": [
+        "taskdetail-personality-01"
+      ]
+    },
+    {
+      "id": "middle-111",
+      "titleZh": "大五人格维度的应用",
+      "pages": [
+        272,
+        274
+      ],
+      "questionIds": [
+        "taskdetail-personality-02"
+      ]
+    },
+    {
+      "id": "middle-112",
+      "titleZh": "MBTI的判断与感知维度",
+      "pages": [
+        273
+      ],
+      "questionIds": [
+        "taskdetail-personality-03"
+      ]
+    },
+    {
+      "id": "middle-113",
+      "titleZh": "反向题与量表计分",
+      "pages": [
+        274,
+        275
+      ],
+      "questionIds": [
+        "taskdetail-personality-04"
+      ]
+    },
+    {
+      "id": "middle-114",
+      "titleZh": "用户级分割与人格评价",
+      "pages": [
+        275,
+        276
+      ],
+      "questionIds": [
+        "taskdetail-personality-05"
+      ]
+    },
+    {
+      "id": "middle-115",
+      "titleZh": "显式与隐式方面",
+      "pages": [
+        277,
+        281
+      ],
+      "questionIds": [
+        "taskdetail-aspects-01"
+      ]
+    },
+    {
+      "id": "middle-116",
+      "titleZh": "术语、类别与极性的区别",
+      "pages": [
+        279
+      ],
+      "questionIds": [
+        "taskdetail-aspects-02"
+      ]
+    },
+    {
+      "id": "middle-117",
+      "titleZh": "方面比较与聚合损失",
+      "pages": [
+        278
+      ],
+      "questionIds": [
+        "taskdetail-aspects-03"
+      ]
+    },
+    {
+      "id": "middle-118",
+      "titleZh": "联合方面情感输出",
+      "pages": [
+        279,
+        281
+      ],
+      "questionIds": [
+        "taskdetail-aspects-04"
+      ]
+    },
+    {
+      "id": "middle-119",
+      "titleZh": "情感与常识知识的互补",
+      "pages": [
+        280,
+        281
+      ],
+      "questionIds": [
+        "taskdetail-aspects-05"
+      ]
+    },
+    {
+      "id": "middle-120",
+      "titleZh": "强度回归与误差指标",
+      "pages": [
+        282,
+        283
+      ],
+      "questionIds": [
+        "taskdetail-polarity-01"
+      ]
+    },
+    {
+      "id": "middle-121",
+      "titleZh": "神经符号情感建模",
+      "pages": [
+        283
+      ],
+      "questionIds": [
+        "taskdetail-polarity-02"
+      ]
+    },
+    {
+      "id": "middle-122",
+      "titleZh": "语境模型与词典先验",
+      "pages": [
+        283
+      ],
+      "questionIds": [
+        "taskdetail-polarity-03"
+      ]
+    },
+    {
+      "id": "middle-123",
+      "titleZh": "情感推断与行动决策",
+      "pages": [
+        284
+      ],
+      "questionIds": [
+        "taskdetail-polarity-04"
+      ]
+    },
+    {
+      "id": "middle-124",
+      "titleZh": "情感预测的应用与因果边界",
+      "pages": [
+        284
+      ],
+      "questionIds": [
+        "taskdetail-polarity-05"
+      ]
+    },
+    {
+      "id": "middle-125",
+      "titleZh": "NLP与NLU的关系",
+      "pages": [
+        207
+      ],
+      "questionIds": [
+        "general-01"
+      ]
+    },
+    {
+      "id": "middle-126",
+      "titleZh": "任务分解与模块协作",
+      "pages": [
+        200,
+        208,
+        210
+      ],
+      "questionIds": [
+        "general-02",
+        "general-08"
+      ]
+    },
+    {
+      "id": "middle-127",
+      "titleZh": "符号接地与意义联系",
+      "pages": [
+        198,
+        202
+      ],
+      "questionIds": [
+        "general-04"
+      ]
+    },
+    {
+      "id": "middle-128",
+      "titleZh": "微文本缩写和字符替换",
+      "pages": [
+        213
+      ],
+      "questionIds": [
+        "microtext-01"
+      ]
+    },
+    {
+      "id": "middle-129",
+      "titleZh": "词性与语境歧义",
+      "pages": [
+        220
+      ],
+      "questionIds": [
+        "pos-01",
+        "pos-02",
+        "pos-04"
+      ]
+    },
+    {
+      "id": "middle-130",
+      "titleZh": "浅层句法块",
+      "pages": [
+        223
+      ],
+      "questionIds": [
+        "chunk-01",
+        "chunk-02",
+        "chunk-03"
+      ]
+    },
+    {
+      "id": "middle-131",
+      "titleZh": "词元与词干",
+      "pages": [
+        226,
+        227,
+        228,
+        229
+      ],
+      "questionIds": [
+        "lemma-01",
+        "lemma-02",
+        "lemma-03",
+        "lemma-04"
+      ]
+    },
+    {
+      "id": "middle-132",
+      "titleZh": "实体BIO标注与跨度F1",
+      "pages": [
+        242,
+        244
+      ],
+      "questionIds": [
+        "ner-04",
+        "ner-05"
+      ]
+    },
+    {
+      "id": "middle-133",
+      "titleZh": "预处理中的停用词与大小写",
+      "pages": [
+        246,
+        248
+      ],
+      "questionIds": [
+        "concept-03",
+        "concept-04"
+      ]
+    },
+    {
+      "id": "middle-134",
+      "titleZh": "反讽中的情感常识",
+      "pages": [
+        267,
+        270
+      ],
+      "questionIds": [
+        "sarcasm-03"
+      ]
+    },
+    {
+      "id": "middle-135",
+      "titleZh": "原先行词与近邻启发式冲突",
+      "pages": [
+        252
+      ],
+      "questionIds": [
+        "anaphora-07"
+      ]
+    },
+    {
+      "id": "middle-136",
+      "titleZh": "方面BIOES单词跨度",
+      "pages": [
+        279
+      ],
+      "questionIds": [
+        "aspect-03"
+      ]
+    },
+    {
+      "id": "middle-137",
+      "titleZh": "神经与符号方法的组合",
+      "pages": [
+        283
+      ],
+      "questionIds": [
+        "taskdetail-polarity-02"
+      ]
+    }
+  ],
+  "pageAudit": [
+    {
+      "page": 134,
+      "kind": "content",
+      "summaryZh": "Seq2Seq绘图传词类比：编码者、图像中间表示、解码者；附Pictionary视频资源。",
+      "knowledgePointIds": [
+        "middle-001"
+      ]
+    },
+    {
+      "page": 135,
+      "kind": "content",
+      "summaryZh": "编码—解码：西语输入到英语输出；隐藏状态承载输入信息，编码器可采用RNN/LSTM/GRU。示意中的维度描述不应当作通用限制。",
+      "knowledgePointIds": [
+        "middle-001"
+      ]
+    },
+    {
+      "page": 136,
+      "kind": "content",
+      "summaryZh": "法语Je suis étudiant编码器—解码器流程展开，保留编码状态与解码状态的连接。",
+      "knowledgePointIds": [
+        "middle-001"
+      ]
+    },
+    {
+      "page": 137,
+      "kind": "content",
+      "summaryZh": "相对前页新增注意力解码器：各步访问源编码状态，缓解长序列压缩瓶颈。",
+      "knowledgePointIds": [
+        "middle-002"
+      ]
+    },
+    {
+      "page": 138,
+      "kind": "content",
+      "summaryZh": "掩码提示分类：输入模板、PLM、FNN/Norm&GELU/FNN、softmax、标签词映射；图示joyful 0.4、sad 0.1，映射positive。",
+      "knowledgePointIds": [
+        "middle-003"
+      ]
+    },
+    {
+      "page": 139,
+      "kind": "content",
+      "summaryZh": "序列转换应用：语音识别、双犬图像描述、视频字幕；不同输入模态连接文本输出。",
+      "knowledgePointIds": [
+        "middle-004"
+      ]
+    },
+    {
+      "page": 140,
+      "kind": "content",
+      "summaryZh": "下一词预测与自动补全：五候选概率0.10/0.05/0.40/0.15/0.30，局部最大为playground；手机与搜索补全例。",
+      "knowledgePointIds": [
+        "middle-005"
+      ]
+    },
+    {
+      "page": 141,
+      "kind": "content",
+      "summaryZh": "独热向量乘嵌入矩阵即选行：示例第三行[1.2,27,0.4,-1,2.8]；文本前缀用于下一词分布。",
+      "knowledgePointIds": [
+        "middle-006"
+      ]
+    },
+    {
+      "page": 142,
+      "kind": "context",
+      "summaryZh": "历史模型规模趋势图：ELMo、GPT、BERT、GPT-2、Megatron、T-NLG、GPT-3、GShard、Switch等；图中数量是历史版本参数规模，不是能力排名。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 143,
+      "kind": "content",
+      "summaryZh": "Transformer多头注意力：Q/K/V、缩放点积、softmax、各头拼接与投影；并行计算及Attention Is All You Need资源。",
+      "knowledgePointIds": [
+        "middle-008",
+        "middle-009"
+      ]
+    },
+    {
+      "page": 144,
+      "kind": "content",
+      "summaryZh": "编码器/解码器完整结构：位置编码、多头、自回归掩码、交叉注意力、前馈、残差/归一化、右移输出、线性与softmax。",
+      "knowledgePointIds": [
+        "middle-008",
+        "middle-010",
+        "middle-011"
+      ]
+    },
+    {
+      "page": 145,
+      "kind": "content",
+      "summaryZh": "位置表示动机：带词项位置的倒排索引示例保留次序；出现与出现位置是不同信息。",
+      "knowledgePointIds": [
+        "middle-011"
+      ]
+    },
+    {
+      "page": 146,
+      "kind": "content",
+      "summaryZh": "注意力可视化：词间关联权重示例，突出不同输入位置的相关程度。",
+      "knowledgePointIds": [
+        "middle-012"
+      ]
+    },
+    {
+      "page": 147,
+      "kind": "content",
+      "summaryZh": "自注意力表示同一序列内部关联；与Seq2Seq长输入的信息瓶颈对照。",
+      "knowledgePointIds": [
+        "middle-012"
+      ]
+    },
+    {
+      "page": 148,
+      "kind": "resource",
+      "summaryZh": "学习与实现资源页：Stanford CS224n课程/视频、spaCy、Hugging Face。",
+      "knowledgePointIds": [
+        "middle-012"
+      ]
+    },
+    {
+      "page": 149,
+      "kind": "section",
+      "summaryZh": "Lecture 3封面。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 150,
+      "kind": "content",
+      "summaryZh": "机器学习地图：监督分类/回归，非监督聚类/降维，强化学习机器人导航、游戏、技能与实时决策。",
+      "knowledgePointIds": [
+        "middle-013"
+      ]
+    },
+    {
+      "page": 151,
+      "kind": "context",
+      "summaryZh": "滑雪视频与语言共现对照，提出统计词预测与具身理解的区分；不把该类比作为能力不可能性的证明。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 152,
+      "kind": "context",
+      "summaryZh": "机器人/自动驾驶事故新闻截图，用作部署失效讨论材料；新闻本身不是通用技术定律或当前事实核验。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 153,
+      "kind": "context",
+      "summaryZh": "Feynman避免自我欺骗的引语，强调科学方法与证据审查。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 154,
+      "kind": "context",
+      "summaryZh": "AI发展与期待/资金起落的历史图，含AI冬天、Lighthill报告、第五代项目及HCI发展对照。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 155,
+      "kind": "context",
+      "summaryZh": "AI失败案例截图：招聘偏差、虚构司法案例、聊天机器人错误建议、机器人酒店与驾驶事故；用于讨论数据偏差和部署风险。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 156,
+      "kind": "context",
+      "summaryZh": "Tay互动后输出有害语言的案例，关注未筛选反馈与数据治理。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 157,
+      "kind": "context",
+      "summaryZh": "Chomsky对仅凭统计与数据规模的批评，属于理论立场；区分预测成功和理论解释。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 158,
+      "kind": "context",
+      "summaryZh": "椰子与鲨鱼插图，无足以量化死亡率的统计数据；仅保留风险直觉与证据讨论。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 159,
+      "kind": "context",
+      "summaryZh": "ECG黑箱预测新闻示例，提出预测性能和可理解机制的区别。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 160,
+      "kind": "context",
+      "summaryZh": "法语Scrabble比赛案例：形式任务表现与全面语言交际理解的区别。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 161,
+      "kind": "content",
+      "summaryZh": "human-like accuracy与human-like intelligence的概念区分。",
+      "knowledgePointIds": [
+        "middle-019"
+      ]
+    },
+    {
+      "page": 162,
+      "kind": "content",
+      "summaryZh": "统计共现的局限：allegedly/reportedly等中性报告词可能因消极邻域被误判为负向。",
+      "knowledgePointIds": [
+        "middle-020"
+      ]
+    },
+    {
+      "page": 163,
+      "kind": "content",
+      "summaryZh": "语言模型的文本总结、翻译、预测、生成能力图示。",
+      "knowledgePointIds": [
+        "middle-021"
+      ]
+    },
+    {
+      "page": 164,
+      "kind": "content",
+      "summaryZh": "讲义提出的语言模型局限：表面合理性、事实核验、用户情景记忆与行动；按能力设计问题理解，不作为所有现代系统的绝对断言。",
+      "knowledgePointIds": [
+        "middle-021",
+        "middle-022"
+      ]
+    },
+    {
+      "page": 165,
+      "kind": "content",
+      "summaryZh": "缺少感知经历的思想实验与中文房间：符号规则操作、情景经验、具身与理解之间的争论。",
+      "knowledgePointIds": [
+        "middle-022",
+        "middle-023"
+      ]
+    },
+    {
+      "page": 166,
+      "kind": "content",
+      "summaryZh": "否定盲点示例：no necklace/no boat/no airplane请求中仍生成被排除对象；附相关研究资源。",
+      "knowledgePointIds": [
+        "middle-024"
+      ]
+    },
+    {
+      "page": 167,
+      "kind": "content",
+      "summaryZh": "Sapir–Whorf强/弱版本；德语、西语对日/月的语法性别例说明语言特定范畴。",
+      "knowledgePointIds": [
+        "middle-025",
+        "middle-026"
+      ]
+    },
+    {
+      "page": 168,
+      "kind": "content",
+      "summaryZh": "经验、文化、地理与常识反向影响语言；英语与Shawnee对动作/对象/运动的不同编码示例。",
+      "knowledgePointIds": [
+        "middle-025",
+        "middle-026"
+      ]
+    },
+    {
+      "page": 169,
+      "kind": "content",
+      "summaryZh": "语言约定与标准的类比：不同社群的单位/表达方式。",
+      "knowledgePointIds": [
+        "middle-027"
+      ]
+    },
+    {
+      "page": 170,
+      "kind": "content",
+      "summaryZh": "人工语言与语言设计：Psalmanazar、Esperanto、Interlingua、编程语言；Orwell语言与思想限制观点。",
+      "knowledgePointIds": [
+        "middle-027"
+      ]
+    },
+    {
+      "page": 171,
+      "kind": "content",
+      "summaryZh": "文字、语音与意义的关系示意。",
+      "knowledgePointIds": [
+        "middle-028"
+      ]
+    },
+    {
+      "page": 172,
+      "kind": "content",
+      "summaryZh": "书写与读音不一：colonel、中文拼音及555的跨社群情绪读法。",
+      "knowledgePointIds": [
+        "middle-028"
+      ]
+    },
+    {
+      "page": 173,
+      "kind": "context",
+      "summaryZh": "FOXP2类人猿比较与系统发育图；图例区分同义/非同义变异与SNP，作为语言演化背景，不由单基因推出完整语言机制。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 174,
+      "kind": "resource",
+      "summaryZh": "Friends相关视频链接（6cKsBe3on5g）；页面未给视频转录，不推断未呈现内容。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 175,
+      "kind": "content",
+      "summaryZh": "语言学习差异：语音、字母、结构与常识；跨语言图片用于说明学习难点。",
+      "knowledgePointIds": [
+        "middle-029"
+      ]
+    },
+    {
+      "page": 176,
+      "kind": "content",
+      "summaryZh": "神经网络与人脑的启发性类比，强调learn like与机制相同不是一回事。",
+      "knowledgePointIds": [
+        "middle-019",
+        "middle-030"
+      ]
+    },
+    {
+      "page": 177,
+      "kind": "content",
+      "summaryZh": "人类与ChatGPT隐喻认知结构的研究图：比较概念关联聚类，结论范围受具体实验限制。",
+      "knowledgePointIds": [
+        "middle-030"
+      ]
+    },
+    {
+      "page": 178,
+      "kind": "context",
+      "summaryZh": "神经网络与宇宙网络外观类比及规模引语；视觉相似不是共享计算机制的证据。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 179,
+      "kind": "context",
+      "summaryZh": "脑组织扫描数据规模新闻：1立方毫米对应1.4PB，约14000部4K影片的类比；用作复杂性背景。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 180,
+      "kind": "resource",
+      "summaryZh": "关于机器智能的相反立场书目：Roger Penrose的The Emperor's New Mind与Kevin Warwick的March of the Machines。",
+      "knowledgePointIds": [
+        "middle-034"
+      ]
+    },
+    {
+      "page": 181,
+      "kind": "content",
+      "summaryZh": "心身二元论与Marvin Minsky心智社会理论的对照。",
+      "knowledgePointIds": [
+        "middle-033"
+      ]
+    },
+    {
+      "page": 182,
+      "kind": "resource",
+      "summaryZh": "Marvin Minsky Mind as Society视频资源。",
+      "knowledgePointIds": [
+        "middle-033"
+      ]
+    },
+    {
+      "page": 183,
+      "kind": "context",
+      "summaryZh": "机器作为人类智能后继者的设想；能力发展与生物约束的讨论。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 184,
+      "kind": "context",
+      "summaryZh": "继续讨论人工智能后继者及人类价值，不作为必然未来的事实陈述。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 185,
+      "kind": "content",
+      "summaryZh": "Baymax/Bender角色对照提出设计价值选择：模仿人类与有益于人类可分开。",
+      "knowledgePointIds": [
+        "middle-035",
+        "middle-036"
+      ]
+    },
+    {
+      "page": 186,
+      "kind": "content",
+      "summaryZh": "是否复制报复、嫉妒等人类情绪与动机的设计问题。",
+      "knowledgePointIds": [
+        "middle-035",
+        "middle-036"
+      ]
+    },
+    {
+      "page": 187,
+      "kind": "context",
+      "summaryZh": "情感化AI角色与Love and Deepspace新闻；用户情绪体验与机器主观体验需区分。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 188,
+      "kind": "content",
+      "summaryZh": "恐怖谷：拟人程度与亲近感的非单调关系，静态/运动形象曲线对照。",
+      "knowledgePointIds": [
+        "middle-037"
+      ]
+    },
+    {
+      "page": 189,
+      "kind": "content",
+      "summaryZh": "更强智能的控制、价值与治理问题。",
+      "knowledgePointIds": [
+        "middle-038"
+      ]
+    },
+    {
+      "page": 190,
+      "kind": "context",
+      "summaryZh": "公平主题的情境插图；仅保留公平治理问题，不从图像臆造群体比较结论。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 191,
+      "kind": "content",
+      "summaryZh": "AGI出现概率与灾难风险两个维度的观点矩阵。",
+      "knowledgePointIds": [
+        "middle-039"
+      ]
+    },
+    {
+      "page": 192,
+      "kind": "context",
+      "summaryZh": "Musk/Zuckerberg相反立场示意；观点分歧不能直接作为概率测量。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 193,
+      "kind": "context",
+      "summaryZh": "科幻接管形象，用于风险讨论而非未来必然性证据。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 194,
+      "kind": "content",
+      "summaryZh": "人踩蚂蚁类比：无敌意也可能由于目标漠视而造成伤害。",
+      "knowledgePointIds": [
+        "middle-040"
+      ]
+    },
+    {
+      "page": 195,
+      "kind": "content",
+      "summaryZh": "回形针最大化思想实验：目标漏项、资源获取与阻止关机等工具性行为风险。",
+      "knowledgePointIds": [
+        "middle-041"
+      ]
+    },
+    {
+      "page": 196,
+      "kind": "content",
+      "summaryZh": "塑料等技术的短期收益与长期外部性类比。",
+      "knowledgePointIds": [
+        "middle-042"
+      ]
+    },
+    {
+      "page": 197,
+      "kind": "content",
+      "summaryZh": "技术方向与价值目标：能力进步不等于达到人们想要的未来。",
+      "knowledgePointIds": [
+        "middle-042"
+      ]
+    },
+    {
+      "page": 198,
+      "kind": "content",
+      "summaryZh": "NLU七柱总表：跨学科、任务分解、并行类比、符号接地、相似性度量、意图、信任。",
+      "knowledgePointIds": [
+        "middle-043",
+        "middle-127"
+      ]
+    },
+    {
+      "page": 199,
+      "kind": "content",
+      "summaryZh": "跨学科展开：数学、符号学、逻辑、语言学、心理学、社会学、伦理；STEM/STEAM/SHAPE以及复杂情感表达图示。",
+      "knowledgePointIds": [
+        "middle-043"
+      ]
+    },
+    {
+      "page": 200,
+      "kind": "content",
+      "summaryZh": "任务分解、Suitcase与认知推理循环、多任务融合示意。",
+      "knowledgePointIds": [
+        "middle-044",
+        "middle-126"
+      ]
+    },
+    {
+      "page": 201,
+      "kind": "content",
+      "summaryZh": "并行类比、脑/知识图与基础概念关联；Sentic Activation相关研究资源。",
+      "knowledgePointIds": [
+        "middle-045"
+      ]
+    },
+    {
+      "page": 202,
+      "kind": "content",
+      "summaryZh": "语义基元组合：generate/terminate状态变化，activate/deactivate过程，birth/murder到life操作的示例。",
+      "knowledgePointIds": [
+        "middle-046",
+        "middle-127"
+      ]
+    },
+    {
+      "page": 203,
+      "kind": "content",
+      "summaryZh": "相似性度量批评与余弦相似度研究图：关注几何假设、关系与拓扑，不推出所有余弦应用无效。",
+      "knowledgePointIds": [
+        "middle-047"
+      ]
+    },
+    {
+      "page": 204,
+      "kind": "content",
+      "summaryZh": "意图与外界观察之间的差异示意。",
+      "knowledgePointIds": [
+        "middle-048"
+      ]
+    },
+    {
+      "page": 205,
+      "kind": "content",
+      "summaryZh": "信任与推荐：经济/体验/满意度/省时/拓宽视野等收益，与信息泡沫、成瘾、自主性和人际关系风险；Responsible Recommender Systems资源。",
+      "knowledgePointIds": [
+        "middle-048"
+      ]
+    },
+    {
+      "page": 206,
+      "kind": "section",
+      "summaryZh": "Lecture 4封面。",
+      "knowledgePointIds": []
+    },
+    {
+      "page": 207,
+      "kind": "content",
+      "summaryZh": "NLP与NLU范围及形式处理/意义理解的关系。",
+      "knowledgePointIds": [
+        "middle-049",
+        "middle-125"
+      ]
+    },
+    {
+      "page": 208,
+      "kind": "content",
+      "summaryZh": "分层任务的依赖与互相支持；复杂理解需要多个子任务协作。",
+      "knowledgePointIds": [
+        "middle-049",
+        "middle-054",
+        "middle-126"
+      ]
+    },
+    {
+      "page": 209,
+      "kind": "content",
+      "summaryZh": "80%/85%/90%品质层级的示意性论述：进一步改善需要更多理解能力；百分比作为讲解示意而非通用阈值。",
+      "knowledgePointIds": [
+        "middle-050"
+      ]
+    },
+    {
+      "page": 210,
+      "kind": "content",
+      "summaryZh": "Suitcase模型收益：可解释性、可理解性、减少幻觉、灵活更新、细粒度评价、扩展性、认知启发、并行开发、鲁棒性与可靠性。",
+      "knowledgePointIds": [
+        "middle-044",
+        "middle-054",
+        "middle-126"
+      ]
+    },
+    {
+      "page": 211,
+      "kind": "content",
+      "summaryZh": "句法层任务：微文本规范化、句界检测、词性标注、分块与词元化。",
+      "knowledgePointIds": [
+        "middle-049"
+      ]
+    },
+    {
+      "page": 212,
+      "kind": "content",
+      "summaryZh": "句法方法树：规范化的语言/统计/神经方法；SBD的词/句法/韵律线索；POS的特征/深度/半监督；chunk与lemma不同方法族。",
+      "knowledgePointIds": [
+        "middle-053"
+      ]
+    },
+    {
+      "page": 213,
+      "kind": "content",
+      "summaryZh": "微文本规范化示例：缩写、字符数字混写及表情等非标准形式，c u l8r→see you later。",
+      "knowledgePointIds": [
+        "middle-128"
+      ]
+    },
+    {
+      "page": 214,
+      "kind": "content",
+      "summaryZh": "借词ang pao等大量拼写变体及音素映射图；说明发音相似性与标准形式之间的联系。",
+      "knowledgePointIds": [
+        "middle-055"
+      ]
+    },
+    {
+      "page": 215,
+      "kind": "content",
+      "summaryZh": "British/American拼写colour/color，car/automobile等同义词及查询扩展。",
+      "knowledgePointIds": [
+        "middle-056"
+      ]
+    },
+    {
+      "page": 216,
+      "kind": "resource",
+      "summaryZh": "规范化表：文本资源SMS-M/SMS-C/SMS-L/NUS SMS/Edinburgh X/LexNorm1.1与1.2/W-NUT2015/Norm-Tweets/WSJ/Swiss SMS；发音资源ARPABET、TIMIT、CMUdict、Festival、CELEX（英/荷/德）。方法特征含OM、PM、CX、SY、CH、UN。",
+      "knowledgePointIds": [
+        "middle-055",
+        "middle-057",
+        "middle-058"
+      ]
+    },
+    {
+      "page": 217,
+      "kind": "content",
+      "summaryZh": "规范化方法与评价总表：语言/统计/神经，X API与志愿者SMS-G，OOV；Top-1/Top-k、WER、F1。表内不同数据和任务分数仅作各研究记录，不能直接排序。下游含极性、字音转换、问答、缺词与解析。",
+      "knowledgePointIds": [
+        "middle-058",
+        "middle-059",
+        "middle-060"
+      ]
+    },
+    {
+      "page": 218,
+      "kind": "content",
+      "summaryZh": "句界歧义：人名首字母、Jr./Dr./USA等缩写、p.m.既结束缩写也可位于句末。",
+      "knowledgePointIds": [
+        "middle-061"
+      ]
+    },
+    {
+      "page": 219,
+      "kind": "resource",
+      "summaryZh": "SBD语料：Brown/WSJ/SMC/X/Modern Greek/GRS/MIMIC/Fairview Health；语音T-News、T-CTL、T-MCI、T-RBBC、BN、CTS。方法线索为词汇形态、句法和韵律；语料corpus也可构成数据集dataset。",
+      "knowledgePointIds": [
+        "middle-062"
+      ]
+    },
+    {
+      "page": 220,
+      "kind": "content",
+      "summaryZh": "POS示例句She sells seashells on the seashore及PRP/VBZ/NNS/IN/DT/NN；back可因语境承担不同词性。",
+      "knowledgePointIds": [
+        "middle-064",
+        "middle-129"
+      ]
+    },
+    {
+      "page": 221,
+      "kind": "resource",
+      "summaryZh": "页面标题为POS，左侧仍是SBD结果表，右侧才是POS资源表；SBD含MIMIC/FV及新闻/电话/临床语音；POS含Brown/WSJ/GENIA/TPOS/ARK/NPS。避免因标题误归类。",
+      "knowledgePointIds": [
+        "middle-063"
+      ]
+    },
+    {
+      "page": 222,
+      "kind": "content",
+      "summaryZh": "POS方法表：特征工程、深度、半监督；词汇、上下文、形态、稀有词、字符及全局特征。指标多为accuracy，但包含perplexity，需区分；同模型跨WSJ/GENIA/TPOS的结果显示评估条件不同。",
+      "knowledgePointIds": [
+        "middle-063",
+        "middle-064"
+      ]
+    },
+    {
+      "page": 223,
+      "kind": "content",
+      "summaryZh": "浅层解析/分块例：NP、VP、PP等局部短语块；词性正确不自动保证分块边界正确。",
+      "knowledgePointIds": [
+        "middle-065",
+        "middle-066",
+        "middle-130"
+      ]
+    },
+    {
+      "page": 224,
+      "kind": "content",
+      "summaryZh": "Chunk方法表：局部/全局特征、DL；POS、词汇/句法上下文、前序chunk预测、chunk级、形态、字符和联合任务特征；CoNLL2000/base-NP/NUS SMS等资源。",
+      "knowledgePointIds": [
+        "middle-065",
+        "middle-066"
+      ]
+    },
+    {
+      "page": 225,
+      "kind": "content",
+      "summaryZh": "eat a burger不同屈折和短语形式示例，展示词形归一与概念组合的关系。",
+      "knowledgePointIds": [
+        "middle-067"
+      ]
+    },
+    {
+      "page": 226,
+      "kind": "content",
+      "summaryZh": "词元化基本概念及与原始词形之间的对应。",
+      "knowledgePointIds": [
+        "middle-068",
+        "middle-131"
+      ]
+    },
+    {
+      "page": 227,
+      "kind": "content",
+      "summaryZh": "粗暴截词可能改变词义和情感：stuffed/stuff、cater/cat、fasting/fast、dental/dent等示例；不把示意配对断言为所有标准stemmer的输出。",
+      "knowledgePointIds": [
+        "middle-067",
+        "middle-131"
+      ]
+    },
+    {
+      "page": 228,
+      "kind": "content",
+      "summaryZh": "Porter多阶段规则、最长匹配及形态条件；例ement只在条件满足时移除，不能只看后缀字符。",
+      "knowledgePointIds": [
+        "middle-069",
+        "middle-131"
+      ]
+    },
+    {
+      "page": 229,
+      "kind": "content",
+      "summaryZh": "democrat/democratic/democratize派生与词性差异；词干合并与词元化保留词汇区别的对照，含英式拼写。",
+      "knowledgePointIds": [
+        "middle-068",
+        "middle-131"
+      ]
+    },
+    {
+      "page": 230,
+      "kind": "content",
+      "summaryZh": "season/seasoning/seasoned、develop系列、fast/fasting/fasten等展示过度归一的语义风险。",
+      "knowledgePointIds": [
+        "middle-067"
+      ]
+    },
+    {
+      "page": 231,
+      "kind": "resource",
+      "summaryZh": "词元资源：CoNLL2007/2009/2018、UD、Multext/MULTEXT-EAST、UniMorph、PDT、IFD、CELEX、Cast3LB、CESS-ECE、1984、GML、PATB、ARZ、FTB、L-Lem、D-Lem、Lemlist、RELIG、CG-LIT、Hindi WSD、LT4HALA、TüBa-D/Z、NoSta-D、UD-EWT、SIGMORPHON2019、SEJFEK。方法含转换规则、统计/神经转导、编辑脚本、形态/上下文/字符及联合任务。",
+      "knowledgePointIds": [
+        "middle-070",
+        "middle-071"
+      ]
+    },
+    {
+      "page": 232,
+      "kind": "content",
+      "summaryZh": "词元方法结果表：不同语言、资源及平均方式的准确率；包含UniMorph 97种语言、SIGMORPHON 100种语言、UDv2.5 23种语言等研究设置，不能将多语言平均视作各语言同分。",
+      "knowledgePointIds": [
+        "middle-070",
+        "middle-072"
+      ]
+    },
+    {
+      "page": 233,
+      "kind": "content",
+      "summaryZh": "语义层任务树：WSD、NER、概念抽取、指代消解、主观性检测。",
+      "knowledgePointIds": [
+        "middle-049"
+      ]
+    },
+    {
+      "page": 234,
+      "kind": "content",
+      "summaryZh": "语义方法树：WSD知识/监督/混合；NER嵌套/少样本/联合；概念的关键词与领域抽取；指代规则/统计/神经/零代词；主观性单句/上下文/跨语/多模态/偏差。",
+      "knowledgePointIds": [
+        "middle-053"
+      ]
+    },
+    {
+      "page": 235,
+      "kind": "content",
+      "summaryZh": "词汇语义、结构语义、认知语义：词义及词形成、语法结构、框架情景与概念化。",
+      "knowledgePointIds": [
+        "middle-051"
+      ]
+    },
+    {
+      "page": 236,
+      "kind": "content",
+      "summaryZh": "语义任务下游角色矩阵：F为特征，P为解析，E为解释性；同任务可在不同系统扮演不同角色。",
+      "knowledgePointIds": [
+        "middle-052"
+      ]
+    },
+    {
+      "page": 237,
+      "kind": "content",
+      "summaryZh": "同形异义图：dove、moped、sewer、desert、wind、tear、bow、entrance、minute；同形不保证同词义或同读音。",
+      "knowledgePointIds": [
+        "middle-073"
+      ]
+    },
+    {
+      "page": 238,
+      "kind": "content",
+      "summaryZh": "WSD路线图：释义/词汇图的知识方法、带上下文和标签的监督方法；监督示例按候选概率0.3/0.6/0.1选最大项。",
+      "knowledgePointIds": [
+        "middle-074",
+        "middle-075"
+      ]
+    },
+    {
+      "page": 239,
+      "kind": "resource",
+      "summaryZh": "WSD数据：SemCor200000、MultiSemCor51847、Line-hard-serve4000、Interest2369、DSO192800、OMWE29165、OMSTI1357922、Senseval2/3 2282/1850、SemEval2007/2013/2015 455/1644/1022。知识资源：LDOCE、ODE、CED、OALD、WordNet、FrameNet、BabelNet、SyntagNet；字典、词义标注语料与关系图作用不同。数字为原表版本统计。",
+      "knowledgePointIds": [
+        "middle-076"
+      ]
+    },
+    {
+      "page": 240,
+      "kind": "content",
+      "summaryZh": "WSD方法及下游表：Lesk释义重叠、PageRank词义图、决策树/SVM/LSTM/BiLSTM/Transformer、BERT与图嵌入/知识混合；检索、翻译、极性等下游，指标有F1/Recall/Accuracy。",
+      "knowledgePointIds": [
+        "middle-074",
+        "middle-075",
+        "middle-077",
+        "middle-078"
+      ]
+    },
+    {
+      "page": 241,
+      "kind": "content",
+      "summaryZh": "NER定义及其对指代和意见目标识别的支持。",
+      "knowledgePointIds": [
+        "middle-084"
+      ]
+    },
+    {
+      "page": 242,
+      "kind": "resource",
+      "summaryZh": "NER的IO/BIO/BIOES示例；资源表含MUC6、ACE05、TACRED、CoNLL2003、i2b2、ADE、DDI、WNUT17、OntoNotes5、CPR、MultiNERD、HIPE2020、NNE、GENIA。领域知识含Wikipedia/Wikidata、DrugBank/UMLS/BioModels/SNOMED CT/ICD10/MIMICIII/MeSH、GeoNames、EDGAR、EduKG；区分文章/句子/提及/记录等统计单位。",
+      "knowledgePointIds": [
+        "middle-079",
+        "middle-083",
+        "middle-132"
+      ]
+    },
+    {
+      "page": 243,
+      "kind": "content",
+      "summaryZh": "嵌套NER多层跨度及超图表示；提示NER用掩码语言模型和People→Person标签词映射。",
+      "knowledgePointIds": [
+        "middle-080",
+        "middle-081"
+      ]
+    },
+    {
+      "page": 244,
+      "kind": "content",
+      "summaryZh": "表填充联合实体/关系；嵌套、5-shot少样本、联合NER与关系抽取、零样本方法。带星结果因未报告5-shot不可直接比较；下游知识图谱、推荐与对话。",
+      "knowledgePointIds": [
+        "middle-081",
+        "middle-082",
+        "middle-084",
+        "middle-132"
+      ]
+    },
+    {
+      "page": 245,
+      "kind": "content",
+      "summaryZh": "GET短语搭配与TRUST前后缀展示概念组合及意义变化。",
+      "knowledgePointIds": [
+        "middle-085"
+      ]
+    },
+    {
+      "page": 246,
+      "kind": "content",
+      "summaryZh": "停用词、介词、书名和短语、标点/连字符/缩写点/变音符号的处理风险；概念抽取要避免机械删除有意义结构。",
+      "knowledgePointIds": [
+        "middle-086",
+        "middle-133"
+      ]
+    },
+    {
+      "page": 247,
+      "kind": "resource",
+      "summaryZh": "NLTK stopwords语料调用示例及工具资源。",
+      "knowledgePointIds": [
+        "middle-086"
+      ]
+    },
+    {
+      "page": 248,
+      "kind": "content",
+      "summaryZh": "casefolding及WHO/who等大小写带来的语义区分。",
+      "knowledgePointIds": [
+        "middle-086",
+        "middle-133"
+      ]
+    },
+    {
+      "page": 249,
+      "kind": "resource",
+      "summaryZh": "概念数据：Inspec2000、NUS211、Krapivin2304、SemEval2010 244、X1000、KP20K567830、CCF13449、MLDB-MD128.1k；临床TempEval/Mayo600、i2b2-2010 826、n2c2-2018 505、MIMIC1610；课程MOOCs4375视频、EMR/CM3730页面；专利USPTO94000。统计口径依原表。",
+      "knowledgePointIds": [
+        "middle-087",
+        "middle-088"
+      ]
+    },
+    {
+      "page": 250,
+      "kind": "resource",
+      "summaryZh": "概念知识库WordNet、SenticNet、Baidu Encyclopedia、Wikipedia、Inspec；图、词典与非结构化来源；下游极性、检索、对话、常识与解释。",
+      "knowledgePointIds": [
+        "middle-088"
+      ]
+    },
+    {
+      "page": 251,
+      "kind": "content",
+      "summaryZh": "概念方法表：抽取式关键词、生成式Seq2Seq关键词、规则/解析/统计结构概念、临床概念、图标签传播课程概念、聚类专利概念。任务特有数据和指标不能直接跨任务比较。",
+      "knowledgePointIds": [
+        "middle-087",
+        "middle-088",
+        "middle-089"
+      ]
+    },
+    {
+      "page": 252,
+      "kind": "content",
+      "summaryZh": "指代：性数一致只能筛选，语义和常识决定进一步消歧；歧义告示图用于说明先行词选择。",
+      "knowledgePointIds": [
+        "middle-090",
+        "middle-135"
+      ]
+    },
+    {
+      "page": 253,
+      "kind": "resource",
+      "summaryZh": "指代数据MUC200、ACE1800、GNOME505、OntoNotes4560、WSC285、DPR1880、GAP4454、NP4E104、ECB+982、ARRAU552；知识资源WordNet/COW/ODW/AWN/SenticNet、Wikipedia/Wikidata/DBpedia/Freebase/YAGO/WikiNet/OMCS/MedicalKG；下游翻译、摘要、蕴含、极性。",
+      "knowledgePointIds": [
+        "middle-092"
+      ]
+    },
+    {
+      "page": 254,
+      "kind": "content",
+      "summaryZh": "指代方法：规则、统计提及对/提及排序/实体提及、神经端到端/跨度/BERT/QA、零代词。共指评价MUC、B³、CEAF及其组合；局部判断与实体簇结构区别。",
+      "knowledgePointIds": [
+        "middle-091",
+        "middle-093",
+        "middle-094"
+      ]
+    },
+    {
+      "page": 255,
+      "kind": "content",
+      "summaryZh": "主观性和二维情绪图：正负双低可中性，正负双高可矛盾情绪，不能由单一极性零值区分。",
+      "knowledgePointIds": [
+        "middle-095"
+      ]
+    },
+    {
+      "page": 256,
+      "kind": "resource",
+      "summaryZh": "主观性资源：MPQA/Gold/MultiMPQA、Movie、WebDoc、TREC、Debate、Twitter1/2、Forum、SemEval2013、NET、MLT、TASS、Email/BC3、AMIDA、ICT-MMMO、MOUD、Conservapedia、WNC。覆盖新闻、评论、对话、多语、多模态和偏差；样本单位与语言依原表。",
+      "knowledgePointIds": [
+        "middle-097",
+        "middle-098",
+        "middle-099"
+      ]
+    },
+    {
+      "page": 257,
+      "kind": "resource",
+      "summaryZh": "主观性词汇知识：General Inquirer约4000、MPQA Subjectivity Lexicon约8000、SentiWordNet约100000、WordNet-Affect4787、SenticNet400000；列表和图结构不同，数字为表内版本。",
+      "knowledgePointIds": [
+        "middle-096",
+        "middle-099"
+      ]
+    },
+    {
+      "page": 258,
+      "kind": "content",
+      "summaryZh": "单条表达主观性方法：逻辑规则、统计、SVM/MaxEnt/Naive Bayes、CNN/RNN/注意力/MTL等；词汇、POS、可读性、句法、词义与情感增强嵌入。",
+      "knowledgePointIds": [
+        "middle-096"
+      ]
+    },
+    {
+      "page": 259,
+      "kind": "content",
+      "summaryZh": "语境相关、跨语言、多模态主观性与偏差检测；最小割、语篇特征、机器翻译、韵律/音素、LIWC与语言模型等线索。",
+      "knowledgePointIds": [
+        "middle-096",
+        "middle-097",
+        "middle-098",
+        "middle-099"
+      ]
+    },
+    {
+      "page": 260,
+      "kind": "content",
+      "summaryZh": "语用层任务树：隐喻、反讽、人格、方面抽取与极性。",
+      "knowledgePointIds": [
+        "middle-049"
+      ]
+    },
+    {
+      "page": 261,
+      "kind": "content",
+      "summaryZh": "语用方法/应用树：隐喻属性/释义/解释配对/概念处理；反讽特征/嵌入/不协调/上下文；BigFive/MBTI；显隐方面；词典/预训练/神经符号极性。",
+      "knowledgePointIds": [
+        "middle-053"
+      ]
+    },
+    {
+      "page": 262,
+      "kind": "content",
+      "summaryZh": "语用下游F/P/E矩阵，涉及情感、知识图谱、心理认知、翻译、政治、广告、对话、推荐、社交网络、人机交互与金融预测。",
+      "knowledgePointIds": [
+        "middle-052"
+      ]
+    },
+    {
+      "page": 263,
+      "kind": "content",
+      "summaryZh": "隐喻处理流程：隐喻及MWE识别→词级释义或义项配对→整合；convulsed与red letter day示例，知识/电量等隐喻插图。",
+      "knowledgePointIds": [
+        "middle-100"
+      ]
+    },
+    {
+      "page": 264,
+      "kind": "resource",
+      "summaryZh": "隐喻任务EP解释配对、CMP概念隐喻处理、TP词元释义，资源来自手工/词典/X/BNC/ClueWeb论坛/VUA。词义与知识库WordNet、FrameNet、ConceptNet、SenticNet、Wiktionary、Merriam-Webster；样本量与实体量在原表区分。",
+      "knowledgePointIds": [
+        "middle-101",
+        "middle-103"
+      ]
+    },
+    {
+      "page": 265,
+      "kind": "content",
+      "summaryZh": "隐喻技术：PE/WP/EP/CMP，统计/图/无监督/规则/深度方法；共现、互信息、余弦、选择偏好违背、图嵌入、语言模型。评价包括可接受性、适切性、连贯性、命中/排名、相关系数及任务特定翻译测试。",
+      "knowledgePointIds": [
+        "middle-101",
+        "middle-102",
+        "middle-103"
+      ]
+    },
+    {
+      "page": 266,
+      "kind": "content",
+      "summaryZh": "隐喻下游：机器翻译、情感、心理、认知和政治分析，分别作特征、解析或解释。",
+      "knowledgePointIds": [
+        "middle-104"
+      ]
+    },
+    {
+      "page": 267,
+      "kind": "content",
+      "summaryZh": "反讽内容与语境建模、融合；字面话语与交流语境共同提供证据。",
+      "knowledgePointIds": [
+        "middle-105",
+        "middle-134"
+      ]
+    },
+    {
+      "page": 268,
+      "kind": "resource",
+      "summaryZh": "反讽数据含X/Reddit/电视/论坛，二分类、多分类与多模态；MUStARD示例按时间对齐上下文和目标话语的视频/文本。原表个别大规模数量属所引研究统计口径，不作为数据规模死记题。",
+      "knowledgePointIds": [
+        "middle-106"
+      ]
+    },
+    {
+      "page": 269,
+      "kind": "content",
+      "summaryZh": "正面文字与不愉快图像等图文不一致可提示反讽；不一致并非反讽充分条件。",
+      "knowledgePointIds": [
+        "middle-107"
+      ]
+    },
+    {
+      "page": 270,
+      "kind": "content",
+      "summaryZh": "反讽方法表：人工特征、嵌入、语义不协调、语境；LSTM/注意力、GCN、图像/文本/音频表示及多任务；下游情感、心理健康相关分析、广告与对话。",
+      "knowledgePointIds": [
+        "middle-108",
+        "middle-109",
+        "middle-134"
+      ]
+    },
+    {
+      "page": 271,
+      "kind": "content",
+      "summaryZh": "人格线索与用户相关的情感表达、反讽及个性化；稳定特质与单次情绪需区分。",
+      "knowledgePointIds": [
+        "middle-110"
+      ]
+    },
+    {
+      "page": 272,
+      "kind": "content",
+      "summaryZh": "BigFive/OCEAN五维及高低描述：开放、尽责、外向、宜人、神经质。",
+      "knowledgePointIds": [
+        "middle-110",
+        "middle-111"
+      ]
+    },
+    {
+      "page": 273,
+      "kind": "content",
+      "summaryZh": "MBTI四对：E/I能量导向，S/N感知偏好，T/F判断偏好，J/P应对外部世界的方式。",
+      "knowledgePointIds": [
+        "middle-112"
+      ]
+    },
+    {
+      "page": 274,
+      "kind": "content",
+      "summaryZh": "BFI44条目、1–5量表、各特质对应条目及R反向题；先按反向规则处理再汇总。",
+      "knowledgePointIds": [
+        "middle-111",
+        "middle-113"
+      ]
+    },
+    {
+      "page": 275,
+      "kind": "content",
+      "summaryZh": "TIPI10条目、1–7量表，E 1/6R、A 2R/7、C 3/8R、情绪稳定4R/9、O 5/10R；人格数据含2479篇作文、408段vlog、20小时语音、8600条MBTI实例，保留统计但不设背诵题。",
+      "knowledgePointIds": [
+        "middle-113",
+        "middle-114"
+      ]
+    },
+    {
+      "page": 276,
+      "kind": "content",
+      "summaryZh": "人格方法SA/ML/DL、LIWC/n-gram/POS/社交统计、词/字符/句子表示、图/BERT等；评价按各维分类平均或相关系数，不能混淆。下游推荐和社交网络分析。",
+      "knowledgePointIds": [
+        "middle-114"
+      ]
+    },
+    {
+      "page": 277,
+      "kind": "content",
+      "summaryZh": "同一产品的触屏与电池评价可相反，需关联方面和情感。",
+      "knowledgePointIds": [
+        "middle-115"
+      ]
+    },
+    {
+      "page": 278,
+      "kind": "content",
+      "summaryZh": "双相机在画质、电池、变焦、尺寸、重量方面的对照图；总体分数掩盖方面权衡。",
+      "knowledgePointIds": [
+        "middle-117"
+      ]
+    },
+    {
+      "page": 279,
+      "kind": "content",
+      "summaryZh": "IO/BIO/BIOES方面跨度标注；AE/AC/ATP/ACP定义；笔记本/餐馆/数字产品/商业/应用/多领域/X评价数据，样本单位包括句子/评论/实例。",
+      "knowledgePointIds": [
+        "middle-116",
+        "middle-118",
+        "middle-136"
+      ]
+    },
+    {
+      "page": 280,
+      "kind": "resource",
+      "summaryZh": "方面及极性知识：Probase12551613、SenticNet400000、SentiWordNet1105个WordNet synsets、FinSenticNet6741、DBpedia10M、Freebase125M、YAGO64M、BabelNet22M、Knowledge Vault45M；表内版本和结构口径不可当作永久规模。",
+      "knowledgePointIds": [
+        "middle-119"
+      ]
+    },
+    {
+      "page": 281,
+      "kind": "content",
+      "summaryZh": "显式/隐式方面：规则、概率、CRF、图、HMM、LSTM/Transformer及提示；依存、产品规格、词典、常识等特征。下游ABSA/ABOM/ASQP/ACSA/ACSD/ASTE/KGC等结构任务。",
+      "knowledgePointIds": [
+        "middle-115",
+        "middle-118",
+        "middle-119"
+      ]
+    },
+    {
+      "page": 282,
+      "kind": "content",
+      "summaryZh": "二元极性与[-1,+1]连续强度；图中双关表达提示字面与实际评价区别。",
+      "knowledgePointIds": [
+        "middle-120"
+      ]
+    },
+    {
+      "page": 283,
+      "kind": "content",
+      "summaryZh": "极性方法：词典统计、PLM/提示、神经符号。NeSy、SA、DR动态奖励、TRT翻译—检索—翻译、LTN逻辑张量网络；上下文、词典、句法/依存与逻辑约束；Accuracy/Macro-F1/平均精度/MAE不同。",
+      "knowledgePointIds": [
+        "middle-120",
+        "middle-121",
+        "middle-122",
+        "middle-137"
+      ]
+    },
+    {
+      "page": 284,
+      "kind": "content",
+      "summaryZh": "极性下游：人机交互、推荐、股价预测、组合配置；作用区分特征、解析与解释，应用不构成收益或因果保证。",
+      "knowledgePointIds": [
+        "middle-123",
+        "middle-124"
+      ]
+    }
+  ]
+}

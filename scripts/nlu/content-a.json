@@ -1,0 +1,407 @@
+{
+  "topics": [
+    {"id":"general","nameZh":"NLU 基础与七大支柱","nameEn":"NLU Foundations","originalQuestions":[1,2,3,4,5,6,7],"pages":[198,200,201,202,203,204,205,207,208,210,307],"focusZh":"NLP/NLU 区别、任务分解、平行类比、符号接地、结构相似性、意图、可解释性与行李箱模型。"},
+    {"id":"microtext","nameZh":"微文本规范化","nameEn":"Microtext Normalization","originalQuestions":[8,9,10,11,12],"pages":[213,214,215,216,217],"focusZh":"非正式拼写、编辑距离、缩写歧义、LexNorm、语音资源与同义表达。"},
+    {"id":"sbd","nameZh":"句子边界识别","nameEn":"Sentence Boundary Disambiguation","originalQuestions":[13,14,15,16,17],"pages":[218,219,221],"focusZh":"句末与缩写、句子分词、大小写线索、MIMIC/WSJ 等语料和评估口径。"},
+    {"id":"pos","nameZh":"词性标注","nameEn":"Part-of-Speech Tagging","originalQuestions":[18,19,20,21],"pages":[220,221,222],"focusZh":"上下文决定词性、标签、训练语料、特征与准确率。"},
+    {"id":"chunk","nameZh":"文本组块","nameEn":"Text Chunking","originalQuestions":[22,23,24,25,26],"pages":[223,224],"focusZh":"浅层句法分析、短语边界、POS 依赖、序列模型和 CoNLL-2000。"},
+    {"id":"lemma","nameZh":"词形还原与词干提取","nameEn":"Lemmatization and Stemming","originalQuestions":[27,28,29,30,31,32,33],"pages":[225,226,227,228,229,230,231,232],"focusZh":"词典形、Porter、词性依赖、不规则变化、NLTK 和形态学资源。"},
+    {"id":"wsd","nameZh":"词义消歧与语境","nameEn":"Word Sense Disambiguation","originalQuestions":[34,35,36,37,38,39,40,41],"pages":[168,237,238,239,240],"focusZh":"语境选义、知识式/监督式方法、WordNet/SemCor、准确率与聚类。"},
+    {"id":"ner","nameZh":"命名实体识别","nameEn":"Named Entity Recognition","originalQuestions":[42,43,44,45,46],"pages":[241,242,243,244],"focusZh":"实体跨度和类别、序列标注、BIO、CoNLL-2003、F1 与下游指代。"},
+    {"id":"concept","nameZh":"概念抽取","nameEn":"Concept Extraction","originalQuestions":[47,48,49,50,51],"pages":[245,246,247,248,249,250,251],"focusZh":"多词概念、TF-IDF、停用词和大小写陷阱、NLTK 与领域数据集。"}
+  ],
+  "questions": [
+    {
+      "id":"general-01","topic":"general","form":"definition","prompt":"How are NLP and NLU related?",
+      "options":["NLU is a subfield of NLP concerned with meaning, intent, and context.","NLP is a subfield of NLU concerned only with word spelling.","NLP and NLU are identical names for speech synthesis.","NLU excludes every task that uses text as input."],"answer":0,
+      "explanationZh":"NLP 是处理人类语言的广泛领域；NLU 是其中侧重意义、意图和上下文的子领域。两者可以共享算法与技术。",
+      "distractorsZh":["","颠倒了包含关系，也把 NLP 的范围缩得过窄。","语音合成只是语言技术的一类任务，不能代表 NLP 或 NLU。","NLU 经常以文本为输入，例如意图识别、情感分析。"],
+      "terms":[{"en":"Natural Language Processing","zh":"自然语言处理"},{"en":"Natural Language Understanding","zh":"自然语言理解"}],"refs":[{"page":207,"reasonZh":"NLP 与 NLU 的定义、目标和输出对照表。"}],"sourceQuestions":[1],"difficulty":"基础"
+    },
+    {
+      "id":"general-02","topic":"general","form":"workflow","prompt":"A question-answering system is separated into entity recognition, intent detection, retrieval, and answer extraction. Which principle does this illustrate?",
+      "options":["Multi-task learning with one shared prediction model","Task decomposition","Word sense disambiguation","Document-level summarization"],"answer":1,
+      "explanationZh":"任务分解把复杂任务拆成可单独实现和评估的子任务。问答系统可分别处理实体识别、意图检测、检索和答案抽取，同时保留模块间的依赖。",
+      "distractorsZh":["题干强调把系统拆成子任务，并未指定多个任务共享一个预测模型进行联合学习。","","WSD 是可被拆出的具体语言任务，不是这项系统设计原则。","摘要把文档压缩为摘要，不等于拆分系统的处理步骤。"],
+      "terms":[{"en":"Task decomposition","zh":"任务分解"},{"en":"Subtask","zh":"子任务"}],"refs":[{"page":200,"reasonZh":"Task Decomposition 支柱及模块化任务图。"},{"page":208,"reasonZh":"NLU 各任务相互关联。"}],"sourceQuestions":[2],"difficulty":"应用"
+    },
+    {
+      "id":"general-03","topic":"general","form":"definition","prompt":"What does panalogy mean?",
+      "options":["Running the same program on several CPU cores","Translating an aligned bilingual corpus","Comparing concepts through analogous or parallel structures","Counting the characters in two sentences"],"answer":2,
+      "explanationZh":"Panalogy 通过平行结构建立概念间的类比，对应讲义中的 Parallel Analogy 支柱。重点是结构对应与跨领域推理。",
+      "distractorsZh":["这是 parallel computing，并行计算。","这是平行语料的应用，parallel 一词相同但概念不同。","","字符计数不涉及结构之间的类比关系。"],
+      "terms":[{"en":"Panalogy / Parallel analogy","zh":"平行类比"}],"refs":[{"page":201,"reasonZh":"Parallel Analogy 支柱图；panalogy 的文字定义来自 Mock Quiz Q3。"}],"sourceQuestions":[3],"difficulty":"基础","noteZh":"术语定义沿用 Mock Q3。"
+    },
+    {
+      "id":"general-04","topic":"general","form":"scenario","prompt":"A robot associates the symbol APPLE with apples it can perceive and interact with, instead of only linking it to more dictionary words. Which issue is it addressing?",
+      "options":["Sentence boundary detection","Part-of-speech tagging","Stopword removal","Symbol grounding"],"answer":3,
+      "explanationZh":"Symbol grounding 关注符号如何获得意义，例如把 APPLE 与可感知、可交互的苹果联系起来。讲义用 BUY 与 MONEY 互相定义的循环说明仅靠符号解释符号的局限。",
+      "distractorsZh":["SBD 判断句子在哪里结束。","POS tagging 给词标语法类别。","删去停用词并不能解决符号与意义的联系。",""],
+      "terms":[{"en":"Symbol grounding","zh":"符号接地"},{"en":"Definition loop","zh":"循环定义"}],"refs":[{"page":307,"reasonZh":"BUY/MONEY 循环定义与符号接地问题。"},{"page":202,"reasonZh":"七大支柱中的 Symbol Grounding。"}],"sourceQuestions":[4],"difficulty":"应用"
+    },
+    {
+      "id":"general-05","topic":"general","form":"definition","prompt":"What does a topology-aware similarity measure take into account?",
+      "options":["It considers structural organization, not just isolated surface features.","It treats identical spelling as sufficient evidence of identical meaning.","It uses only each word's independent frequency, regardless of relationships.","It guarantees that raw cosine similarity always matches semantic similarity."],"answer":0,
+      "explanationZh":"拓扑感知相似性考虑数据间的结构关系和邻域组织。讲义结合图结构与嵌入空间，讨论了单独使用余弦相似性的局限。",
+      "distractorsZh":["","同形词仍可能有不同意义；只看拼写没有利用结构。","孤立的词频不能表达题干所强调的邻域关系。","讲义讨论余弦相似性的局限，并非保证它总等于语义相似性。"],
+      "terms":[{"en":"Topology-aware similarity","zh":"拓扑感知相似性"},{"en":"Neighborhood structure","zh":"邻域结构"}],"refs":[{"page":203,"reasonZh":"Similarity Measure 支柱的图结构与嵌入示意；文字定义对应 Mock Quiz Q5。"}],"sourceQuestions":[5],"difficulty":"基础"
+    },
+    {
+      "id":"general-06","topic":"general","form":"scenario","prompt":"A user says, 'I cannot miss tomorrow's meeting.' An assistant checks whether the user wants a reminder instead of treating the words as an isolated statement. Which capability is most directly involved?",
+      "options":["Named entity recognition","Intention awareness","Sentence boundary detection","Lemmatization"],"answer":1,
+      "explanationZh":"意图感知关注用户想实现的目标。助手从‘不能错过会议’推测出潜在的提醒需求，并进一步确认用户是否需要设置提醒。",
+      "distractorsZh":["识别人名、日期等实体可能提供线索，但不等于识别用户想实现的目标。","","句界检测确定句子范围，不确定用户是否想设置提醒。","词形还原统一词的形式，不直接推断行动意图。"],
+      "terms":[{"en":"Intention awareness","zh":"意图感知"},{"en":"Human-computer interaction","zh":"人机交互"}],"refs":[{"page":204,"reasonZh":"Intention Awareness 支柱；用户目标的文字解释见 Mock Quiz Q6。"},{"page":207,"reasonZh":"NLU 的目标包括提取 intent 和 context。"}],"sourceQuestions":[6],"difficulty":"应用"
+    },
+    {
+      "id":"general-07","topic":"general","form":"definition","prompt":"What is the distinction between explainability and interpretability?",
+      "options":["Explainability: how the model works; interpretability: why a particular decision was made","Explainability: checking factual correctness; interpretability: checking grammatical correctness","Explainability: why a particular decision was made; interpretability: how the model works","Explainability and interpretability are both defined solely by prediction accuracy"],"answer":2,
+      "explanationZh":"Explainability 关注特定决策的原因；interpretability 关注模型的内部机制。讲义将两者都列为模块化模型的收益。",
+      "distractorsZh":["与本题明确采用的 Mock Quiz Q7 区分恰好相反；这里按课程定义作答。","事实核查和语法检查不是该题给出的解释性定义。","","准确率衡量预测是否正确，不能替代对决策原因或模型机制的理解。"],
+      "terms":[{"en":"Explainability","zh":"决策可解释性"},{"en":"Interpretability","zh":"模型可理解性"}],"refs":[{"page":210,"reasonZh":"同时列出 interpretability 与 explainability；本题定义以 Mock Quiz Q7 为准。"}],"sourceQuestions":[7],"difficulty":"基础","noteZh":"术语区分沿用 Mock Q7。"
+    },
+    {
+      "id":"general-08","topic":"general","form":"workflow","prompt":"Which design follows the Suitcase Model?",
+      "options":["Use only a spell checker and omit meaning and context.","Treat every NLU task as fully independent of all other tasks.","Require every module to perform exactly the same operation.","Organize interacting syntactic, semantic, and pragmatic subtasks into a modular system."],"answer":3,
+      "explanationZh":"行李箱模型组合句法、语义、语用三层任务。模块可单独更新、评估和并行开发，处理结果又相互影响。",
+      "distractorsZh":["只纠错覆盖不了语义和语用。","与讲义关于任务相互关联的说明冲突。","不同模块承担不同任务，而非重复同一操作。",""],
+      "terms":[{"en":"Suitcase Model","zh":"行李箱模型"},{"en":"Syntactics / Semantics / Pragmatics","zh":"句法 / 语义 / 语用"}],"refs":[{"page":210,"reasonZh":"三层任务图与十项模块化收益。"},{"page":208,"reasonZh":"任务间关联的明确说明。"}],"sourceQuestions":[2],"difficulty":"应用"
+    },
+    {
+      "id":"microtext-01","topic":"microtext","form":"scenario","prompt":"A system rewrites 'c u l8r' as 'see you later' before semantic analysis. Which task is being performed?",
+      "options":["Microtext normalization","Named entity recognition","Anaphora resolution","Personality recognition"],"answer":0,
+      "explanationZh":"微文本规范化将短信、社交媒体中的非正式表达转为较标准的语言形式，减少后续分析面对的拼写差异。讲义使用 c u l8r 作为例子。",
+      "distractorsZh":["","这里没有识别人名、机构名等实体类型。","这里没有把代词关联到先行词。","这里没有推断人格特质。"],
+      "terms":[{"en":"Microtext normalization","zh":"微文本规范化"},{"en":"Informal text","zh":"非正式文本"}],"refs":[{"page":213,"reasonZh":"非正式文本、缩写和表情的规范化示例。"}],"sourceQuestions":[8,10],"difficulty":"基础"
+    },
+    {
+      "id":"microtext-02","topic":"microtext","form":"method","prompt":"With insertion, deletion, and substitution each costing one, what is the Levenshtein distance from 'txt' to 'text'?",
+      "options":["0","1","2","4"],"answer":1,
+      "explanationZh":"在 t 与 x 之间插入 e，一次编辑即可得到 text，所以距离为 1。编辑距离提供拼写候选，具体选择还需结合语境。",
+      "distractorsZh":["两字符串不同，不是零次编辑。","","一次插入已经足够，不需要两次。","最少编辑次数并不等于目标字符串的长度。"],
+      "terms":[{"en":"Levenshtein distance","zh":"编辑距离"},{"en":"Insertion","zh":"插入"}],"refs":[{"page":213,"reasonZh":"非标准形式规范化的任务背景；编辑距离的文字定义来自 Mock Quiz Q9。"},{"page":216,"reasonZh":"表 2.2 将基于字符串相似性的 orthographic matching 列入方法比较。"}],"sourceQuestions":[9],"difficulty":"应用"
+    },
+    {
+      "id":"microtext-03","topic":"microtext","form":"resource","prompt":"Which dataset is designed for normalizing informal social-media text?",
+      "options":["LIWC","SenticNet","LexNorm","WordNet"],"answer":2,
+      "explanationZh":"讲义表 2.1 列出 LexNorm1.1 与 LexNorm1.2，均属于文本规范化数据资源。其他选项分别涉及情感知识、词汇语义或心理语言学分析。",
+      "distractorsZh":["LIWC 不是表中这两个版本对应的名称。","SenticNet 是讲义其他章节讨论的情感常识资源，不是 LexNorm 的别名。","","WordNet 是词汇语义资源，不是这两个规范化语料版本的名称。"],
+      "terms":[{"en":"LexNorm","zh":"词汇规范化数据集"},{"en":"Corpus","zh":"语料库"}],"refs":[{"page":216,"reasonZh":"表 2.1 的 LexNorm1.1、LexNorm1.2 两行。"}],"sourceQuestions":[12],"difficulty":"基础"
+    },
+    {
+      "id":"microtext-04","topic":"microtext","form":"resource","prompt":"Which resource provides pronunciation entries for English words?",
+      "options":["WSJ","LexNorm1.2","SMS-M","CMUdict"],"answer":3,
+      "explanationZh":"CMUdict 是 Carnegie Mellon University Pronouncing Dictionary，列在表 2.1 的 Phonetic 类别。发音词典可以为语音匹配提供信息。",
+      "distractorsZh":["WSJ 对应 Wall Street Journal 文本语料。","LexNorm1.2 在该表的 Text 类别中。","SMS-M 是手机短信文本资源。",""],
+      "terms":[{"en":"Pronouncing dictionary","zh":"发音词典"},{"en":"Phonetic matching","zh":"语音匹配"}],"refs":[{"page":216,"reasonZh":"表 2.1 Phonetic 部分的 CMUdict 行。"}],"sourceQuestions":[8,12],"difficulty":"基础"
+    },
+    {
+      "id":"microtext-05","topic":"microtext","form":"method","prompt":"A search system treats 'automobile' and 'car' as synonyms. Which operation implements query expansion?",
+      "options":["Search for both automobile and car when the query contains automobile.","Stem automobile without adding any synonym to the query.","Add car to automobile-containing documents during indexing, while leaving the query unchanged.","Correct misspellings in automobile without searching for a synonym."],"answer":0,
+      "explanationZh":"查询包含 automobile 时也查找 car，是在查询端利用同义关系扩展检索。若在建索引时把含 automobile 的文档同时索引到 car，则属于索引端扩展。",
+      "distractorsZh":["","词干处理形式变化，不等于扩展同义词查询。","这是讲义中另一个方案：在文档索引端扩展，不是题目要求的查询端扩展。","拼写纠错和同义词扩展是不同操作。"],
+      "terms":[{"en":"Query expansion","zh":"查询扩展"},{"en":"Synset","zh":"同义词集"}],"refs":[{"page":215,"reasonZh":"同义词、等价类索引与查询扩展的 automobile/car 示例。"}],"sourceQuestions":[8,10],"difficulty":"应用"
+    },
+    {
+      "id":"microtext-06","topic":"microtext","form":"challenge","prompt":"Why can a fixed abbreviation-replacement dictionary be insufficient for microtext normalization?",
+      "options":["Every abbreviation must first receive a PERSON or ORGANIZATION tag.","The intended expansion of an abbreviation can depend on context.","A dictionary entry automatically determines whether the speaker is being sarcastic.","Lowercasing alone guarantees the correct expansion of every abbreviation."],"answer":1,
+      "explanationZh":"词典替换适合处理已知形式；遇到多义缩写和俚语时，还需要上下文来选择恰当的展开或解释。",
+      "distractorsZh":["普通缩写并不一定是人名或机构名，NER 不是每次替换的必要前提。","","固定词条通常不足以确定说话者的讽刺意图。","大小写统一不能解决一词多种展开或语境歧义。"],
+      "terms":[{"en":"Abbreviation ambiguity","zh":"缩写歧义"},{"en":"Dictionary-based replacement","zh":"基于词典的替换"}],"refs":[{"page":213,"reasonZh":"缩写和非正式表达的任务背景。"},{"page":216,"reasonZh":"表 2.2 比较不同规范化方法所利用的信息。"}],"sourceQuestions":[8,11],"difficulty":"应用"
+    },
+    {
+      "id":"sbd-01","topic":"sbd","form":"definition","prompt":"Which output is directly produced by sentence boundary detection?",
+      "options":["A personality profile for the author","A synonym set for each noun","A division of a text into sentences","A sentiment score for every product aspect"],"answer":2,
+      "explanationZh":"SBD 确定句子边界。sentence tokenizer 将文本切成句子，word tokenizer 将文本切成词，两者的切分粒度不同。",
+      "distractorsZh":["人格识别不是划分句界。","同义词集属于词汇语义资源。","","方面情感分析需要其他语义、语用处理。"],
+      "terms":[{"en":"Sentence boundary detection / disambiguation","zh":"句子边界检测 / 消歧"},{"en":"Sentence tokenizer","zh":"句子分词器"}],"refs":[{"page":218,"reasonZh":"用多个含句点的句子展示边界识别。"}],"sourceQuestions":[13,14],"difficulty":"基础"
+    },
+    {
+      "id":"sbd-02","topic":"sbd","form":"scenario","prompt":"In 'Dr. Lee arrived. The meeting began.', which period is clearly internal to an abbreviation rather than the end of a sentence?",
+      "options":["The period after arrived","The period after began","Every period is necessarily a sentence boundary","The period after Dr"],"answer":3,
+      "explanationZh":"Dr. 是称谓缩写，此处的句点不能用来把 Dr. 与 Lee 拆开。第 218 页的 Dr. Lawson、J. M. Freeman Jr. 等例子展示了同类问题。",
+      "distractorsZh":["arrived 后结束了第一个句子。","began 后结束了第二个句子。","缩写与句末共享句点，所以不能见句点就断句。",""],
+      "terms":[{"en":"Abbreviation","zh":"缩写"},{"en":"Sentence boundary","zh":"句子边界"}],"refs":[{"page":218,"reasonZh":"Dr.、姓名首字母和 Jr. 等缩写中的句点。"}],"sourceQuestions":[13],"difficulty":"应用"
+    },
+    {
+      "id":"sbd-03","topic":"sbd","form":"challenge","prompt":"Why should an SBD system treat capitalization as a useful clue rather than an infallible rule?",
+      "options":["A capitalized name can occur inside a sentence.","Capitalization can replace punctuation and context in every domain.","Every capitalized token must start a new sentence.","Detecting a capital letter is equivalent to identifying a sentence's main verb."],"answer":0,
+      "explanationZh":"大小写是句界线索之一。Dr. Lawson 中的 Lawson 以大写开头，却位于句中，因此还需结合缩写、标点和上下文。",
+      "distractorsZh":["","没有这种跨领域保证；大小写不规范的文本尤其不能依赖这一条线索。","专名、缩写都可能在句中出现。","大写检测不是句法分析，不能由此确定主谓结构。"],
+      "terms":[{"en":"Capitalization","zh":"大小写特征"},{"en":"Contextual clue","zh":"上下文线索"}],"refs":[{"page":218,"reasonZh":"Dr. Lawson 等句中大写专名说明单一规则的局限。"}],"sourceQuestions":[17],"difficulty":"应用"
+    },
+    {
+      "id":"sbd-04","topic":"sbd","form":"resource","prompt":"Which resource provides clinical text that can be used to evaluate sentence boundary detection?",
+      "options":["LexNorm","MIMIC","LIWC","SIGMORPHON"],"answer":1,
+      "explanationZh":"讲义表 2.4 列出 MIMIC 临床语料，表 2.6 也报告了其 SBD 结果。文本 corpus 属于语言数据集，同一资源可以服务多个任务。",
+      "distractorsZh":["LexNorm 在微文本规范化资源表中。","","LIWC 不是该 SBD 表所列的临床资源。","SIGMORPHON 出现在形态学/词形还原资源中，不是此处的临床语料。"],
+      "terms":[{"en":"MIMIC","zh":"重症监护医疗信息资源"},{"en":"Corpus / dataset","zh":"语料库 / 数据集"}],"refs":[{"page":219,"reasonZh":"表 2.4 的 MIMIC 行。"},{"page":221,"reasonZh":"表 2.6 含 MIMIC 上的 SBD 结果，虽页面标题写 POS Tagging。"}],"sourceQuestions":[15],"difficulty":"基础","noteZh":"Mock Q15 选 Penn Treebank；讲义表 2.4 同时列有 MIMIC。"
+    },
+    {
+      "id":"sbd-05","topic":"sbd","form":"workflow","prompt":"A parser receives 'Dr.' as one sentence and 'Lawson arrived.' as another because of incorrect splitting. What is the most direct risk?",
+      "options":["The error changes formatting only and can never affect parsing.","Each fragment is guaranteed to retain the original sentence's full syntactic structure.","Downstream analysis loses the intended sentence context.","Later POS tagging no longer needs contextual information."],"answer":2,
+      "explanationZh":"错误断句改变后续模型看到的上下文，可能影响句法分析、实体识别、指代或情感分析。Dr. 与 Lawson 被拆开就是典型的误差传播。",
+      "distractorsZh":["句界错误会改变解析器的输入，不只是显示格式问题。","切断 Dr. 与 Lawson 破坏了原有组合，不能保证保留完整结构。","","断句不会消除词性对上下文的依赖，错误断句还可能损伤它。"],
+      "terms":[{"en":"Downstream task","zh":"下游任务"},{"en":"Error propagation","zh":"误差传播"}],"refs":[{"page":218,"reasonZh":"缩写导致的句界歧义。"},{"page":208,"reasonZh":"NLU 任务相互关联的总体说明。"}],"sourceQuestions":[16],"difficulty":"应用"
+    },
+    {
+      "id":"sbd-06","topic":"sbd","form":"evaluation","prompt":"What should be checked before comparing reported SBD performance scores?",
+      "options":["Only whether one percentage is numerically larger than the other","Only whether both methods are described as neural models","Only whether the results are reported under a slide titled POS Tagging","The dataset, evaluation measure, and experimental setting"],"answer":3,
+      "explanationZh":"第 221 页左表是 SBD 性能表，列有 Accuracy、F1、NIST 等不同 measure，以及不同语料。不能把不同指标、数据和实验条件下的数值直接按大小当作统一排行榜。",
+      "distractorsZh":["不同指标的方向和含义可能不同；误差率也不是越大越好。","同属神经模型也可能使用不同数据、划分和指标。","该页标题虽是 POS Tagging，左表却是 SBD；不能只凭页标题判断实验。",""],
+      "terms":[{"en":"Evaluation measure","zh":"评估指标"},{"en":"Experimental setting","zh":"实验条件"}],"refs":[{"page":221,"reasonZh":"左侧表 2.6 列出 SBD 的数据集、结果与不同度量。"}],"sourceQuestions":[15,16],"difficulty":"应用"
+    },
+    {
+      "id":"pos-01","topic":"pos","form":"definition","prompt":"Which annotation is an example of POS tagging rather than named entity recognition?",
+      "options":["Assigning noun, verb, and adjective labels to words in context","Assigning PERSON and ORGANIZATION labels to name spans","Linking 'she' to a previously mentioned person","Assigning positive or negative sentiment to a review"],"answer":0,
+      "explanationZh":"POS tagging 标注词在上下文中的语法类别。第 220 页给出 PRP、VBZ、NNS 等标签；这些标签与 NER 的 PERSON、ORGANIZATION 是不同层面的信息。",
+      "distractorsZh":["","这是命名实体识别的输出。","这是指代消解。","这是情感极性判断。"],
+      "terms":[{"en":"Part-of-speech tag","zh":"词性标签"},{"en":"Noun / verb / adjective","zh":"名词 / 动词 / 形容词"}],"refs":[{"page":220,"reasonZh":"She sells seashells... 的逐词词性标签。"}],"sourceQuestions":[18],"difficulty":"基础"
+    },
+    {
+      "id":"pos-02","topic":"pos","form":"scenario","prompt":"In 'on my back', what is the POS tag of 'back'?",
+      "options":["JJ (adjective)","NN (noun)","RB (adverb)","VB (verb)"],"answer":1,
+      "explanationZh":"第 220 页明确标出 on my back 中的 back 为 NN。相同词形在 the back door 中为 JJ，在 win the voters back 中为 RB，在 to back the bill 中为 VB，说明词性依赖用法。",
+      "distractorsZh":["JJ 对应讲义的 the back door 用法。","","RB 对应 win the voters back 的用法。","VB 对应 to back the bill 的用法。"],
+      "terms":[{"en":"Context-dependent tagging","zh":"依赖上下文的标注"},{"en":"NN","zh":"单数或不可数名词标签"}],"refs":[{"page":220,"reasonZh":"back 的四种词性对照例子。"}],"sourceQuestions":[19],"difficulty":"应用"
+    },
+    {
+      "id":"pos-03","topic":"pos","form":"resource","prompt":"Which abbreviation refers to the Wall Street Journal corpus?",
+      "options":["NPS","Genia","WSJ","T-POS"],"answer":2,
+      "explanationZh":"表 2.7 中 WSJ 对应 Wall Street Journal，列在 Formal 类别。Mock Q20 的资源答案是 Penn Treebank。",
+      "distractorsZh":["NPS 在该表中属于社交媒体语料。","Genia 是生物医学语料。","","T-POS 在该表中属于社交媒体语料。"],
+      "terms":[{"en":"Wall Street Journal (WSJ)","zh":"《华尔街日报》语料"},{"en":"Penn Treebank","zh":"宾州树库"}],"refs":[{"page":221,"reasonZh":"右侧表 2.7 的 Formal / WSJ 行。"}],"sourceQuestions":[20],"difficulty":"基础"
+    },
+    {
+      "id":"pos-04","topic":"pos","form":"scenario","prompt":"In 'She will can the peaches', assume 'can' means 'preserve in cans'. What is the role of 'can' in this sentence?",
+      "options":["A noun naming a container","An adjective modifying peaches","A pronoun referring to She","A lexical verb following the modal will"],"answer":3,
+      "explanationZh":"can 表示‘把桃子装罐保存’，在情态助动词 will 后用实义动词原形。这里的句法和词义共同确定其动词用法。",
+      "distractorsZh":["can 可以在别处作名词，但在这里不是。","本句的 can 不是修饰 peaches 的形容词。","can 不是代词。",""],
+      "terms":[{"en":"Lexical verb","zh":"实义动词"},{"en":"Modal auxiliary","zh":"情态助动词"}],"refs":[{"page":220,"reasonZh":"相同词形可有不同词性的背景例子；can 句子由 Mock Quiz Q19 改写。"}],"sourceQuestions":[19],"difficulty":"应用","noteZh":"Mock Q19 的解析有误：此句 can 的动词用法可以确定。"
+    },
+    {
+      "id":"pos-05","topic":"pos","form":"method","prompt":"Which feature set captures a word's identity, surrounding words, and internal structure for POS tagging?",
+      "options":["Lexical, contextual, and morphological information","PERSON, ORGANIZATION, and LOCATION entity categories","Positive, negative, and neutral sentiment categories","Openness, conscientiousness, and extraversion scores"],"answer":0,
+      "explanationZh":"表 2.8 列出 Lexical、Contextual、Morphological 等特征。词本身、邻词上下文和形态信息都能为词性判断提供线索。Mock Q21 给定答案为 Lemmatization。",
+      "distractorsZh":["","这些是 NER 的典型实体类别，不是表 2.8 列出的特征组。","这些是情感极性类别，不是该表的词性特征组。","这些是人格维度，不是该 POS 方法表的特征列。"],
+      "terms":[{"en":"Lexical features","zh":"词汇特征"},{"en":"Morphological features","zh":"形态特征"}],"refs":[{"page":222,"reasonZh":"表 2.8 的 POS 方法特征列。"}],"sourceQuestions":[21],"difficulty":"基础"
+    },
+    {
+      "id":"pos-06","topic":"pos","form":"evaluation","prompt":"A POS tagger labels 190 of 200 evaluated tokens correctly. Under token accuracy, what is its score?",
+      "options":["5%","95%","190%","200%"],"answer":1,
+      "explanationZh":"Token accuracy = 正确标注 token 数 / 评估 token 总数 = 190/200 = 95%。比较不同系统时，还需核对测试集和标签集。",
+      "distractorsZh":["5% 是这里的错误比例，不是准确率。","","准确率不会因正确数为 190 就等于 190%。","总 token 数不是百分比结果。"],
+      "terms":[{"en":"Token accuracy","zh":"词元级准确率"}],"refs":[{"page":222,"reasonZh":"表 2.9 的 POS 结果和 Acc. 指标；190/200 为自编计算。"}],"sourceQuestions":[20,21],"difficulty":"应用"
+    },
+    {
+      "id":"chunk-01","topic":"chunk","form":"definition","prompt":"Why is text chunking also called shallow parsing?",
+      "options":["It discards every syntactic grouping.","It translates each word into another language.","It groups words into phrases without requiring a full deep syntactic analysis.","It always produces a complete semantic knowledge graph."],"answer":2,
+      "explanationZh":"文本组块识别名词短语、动词短语等局部结构，通常不要求构建完整的深层句法树。第 223 页直接给出 shallow parsing 和 grouping of words in chunks 的说明。",
+      "distractorsZh":["组块恰恰要增加短语层面的结构。","翻译不是 chunking 的定义。","","完整语义知识图谱超出了浅层句法组块。"],
+      "terms":[{"en":"Text chunking","zh":"文本组块"},{"en":"Shallow parsing","zh":"浅层句法分析"}],"refs":[{"page":223,"reasonZh":"文本组块的定义与 shallow parsing 别名。"}],"sourceQuestions":[22,26],"difficulty":"基础"
+    },
+    {
+      "id":"chunk-02","topic":"chunk","form":"scenario","prompt":"For 'The bright student solved the puzzle', which bracketed span is a straightforward noun phrase chunk?",
+      "options":["[solved the]","[bright student solved]","[student solved the]","[The bright student]"],"answer":3,
+      "explanationZh":"The bright student 由限定词、形容词和中心名词构成完整的名词短语。其余候选跨越主语与谓语边界，或只截取了不完整的片段。",
+      "distractorsZh":["solved 是谓语动词，the 是后续名词短语的开头。","包含谓语 solved，不是所问的简单名词短语。","跨过主语与谓语边界。",""],
+      "terms":[{"en":"Noun phrase (NP)","zh":"名词短语"},{"en":"Chunk boundary","zh":"组块边界"}],"refs":[{"page":223,"reasonZh":"将相邻词组织为短语组块的定义，题中句子为自编。"}],"sourceQuestions":[22,26],"difficulty":"应用"
+    },
+    {
+      "id":"chunk-03","topic":"chunk","form":"workflow","prompt":"Which task produces grammatical-category labels that a chunker can use to identify phrase boundaries?",
+      "options":["POS tagging","Personality recognition","Sarcasm detection","Aspect sentiment classification"],"answer":0,
+      "explanationZh":"讲义的处理顺序是 POS tagging → text chunking。词性序列提供语法线索，帮助组块器确定短语边界。",
+      "distractorsZh":["","人格识别属于更后面的语用层任务。","讽刺识别不是该页所指的前置步骤。","方面情感分类不是该页描述的直接前置步骤。"],
+      "terms":[{"en":"Pipeline","zh":"流水线"},{"en":"POS tagging","zh":"词性标注"}],"refs":[{"page":223,"reasonZh":"文字明确说明 chunking follows POS tagging。"},{"page":210,"reasonZh":"行李箱图中 POS tagging 与 text chunking 的位置。"}],"sourceQuestions":[22,26],"difficulty":"基础"
+    },
+    {
+      "id":"chunk-04","topic":"chunk","form":"resource","prompt":"Which benchmark is commonly used to evaluate text chunking?",
+      "options":["LIWC","CoNLL2000","LexNorm1.1","SemCor"],"answer":1,
+      "explanationZh":"表 2.11 的文本组块结果反复使用 CoNLL2000，指标通常为 F1。Mock Q25 的资源答案为 Penn Treebank。",
+      "distractorsZh":["LIWC 不是该组块结果表反复使用的基准。","","LexNorm1.1 对应微文本规范化资源。","SemCor 在讲义中列作词义消歧数据集。"],
+      "terms":[{"en":"CoNLL-2000","zh":"文本组块基准"},{"en":"Benchmark","zh":"评测基准"}],"refs":[{"page":224,"reasonZh":"右侧表 2.11 的 Dataset 列。"}],"sourceQuestions":[25],"difficulty":"基础"
+    },
+    {
+      "id":"chunk-05","topic":"chunk","form":"method","prompt":"A chunker models transitions between hidden chunk labels and emissions of observed words. Which model matches this description?",
+      "options":["A linear-chain CRF that directly models the conditional label distribution","A k-means model clustering bag-of-words vectors","A hidden Markov model (HMM)","An independent token classifier with no label-transition model"],"answer":2,
+      "explanationZh":"Hidden states、transitions、emissions 对应 HMM 的隐藏状态、状态转移和观测发射。组块标签可作为隐状态，词序列作为观测。",
+      "distractorsZh":["CRF 可以做序列标注，但题干的隐藏状态转移和观测发射是 HMM 的建模描述。","无序向量聚类没有题干所述的状态转移与发射结构。","","独立 token 分类忽略了题干明确建模的标签转移。"],
+      "terms":[{"en":"Hidden Markov model (HMM)","zh":"隐马尔可夫模型"},{"en":"Sequence labeling","zh":"序列标注"}],"refs":[{"page":224,"reasonZh":"文本组块方法及序列上下文特征的比较背景；HMM 的指定模型来自 Mock Quiz Q23。"}],"sourceQuestions":[23],"difficulty":"应用"
+    },
+    {
+      "id":"chunk-06","topic":"chunk","form":"workflow","prompt":"How can phrase chunking support a later named-entity recognizer?",
+      "options":["By proving that every noun phrase is a person name","By replacing every word with its sentiment score","By eliminating the need to determine entity boundaries","By providing grouped spans that may serve as useful entity candidates"],"answer":3,
+      "explanationZh":"组块可为 NER 提供候选跨度和局部结构，例如把多词名字作为整体分析。NER 随后判断这些跨度是否为实体，并确定实体类型。",
+      "distractorsZh":["名词短语可能指普通事物，不一定是人名。","情感分数不是短语组块的输出。","实体边界仍需确定，chunk 边界也不保证就是实体边界。",""],
+      "terms":[{"en":"Candidate span","zh":"候选跨度"},{"en":"Named entity recognition","zh":"命名实体识别"}],"refs":[{"page":223,"reasonZh":"短语组块的结构作用。"},{"page":242,"reasonZh":"NER 标签展示实体跨度，与一般组块作对照。"}],"sourceQuestions":[24],"difficulty":"应用"
+    },
+    {
+      "id":"lemma-01","topic":"lemma","form":"scenario","prompt":"What is the common lemma of 'am', 'are', and 'is'?",
+      "options":["be","being","was","amareis"],"answer":0,
+      "explanationZh":"词形还原把屈折形式映射到词典词条形。am、are、is 的共同 lemma 是 be。",
+      "distractorsZh":["","being 是另一种屈折形式，不是这里的词典形。","was 是过去式，不是这里要求的 lemma。","把词拼接起来不是词形还原。"],
+      "terms":[{"en":"Lemma","zh":"词元 / 词典形"},{"en":"Inflection","zh":"屈折变化"}],"refs":[{"page":226,"reasonZh":"am/are/is → be 及词典 headword 定义。"}],"sourceQuestions":[27,33],"difficulty":"基础"
+    },
+    {
+      "id":"lemma-02","topic":"lemma","form":"definition","prompt":"How does lemmatization differ from stemming?",
+      "options":["Stemming always returns a valid dictionary word, but lemmatization never does.","Lemmatization targets a dictionary headword; stemming may produce a truncated form such as 'automat'.","Lemmatization applies only to verbs, while stemming applies only to punctuation.","The two operations are defined solely by their execution speed."],"answer":1,
+      "explanationZh":"Lemmatization 以词典形为目标；stemming 通过后缀等规则产生词干，输出可以是 automat 这样的非词典形式。具体词干结果取决于算法。",
+      "distractorsZh":["恰恰是 stemming 的输出可能不是有效词条。","","词形还原不限于动词，词干提取也不是处理标点。","速度受实现和模型影响，不构成概念定义。"],
+      "terms":[{"en":"Lemmatization","zh":"词形还原"},{"en":"Stemming","zh":"词干提取"}],"refs":[{"page":226,"reasonZh":"词典形定义。"},{"page":227,"reasonZh":"词干提取与 automat 示例。"},{"page":229,"reasonZh":"democrat 词族的两种处理结果对照。"}],"sourceQuestions":[28,33],"difficulty":"基础"
+    },
+    {
+      "id":"lemma-03","topic":"lemma","form":"method","prompt":"Which pair gives the correct Porter stemming results?",
+      "options":["caresses → caresses; ponies → ponies","caresses → cat; ponies → horse","caresses → caress; ponies → poni","caresses → care; ponies → ponying"],"answer":2,
+      "explanationZh":"Porter 示例规则为 sses → ss（caresses → caress）、ies → i（ponies → poni）。poni 展示了词干可能采用非词典形式。",
+      "distractorsZh":["忽略了题目指定的后缀规则。","把词变为语义相关或无关词，不是这些规则的结果。","","没有按 sses/ies 规则处理。"],
+      "terms":[{"en":"Porter stemmer","zh":"Porter 词干提取算法"},{"en":"Suffix rule","zh":"后缀规则"}],"refs":[{"page":228,"reasonZh":"Porter 示例规则 sses → ss 与 ies → i。"}],"sourceQuestions":[28],"difficulty":"应用"
+    },
+    {
+      "id":"lemma-04","topic":"lemma","form":"scenario","prompt":"In 'She saw a bird', 'saw' is the past-tense verb, not the cutting tool. Which lemma should be selected?",
+      "options":["sawing","saw (the tool)","bird","see"],"answer":3,
+      "explanationZh":"此处 saw 是 see 的过去式，因此 lemma 为 see；工具名词 saw 则保留原形。词性同样影响 better 的还原：作形容词时可对应 good。",
+      "distractorsZh":["sawing 是另一种词形，不是 see 的词典形。","题目已经明确排除工具名词义。","bird 是句中另一词，不是 saw 的词元。",""],
+      "terms":[{"en":"POS-sensitive lemmatization","zh":"考虑词性的词形还原"},{"en":"Irregular form","zh":"不规则形式"}],"refs":[{"page":226,"reasonZh":"将屈折形式映射为词典形的原则；saw 例子来自 Mock Quiz Q32。"},{"page":229,"reasonZh":"词性区别与 lemmatization 的关系。"}],"sourceQuestions":[31,32],"difficulty":"应用"
+    },
+    {
+      "id":"lemma-05","topic":"lemma","form":"resource","prompt":"Which Python library provides WordNetLemmatizer?",
+      "options":["NLTK","spaCy","Gensim","scikit-learn"],"answer":0,
+      "explanationZh":"WordNetLemmatizer 来自 NLTK。Mock Q29–30 的例子对 running 指定 pos='v'，得到动词词元 run。",
+      "distractorsZh":["","spaCy 有自己的词形还原功能，但题目指定的 WordNetLemmatizer 类来自 NLTK。","Gensim 不是题中指定类的提供者。","scikit-learn 的机器学习工具不等于题目指定的 NLTK 类。"],
+      "terms":[{"en":"NLTK (Natural Language Toolkit)","zh":"自然语言工具包"},{"en":"WordNetLemmatizer","zh":"WordNet 词形还原器"}],"refs":[{"page":226,"reasonZh":"词形还原的定义背景；类名与 Python 调用直接来自 Mock Quiz Q29–30，而非该页原文。"},{"page":231,"reasonZh":"词形还原资源和方法概览。"}],"sourceQuestions":[29,30],"difficulty":"基础"
+    },
+    {
+      "id":"lemma-06","topic":"lemma","form":"resource","prompt":"Which shared task includes lemmatization as a morphological analysis task?",
+      "options":["LexNorm1.1","SIGMORPHON 2019","CoNLL-2003 NER only","SenticNet 9"],"answer":1,
+      "explanationZh":"表 2.12 将 SIGMORPHON 2019 shared task 列为词形还原资源，同表还包含 UD、UniMorph 和 CELEX。",
+      "distractorsZh":["LexNorm 是微文本规范化资源。","","此选项指定的是 NER，不是该表的 shared task 行。","SenticNet 是知识资源，不是这一行的词形还原 shared task。"],
+      "terms":[{"en":"SIGMORPHON","zh":"计算形态学相关共享任务系列"},{"en":"Shared task","zh":"共享评测任务"}],"refs":[{"page":231,"reasonZh":"表 2.12 的 SIGMORPHON 2019 shared task 行。"}],"sourceQuestions":[28,29,32],"difficulty":"基础"
+    },
+    {
+      "id":"wsd-01","topic":"wsd","form":"scenario","prompt":"In 'The fisherman sat on the bank beside the river', what does word sense disambiguation select for 'bank'?",
+      "options":["A positive sentiment label","A sentence boundary","The river-edge sense","An organization label regardless of context"],"answer":2,
+      "explanationZh":"WSD 根据上下文在候选词义中作选择。fisherman、river 等线索支持河岸义，而不是金融机构义。第 237 页展示相同拼写对应不同意义，第 238 页显示 target word with its context 的建模方式。",
+      "distractorsZh":["情感标签不是 bank 的词义。","句界不是词义选择的输出。","","把所有 bank 都当作机构会忽略本句语境。"],
+      "terms":[{"en":"Word sense disambiguation (WSD)","zh":"词义消歧"},{"en":"Sense","zh":"词义"}],"refs":[{"page":237,"reasonZh":"同形异义词的图示。"},{"page":238,"reasonZh":"目标词与上下文用于选择词义。"}],"sourceQuestions":[38,39],"difficulty":"应用"
+    },
+    {
+      "id":"wsd-02","topic":"wsd","form":"method","prompt":"A WSD system learns from examples pairing a target word and its context with a gold sense label. Which approach is this?",
+      "options":["Unsupervised clustering with no labels","Knowledge-based WSD using only dictionary-gloss overlap","Unsupervised contextual pretraining without sense labels","Supervised WSD"],"answer":3,
+      "explanationZh":"Gold sense label 提供监督信号，模型据此学习从目标词及其上下文预测词义。知识式 WSD 则利用释义和知识关系；监督式模型可采用 RNN 等结构。",
+      "distractorsZh":["题干明确有词义标签，不是无标签聚类。","只比较词典释义的知识式方法不同于用 gold sense 样例训练预测模型。","仅无监督预训练不等于题干所述的词义标签监督训练。",""],
+      "terms":[{"en":"Supervised WSD","zh":"监督式词义消歧"},{"en":"Gold sense label","zh":"人工参考词义标签"}],"refs":[{"page":238,"reasonZh":"知识式与监督式 WSD 对照图。"},{"page":240,"reasonZh":"代表性 WSD 技术表中的监督模型。"}],"sourceQuestions":[34,37],"difficulty":"基础"
+    },
+    {
+      "id":"wsd-03","topic":"wsd","form":"resource","prompt":"Which pair correctly identifies a WSD dataset and a lexical knowledge base?",
+      "options":["SemCor: WSD dataset; WordNet: lexical knowledge base","SemCor: lexical knowledge base; WordNet: WSD evaluation dataset","LexNorm: WSD dataset; LIWC: WordNet sense inventory","SemCor: microtext normalization benchmark; WordNet: POS tag set"],"answer":0,
+      "explanationZh":"SemCor 是 WSD 数据集，提供语义标注样本；WordNet 是词汇知识库，提供词义及语义关系。两类资源可以配合使用。",
+      "distractorsZh":["","颠倒了这两个资源在讲义两张表中的类别。","LexNorm 主要对应微文本规范化，LIWC 也不是 WordNet 的词义清单。","SemCor 在此处是语义标注语料，WordNet 提供词汇语义知识而非仅一套 POS 标签。"],
+      "terms":[{"en":"SemCor","zh":"语义标注语料"},{"en":"WordNet","zh":"词汇语义知识库"}],"refs":[{"page":239,"reasonZh":"表 3.2 的 SemCor 与表 3.3 的 WordNet。"}],"sourceQuestions":[35],"difficulty":"基础"
+    },
+    {
+      "id":"wsd-04","topic":"wsd","form":"evaluation","prompt":"A WSD system attempts all 50 evaluation instances and chooses the correct sense in 40. What is its accuracy?",
+      "options":["20%","80%","125%","40%"],"answer":1,
+      "explanationZh":"Accuracy = 正确词义预测数 / 总实例数 = 40/50 = 80%。讲义结果表同时出现 Acc. 和 F1，比较时需核对指标。",
+      "distractorsZh":["20% 是错误率。","","分子分母颠倒会得到 125%，不可能是此处准确率。","40 是正确实例数，不是对 50 个样本的百分比。"],
+      "terms":[{"en":"Accuracy","zh":"准确率"},{"en":"Evaluation instance","zh":"评估实例"}],"refs":[{"page":240,"reasonZh":"WSD 技术表包含 Acc.、F1 等结果指标；40/50 是自编数字。"}],"sourceQuestions":[40],"difficulty":"应用"
+    },
+    {
+      "id":"wsd-05","topic":"wsd","form":"method","prompt":"An unlabeled collection of 'bank' occurrences is grouped by contextual similarity using k-means. Which caution is correct?",
+      "options":["The algorithm necessarily uses a gold sense label for every training occurrence.","Each cluster is guaranteed to be a correctly named WordNet sense without any mapping.","The clusters may suggest senses, but alignment to a predefined sense inventory is a separate issue.","Clustering automatically identifies every sentence boundary."],"answer":2,
+      "explanationZh":"K-means 可依据语境相似性归纳词义簇。若要输出 WordNet 等资源中的标准词义，还需把簇与词义标签对齐。",
+      "distractorsZh":["题干明确无标签，不能声称每例都使用 gold sense。","聚类的编号本身没有标准词义名称保证。","","句界识别是另一个任务。"],
+      "terms":[{"en":"Word sense induction","zh":"词义归纳"},{"en":"Sense inventory","zh":"词义清单"}],"refs":[{"page":238,"reasonZh":"词义选择与上下文的背景图；k-means 方法来自 Mock Quiz Q41。"},{"page":239,"reasonZh":"WordNet 等可提供预定义词义知识的资源。"}],"sourceQuestions":[41],"difficulty":"应用"
+    },
+    {
+      "id":"wsd-06","topic":"wsd","form":"definition","prompt":"What characterizes a cool language?",
+      "options":["It contains only temperature words.","Its sentences never require background knowledge.","It is defined by a large number of emojis.","Understanding relies more heavily on context."],"answer":3,
+      "explanationZh":"Cool language 强调对上下文的依赖：理解表达时，需要利用语境、共享知识等信息。",
+      "distractorsZh":["cool 不是这里的字面温度含义。","与题目所考的上下文依赖相反。","表情数量不是此术语的定义。",""],
+      "terms":[{"en":"Cool language","zh":"较依赖上下文的语言（课程用语）"},{"en":"Context dependence","zh":"语境依赖"}],"refs":[{"page":168,"reasonZh":"文化与常识影响语言的相关背景；cool language 的明确文字定义来自 Mock Quiz Q36，本页未直接定义该术语。"}],"sourceQuestions":[36],"difficulty":"基础","noteZh":"术语定义见 Mock Q36；讲义 p168 补充语境背景。"
+    },
+    {
+      "id":"ner-01","topic":"ner","form":"scenario","prompt":"In 'Maya works at Acme Corporation', which output is a named-entity annotation?",
+      "options":["Maya: PERSON; Acme Corporation: ORGANIZATION","Maya: positive; Acme Corporation: negative","Maya: verb; Acme Corporation: adverb","Maya: first sentence; Acme Corporation: second sentence"],"answer":0,
+      "explanationZh":"NER 识别文本中的实体跨度并赋予类别。题中 Maya 是人名，Acme Corporation 是机构名。这些实体类别不同于词性、情感或句子编号。",
+      "distractorsZh":["","这是情感标签，且题句不支持这种极性判断。","这是词性标签，不是实体类别。","这不是句子边界的合理输出，也不是 NER。"],
+      "terms":[{"en":"Named entity","zh":"命名实体"},{"en":"Organization","zh":"机构"}],"refs":[{"page":242,"reasonZh":"NER 标注与资源的概览。"},{"page":244,"reasonZh":"PER、LOC 等实体标签与跨度示例。"}],"sourceQuestions":[42,44],"difficulty":"应用"
+    },
+    {
+      "id":"ner-02","topic":"ner","form":"method","prompt":"What does CRF stand for in sequence-labeling NER?",
+      "options":["A model that independently labels each token without label dependencies","Conditional Random Field","A hidden Markov model with generative transition and emission probabilities","An unsupervised clustering model for grouping context vectors"],"answer":1,
+      "explanationZh":"CRF 是 Conditional Random Field（条件随机场），可建模序列标签之间的依赖。讲义的 NER 技术表包含 LSTM-CRF。",
+      "distractorsZh":["独立分类器不等于 CRF；CRF 可以建模标签间依赖。","","这是 HMM 的描述，不是 CRF 的全称或同一概率建模方式。","这是语境聚类的描述，不是 CRF。"],
+      "terms":[{"en":"Conditional Random Field (CRF)","zh":"条件随机场"},{"en":"Sequence labeling","zh":"序列标注"}],"refs":[{"page":244,"reasonZh":"代表性 NER 技术表含 LSTM-CRF；模型名称与用途见 Mock Quiz Q43。"}],"sourceQuestions":[43],"difficulty":"基础"
+    },
+    {
+      "id":"ner-03","topic":"ner","form":"resource","prompt":"Which benchmark is used for named-entity recognition?",
+      "options":["CoNLL-2000 chunking","LexNorm1.2","CoNLL-2003","SIGMORPHON 2019"],"answer":2,
+      "explanationZh":"CoNLL-2003 对应命名实体识别；CoNLL-2000 对应文本组块。年份是区分这两个评测基准的关键信息。",
+      "distractorsZh":["此选项明确指 CoNLL-2000 文本组块基准。","LexNorm1.2 主要对应此课的微文本规范化。","","SIGMORPHON 2019 在词形还原表中。"],
+      "terms":[{"en":"CoNLL-2003","zh":"命名实体识别基准"},{"en":"NER benchmark","zh":"实体识别评测基准"}],"refs":[{"page":242,"reasonZh":"表 3.7 NER datasets 中的 CoNLL-2003。"},{"page":224,"reasonZh":"CoNLL2000 的组块结果，供年份区分。"}],"sourceQuestions":[45],"difficulty":"基础"
+    },
+    {
+      "id":"ner-04","topic":"ner","form":"scenario","prompt":"Using BIO tags, how should the two-token person name 'Ada Lovelace' be marked when it forms one complete entity span?",
+      "options":["O, O","I-PER, B-PER","B-PER, B-PER","B-PER, I-PER"],"answer":3,
+      "explanationZh":"BIO 中 B 标实体起始，I 标同一实体内部，O 标实体外部。因此 Ada 为 B-PER，Lovelace 为 I-PER。",
+      "distractorsZh":["O 表示实体外，不能表示题中已给定的人名跨度。","B/I 顺序颠倒。","两个 B 会把它们表示为两个分别开始的实体。",""],
+      "terms":[{"en":"BIO annotation","zh":"起始 / 内部 / 外部标注"},{"en":"Entity span","zh":"实体跨度"}],"refs":[{"page":242,"reasonZh":"表 3.6 三种 NER 标注方案。"}],"sourceQuestions":[42,43],"difficulty":"应用"
+    },
+    {
+      "id":"ner-05","topic":"ner","form":"evaluation","prompt":"Under exact-match entity evaluation, a model predicts 10 entities, 8 are correct, and the gold set contains 12 entities. What is F1?",
+      "options":["Approximately 0.727","0.800","0.667","1.000"],"answer":0,
+      "explanationZh":"Precision = 8/10 = 0.8，Recall = 8/12 ≈ 0.667，F1 = 2PR/(P+R) = 16/22 ≈ 0.727。这里按完整实体的精确匹配计分。",
+      "distractorsZh":["","0.8 是 precision，不是 F1。","约 0.667 是 recall，不是 F1。","既有误报也有漏报，不可能 F1 为 1。"],
+      "terms":[{"en":"Precision","zh":"精确率"},{"en":"Recall","zh":"召回率"},{"en":"F1 score","zh":"精确率与召回率的调和平均"}],"refs":[{"page":244,"reasonZh":"NER 技术表的 F1 评估背景；公式对应 Mock Quiz Q46，数字自编。"}],"sourceQuestions":[46],"difficulty":"应用"
+    },
+    {
+      "id":"ner-06","topic":"ner","form":"workflow","prompt":"How can named-entity recognition support anaphora resolution and opinion-target detection?",
+      "options":["NER proves that all pronouns refer to the nearest noun.","Recognized entities can help identify what a later referring expression or opinion is about.","NER removes every reference to people from a document.","NER makes sentence context irrelevant."],"answer":1,
+      "explanationZh":"实体的类型和跨度可帮助判断后续指代表达的所指，进而确定评论谈论的方面或意见对象。讲义将这条依赖写为 NER → anaphora resolution → opinion targets。",
+      "distractorsZh":["最近名词启发式可能失败，NER 也不能证明此绝对规则。","","NER 的目标是识别而非一律删除人名。","实体类别及其所指常常依赖上下文。"],
+      "terms":[{"en":"Anaphora resolution","zh":"回指消解"},{"en":"Opinion target","zh":"意见对象"}],"refs":[{"page":241,"reasonZh":"NER → anaphora resolution → aspects/opinion targets 的明确说明。"}],"sourceQuestions":[44,49],"difficulty":"应用"
+    },
+    {
+      "id":"concept-01","topic":"concept","form":"scenario","prompt":"A parser extracts GET_ALONG_WITH and HAIR_DRESSER from a sentence rather than retaining only isolated words. Which goal does this illustrate?",
+      "options":["Assigning a POS tag independently to each individual token","Extracting only proper names of persons and organizations","Extracting meaningful multiword concepts","Reducing every token to a single affix-stripped stem"],"answer":2,
+      "explanationZh":"概念抽取可以保留多词表达的整体意义。Mock Quiz Q48 用 Sentic Parser 的 get_along_with 与 hair_dresser 作为例子；讲义第 245 页的 GET 组合也显示词与搭配的语义关系。概念比命名实体的范围更广。",
+      "distractorsZh":["逐词词性标签没有直接表示 get_along_with 这种整体概念。","普通动作或职业概念不必是专名，题目并不只做 NER。","","词干提取处理词形，不等于识别多词语义单位。"],
+      "terms":[{"en":"Concept extraction","zh":"概念抽取"},{"en":"Multiword expression","zh":"多词表达"},{"en":"Sentic Parser","zh":"Sentic 概念解析器"}],"refs":[{"page":245,"reasonZh":"GET 与不同搭配组合的概念示意。"},{"page":251,"reasonZh":"Structured CE 与 parsing 方法背景；Sentic Parser 的具体例子来自 Mock Quiz Q48。"}],"sourceQuestions":[48,49,50],"difficulty":"应用"
+    },
+    {
+      "id":"concept-02","topic":"concept","form":"method","prompt":"Which property tends to give a term a high inverse document frequency (IDF)?",
+      "options":["A term occurring in every document","A term with high frequency in one document, regardless of its document frequency","A term assigned a noun POS tag, regardless of corpus distribution","A term occurring in relatively few documents of the corpus"],"answer":3,
+      "explanationZh":"IDF 衡量词在语料中的稀有程度：出现文档越少，区分性通常越强。TF-IDF 再结合当前文档的词频，为候选关键词评分。",
+      "distractorsZh":["每篇文档都出现的词，IDF 区分性通常低。","这是 TF 相关信息；单凭文档内词频无法确定 IDF。","词性可以帮助候选筛选，但不是 IDF 的定义。",""],
+      "terms":[{"en":"Term frequency (TF)","zh":"词频"},{"en":"Inverse document frequency (IDF)","zh":"逆文档频率"}],"refs":[{"page":251,"reasonZh":"关键词与概念抽取方法表的背景；TF-IDF 的直接定义和用途来自 Mock Quiz Q47。"}],"sourceQuestions":[47],"difficulty":"基础"
+    },
+    {
+      "id":"concept-03","topic":"concept","form":"challenge","prompt":"Why can removing 'to' from 'flights to London' harm concept extraction?",
+      "options":["The word 'to' carries a relation that can distinguish the destination.","Every stopword is always a named entity.","Removing 'to' automatically translates the phrase into French.","Stopword lists contain only punctuation."],"answer":0,
+      "explanationZh":"第 246 页以 flights to London 说明 relational queries 可能需要停用词。to 表示目的地关系，删除后可能丢失重要信息。讲义同时给出 King of Denmark 和歌曲标题等保留情形。",
+      "distractorsZh":["","停用词不等于实体名。","删除单词不是自动翻译。","常见停用词包括 the、a、and、to、be 等词。"],
+      "terms":[{"en":"Stopword removal","zh":"停用词去除"},{"en":"Relational query","zh":"关系型查询"}],"refs":[{"page":246,"reasonZh":"明确列出 flights to London 与短语、歌曲标题等反例。"}],"sourceQuestions":[50,51],"difficulty":"应用"
+    },
+    {
+      "id":"concept-04","topic":"concept","form":"challenge","prompt":"What semantic distinction can be lost by blindly casefolding 'WHO' and 'who' into the same lowercase form?",
+      "options":["An inflected verb versus its dictionary lemma","An organization acronym versus an ordinary word","A sentence boundary versus an abbreviation period","An antecedent versus every pronoun that refers to it"],"answer":1,
+      "explanationZh":"第 248 页列出 WHO/who、ARM/arm、Polish/polish 等大小写敏感例子。casefolding 有助于统一用户输入，却也可能抹掉专名或缩写与普通词的区别，必须结合任务需求处理。",
+      "distractorsZh":["WHO/who 的差别不是动词屈折与 lemma 的差别。","","本例不涉及句点或句子边界。","这个例子考大小写带来的词汇/实体区别，不是在建立回指链。"],
+      "terms":[{"en":"Casefolding","zh":"大小写折叠"},{"en":"Acronym","zh":"首字母缩写"}],"refs":[{"page":248,"reasonZh":"WHO/who 等大小写区分示例及 casefolding 讨论。"}],"sourceQuestions":[49,50],"difficulty":"应用"
+    },
+    {
+      "id":"concept-05","topic":"concept","form":"resource","prompt":"Which specialized concept-extraction task targets diagnoses and treatments in MIMIC clinical notes?",
+      "options":["Patent Concept Extraction (PCE)","Course Concept Extraction (CoCE)","Clinical Concept Extraction (ClCE)","General Keyphrase Extraction (KE)"],"answer":2,
+      "explanationZh":"表 3.11 将 MIMIC 标为 ClCE，来源为 MIMIC-III Database。该资源在讲义中同时用于 SBD 和临床概念抽取。",
+      "distractorsZh":["该表的 PCE 示例为 USPTO。","该表 CoCE 包含 MOOCs、EMRCM，不是此行。","","该表把 Inspec、KP-20K 等归入 KE，但把 MIMIC 明确归入临床概念抽取。"],
+      "terms":[{"en":"Clinical Concept Extraction (ClCE)","zh":"临床概念抽取"},{"en":"MIMIC-III","zh":"医疗数据资源"}],"refs":[{"page":249,"reasonZh":"表 3.11 中 MIMIC、ClCE 和 MIMIC-III Database 的对应行。"},{"page":219,"reasonZh":"同一资源名也出现在 SBD 语料表，说明用途并非互斥。"}],"sourceQuestions":[50,51],"difficulty":"基础"
+    },
+    {
+      "id":"concept-06","topic":"concept","form":"resource","prompt":"Which Python library provides stopwords.words('english') through its corpus module?",
+      "options":["spaCy","scikit-learn","Gensim","NLTK"],"answer":3,
+      "explanationZh":"讲义代码使用 import nltk 和 from nltk.corpus import stopwords，随后加载英语停用词表并过滤词序列。",
+      "distractorsZh":["spaCy 也能用于语言处理，但此页代码没有导入它。","scikit-learn 有文本特征工具，但不是此页导入的库。","Gensim 也处理文本表示，但不对应本页的 nltk.corpus.stopwords 导入。",""],
+      "terms":[{"en":"NLTK","zh":"自然语言工具包"},{"en":"Stopword list","zh":"停用词表"}],"refs":[{"page":247,"reasonZh":"NLTK stopwords 的完整 Python 示例。"}],"sourceQuestions":[51],"difficulty":"基础","noteZh":"Mock Q51 选 NLTK；spaCy 等工具也能用于相关处理。"
+    }
+  ]
+}
