@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 安全与隐私报告说明
+    url: https://github.com/mryu888-plus/research-blog/blob/main/SECURITY.md
+    about: 先确认私密报告入口；不要在公开 Issue 中发送密钥或私人文献。

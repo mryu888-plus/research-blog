@@ -1,0 +1,24 @@
+name: Feature / 功能建议
+description: 说明研究写作中的具体需求。
+title: "[Feature] "
+labels: []
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: 想完成的工作
+      description: 谁在什么场景下遇到什么阻碍？
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: 建议的使用流程
+      description: 从输入到结果，以及它如何连接现有预览、风格、文献或发布功能。
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 现有办法与取舍
+      description: 目前怎样解决？可以提供相关工具或示例。
