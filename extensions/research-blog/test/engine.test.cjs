@@ -45,6 +45,34 @@ test('completion replaces partial target without duplicating suffix, and works u
   uri = add(w, 'a', article('源', '[[修改'));
   assert.equal(w.completion(uri, w.articles.get(uri).doc.positionAt(w.articles.get(uri).text.length))[0].textEdit.newText, '修改后的标题]]');
 });
+
+test('empty Markdown headings have valid outline names and only linkable headings complete', () => {
+  const w = setup();
+  const body = '#\n\n##   ###\n\n### {#anchor-only}\n\n## <span></span>\n\n## ![](image.png)\n\n## <!-- 注释 -->\n\n## **正常标题** `代码` 😀\n\n[[#';
+  const uri = add(w, 'empty-headings', article('目标', body).replace(/\n/g, '\r\n'));
+  const a = w.articles.get(uri);
+  const symbols = w.symbols(uri);
+  assert.deepEqual(symbols.map(s => s.name), ['未命名标题', '未命名标题', 'anchor-only', '未命名标题', '未命名标题', '未命名标题', '正常标题 代码 😀']);
+  assert.deepEqual(symbols.map(s => s.range), a.headings.map(h => h.range));
+  assert(symbols.every(s => s.name.trim() && s.selectionRange === s.range));
+  const completions = w.completion(uri, a.doc.positionAt(a.text.length));
+  assert.deepEqual(completions.map(c => c.label), ['anchor-only', '正常标题 代码 😀']);
+  assert.deepEqual(completions.map(c => c.textEdit.newText), ['anchor-only]]', '正常标题 代码 😀]]']);
+  const source = add(w, 'source', article('来源', '[[目标#anchor-only]]'));
+  assert.equal(w.diagnostics(source).length, 0);
+  assert.deepEqual(w.definition(source, at(w, source, 'anchor-only')), { uri, range: a.headings[2].range });
+});
+
+test('outline stays valid as an unsaved heading is typed and erased', () => {
+  const w = setup();
+  const uri = add(w, 'editing', article('编辑', '## '));
+  for (const [body, name] of [['## ', '未命名标题'], ['## 草稿标题', '草稿标题'], ['## ', '未命名标题'], ['## {#draft}', 'draft']]) {
+    w.update(uri, article('编辑', body));
+    assert.deepEqual(w.symbols(uri).map(s => s.name), [name]);
+  }
+  w.update(uri, article('编辑', '正文'));
+  assert.deepEqual(w.symbols(uri), []);
+});
 test('TOML parsing handles dates, duplicate keys and wrong field types', () => {
   const w = setup(); let uri = add(w, 'a', article('标题'));
   assert.equal(w.diagnostics(uri).length, 0);

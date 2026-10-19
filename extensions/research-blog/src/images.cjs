@@ -7,32 +7,50 @@ const { endpoint } = require('./ai-core.cjs');
 const { scopeFor, trusted } = require('./writing.cjs');
 const { articleKey, safePath } = require('./collections-core.cjs');
 const core = require('./image-core.cjs');
+const codex = require('./codex-images.cjs');
 
 function registerImages(context) {
   const pending = new Map();
   const options = uri => {
     const config = vscode.workspace.getConfiguration('researchBlog.images', uri);
     const ai = vscode.workspace.getConfiguration('researchBlog.ai', uri);
-    return { baseUrl: config.get('baseUrl', '').trim() || ai.get('baseUrl', 'https://api.openai.com/v1'),
-      model: config.get('model', '').trim(), style: artDirection(config.get('appearance', 'graphite'), config.get('composition', 'editorial'), config.get('styleInstructions', '')),
-      useStyleReference: config.get('useStyleReference', true),
+    return { provider: config.get('provider', 'api'), codexPath: config.get('codexPath', '').trim(),
+      baseUrl: config.get('baseUrl', '').trim() || ai.get('baseUrl', 'https://api.openai.com/v1'),
+      model: config.get('model', '').trim(), style: artDirection(config.get('appearance', 'paper'), config.get('composition', 'concept'), config.get('styleInstructions', '')),
+      useStyleReference: config.get('useStyleReference', false),
       size: config.get('size', '1536x1024'), quality: config.get('quality', 'auto'), timeoutSeconds: config.get('timeoutSeconds', 180), aiBase: ai.get('baseUrl', 'https://api.openai.com/v1'),
-      aiModel: ai.get('model', '').trim(), aiTokenParameter: ai.get('tokenParameter'), preparePrompt: config.get('preparePrompt', true) };
+      aiModel: ai.get('model', '').trim(), aiTokenParameter: ai.get('tokenParameter'), preparePrompt: config.get('preparePrompt', false) };
   };
   const command = (name, action) => context.subscriptions.push(vscode.commands.registerCommand(name, async () => {
     try { trusted(); return await action(); }
     catch (error) { vscode.window.showErrorMessage(`Research Blog: ${error.message}`); }
   }));
+  command('researchBlog.images.configureCodex', async () => {
+    const binary = codex.resolveCodex(options(vscode.window.activeTextEditor?.document.uri).codexPath);
+    try { await codex.chatgptLogin(binary); }
+    catch (error) {
+      const action = await vscode.window.showInformationMessage(error.message, '登录 ChatGPT 账号');
+      if (action) {
+        const terminal = vscode.window.createTerminal({ name: 'Research Blog · Codex 登录', shellPath: binary, shellArgs: ['login'], env: codex.codexEnvironment() });
+        terminal.show();
+      }
+      return;
+    }
+    const config = vscode.workspace.getConfiguration('researchBlog.images');
+    await config.update('provider', 'codex', vscode.ConfigurationTarget.Global);
+    await config.update('timeoutSeconds', 600, vscode.ConfigurationTarget.Global);
+    vscode.window.showInformationMessage('已启用 Codex 账户额度生图。选中文段后右键生成配图；使用已登录 ChatGPT 账号的套餐与 credits，无需 API Key。');
+  });
   command('researchBlog.images.chooseStyle', async () => {
     const composition = await vscode.window.showQuickPick([
-      { label: "正文配图", description: "一个视觉隐喻，细密线场与留白", value: "editorial" },
-      { label: "概念图", description: "至多三个主体，表达清楚的关系", value: "concept" },
-      { label: "系列封面", description: "右侧强轮廓，左侧留白", value: "cover" }
+      { label: '概念示意图', description: '形象、分组和必要箭头，直观说明关系', value: 'concept' },
+      { label: '正文配图', description: '围绕主题自由构图，少量标签', value: 'editorial' },
+      { label: '系列封面', description: '主题鲜明，为标题保留空间', value: 'cover' },
     ], { title: '选择配图用途' });
     if (!composition) return;
     const appearance = await vscode.window.showQuickPick([
-      { label: '石墨黑', description: '深色底、象牙白线条、少量陶土红', value: 'graphite' },
-      { label: '暖纸白', description: '浅色底、石墨线条、少量深红', value: 'paper' },
+      { label: '深色风格', description: '使用风格源中 graphite 的配色与配图规则', value: 'graphite' },
+      { label: '浅色风格', description: '使用风格源中 paper 的配色与配图规则', value: 'paper' },
     ], { title: '选择配图底色' });
     if (!appearance) return;
     const config = vscode.workspace.getConfiguration('researchBlog.images');
@@ -49,7 +67,7 @@ function registerImages(context) {
     if (validate(key)) throw new Error(validate(key));
     if (key.trim()) await context.secrets.store(core.imageKeyName(core.TOKEN_PLAN_BASE), key.trim());
     const config = vscode.workspace.getConfiguration('researchBlog.images');
-    for (const [name, value] of Object.entries({ baseUrl: core.TOKEN_PLAN_BASE, model: 'qwen-image-3.0-pro', size: '1536x1024', quality: 'auto', timeoutSeconds: 300 })) {
+    for (const [name, value] of Object.entries({ provider: 'api', baseUrl: core.TOKEN_PLAN_BASE, model: 'qwen-image-3.0-pro', size: '1536x1024', quality: 'auto', timeoutSeconds: 300 })) {
       await config.update(name, value, vscode.ConfigurationTarget.Global);
     }
     vscode.window.showInformationMessage('已配置百炼 Token Plan · Qwen Image 3.0 Pro（1K 横图）。选中文章内容后，右键生成配图。');
@@ -67,6 +85,7 @@ function registerImages(context) {
     const config = vscode.workspace.getConfiguration('researchBlog.images');
     await config.update('baseUrl', base.trim(), vscode.ConfigurationTarget.Global);
     await config.update('model', model.trim(), vscode.ConfigurationTarget.Global);
+    await config.update('provider', 'api', vscode.ConfigurationTarget.Global);
     if (key.trim()) await context.secrets.store(core.imageKeyName(base.trim()), key.trim());
     vscode.window.showInformationMessage('生图配置已保存。选中文章中的文字，右键选择“AI 根据选中文字生成配图”。');
   });
@@ -87,31 +106,35 @@ function registerImages(context) {
     const offset = core.insertionOffset(snapshot, document.offsetAt(editor.selection.start), document.offsetAt(editor.selection.end));
     const o = options(document.uri);
     core.makePrompt(selection, o.style);
-    if (!o.model) {
+    if (o.provider !== 'api' && o.provider !== 'codex') throw new Error('未知的生图方式，请选择 API 或 Codex 账户额度。');
+    if (o.provider === 'api' && !o.model) {
       const action = await vscode.window.showInformationMessage('首次生图需要配置 API 地址、图像模型和密钥。', '配置生图接口');
       if (action) await vscode.commands.executeCommand('researchBlog.images.configure');
       return;
     }
-    const url = core.imageEndpoint(o.baseUrl);
-    o.key = await context.secrets.get(core.imageKeyName(o.baseUrl));
-    if (!o.key) {
-      let shared;
-      try { if (endpoint(o.baseUrl).href === endpoint(o.aiBase).href) shared = endpoint(o.aiBase); }
-      catch { /* An invalid completion endpoint must not block a separate image service. */ }
-      if (shared) o.key = await context.secrets.get(`researchBlog.ai.key:${shared.origin}${shared.pathname}`);
+    let url;
+    if (o.provider === 'api') {
+      url = core.imageEndpoint(o.baseUrl);
+      o.key = await context.secrets.get(core.imageKeyName(o.baseUrl));
+      if (!o.key) {
+        let shared;
+        try { if (endpoint(o.baseUrl).href === endpoint(o.aiBase).href) shared = endpoint(o.aiBase); }
+        catch { /* An invalid completion endpoint must not block a separate image service. */ }
+        if (shared) o.key = await context.secrets.get(`researchBlog.ai.key:${shared.origin}${shared.pathname}`);
+      }
+      if (!o.key && !['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)) throw new Error('请先运行“Research Blog: 配置 AI 生图接口”保存密钥。');
     }
-    if (!o.key && !['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)) throw new Error('请先运行“Research Blog: 配置 AI 生图接口”保存密钥。');
     const controller = new AbortController();
     pending.set(id, controller);
     let timedOut = false;
     const timeout = setTimeout(() => { timedOut = true; controller.abort(); }, Math.max(30, Math.min(600, o.timeoutSeconds)) * 1000);
     try {
-      await vscode.window.withProgress({ location: vscode.ProgressLocation.Notification, title: `生成博客配图 · ${url.hostname}`, cancellable: true }, async (progress, token) => {
+      await vscode.window.withProgress({ location: vscode.ProgressLocation.Notification, title: `生成博客配图 · ${o.provider === 'codex' ? 'Codex 账户额度' : url.hostname}`, cancellable: true }, async (progress, token) => {
         const subscription = token.onCancellationRequested(() => controller.abort());
         try {
           if (token.isCancellationRequested) controller.abort();
           if (controller.signal.aborted) return;
-          if (o.preparePrompt && o.aiModel) {
+          if (o.provider === 'api' && o.preparePrompt && o.aiModel) {
             progress.report({ message: '根据选区整理画面构思…' });
             const aiUrl = endpoint(o.aiBase);
             let aiKey = await context.secrets.get(`researchBlog.ai.key:${aiUrl.origin}${aiUrl.pathname}`);
@@ -120,12 +143,17 @@ function registerImages(context) {
             o.prompt = await core.requestIllustrationPrompt({ baseUrl: o.aiBase, model: o.aiModel, key: aiKey, style: o.style, tokenParameter: o.aiTokenParameter }, selection, controller.signal);
           }
           if (controller.signal.aborted) return;
-          progress.report({ message: "使用统一研究插图风格…" });
-          if (o.useStyleReference && url.hostname === new URL(core.TOKEN_PLAN_BASE).hostname && context.asAbsolutePath) {
+          progress.report({ message: '绘制正文示意图…' });
+          if (o.useStyleReference && context.asAbsolutePath && (o.provider === 'codex' || url.hostname === new URL(core.TOKEN_PLAN_BASE).hostname)) {
             const reference = context.asAbsolutePath('assets/editorial-reference.png');
-            if (fs.existsSync(reference)) o.referenceImage = fs.readFileSync(reference);
+            if (fs.existsSync(reference)) {
+              if (o.provider === 'codex') o.referencePath = reference;
+              else o.referenceImage = fs.readFileSync(reference);
+            }
           }
-          const image = await core.requestImage(o, selection, controller.signal);
+          const image = o.provider === 'codex'
+            ? await codex.requestCodexImage(o, selection, controller.signal)
+            : await core.requestImage(o, selection, controller.signal);
           if (controller.signal.aborted) return;
           const saved = core.saveImage(scope.contentRoot, document.uri.fsPath, image);
           const markdown = core.markdownImage(saved.relative, selection);

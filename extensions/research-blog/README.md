@@ -1,10 +1,12 @@
 # Research Blog Language Tools
 
-面向 [Research Blog 主题](https://github.com/mryu888-plus/research-blog)的 VS Code 写作插件：系列和组、统一风格配图、双链与 tags、元数据检查、Typst 图形，以及可选的公式和代码 AI 补全。
+[Research Blog](https://github.com/mryu888-plus/research-blog) 的 VS Code 写作插件：管理系列和分组，按统一风格生成配图，补全双链和标签，检查元数据，配合 Typst 画图，另有可选的公式和代码 AI 补全。
 
-## 系列、组与 AI 配图（v0.2.4）
+配图和 Typst 规则来自 [ZEN.md](../../ZEN.md)，和博客、编辑器配色用的是同一套设计。`npm run build` 会同步这些规则并打包进 VSIX，装好之后不再读取仓库里的文件。改了 ZEN 之后，重新构建、打包、安装就能更新插件；已有的插图不会被改动。
 
-安装本地构建的 `research-blog-0.2.4.vsix` 后重载窗口。此版本尚未发布到 GitHub Release；下方 v0.1.0 下载链接是旧版语言工具，不含这些新功能。
+## 系列、组与 AI 配图（v0.2.7）
+
+安装本地构建的 `research-blog-0.3.0.vsix` 后重载窗口。此版本尚未发布到 GitHub Release；下方 v0.1.0 下载链接是旧版语言工具，不含这些新功能。
 
 按 `Ctrl+Shift+P` 搜索 `Research Blog`，可直接运行 **新建系列**、**新建组**、**新建文章**、**预览网站（含草稿）**、**构建并检查**。资源管理器中也会出现 **研究手记** 侧栏。
 
@@ -22,11 +24,15 @@
 
 ### 按选中文字生成配图
 
+使用 ChatGPT / Work / Codex 的账户 credits 时，运行 **Research Blog: 配置 Codex 账户额度生图**。插件自动查找本机 Codex CLI，要求用收到额度的 ChatGPT 账号登录；未登录时可从命令打开登录终端，完成后再运行配置命令。无需 OpenAI API Key，账户 credits 不能填进 API 配置。官方内置生图使用 `gpt-image-2`，先消耗套餐额度，再消耗账户 credits，见 [Codex 生图](https://learn.chatgpt.com/docs/image-generation) 与 [额度说明](https://learn.chatgpt.com/docs/pricing#how-does-image-generation-count-toward-usage-limits)。
+
+Codex 生图与 API 使用同一个选区命令、风格、文章保存和链接插入流程。生成任务只在独立临时目录运行，插件验证图片后放入文章；不会把博客目录交给 Codex 修改。尺寸与质量通过提示词表达，由内置工具决定实际输出。此模式不调用可选文字构思 API，也不使用生图 API 的模型 ID 或密钥。取消会终止本次 Codex 进程。它是本地写作功能，网站发布后只读取生成的图片。
+
 使用百炼套餐时，运行 **Research Blog: 配置百炼 Token Plan 生图**，输入以 `sk-sp-` 开头的套餐专属 Key。插件预设 `qwen-image-3.0-pro`、1536×1024 横图（1K 档），通过 [Token Plan 专用多模态接口](https://help.aliyun.com/zh/model-studio/token-plan-multimodal-gen)调用；文字模型与密钥保持原配置，可继续使用硅基流动 GLM 整理配图构思。生图失败或套餐用尽时不切换到其他收费接口。实际 Credits 消耗以百炼套餐用量记录为准。
 
 其他服务运行 **Research Blog: 配置 AI 生图接口**，填写基础地址、图像模型 ID 和 API Key。支持硅基流动原生生图格式或 [OpenAI Images API 的 `/images/generations`](https://developers.openai.com/api/docs/guides/image-generation)。保存配置不会请求生图；仅手动执行生图命令时发起生成。
 
-打开文章，选中一段文字，右键 → **AI 根据选中文字生成配图**。默认使用黑白实验出版物风格：石墨黑底、象牙白细线、抽象几何与少量陶土红。运行 **Research Blog: 选择配图用途与底色**，可切换正文配图、概念图、系列封面，以及石墨黑 / 暖纸白。百炼生图默认携带内置风格参考图（会计入输入图像用量），可关闭 `researchBlog.images.useStyleReference`。仅发送选中的文字（最多 12000 字符）和固定风格说明，不上传整篇文章。风格由提示词约束，模型输出仍可能存在差异。
+打开文章，选中一段文字，右键 → **AI 根据选中文字生成配图**。默认直接交给生图模型绘制正文示意图：围绕一两个关系自然构图，允许具体形象、必要箭头和少量短标签，不强制抽象线场或四栏讲义。运行 **Research Blog: 选择配图用途与底色**，可切换概念示意图、正文配图、系列封面，以及石墨黑 / 暖纸白。默认关闭旧版抽象参考图和文字模型预先改写；仅发送选中的文字（最多 12000 字符）与简短配图要求。模型输出仍需检查。
 
 图片以唯一文件名保存到文章的 `assets/` 下，并在选中文段后插入 Markdown 链接、保存文章。选中代码或块级公式时，会放在闭合代码／公式块后。如果生成期间文章改变，或代码／公式块未闭合，则仅保存图片，提供“复制图片链接”和“查看图片”。取消和失败不会插入半成品。
 
@@ -34,15 +40,18 @@ API Key 保存在 SecretStorage。未设置生图专用 Key 时，仅当基础�
 
 | 设置 | 默认值 | 用途 |
 | --- | --- | --- |
-| `researchBlog.images.appearance` | `graphite` | 石墨黑 / 暖纸白（`paper`） |
-| `researchBlog.images.composition` | `editorial` | 正文 / 概念（`concept`）/ 封面（`cover`） |
-| `researchBlog.images.useStyleReference` | `true` | 百炼生图携带内置参考图 |
+| `researchBlog.images.provider` | `api` | `api` 或 `codex` 账户额度；两个配置命令自动切换 |
+| `researchBlog.images.codexPath` | 空 | 自动查找 Codex；可填写完整可执行文件路径 |
+| `researchBlog.images.appearance` | `paper` | 暖纸白 / 石墨黑（`graphite`） |
+| `researchBlog.images.composition` | `concept` | 概念示意图 / 正文（`editorial`）/ 封面（`cover`） |
+| `researchBlog.images.useStyleReference` | `false` | 可选携带旧版抽象参考图 |
 | `researchBlog.images.baseUrl` | 空 | 复用 AI 地址，也可单独设置 |
 | `researchBlog.images.model` | 空 | 显式填写图像模型 ID |
 | `researchBlog.images.size` | `1536x1024` | 横向；不支持时选 `auto` |
 | `researchBlog.images.quality` | `auto` | 服务默认质量 |
 | `researchBlog.images.timeoutSeconds` | `180` | 超时，支持 30–600 秒；请求可取消 |
-| `researchBlog.images.styleInstructions` | 空 | 使用统一博客风格；可在工作区中统一自定义 |
+| `researchBlog.images.styleInstructions` | 空 | 追加正文示意图的构图或风格偏好 |
+| `researchBlog.images.preparePrompt` | `false` | 可选先用文字模型整理构思 |
 
 写入和 AI 功能需要受信任的本地工作区。预览与构建调用 `scripts/editor.py`，需要完整博客仓库和 Python、Zola、Typst、Node.js 环境。首次从源码使用预览时，先执行 `npm --prefix extensions/research-blog ci` 和 `npm --prefix extensions/research-blog run build`，生成本地编辑服务。
 
@@ -164,6 +173,8 @@ $$
 
 打开文章 `figures/*.typ`，Tinymist 提供 Typst 补全、诊断、跳转、悬停、格式化和预览。命令 **Research Blog: 打开 Tinymist Typst 语言支持** 打开其扩展详情。Tinymist 的语义分析作用于 `.typ` 文件；Markdown 内嵌公式使用 LaTeX，可使用 AI 补全，但不会获得 Tinymist 的语义诊断。
 
+ZEN 的精确图形规范用于 **Typst 图形代码**：石墨黑 / 暖纸白、两档线宽、少量陶土红、清晰字体和严格对齐。在空白 `.typ` 文件输入 **`blogdiagram`** 再按 `Ctrl+Space` 可插入完整模板。Typst 的 AI 补全（含 Markdown 的 typst 围栏）自动携带这套规则，并优先沿用已有代码的配色与布局；普通代码与 LaTeX 不受影响。可复制模板见仓库 `design/visual-system/typst/blog-diagram.typ`。
+
 本插件负责编辑辅助；预览完整网站时，在博客根目录运行：
 
 ```powershell
@@ -202,7 +213,7 @@ AI 请求流程已通过本机 HTTP 模拟接口验证，尚未完成真实模�
 
 运行 **Research Blog: 设置 AI API Key** 保存密钥；当两处接口地址相同时，生图会复用文字补全密钥。不要把密钥写进 JSON 设置或文章。插件自动适配硅基流动的 `image_size` 和 `images[].url`，下载后保存在文章目录。ERNIE-Image-Turbo 使用 8 步；硅基流动文字行内补全关闭深度思考以控制延迟，风格由统一提示词约束。
 
-已配置文字模型时，生成配图默认先把选区和统一风格交给文字模型整理为画面构思，再发送给生图接口，因此会调用两次 API。`researchBlog.images.preparePrompt` 可关闭此步骤；未配置文字模型时可直接生图。文字补全与构思使用同一文字模型。
+默认直接生图，只调用图像接口。可手动开启 `researchBlog.images.preparePrompt`，先让已配置的文字模型整理构思；启用后会调用两个接口。文字补全与可选的构思步骤使用同一文字模型。
 
 在设置界面搜索 `@ext:mryu888-plus.research-blog`，或编辑相应的 JSON 设置。机器级选项请放在**用户设置**中；其余选项可按工作区覆盖。
 
@@ -251,3 +262,14 @@ npm run package
 源码通过 esbuild 捆绑，VSIX 包含运行时依赖和第三方许可，不含密钥、测试目录、文章或构建素材。构建直接捆绑仓库双链模块，避免复制逻辑后发生分歧。测试覆盖解析与补全引擎、真实 stdio LSP 通信、本机 HTTP AI 请求；模拟接口测试不能证明真实模型的补全质量。
 
 源码入口：[`src/extension.cjs`](src/extension.cjs)、[`src/engine.cjs`](src/engine.cjs)、[`src/ai.cjs`](src/ai.cjs)；配置定义见 [`package.json`](package.json)。
+
+## Zotero 文献工作台（0.3.0）
+
+资源管理器“文献库”或 **Research Blog: 打开文献工作台** 提供分类、标签、搜索、PDF 批注、引用和阅读草稿。先运行 Zotero 并开启高级设置中的本机通信；Windows 可运行 **启动本地 Zotero** 使用官方便携版。第一次修改或导入时点击“授权修改”，在 Zotero 选择 **Always Allow**。PDF 阅读与批注编辑在 Zotero 中完成，工作台可定位到相应页和批注。
+
+- **插入文献引用**：在 Markdown 正文插入 `[@citekey]`，自动合并公开书目快照。支持 `[@` 补全、书目信息悬停、F12、引用查找与缺失文献诊断。
+- **从批注创建阅读笔记**：生成草稿文章，保留摘录、评论、页码与原文链接。
+- **导入 PDF / 编辑文献信息 / 新建分类 / 重命名分类**：通过 Zotero 10+ 的授权本地 API 写入；旧版仅只读。
+- **更新博客引用数据**：更新文章实际引用的书目信息，供离线构建参考文献和 `/references/` 文献页。
+
+文献 API key 存入 SecretStorage，离线缓存位于扩展私有存储。文献 PDF 与 Zotero 数据留在网站之外；GitHub Pages 只展示已发布文章实际引用的书目。Zotero 同步账号及文件存储在其设置中配置。完整说明见仓库 README 的“文献管理与阅读笔记”。

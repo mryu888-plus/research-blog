@@ -4,6 +4,18 @@ const assert = require('node:assert/strict');
 const http = require('node:http');
 const { once } = require('node:events');
 const { completionContext, endpoint, requestCompletion } = require('../src/ai-core.cjs');
+const { TYPST_FIGURE_STYLE } = require('../src/typst-style.cjs');
+test('publication figure rules apply only to Typst completions and preserve insertion contract', async () => {
+  for (const kind of ['typst', 'code (typst)', 'code (python)', 'LaTeX math']) {
+    await requestCompletion({ baseUrl: 'https://example.test/v1', model: 'fixture', maxTokens: 96 }, { kind, prefix: '#rect(', suffix: ')' }, undefined,
+      async (_url, init) => {
+        const system = JSON.parse(init.body).messages[0].content;
+        assert.equal(system.includes(TYPST_FIGURE_STYLE), kind === 'typst' || kind === 'code (typst)');
+        assert(system.includes('only the text to INSERT'));
+        return Response.json({ choices: [{ message: { content: 'width: 1cm' } }] });
+      });
+  }
+});
 test('AI only activates in math, fenced code or Typst and bounds context', () => {
   for (const text of ['普通正文', '```py\nx = 1\n```\n普通正文', '$x$ 已结束', '`$x` 正文']) assert.equal(completionContext(text, text.length, 'markdown'), null);
   for (const text of ['$x = ', '$$\nx = ', '\\[x = ', '```python\nx = ', '~~~rust\nlet a = ']) assert(completionContext(text, text.length, 'markdown'));

@@ -5,6 +5,7 @@ const { LanguageClient, TransportKind } = require('vscode-languageclient/node');
 const { registerAI } = require('./ai.cjs');
 const { registerWriting } = require('./writing.cjs');
 const { registerImages } = require('./images.cjs');
+const { registerReferences } = require('./references.cjs');
 const clients = new Map();
 let extensionContext;
 async function start(folder) {
@@ -18,18 +19,19 @@ async function start(folder) {
   }
   const watcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(folder, `${relative.replace(/\\/g, '/')}/**/*`));
   const configWatcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(path.dirname(root), 'config.toml'));
+  const referenceWatcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(path.join(path.dirname(root), 'data'), 'references.json'));
   const client = new LanguageClient('researchBlog', `Research Blog (${folder.name})`, {
     module: extensionContext.asAbsolutePath('dist/server.cjs'), transport: TransportKind.stdio,
   }, {
     documentSelector: [{ scheme: 'file', language: 'markdown', pattern: `${root.replace(/\\/g, '/')}/**/*.md` }],
     workspaceFolder: folder,
     initializationOptions: { contentRoot: root },
-    synchronize: { fileEvents: [watcher, configWatcher] },
+    synchronize: { fileEvents: [watcher, configWatcher, referenceWatcher] },
   });
-  clients.set(folder.uri.toString(), { client, watcher, configWatcher });
+  clients.set(folder.uri.toString(), { client, watcher, configWatcher, referenceWatcher });
   try { await client.start(); }
   catch (error) {
-    clients.delete(folder.uri.toString()); watcher.dispose(); configWatcher.dispose();
+    clients.delete(folder.uri.toString()); watcher.dispose(); configWatcher.dispose(); referenceWatcher.dispose();
     await client.dispose();
     vscode.window.showErrorMessage(`Research Blog 启动失败：${error.message}`);
   }
@@ -37,13 +39,14 @@ async function start(folder) {
 async function stop(key) {
   const entry = clients.get(key);
   if (!entry) return;
-  clients.delete(key); entry.watcher.dispose(); entry.configWatcher.dispose(); await entry.client.dispose();
+  clients.delete(key); entry.watcher.dispose(); entry.configWatcher.dispose(); entry.referenceWatcher.dispose(); await entry.client.dispose();
 }
 async function activate(context) {
   extensionContext = context;
   registerAI(context);
   registerWriting(context);
   registerImages(context);
+  registerReferences(context);
   context.subscriptions.push(vscode.commands.registerCommand('researchBlog.typst', () =>
     vscode.commands.executeCommand('extension.open', 'myriad-dreamin.tinymist')));
   context.subscriptions.push(vscode.commands.registerCommand('researchBlog.restartServer', async () => {

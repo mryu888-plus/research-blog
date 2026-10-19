@@ -5,6 +5,7 @@ const { URI } = require('vscode-uri');
 const { TextDocument } = require('vscode-languageserver-textdocument');
 const { parse: parseToml } = require('smol-toml');
 const MarkdownIt = require('markdown-it');
+const { extractCitations, readReferences, bibliographyKeys, authorText, yearText } = require('./reference-index.cjs');
 const { parseWikiLinks, createKnowledgeGraph } = require('../../../site/static/knowledge-core.js');
 const markdown = new MarkdownIt({ html: true });
 const key = value => String(value).trim().normalize('NFC').toLowerCase();
@@ -12,6 +13,8 @@ const decode = value => { try { return decodeURIComponent(value); } catch { retu
 const escapeMarkdown = value => String(value).replace(/[\\`*_{}[\]()<>#+.!|]/g, '\\$&');
 const strings = value => Array.isArray(value) && value.every(item => typeof item === 'string');
 const range = (doc, start, end = start) => ({ start: doc.positionAt(start), end: doc.positionAt(end) });
+// VS Code rejects empty DocumentSymbol names while a heading is being edited.
+const headingLabel = heading => heading.title || (heading.explicit ? heading.id : '未命名标题');
 function diagnostic(doc, start, end, message, code, severity = 1) {
   return { range: range(doc, start, end), message, code, severity, source: 'research-blog' };
 }
@@ -118,11 +121,11 @@ function parseArticle(uri, text, root, version = 0) {
     aliases: strings(metadata.extra?.aliases) ? metadata.extra.aliases : [],
     tags: strings(metadata.taxonomies?.tags) ? metadata.taxonomies.tags : [],
     draft: metadata.draft === true, slug, url: `https://research-blog.invalid/${urlPath}/`,
-    references: parseWikiLinks(visible), isPost: id.startsWith('posts/') && path.basename(file) !== '_index.md',
+    references: parseWikiLinks(visible), citations: extractCitations(visible), isPost: id.startsWith('posts/') && path.basename(file) !== '_index.md',
   };
 }
 class BlogWorkspace {
-  constructor(root) { this.root = path.resolve(root); this.articles = new Map(); this.open = new Set(); this.graphCache = null; this.tagLabels = {}; }
+  constructor(root) { this.root = path.resolve(root); this.articles = new Map(); this.open = new Set(); this.graphCache = null; this.tagLabels = {}; this.bibliography = readReferences(this.root); }
   accepts(uri) {
     if (URI.parse(uri).scheme !== 'file') return false;
     const relative = path.relative(this.root, URI.parse(uri).fsPath);
@@ -133,6 +136,7 @@ class BlogWorkspace {
     this.articles.set(uri, parseArticle(uri, text, this.root, version)); this.graphCache = null;
   }
   scan() {
+    this.bibliography = readReferences(this.root);
     try { this.tagLabels = parseToml(fs.readFileSync(path.join(this.root, '..', 'config.toml'), 'utf8')).extra?.tag_labels || {}; }
     catch { this.tagLabels = {}; }
     const seen = new Set();
@@ -173,6 +177,9 @@ class BlogWorkspace {
     if (!id || /[\\/\x00-\x1f]/.test(id) || id === '.' || id === '..') return null;
     return path.join(path.dirname(article.file), 'figures', `${id}.typ`);
   }
+  referenceEntries(article) {
+    return new Map([...bibliographyKeys(article.file), ...this.bibliography]);
+  }
   diagnostics(uri) {
     const article = this.articles.get(uri); if (!article) return [];
     const result = [...article.errors];
@@ -191,6 +198,11 @@ class BlogWorkspace {
       const file = this.figurePath(article, figure.id);
       if (!file || !fs.existsSync(file)) result.push(diagnostic(article.doc, figure.start, figure.end, `找不到图形源文件 figures/${figure.id}.typ。`, 'figure-missing', 2));
     }
+    const entries = this.referenceEntries(article);
+    for (const citation of article.citations) {
+      if (!entries.has(citation.key)) result.push(diagnostic(article.doc, citation.start, citation.end,
+        `找不到文献「${citation.key}」。请从文献工作台插入引用，或补充 refs.bib。`, 'citation-missing', 2));
+    }
     return result;
   }
   at(uri, position) {
@@ -199,10 +211,12 @@ class BlogWorkspace {
     const reference = article.references.find(ref => offset >= ref.start && offset < ref.end);
     const figure = article.figures.find(fig => offset >= fig.start && offset <= fig.end);
     const tag = article.tagItems.find(item => offset >= item.start && offset < item.end);
-    return { article, offset, reference, figure, tag, target: reference ? this.resolve(article, reference) : undefined };
+    const citation = article.citations.find(item => offset >= item.start && offset < item.end);
+    return { article, offset, reference, figure, tag, citation, entry: citation ? this.referenceEntries(article).get(citation.key) : undefined, target: reference ? this.resolve(article, reference) : undefined };
   }
   definition(uri, position) {
-    const { article, target, figure } = this.at(uri, position);
+    const { article, target, figure, entry } = this.at(uri, position);
+    if (entry) return { uri: URI.file(entry.file).toString(), range: entry.location };
     if (target?.status === 'resolved') return { uri: target.article.uri, range: target.heading?.range || target.article.titleRange };
     if (figure) {
       const file = this.figurePath(article, figure.id);
@@ -211,7 +225,9 @@ class BlogWorkspace {
     return null;
   }
   hover(uri, position) {
-    const { article, target, reference, figure, tag } = this.at(uri, position);
+    const { article, target, reference, figure, tag, citation, entry } = this.at(uri, position);
+    if (entry) return { range: range(article.doc, citation.start, citation.end), contents: { kind: 'plaintext', value:
+      [entry.title, authorText(entry), yearText(entry), entry['container-title'], entry.DOI ? `DOI: ${entry.DOI}` : '', `引用键：${entry.citekey}`].filter(Boolean).join('\n') } };
     if (tag) {
       const uses = [...this.articles.values()].filter(a => a.tags.includes(tag.value));
       return { range: range(article.doc, tag.start, tag.end), contents: { kind: 'plaintext', value:
@@ -228,6 +244,22 @@ class BlogWorkspace {
   references(uri, position, includeDeclaration = false) {
     const context = this.at(uri, position);
     if (!context.article) return [];
+    if (context.citation) {
+      if (!context.entry) return [];
+      const declarationUri = URI.file(context.entry.file).toString();
+      const found = [];
+      for (const article of this.articles.values()) {
+        const entry = this.referenceEntries(article).get(context.citation.key);
+        // The same citekey in two article-local BibTeX files can name two
+        // different papers. Global snapshot precedence is resolved above.
+        if (!entry || URI.file(entry.file).toString() !== declarationUri) continue;
+        for (const citation of article.citations) if (citation.key === context.citation.key) {
+          found.push({ uri: article.uri, range: range(article.doc, citation.start, citation.end) });
+        }
+      }
+      if (includeDeclaration) found.unshift({ uri: declarationUri, range: context.entry.location });
+      return found;
+    }
     if (context.tag) return [...this.articles.values()].flatMap(a => a.tagItems.filter(tag => tag.value === context.tag.value)
       .map(tag => ({ uri: a.uri, range: range(a.doc, tag.start, tag.end) })));
     let target = context.target?.status === 'resolved' ? context.target.article : undefined;
@@ -250,7 +282,7 @@ class BlogWorkspace {
   }
   symbols(uri) {
     const a = this.articles.get(uri); if (!a) return [];
-    return a.headings.map(h => ({ name: h.title, kind: 15, range: h.range, selectionRange: h.range }));
+    return a.headings.map(h => ({ name: headingLabel(h), kind: 15, range: h.range, selectionRange: h.range }));
   }
   completion(uri, position) {
     const a = this.articles.get(uri); if (!a) return [];
@@ -291,6 +323,16 @@ class BlogWorkspace {
         textEdit: { range: range(a.doc, wordStart, offset), newText: /^\s*=/.test(suffix) ? name : `${name} = ${value}` } }));
     }
     const active = a.visible.slice(lineStart, offset);
+    const citation = /(?:\[@|;\s*@)([\p{L}\p{N}_:.+\/-]*)$/u.exec(active);
+    if (citation) {
+      const tail = a.text.slice(offset).match(/^[\p{L}\p{N}_:.+\/-]*/u)?.[0] || '';
+      const end = offset + tail.length;
+      const closing = /^\s*[,;\]]/.test(a.text.slice(end)) ? '' : ']';
+      return [...this.referenceEntries(a).values()].map(entry => ({ label: entry.citekey, kind: 18,
+        detail: [entry.title, authorText(entry), yearText(entry)].filter(Boolean).join(' · '),
+        filterText: `${entry.citekey} ${entry.title} ${authorText(entry)}`,
+        textEdit: { range: range(a.doc, offset - citation[1].length, end), newText: entry.citekey + closing } }));
+    }
     const link = /\[\[([^\]\n|]*)$/.exec(active);
     if (link) {
       const start = offset - link[1].length;
@@ -302,7 +344,7 @@ class BlogWorkspace {
         const destination = link[1].slice(0, hash).trim();
         const target = destination ? this.resolve(a, { target: destination, heading: '' }).article : a;
         if (!target) return [];
-        return target.headings.map(h => ({ label: h.title, kind: 15, detail: target.title,
+        return target.headings.filter(h => h.title || h.explicit).map(h => ({ label: headingLabel(h), kind: 15, detail: target.title,
           textEdit: { range: replacement, newText: (h.explicit ? h.id : h.title) + closing } }));
       }
       return this.graph().nodes.flatMap(node => {

@@ -37,6 +37,12 @@ test('bundled server speaks stdio LSP: initialize, edits, completion, navigation
   await rpc.sendNotification('textDocument/didChange', { textDocument: { uri, version: 2 }, contentChanges: [{ range: { start: { line: 3, character: 2 }, end: { line: 3, character: 6 } }, text: '失效' }] });
   const waitFor = async predicate => { const until = Date.now() + 3000; while (!predicate() && Date.now() < until) await new Promise(r => setTimeout(r, 25)); assert(predicate(), stderr); };
   await waitFor(() => diagnostics.get(uri)?.version === 2 && diagnostics.get(uri)?.diagnostics.some(d => d.code === 'link-missing'));
+  await rpc.sendNotification('textDocument/didChange', { textDocument: { uri, version: 3 }, contentChanges: [{ text: '+++\ntitle = "来源"\n+++\n## \n\n## {#anchor-only}\n\n## 正常章节\n\n[[#' }] });
+  const symbols = await rpc.sendRequest('textDocument/documentSymbol', { textDocument: { uri } });
+  assert.deepEqual(symbols.map(symbol => symbol.name), ['未命名标题', 'anchor-only', '正常章节']);
+  assert.deepEqual(symbols.map(symbol => symbol.range.start.line), [3, 5, 7]);
+  const headings = await rpc.sendRequest('textDocument/completion', { textDocument: { uri }, position: { line: 9, character: 3 } });
+  assert.deepEqual(headings.map(item => item.label), ['anchor-only', '正常章节']);
   fs.unlinkSync(targetFile);
   await rpc.sendNotification('workspace/didChangeWatchedFiles', { changes: [{ uri: targetUri, type: 3 }] });
   await waitFor(() => diagnostics.get(targetUri)?.diagnostics.length === 0);

@@ -1,8 +1,8 @@
 {
   "name": "research-blog",
   "displayName": "Research Blog Language Tools",
-  "description": "研究博客写作：系列与组、文章管理、统一风格 AI 配图、双链、元数据和 Typst。",
-  "version": "0.2.4",
+  "description": "研究博客写作与文献管理：Zotero、PDF 批注笔记、引用排版、系列、双链和 Typst。",
+  "version": "0.3.0",
   "publisher": "mryu888-plus",
   "license": "MIT",
   "repository": {
@@ -21,7 +21,8 @@
     "onLanguage:markdown",
     "onLanguage:typst",
     "onView:researchBlog.library",
-    "workspaceContains:site/config.toml"
+    "workspaceContains:site/config.toml",
+    "onView:researchBlog.references"
   ],
   "extensionPack": [
     "myriad-dreamin.tinymist"
@@ -34,21 +35,92 @@
   },
   "contributes": {
     "commands": [
-      { "command": "researchBlog.newSeries", "title": "Research Blog: 新建系列", "icon": "$(library)", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.newGroup", "title": "Research Blog: 新建组", "icon": "$(new-folder)", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.newArticle", "title": "Research Blog: 新建文章", "icon": "$(new-file)", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.assignGroup", "title": "Research Blog: 移动文章到系列或组", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.moveArticleUp", "title": "Research Blog: 文章上移", "icon": "$(arrow-up)", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.moveArticleDown", "title": "Research Blog: 文章下移", "icon": "$(arrow-down)", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.refreshLibrary", "title": "Research Blog: 刷新系列目录", "icon": "$(refresh)" },
-      { "command": "researchBlog.editCollections", "title": "Research Blog: 编辑系列目录", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.preview", "title": "Research Blog: 预览网站（含草稿）", "icon": "$(preview)", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.check", "title": "Research Blog: 构建并检查", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.images.generate", "title": "Research Blog: AI 根据选中文字生成配图", "enablement": "isWorkspaceTrusted && editorLangId == markdown && editorHasSelection" },
-      { "command": "researchBlog.images.configure", "title": "Research Blog: 配置 AI 生图接口", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.images.configureTokenPlan", "title": "Research Blog: 配置百炼 Token Plan 生图", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.images.chooseStyle", "title": "Research Blog: 选择配图用途与底色", "enablement": "isWorkspaceTrusted" },
-      { "command": "researchBlog.images.clearKey", "title": "Research Blog: 删除 AI 生图专用密钥", "enablement": "isWorkspaceTrusted" },
+      {
+        "command": "researchBlog.newSeries",
+        "title": "Research Blog: 新建系列",
+        "icon": "$(library)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.newGroup",
+        "title": "Research Blog: 新建组",
+        "icon": "$(new-folder)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.newArticle",
+        "title": "Research Blog: 新建文章",
+        "icon": "$(new-file)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.assignGroup",
+        "title": "Research Blog: 移动文章到系列或组",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.moveArticleUp",
+        "title": "Research Blog: 文章上移",
+        "icon": "$(arrow-up)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.moveArticleDown",
+        "title": "Research Blog: 文章下移",
+        "icon": "$(arrow-down)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.refreshLibrary",
+        "title": "Research Blog: 刷新系列目录",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "researchBlog.editCollections",
+        "title": "Research Blog: 编辑系列目录",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.preview",
+        "title": "Research Blog: 预览网站（含草稿）",
+        "icon": "$(preview)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.check",
+        "title": "Research Blog: 构建并检查",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.images.generate",
+        "title": "Research Blog: AI 根据选中文字生成配图",
+        "enablement": "isWorkspaceTrusted && editorLangId == markdown && editorHasSelection"
+      },
+      {
+        "command": "researchBlog.images.configure",
+        "title": "Research Blog: 配置 AI 生图接口",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.images.configureCodex",
+        "title": "Research Blog: 配置 Codex 账户额度生图",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.images.configureTokenPlan",
+        "title": "Research Blog: 配置百炼 Token Plan 生图",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.images.chooseStyle",
+        "title": "Research Blog: 选择配图用途与底色",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.images.clearKey",
+        "title": "Research Blog: 删除 AI 生图专用密钥",
+        "enablement": "isWorkspaceTrusted"
+      },
       {
         "command": "researchBlog.restartServer",
         "title": "Research Blog: 重启语言服务"
@@ -68,81 +140,331 @@
       {
         "command": "researchBlog.typst",
         "title": "Research Blog: 打开 Tinymist Typst 语言支持"
+      },
+      {
+        "command": "researchBlog.openReferences",
+        "title": "Research Blog: 打开文献工作台",
+        "icon": "$(book)"
+      },
+      {
+        "command": "researchBlog.refreshReferences",
+        "title": "Research Blog: 刷新文献库",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "researchBlog.authorizeZotero",
+        "title": "Research Blog: 授权 Zotero 文献管理",
+        "icon": "$(key)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.insertCitation",
+        "title": "Research Blog: 插入文献引用",
+        "icon": "$(quote)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.openReferencePDF",
+        "title": "Research Blog: 打开文献 PDF",
+        "icon": "$(file-pdf)"
+      },
+      {
+        "command": "researchBlog.importReferencePDF",
+        "title": "Research Blog: 导入 PDF 到文献库",
+        "icon": "$(add)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.createReferenceCollection",
+        "title": "Research Blog: 新建文献分类",
+        "icon": "$(new-folder)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.renameReferenceCollection",
+        "title": "Research Blog: 重命名文献分类",
+        "icon": "$(edit)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.createReferenceNote",
+        "title": "Research Blog: 从批注创建阅读笔记",
+        "icon": "$(notebook)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.exportReferences",
+        "title": "Research Blog: 更新博客引用数据",
+        "icon": "$(export)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.editReference",
+        "title": "Research Blog: 编辑文献信息",
+        "icon": "$(edit)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "researchBlog.openZotero",
+        "title": "Research Blog: 打开 Zotero 文献库",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "researchBlog.startZotero",
+        "title": "Research Blog: 启动本地 Zotero",
+        "icon": "$(play)",
+        "enablement": "isWorkspaceTrusted"
       }
     ],
     "views": {
-      "explorer": [{ "id": "researchBlog.library", "name": "研究手记", "contextualTitle": "系列与文章" }]
+      "explorer": [
+        {
+          "id": "researchBlog.library",
+          "name": "研究手记",
+          "contextualTitle": "系列与文章"
+        },
+        {
+          "id": "researchBlog.references",
+          "name": "文献库",
+          "contextualTitle": "Zotero 文献与批注"
+        }
+      ]
     },
-    "viewsWelcome": [{ "view": "researchBlog.library", "contents": "文章可直接加入系列，也可按需分组。\n[新建系列](command:researchBlog.newSeries)\n[新建文章](command:researchBlog.newArticle)\n请打开博客根目录。" }],
+    "viewsWelcome": [
+      {
+        "view": "researchBlog.library",
+        "contents": "文章可直接加入系列，也可按需分组。\n[新建系列](command:researchBlog.newSeries)\n[新建文章](command:researchBlog.newArticle)\n请打开博客根目录。"
+      },
+      {
+        "view": "researchBlog.references",
+        "contents": "把论文、批注和研究笔记接在一起。\n\n[打开文献工作台](command:researchBlog.openReferences)\n\n先运行 Zotero，并在高级设置中开启「允许本机其他程序与 Zotero 通信」。"
+      }
+    ],
     "menus": {
       "view/title": [
-        { "command": "researchBlog.newSeries", "when": "view == researchBlog.library", "group": "navigation@1" },
-        { "command": "researchBlog.newGroup", "when": "view == researchBlog.library", "group": "navigation@2" },
-        { "command": "researchBlog.newArticle", "when": "view == researchBlog.library", "group": "navigation@3" },
-        { "command": "researchBlog.preview", "when": "view == researchBlog.library", "group": "navigation@4" },
-        { "command": "researchBlog.refreshLibrary", "when": "view == researchBlog.library", "group": "navigation@5" },
-        { "command": "researchBlog.editCollections", "when": "view == researchBlog.library", "group": "1_manage" }
+        {
+          "command": "researchBlog.newSeries",
+          "when": "view == researchBlog.library",
+          "group": "navigation@1"
+        },
+        {
+          "command": "researchBlog.newGroup",
+          "when": "view == researchBlog.library",
+          "group": "navigation@2"
+        },
+        {
+          "command": "researchBlog.newArticle",
+          "when": "view == researchBlog.library",
+          "group": "navigation@3"
+        },
+        {
+          "command": "researchBlog.preview",
+          "when": "view == researchBlog.library",
+          "group": "navigation@4"
+        },
+        {
+          "command": "researchBlog.refreshLibrary",
+          "when": "view == researchBlog.library",
+          "group": "navigation@5"
+        },
+        {
+          "command": "researchBlog.editCollections",
+          "when": "view == researchBlog.library",
+          "group": "1_manage"
+        },
+        {
+          "command": "researchBlog.openReferences",
+          "when": "view == researchBlog.references",
+          "group": "navigation@1"
+        },
+        {
+          "command": "researchBlog.importReferencePDF",
+          "when": "view == researchBlog.references",
+          "group": "navigation@2"
+        },
+        {
+          "command": "researchBlog.refreshReferences",
+          "when": "view == researchBlog.references",
+          "group": "navigation@3"
+        }
       ],
       "view/item/context": [
-        { "command": "researchBlog.newGroup", "when": "view == researchBlog.library && viewItem == series", "group": "inline" },
-        { "command": "researchBlog.newArticle", "when": "view == researchBlog.library && (viewItem == series || viewItem == group)", "group": "inline" },
-        { "command": "researchBlog.assignGroup", "when": "view == researchBlog.library && viewItem == article", "group": "1_manage" },
-        { "command": "researchBlog.moveArticleUp", "when": "view == researchBlog.library && viewItem == article", "group": "2_order@1" },
-        { "command": "researchBlog.moveArticleDown", "when": "view == researchBlog.library && viewItem == article", "group": "2_order@2" }
+        {
+          "command": "researchBlog.newGroup",
+          "when": "view == researchBlog.library && viewItem == series",
+          "group": "inline"
+        },
+        {
+          "command": "researchBlog.newArticle",
+          "when": "view == researchBlog.library && (viewItem == series || viewItem == group)",
+          "group": "inline"
+        },
+        {
+          "command": "researchBlog.assignGroup",
+          "when": "view == researchBlog.library && viewItem == article",
+          "group": "1_manage"
+        },
+        {
+          "command": "researchBlog.moveArticleUp",
+          "when": "view == researchBlog.library && viewItem == article",
+          "group": "2_order@1"
+        },
+        {
+          "command": "researchBlog.moveArticleDown",
+          "when": "view == researchBlog.library && viewItem == article",
+          "group": "2_order@2"
+        }
       ],
       "editor/context": [
-        { "command": "researchBlog.images.generate", "when": "editorLangId == markdown && editorHasSelection", "group": "researchBlog@1" },
-        { "command": "researchBlog.assignGroup", "when": "editorLangId == markdown", "group": "researchBlog@2" }
+        {
+          "command": "researchBlog.images.generate",
+          "when": "editorLangId == markdown && editorHasSelection",
+          "group": "researchBlog@1"
+        },
+        {
+          "command": "researchBlog.assignGroup",
+          "when": "editorLangId == markdown",
+          "group": "researchBlog@2"
+        },
+        {
+          "command": "researchBlog.insertCitation",
+          "when": "editorLangId == markdown",
+          "group": "researchBlog@3"
+        }
       ],
       "commandPalette": [
-        { "command": "researchBlog.moveArticleUp", "when": "false" },
-        { "command": "researchBlog.moveArticleDown", "when": "false" }
+        {
+          "command": "researchBlog.moveArticleUp",
+          "when": "false"
+        },
+        {
+          "command": "researchBlog.moveArticleDown",
+          "when": "false"
+        }
       ]
     },
     "configuration": {
       "title": "Research Blog",
       "properties": {
+        "researchBlog.images.provider": {
+          "type": "string",
+          "default": "api",
+          "enum": [
+            "api",
+            "codex"
+          ],
+          "enumDescriptions": [
+            "使用配置的生图 API 与密钥。",
+            "使用通过 ChatGPT 登录的本机 Codex；先消耗套餐额度，再消耗账户 credits。"
+          ],
+          "scope": "machine",
+          "description": "生图方式。Codex 无需 API Key，生成图片后仍保存到文章并插入链接。"
+        },
+        "researchBlog.images.codexPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Codex 可执行文件的完整路径。留空自动查找；Windows 使用 codex.exe。"
+        },
         "researchBlog.images.appearance": {
-          "type": "string", "default": "graphite", "enum": ["graphite", "paper"],
-          "enumDescriptions": ["石墨黑：象牙白线条与少量陶土红。", "暖纸白：石墨线条与少量深红。"],
+          "type": "string",
+          "default": "paper",
+          "enum": [
+            "graphite",
+            "paper"
+          ],
+          "enumDescriptions": [
+            "深色风格：使用 ZEN.md 中 graphite 的配色与配图规则。",
+            "浅色风格：使用 ZEN.md 中 paper 的配色与配图规则。"
+          ],
           "description": "研究手记配图底色，与博客深浅两套配色对应。"
         },
         "researchBlog.images.composition": {
-          "type": "string", "default": "editorial", "enum": ["editorial", "concept", "cover"],
-          "enumDescriptions": ["正文配图：一个视觉隐喻，疏密对照。", "概念图：至多三个主体，表达明确关系。", "系列封面：右侧主图，左侧留白。"],
+          "type": "string",
+          "default": "concept",
+          "enum": [
+            "editorial",
+            "concept",
+            "cover"
+          ],
+          "enumDescriptions": [
+            "正文插图：围绕主题自然构图。",
+            "概念示意图：直观说明关系，允许必要标签与箭头。",
+            "系列封面：主题鲜明，为标题保留空间。"
+          ],
           "description": "统一风格下的配图用途。"
         },
         "researchBlog.images.useStyleReference": {
-          "type": "boolean", "default": true,
-          "description": "百炼 Token Plan 生图时携带内置风格参考图，以约束细线、几何和灰阶风格。参考图会计入套餐输入图像用量。"
+          "type": "boolean",
+          "default": false,
+          "description": "可选：百炼或 Codex 生图携带旧版抽象线场参考图。正文示意图默认关闭。启用会计入输入图像用量。"
         },
         "researchBlog.images.baseUrl": {
-          "type": "string", "default": "", "scope": "machine",
+          "type": "string",
+          "default": "",
+          "scope": "machine",
           "description": "生图 API 基础地址（含 /v1）；支持 OpenAI Images、硅基流动和百炼 Token Plan 专用生图接口。留空使用 AI 补全地址。"
         },
         "researchBlog.images.model": {
-          "type": "string", "default": "", "scope": "machine",
+          "type": "string",
+          "default": "",
+          "scope": "machine",
           "description": "接口支持的图像生成模型 ID，需显式填写。"
         },
         "researchBlog.images.size": {
-          "type": "string", "default": "1536x1024", "enum": ["auto", "1024x1024", "1536x1024", "1024x1536", "2048x2048", "2048x1536", "1536x2048", "1328x1328", "1664x928", "928x1664", "1472x1140", "1140x1472", "1584x1056", "1056x1584", "960x1280", "768x1024", "720x1440", "720x1280"],
+          "type": "string",
+          "default": "1536x1024",
+          "enum": [
+            "auto",
+            "1024x1024",
+            "1536x1024",
+            "1024x1536",
+            "2048x2048",
+            "2048x1536",
+            "1536x2048",
+            "1328x1328",
+            "1664x928",
+            "928x1664",
+            "1472x1140",
+            "1140x1472",
+            "1584x1056",
+            "1056x1584",
+            "960x1280",
+            "768x1024",
+            "720x1440",
+            "720x1280"
+          ],
           "description": "配图尺寸，需选择模型支持的值。百炼 Qwen Image 3.0 Pro 的 1536x1024 属于 1K 档，2048x1536 或 2048x2048 属于 2K 档。auto 由接口选择。"
         },
         "researchBlog.images.quality": {
-          "type": "string", "default": "auto", "enum": ["auto", "low", "medium", "high"],
+          "type": "string",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "low",
+            "medium",
+            "high"
+          ],
           "description": "生图质量；auto 使用服务默认值。模型需要支持所选参数。"
         },
         "researchBlog.images.timeoutSeconds": {
-          "type": "integer", "default": 180, "minimum": 30, "maximum": 600,
+          "type": "integer",
+          "default": 180,
+          "minimum": 30,
+          "maximum": 600,
           "description": "生图请求最长等待秒数，可在进度通知中取消。"
         },
         "researchBlog.images.styleInstructions": {
-          "type": "string", "default": "", "maxLength": 6000, "scope": "resource",
-          "description": "在黑白实验出版物风格上追加的要求。默认使用精密线条、抽象几何和少量陶土红；用途与底色由独立设置控制。模型输出仍需人工检查。"
+          "type": "string",
+          "default": "",
+          "maxLength": 6000,
+          "scope": "resource",
+          "description": "追加配图偏好。默认生成正文示意图，允许少量标签、具体形象和必要箭头，不强制抽象线场或四栏排版。严格黑白出版规范用于 Typst 图形代码。"
         },
         "researchBlog.images.preparePrompt": {
-          "type": "boolean", "default": true,
-          "description": "先整理配图构思：已配置文字模型时，先将选区和风格说明交给该文字模型整理画面，再调用生图模型。关闭后直接发送原选区和风格。"
+          "type": "boolean",
+          "default": false,
+          "description": "可选：先用文字模型整理构思。默认关闭，选区直接交给生图模型，避免把插图限制成讲义版式。"
         },
         "researchBlog.contentPath": {
           "type": "string",
@@ -207,6 +529,25 @@
           "default": "max_completion_tokens",
           "scope": "machine",
           "description": "兼容接口仅支持旧参数时选择 max_tokens。"
+        },
+        "researchBlog.zotero.baseUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:23119/api/",
+          "scope": "machine",
+          "description": "Zotero 本机 API 地址。仅允许 localhost / 127.0.0.1 / ::1，不向外部服务发送文献库。"
+        },
+        "researchBlog.zotero.libraryPath": {
+          "type": "string",
+          "default": "users/0",
+          "scope": "machine",
+          "description": "Zotero 库路径：个人库 users/0；已同步的群组库 groups/数字ID。"
+        },
+        "researchBlog.zotero.autoRefreshSeconds": {
+          "type": "integer",
+          "default": 60,
+          "minimum": 0,
+          "maximum": 3600,
+          "description": "文献工作台自动刷新间隔（秒）；0 关闭。修改和手动刷新仍即时更新。"
         }
       }
     },
@@ -225,7 +566,7 @@
   },
   "dependencies": {
     "markdown-it": "14.3.1",
-    "smol-toml": "1.8.0",
+    "smol-toml": "1.9.1",
     "vscode-languageclient": "9.0.1",
     "vscode-languageserver": "9.0.1",
     "vscode-languageserver-textdocument": "1.0.12",

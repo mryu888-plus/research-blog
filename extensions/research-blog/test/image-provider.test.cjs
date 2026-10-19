@@ -15,7 +15,7 @@ function harness(t) {
   const article = library.createArticle(contentRoot, '选区配图');
   let text = fs.readFileSync(article.file, 'utf8');
   const start = text.indexOf('在这里'), end = start + '在这里开始写作。'.length;
-  const commands = {}, info = [], errors = [], requested = [], keyReads = [], updates = [], planned = [];
+  const commands = {}, info = [], errors = [], requested = [], codexRequested = [], keyReads = [], updates = [], planned = [];
   const aiSettings = {}, secrets = new Map();
   let finish, cancelProgress, edited = 0, saved = 0;
   const disposable = { dispose() {} }, settings = { baseUrl: 'http://127.0.0.1:1234/v1', model: 'fixture-model' };
@@ -46,10 +46,16 @@ function harness(t) {
     } : name === './image-core.cjs' ? { ...core, requestIllustrationPrompt: async (options, selection) => { planned.push({ options, selection }); return 'Flat connected shapes.'; }, requestImage: async (options, selection, signal) => {
       requested.push({ options, selection });
       return new Promise(resolve => { finish = () => resolve({ buffer: PNG }); signal.addEventListener('abort', finish, { once: true }); });
-    } } : require(name.startsWith('.') ? path.resolve(__dirname, '../src', name) : name),
+    } } : name === './codex-images.cjs' ? {
+      resolveCodex: () => 'codex-fixture', chatgptLogin: async () => {}, codexEnvironment: () => ({}),
+      requestCodexImage: async (options, selection, signal) => {
+        codexRequested.push({ options, selection });
+        return new Promise(resolve => { finish = () => resolve({ buffer: PNG }); signal.addEventListener('abort', finish, { once: true }); });
+      },
+    } : require(name.startsWith('.') ? path.resolve(__dirname, '../src', name) : name),
   });
   module.exports.registerImages({ subscriptions: [], secrets: { get: async name => { keyReads.push(name); return secrets.get(name); }, store: async (name, value) => secrets.set(name, value) } });
-  return { commands, document, editor, vscode, info, errors, requested, keyReads, article, settings, aiSettings, secrets, updates, planned,
+  return { commands, document, editor, vscode, info, errors, requested, codexRequested, keyReads, article, settings, aiSettings, secrets, updates, planned,
     finish: () => finish(), cancel: () => cancelProgress(), edit: () => { text += '\n写作仍在继续'; document.version++; },
     stats: () => ({ edited, saved, text }), assets: () => fs.existsSync(path.join(path.dirname(article.file), 'assets')) ? fs.readdirSync(path.join(path.dirname(article.file), 'assets')) : [],
   };
@@ -73,6 +79,7 @@ test('Token Plan configuration and generation preserve SiliconFlow text settings
   assert.deepEqual(h.aiSettings, originalAI);
   assert(h.updates.every(update => update.section === 'researchBlog.images'));
   assert.equal(h.settings.model, 'qwen-image-3.0-pro');
+  h.settings.preparePrompt = true; // Optional planning remains available when explicitly enabled.
   const pending = h.commands['researchBlog.images.generate'](); await new Promise(r => setImmediate(r)); h.finish(); await pending;
   assert.equal(h.planned[0].options.key, 'sk-text-fixture');
   assert.equal(h.planned[0].options.model, originalAI.model);
@@ -80,6 +87,37 @@ test('Token Plan configuration and generation preserve SiliconFlow text settings
   assert.equal(h.requested[0].options.baseUrl, core.TOKEN_PLAN_BASE);
   assert.equal(h.requested[0].options.prompt, 'Flat connected shapes.');
   assert.equal(h.stats().saved, 1); assert.equal(h.errors.length, 0);
+});
+test('default schematic generation skips the text planner and old abstract reference even with a text model configured', async t => {
+  const h = harness(t);
+  Object.assign(h.aiSettings, { baseUrl: 'https://api.siliconflow.cn/v1', model: 'zai-org/GLM-5.3' });
+  const pending = h.commands['researchBlog.images.generate'](); await new Promise(r => setImmediate(r)); h.finish(); await pending;
+  assert.equal(h.planned.length, 0);
+  assert.equal(h.requested[0].options.useStyleReference, false);
+  assert.equal(h.requested[0].options.referenceImage, undefined);
+  assert.equal(h.requested[0].options.prompt, undefined);
+  assert.equal(h.stats().saved, 1);
+});
+test('Codex configuration preserves API credentials and uses the same asset insertion flow without any API request', async t => {
+  const h = harness(t), apiSettings = { ...h.settings };
+  Object.assign(h.aiSettings, { baseUrl: 'https://api.siliconflow.cn/v1', model: 'text-fixture' });
+  h.secrets.set('existing-image-key', 'image-fixture');
+  await h.commands['researchBlog.images.configureCodex']();
+  assert.equal(h.settings.provider, 'codex'); assert.equal(h.settings.timeoutSeconds, 600);
+  assert.equal(h.settings.baseUrl, apiSettings.baseUrl); assert.equal(h.settings.model, apiSettings.model);
+  assert.equal(h.secrets.get('existing-image-key'), 'image-fixture');
+  h.settings.model = ''; h.settings.baseUrl = 'not-an-api-url'; h.settings.preparePrompt = true;
+  const pending = h.commands['researchBlog.images.generate'](); await new Promise(r => setImmediate(r)); h.finish(); await pending;
+  assert.equal(h.codexRequested.length, 1); assert.equal(h.codexRequested[0].selection, '在这里开始写作。');
+  assert.equal(h.requested.length, 0); assert.equal(h.planned.length, 0); assert.equal(h.keyReads.length, 0);
+  assert.equal(h.assets().length, 1); assert.equal(h.stats().saved, 1); assert.equal(h.errors.length, 0);
+});
+test('Codex cancellation and stale edits preserve the article and do not switch to API', async t => {
+  const h = harness(t); h.settings.provider = 'codex';
+  const cancelled = h.commands['researchBlog.images.generate'](); await new Promise(r => setImmediate(r)); h.cancel(); await cancelled;
+  assert.equal(h.assets().length, 0); assert.equal(h.stats().edited, 0);
+  const stale = h.commands['researchBlog.images.generate'](); await new Promise(r => setImmediate(r)); h.edit(); h.finish(); await stale;
+  assert.equal(h.assets().length, 1); assert.equal(h.stats().edited, 0); assert.equal(h.requested.length, 0);
 });
 test('cancelling Token Plan configuration leaves existing image settings and credentials untouched', async t => {
   const h = harness(t), original = { ...h.settings };

@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 async function build() {
+  require('../../../scripts/sync_zen.cjs').sync();
   await esbuild.build({
     absWorkingDir: root,
     entryPoints: { extension: 'src/extension.cjs', server: 'src/server.cjs', 'preview-server': 'src/preview-server.cjs' },

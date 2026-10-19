@@ -4,11 +4,21 @@ on:
   push:
     branches: [main]
     paths:
+      - 'ZEN.md'
+      - 'design/**'
+      - 'scripts/sync_zen.cjs'
+      - 'tests/zen.test.cjs'
+      - 'extensions/research-notes-theme/scripts/**'
       - 'extensions/research-blog/**'
       - 'site/static/knowledge-core.js'
       - '.github/workflows/vscode-extension.yml'
   pull_request:
     paths:
+      - 'ZEN.md'
+      - 'design/**'
+      - 'scripts/sync_zen.cjs'
+      - 'tests/zen.test.cjs'
+      - 'extensions/research-notes-theme/scripts/**'
       - 'extensions/research-blog/**'
       - 'site/static/knowledge-core.js'
       - '.github/workflows/vscode-extension.yml'
@@ -41,6 +51,8 @@ jobs:
         run: npm run build
       - name: Test language server and AI completion
         run: npm test
+      - name: Verify shared ZEN consumers
+        run: node --test ../../tests/zen.test.cjs
       - name: Package VSIX
         run: npm run package
       - uses: actions/upload-artifact@v4

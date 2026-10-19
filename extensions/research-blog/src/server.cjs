@@ -21,7 +21,7 @@ connection.onInitialize(params => {
   workspace.scan();
   return { capabilities: {
     textDocumentSync: TextDocumentSyncKind.Incremental,
-    completionProvider: { triggerCharacters: ['[', '#', '"', '=', '/'] },
+    completionProvider: { triggerCharacters: ['[', '@', '#', '"', '=', '/'] },
     definitionProvider: true, hoverProvider: true, referencesProvider: true, documentSymbolProvider: true,
   }, serverInfo: { name: 'research-blog-lsp', version: '0.1.0' } };
 });
