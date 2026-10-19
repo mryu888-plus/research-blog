@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "研究笔记：预览网站（含草稿）",
+      "type": "process",
+      "command": "python",
+      "args": ["${workspaceFolder}/scripts/editor.py", "preview"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "研究笔记：构建并检查",
+      "type": "process",
+      "command": "python",
+      "args": ["${workspaceFolder}/scripts/editor.py", "check"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": [],
+      "group": {"kind": "build", "isDefault": true}
+    },
+    {
+      "label": "研究笔记：新建文章",
+      "type": "process",
+      "command": "python",
+      "args": ["${workspaceFolder}/scripts/editor.py", "new", "${input:articleTitle}"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [{"id": "articleTitle", "type": "promptString", "description": "文章标题"}]
+}

@@ -1,0 +1,31 @@
+base_url = __SITE_URL__
+title = __SITE_TITLE__
+description = "研究、阅读与写作。"
+default_language = "zh"
+
+compile_sass = true
+build_search_index = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+taxonomies = [{name = "tags", feed = true}]
+
+[markdown]
+render_emoji = false
+insert_anchor_links = "heading"
+
+[markdown.highlighting]
+style = "inline"
+theme = "ayu-dark"
+
+[extra]
+author = __SITE_AUTHOR__
+profile_enabled = false
+enable_katex = true
+agent_endpoint = ""
+topic_tree = []
+
+[extra.tag_labels]
+writing = "写作"
+design = "设计"
+
+[extra.tag_descriptions]

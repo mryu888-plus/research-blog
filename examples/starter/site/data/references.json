@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "zotero-guide",
+      "citekey": "zotero-guide",
+      "type": "webpage",
+      "title": "Zotero Quick Start Guide",
+      "author": [{"literal": "Zotero"}],
+      "URL": "https://www.zotero.org/support/quick_start_guide"
+    }
+  ]
+}

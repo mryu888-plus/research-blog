@@ -1,0 +1,11 @@
+{
+  "files.encoding": "utf8",
+  "files.insertFinalNewline": true,
+  "[markdown]": {"editor.wordWrap": "on", "editor.formatOnSave": false},
+  "markdown.math.enabled": true,
+  "markdown.preview.fontSize": 17,
+  "markdown.preview.lineHeight": 1.8,
+  "files.exclude": {"**/target": true, "**/.tools": true, "**/output": true, "site/public": true},
+  "search.exclude": {"**/node_modules": true, "**/target": true, "**/.tools": true, "site/public": true},
+  "files.watcherExclude": {"**/node_modules/**": true, "**/target/**": true, "**/site/public/**": true}
+}
