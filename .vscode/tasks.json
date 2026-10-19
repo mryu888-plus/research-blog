@@ -4,9 +4,14 @@
     {
       "label": "博客：新建文章",
       "type": "process",
-      "command": "python",
+      "command": "cargo",
       "args": [
-        "${workspaceFolder}/scripts/editor.py",
+        "run",
+        "-q",
+        "--release",
+        "-p",
+        "blogctl",
+        "--",
         "new",
         "${input:articleSlug}"
       ],
@@ -22,9 +27,14 @@
     {
       "label": "博客：预览网站（含草稿）",
       "type": "process",
-      "command": "python",
+      "command": "cargo",
       "args": [
-        "${workspaceFolder}/scripts/editor.py",
+        "run",
+        "-q",
+        "--release",
+        "-p",
+        "blogctl",
+        "--",
         "preview"
       ],
       "options": {
@@ -40,9 +50,14 @@
     {
       "label": "博客：生成个人介绍与简历",
       "type": "process",
-      "command": "python",
+      "command": "cargo",
       "args": [
-        "${workspaceFolder}/scripts/editor.py",
+        "run",
+        "-q",
+        "--release",
+        "-p",
+        "blogctl",
+        "--",
         "resume"
       ],
       "options": {
@@ -57,9 +72,14 @@
     {
       "label": "博客：构建并检查",
       "type": "process",
-      "command": "python",
+      "command": "cargo",
       "args": [
-        "${workspaceFolder}/scripts/editor.py",
+        "run",
+        "-q",
+        "--release",
+        "-p",
+        "blogctl",
+        "--",
         "check"
       ],
       "options": {

@@ -16,50 +16,35 @@ A personal blog and writing setup that an agent such as Claude Code or Codex can
 
 > 把浅色主题的强调色改成蓝色。
 
-agent 会改 `ZEN.md` 里的一个值，运行同步和检查。网站样式、两套编辑器主题和 Typst 图形模板都从这一个文件生成，所以网站和图形一起变。它能这样做，是因为仓库给它准备了三样东西：每类修改只有一个地方要改，每类修改有一条命令能验证，`AGENTS.md` 写清了边界和步骤。
+agent 会改 `ZEN.md` 里的一个值，运行 `blogctl zen` 和检查。网站样式、两套编辑器主题和 Typst 图形模板都从这一个文件生成，所以网站和图形一起变。它能这样做，是因为仓库给它准备了三样东西：每类修改只有一个地方要改，每类修改有一条命令能验证，`AGENTS.md` 写清了边界和步骤。
 
 | 你说 | agent 改哪里 | 怎么确认没改坏 |
 | --- | --- | --- |
-| 换颜色、字体、正文宽度、图形线宽 | `ZEN.md` 里的一段 JSON | `node scripts/sync_zen.cjs --check` |
-| 新建文章、系列、主题分类 | Markdown、`site/data/collections.json`、`site/config.toml` | `python scripts/editor.py check` |
+| 换颜色、字体、正文宽度、图形线宽 | `ZEN.md` 里的一段 JSON | `blogctl zen --check` |
+| 新建文章、系列、主题分类 | Markdown、`site/data/collections.json`、`site/config.toml` | `blogctl check` |
 | 画一张图 | 文章目录下的 `figures/*.typ` | 构建时编译 |
 | 加一条引用 | `site/data/references.json` | 构建时生成参考文献 |
-| 改页面结构 | `site/templates` 和 CSS | `python scripts/check_site.py` 查链接、索引和不该公开的内容 |
-| 建一个新站点 | `python scripts/init_site.py` | `python scripts/check_starter.py` |
-| 装 Zola 和 Typst | `python scripts/setup_tools.py` | 脚本自己校验版本和哈希 |
+| 改页面结构 | `site/templates` 和 CSS | `blogctl check` 查链接、索引和不该公开的内容 |
+| 建一个新站点 | `blogctl init` | 在新目录里运行 `blogctl check` |
+| 装 Zola 和 Typst | 不用装，`blogctl` 第一次用时自己下载 | `blogctl tools` 报告版本和位置 |
 
 文献工作台是例外：它是 VS Code 里的界面，连的是本机的 Zotero，要自己点。插入引用之后的编号、参考文献和文献页仍然由构建生成。
 
 ## 快速开始
 
-需要 Python **3.11+** 和 Node.js **18+**。Zola **0.23.4** 和 Typst **0.15.1** 由下面的脚本装到仓库的 `.tools/` 目录，中文字体要自己装。
-
-### 交给 agent
+所有功能都在一个命令行程序 `blogctl` 里。从[发布页](https://github.com/mryu888-plus/research-blog/releases)下载对应系统的压缩包，解压后放进 PATH。不需要 Python 或 Node.js；Zola **0.23.4** 和 Typst **0.15.1** 由 `blogctl` 第一次使用时下载并校验。中文字体要自己装，Windows 和 macOS 自带。
 
 ```sh
-git clone https://github.com/mryu888-plus/research-blog.git
-cd research-blog
-claude      # 或 codex
+blogctl init my-notes --name "我的研究手记" --author "你的名字" --url "https://USERNAME.github.io/REPO/"
+cd my-notes
+blogctl preview
 ```
 
-然后说：
+打开终端里显示的地址，改一下示例文章再保存，就能看到页面更新。新站点是一份干净的模板，带示例文章、图形、`ZEN.md`、`AGENTS.md` 和 GitHub Pages 发布工作流，不会包含本仓库作者的文章和个人资料。目标目录必须不存在或为空。
 
-> 按 AGENTS.md 的步骤，在 ../my-notes 建一个新站点，站名「我的研究手记」，作者「你的名字」，地址 https://USERNAME.github.io/REPO/。装好工具，打开预览。
+也可以交给 agent：装好 `blogctl` 之后，在新站点目录里打开 Claude Code 或 Codex，说要改什么。新站点的 `AGENTS.md` 写了文件在哪、改完怎么验证。
 
-### 自己动手
-
-```sh
-python scripts/init_site.py ../my-notes --name "我的研究手记" --author "你的名字" --url "https://USERNAME.github.io/REPO/"
-cd ../my-notes
-python scripts/setup_tools.py
-npm --prefix extensions/research-blog ci --ignore-scripts
-npm --prefix extensions/research-blog run build
-python scripts/editor.py preview
-```
-
-打开终端里显示的地址，改一下示例文章再保存，就能看到页面更新。新站点是一份干净的模板，带示例文章、图形、`ZEN.md`、`AGENTS.md` 和 GitHub Pages 发布工作流，不会复制本仓库作者的文章和个人资料。目标目录必须不存在或为空。
-
-发布前运行 `python scripts/editor.py check`，构建并检查整个网站。完整流程目前在 Windows 上验证过，CI 在 Windows 和 Linux 上构建，macOS 还没有人走过。
+发布前运行 `blogctl check`，构建并检查整个网站。完整流程目前在 Windows 上验证过，CI 在 Linux 上构建，`blogctl` 在 Windows、Linux 和 macOS 上编译发布。
 
 [完整的入门和部署步骤](docs/getting-started.md) · [安装写作插件](extensions/research-blog/README.md)
 
@@ -75,7 +60,7 @@ python scripts/editor.py preview
 | VS Code 插件 | 新建和整理文章，补全链接和引用，跳转章节，检查元数据 |
 | 静态发布与 RSS | 推送到 GitHub 就发布到 GitHub Pages，读者可以用 RSS 订阅 |
 
-预览在 VS Code 里运行 **Research Blog: 预览网站（含草稿）**，或在终端执行 `python scripts/editor.py preview`。改了 Markdown，正文、公式和目录会更新；改了 Typst 文件，图形会重新编译；编译出错时保留上一版页面，改好后自动恢复。正式构建不包含草稿。
+预览在 VS Code 里运行 **Research Blog: 预览网站（含草稿）**，或在终端执行 `blogctl preview`。改了 Markdown，正文、公式和目录会更新；改了 Typst 文件，图形会重新编译；编译出错时保留上一版页面，改好后自动恢复。正式构建不包含草稿。
 
 <details>
 <summary>文章页截图（公式、图形、引用、双链）</summary>
@@ -123,12 +108,14 @@ python scripts/editor.py preview
 写作、预览和发布都不依赖这些。
 
 - **插件里的 AI 配图和补全**：根据选中的文字生成配图，补全公式和代码。接口、模型和密钥要自己配置，见[插件说明](extensions/research-blog/README.md)。手里有 agent 的话，这些事也可以直接让 agent 做。
-- **文章助手**：`crates/` 里的 Rust 服务，给网站加一个基于全文索引的问答框。只在本机或自己的服务器上运行，GitHub Pages 不跑它。
+- **文章助手**：一个基于全文索引的问答服务，默认的 `blogctl` 不带它，要从源码用 `--features agent` 编译。只在本机或自己的服务器上运行，GitHub Pages 不跑它。
 - **个人简历**：从一份 Typst 源文件生成关于页和简历 PDF。新站点默认关闭，关于页就是普通的 Markdown。
 
 ## 参与
 
-项目还在实验阶段，插件即将发布的版本是 **0.3.0**。已发布的旧版本和当前源码有什么区别，见[发布说明](docs/releasing.md)。
+项目还在实验阶段，插件即将发布的版本是 **0.3.0**。`blogctl` 和插件分别发布，已发布的旧版本和当前源码有什么区别，见[发布说明](docs/releasing.md)。
+
+从源码改这个项目：装 Rust stable，`cargo build -p blogctl` 编译命令行程序；插件开发另外需要 Node.js。细节见[贡献指南](CONTRIBUTING.md)。
 
 安装、排版、文献功能用起来有问题，请提 Issue；也欢迎直接提 PR，包括新的模板。改代码之前先看 `AGENTS.md`，人和 agent 都适用。
 

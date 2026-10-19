@@ -9,7 +9,7 @@
 `typst/blog-diagram.typ` 是可独立复制到文章 `figures/` 目录的原生 Typst 模板。在 VS Code 空白 `.typ` 文件输入 `blogdiagram` 可插入同一份模板。模板的 ZEN 参数段、片段和 Typst AI 补全规则均由根目录规范生成。
 
 ```powershell
-node scripts/sync_zen.cjs
+blogctl zen
 typst compile design/visual-system/typst/blog-diagram.typ diagram.svg
 typst compile --input theme=graphite design/visual-system/typst/blog-diagram.typ diagram-dark.svg
 ```

@@ -10,7 +10,7 @@ Research Blog 的工具代码和可复用模板采用根目录 [MIT License](LIC
 - 网站模板、组件 CSS、交互代码和站点配置结构。
 - `ZEN.md` 的设计参数与规则，以及由其生成的网站变量、VS Code 主题、Typst 模板参数和代码片段。
 - 可复用 Typst 排版代码，如 `profile/layout.typ` 与 `design/visual-system/typst/blog-diagram.typ`；具体简历和研究图形中的个人内容另列。
-- 项目说明文档、演示页面代码、界面截图及 `scripts/init_site.py` 生成的入门示例内容。
+- 项目说明文档、演示页面代码、界面截图及 `blogctl init` 生成的入门示例内容。
 
 可以复制这些工具、模板和示例创建自己的站点，按 MIT 要求保留版权与许可通知。使用者自己的文章与素材由使用者决定许可。
 
@@ -23,7 +23,7 @@ Research Blog 的工具代码和可复用模板采用根目录 [MIT License](LIC
 - 个人文章中的研究图形、原始图片，以及 `design/visual-system/assets/`、`design/visual-system/examples/` 和 `extensions/research-blog/assets/editorial-reference.png` 中保留的配图探索素材及其来源记录。
 - 作者或使用者自己的文献 PDF、批注、书目库和其他研究资料。
 
-界面截图可用于介绍本项目；这不授予其中展示的论文、文章或第三方素材的独立再利用权。个人信息也不能作为新站点的默认作者资料。`scripts/init_site.py` 为此只复制工具与通用示例，不复制个人文章、CV、研究素材或私有文献库。
+界面截图可用于介绍本项目；这不授予其中展示的论文、文章或第三方素材的独立再利用权。个人信息也不能作为新站点的默认作者资料。`blogctl init` 为此只写入模板与通用示例，不复制个人文章、CV、研究素材或私有文献库。
 
 ## 第三方内容
 

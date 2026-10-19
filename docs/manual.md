@@ -6,15 +6,13 @@
 
 ## 本地构建与预览
 
-静态网站不需要 LLM 密钥或 Rust 服务。需要 Python 3.11+、Node.js 18+、Zola **0.23.4**、Typst **0.15.1**。运行 `python scripts/setup_tools.py` 可以把 Zola 和 Typst 下载到 `.tools/` 并校验版本；也可以自己下载官方二进制加入 PATH，或用环境变量 `ZOLA`、`TYPST` 指定路径。图形首次编译会下载 CeTZ 包。Linux 需要中文字体（例如 `fonts-noto-cjk`）。
+静态网站不需要 LLM 密钥或后端服务。只需要 `blogctl` 和一种中文字体。`blogctl` 第一次构建或预览时会把 Zola **0.23.4** 和 Typst **0.15.1** 下载到用户缓存目录并校验哈希；`blogctl tools` 可以提前下载、查看位置。也可以用环境变量 `ZOLA`、`TYPST` 指定路径。图形首次编译会下载 CeTZ 包。Linux 需要中文字体（例如 `fonts-noto-cjk`）。
 
 ```powershell
-python scripts/build_site.py
-python scripts/check_site.py
-# 首次从源码使用预览：需要 Node.js，并构建本地编辑服务
-npm --prefix extensions/research-blog ci
-npm --prefix extensions/research-blog run build
-python scripts/editor.py preview
+blogctl build      # 构建到 site/public/
+blogctl validate   # 检查已构建的网站
+blogctl check      # 两步一起做
+blogctl preview    # 实时预览，含草稿
 ```
 
 访问终端打印的本地地址。预览命令会生成文章图形，再启动包含草稿的网站；启用个人资料导出时也会生成个人介绍和简历。保存源文件后自动更新。静态输出位于 `site/public/`。可用环境变量 `ZOLA`、`TYPST` 指定对应程序的完整路径。以下说明同时适用于生成的独立站点与本仓库个人站点；个人资料部分仅在开启对应功能时使用。
@@ -23,7 +21,7 @@ python scripts/editor.py preview
 
 默认外观参考 [Apollo](https://github.com/not-matthias/apollo) 的极简排版，随附 ZEN 明暗配色。用户可以在 [ZEN.md](../ZEN.md) 定义自己的风格，修改颜色、字体、正文尺度、基础间距、图形参数和 AI 规则；详细参数见[自定义风格指南](style-guide.md)。`site/static/zen.css` 提供生成的语义变量，`apollo.css` 与其他样式保留组件布局和细节排版，可继续定制。默认深色，明暗选择保存在浏览器中。首页扫描线和光晕均为静态背景，不覆盖文章正文；在调色板的 `effects` 中将 `halo`、`scanline` 设为 `transparent` 即关闭。
 
-编辑 `zen:tokens` 和 `zen:prompts` 两个 JSON 块后运行 `node scripts/sync_zen.cjs`，或使用网站与插件的常规构建入口自动同步。`node scripts/sync_zen.cjs --check` 只检查是否遗漏同步。网站实时预览会监听 `ZEN.md`，保存后更新样式；已安装的插件需重新打包 VSIX 并安装才会更新。字体不会自动下载，配色主题也不会修改 VS Code 编辑器字体；主题名称与插件标识保持不变。不要手改生成文件。
+编辑 `zen:tokens` 和 `zen:prompts` 两个 JSON 块后运行 `blogctl zen`，网站构建和预览也会自动同步。`blogctl zen --check` 只检查是否遗漏同步。网站实时预览会监听 `ZEN.md`，保存后更新样式；已安装的插件需重新打包 VSIX 并安装才会更新。字体不会自动下载，配色主题也不会修改 VS Code 编辑器字体；主题名称与插件标识保持不变。不要手改生成文件。
 
 ## 写文章
 
@@ -34,10 +32,10 @@ python scripts/editor.py preview
 主题页通过左侧多级目录切换分类，支持逐层展开收起，选择“全部”恢复完整列表。在 `site/config.toml` 的 `[extra]` 中编辑 `topic_tree`：每项可设置 `id`、`label`、`tag` 和递归的 `children`。父分类汇总子分类文章并去重；未配置的标签仍会保留。`tag_labels` 设置中文名称，`tag_descriptions` 设置分类描述。关闭 JavaScript 后仍可展开各主题并阅读文章。
 
 ```powershell
-cargo run -p blogctl -- new my-research-note
+blogctl new "我的研究笔记"
 ```
 
-文件生成于 `site/content/posts/my-research-note/index.md`，默认 `draft = true`。准备发布时改为 `false`（或移除该字段）。也可以直接创建 Markdown，不必使用 Rust CLI。
+文件生成于 `site/content/posts/我的研究笔记/index.md`，默认 `draft = true`。准备发布时改为 `false`（或移除该字段）。也可以直接创建 Markdown，不必用命令。
 
 ```toml
 +++
@@ -62,7 +60,7 @@ $$
 
 不需要 HTML 包装，也不需要把 `_`、`*` 再转义。`\(...\)` 和 `\[...\]` 同样支持；矩阵或 `aligned` 中的 `\\` 保持原样。代码块、行内代码中的公式示例不会被渲染。普通价格使用 `\$` 表示字面美元符号。
 
-使用上面的 Python 构建/预览入口（Rust 完整构建也会复用它）：它们只在临时构建副本中保护公式，原始 Markdown 不会被改写。直接运行原生 `zola build/serve` 会绕过这一步。旧的 `math-block` 包装仍然兼容。
+`blogctl build`、`check` 和 `preview` 只在临时构建副本中保护公式，原始 Markdown 不会被改写。直接运行原生 `zola build/serve` 会绕过这一步。旧的 `math-block` 包装仍然兼容。
 
 在文章目录的 `figures/` 下放置 `.typ` 文件，并使用 Zola 组件引用：
 
@@ -70,11 +68,11 @@ $$
 {{ <fig id="example" caption="图标题" alt="对图内容的描述" /> }}
 ```
 
-`python scripts/build_site.py` 会将 `figures/example.typ` 编译为文章目录下的 `example.svg`（与 `index.md` 同级），然后生成网站。图形可通过点击或键盘放大；代码块支持复制。
+`blogctl build` 会将 `figures/example.typ` 编译为文章目录下的 `example.svg`（与 `index.md` 同级），然后生成网站。图形可通过点击或键盘放大；代码块支持复制。
 
 ## GitHub Pages
 
-`.github/workflows/pages.yml` 在推送到 `main` 时执行前端与 Python 测试，编译文章图形和已启用的个人资料，构建 Zola，检查站内链接与搜索索引，并在新建模板中检查预览和 ZEN 更新，然后发布 `site/public/`。PR 只构建检查，不发布。仓库的 Settings → Pages → Source 应为 **GitHub Actions**。
+`.github/workflows/pages.yml` 在推送到 `main` 时从源码编译 `blogctl`，执行前端测试，用 `blogctl check` 编译文章图形和已启用的个人资料、构建 Zola、检查站内链接与搜索索引，再新建一个演示站点走一遍构建和 ZEN 检查，然后发布 `site/public/`。PR 只构建检查，不发布。仓库的 Settings → Pages → Source 应为 **GitHub Actions**。
 
 日常发布：修改文章 → 提交并推送 `main` → 等待 Actions 成功。修改仓库名或自定义域名时，更新 `site/config.toml` 的 `base_url`；所有站内资源均使用该地址生成，支持 Pages 子路径。
 
@@ -84,14 +82,14 @@ $$
 
 GitHub Pages 不运行 Rust 后端。公开网站默认关闭助手；搜索、阅读、公式、图形和主题归档不依赖助手。
 
-在本地创建 `.env`（参考 `.env.example`），然后：
+助手不在默认的 `blogctl` 里，需要从源码编译带 `agent` 功能的版本。在本地创建 `.env`（参考 `.env.example`），然后：
 
 ```powershell
-cargo run -p blogctl -- build
-cargo run -p blogctl -- serve --port 3030
+cargo run -p blogctl --features agent -- agent index
+cargo run -p blogctl --features agent -- agent serve --port 3030
 ```
 
-Rust 完整构建同时生成 `output/index/` 的中文检索索引和 manifest。`serve` 只启动 API，不启动网站预览，也不自动重建索引。构建需要 Zola 和 Typst 位于 PATH。
+`agent index` 为已发布文章生成 `output/index/` 的中文检索索引和 manifest。`agent serve` 只启动 API，不启动网站预览，也不自动重建索引。
 
 要启用助手，在 `site/config.toml` 的 `[extra]` 中设置 `agent_endpoint` 为完整接口 URL，例如本地使用 `http://127.0.0.1:3030/api/chat`，线上使用独立服务的 HTTPS 地址。密钥只放后端环境变量。当前服务只监听本机，适合本地或反向代理后使用；公开后端需要另行配置认证、允许的来源和限流，再开放访问。
 
@@ -102,39 +100,34 @@ Rust 完整构建同时生成 `output/index/` 的中文检索索引和 manifest�
 ```powershell
 cargo fmt --all -- --check
 cargo test --workspace --locked
-cargo clippy --workspace --all-targets --locked -- -D warnings
+cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
 node --test tests/*.test.cjs
-python -m unittest discover -s tests -p 'test_*.py'
-python scripts/build_site.py
-python scripts/check_site.py
+cargo run -p blogctl -- check
 ```
 
-Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径校验；前端测试覆盖中英文搜索及任意网络分块的 SSE 解析。静态检查覆盖站内路径、目录锚点、搜索数据、RSS、站点地图和公开产物排除规则。
+Rust 测试覆盖公式保护、引用排版、构建副本、ZEN 生成、站点检查、预览编辑服务、新站点初始化，以及文章助手的解析和检索；前端测试覆盖中英文搜索及任意网络分块的 SSE 解析。静态检查覆盖站内路径、目录锚点、搜索数据、RSS、站点地图和公开产物排除规则。
 
 ## 目录
 
 | 目录 | 用途 |
 | --- | --- |
-| `crates/blog-ir` | Markdown 与 TOML 解析、文章中间表示 |
-| `crates/blog-build` | Typst、Zola 构建和 Tantivy 中文索引 |
-| `crates/blog-agent` | Axum API、检索与 LLM 流式调用 |
-| `crates/blogctl` | 创建文章、构建、索引和启动 API |
+| `crates/blogctl` | 命令行程序：新建站点和文章、构建、预览、检查 |
+| `crates/blog-site` | 构建副本、公式保护、引用排版、ZEN、站点检查、预览、工具下载 |
+| `crates/blog-ir`、`blog-build`、`blog-agent` | 可选的文章助手：文章解析、Tantivy 中文索引、Axum API |
 | `site/content` | 文章源文件 |
 | `profile/cv.typ` | 个人介绍与简历的统一源文件 |
 | `output/pdf` | 本地简历与公开简历的生成结果 |
 | `site/templates`、`site/static` | 模板、样式与交互 |
-| `scripts`、`tests` | 静态构建与验证 |
+| `tests` | 前端脚本测试 |
 | `extensions/research-blog` | VS Code 插件源码、LSP、AI 补全与使用文档 |
 
 当前示例文章属于方法论笔记，没有实验结果。文章可以保存 refs.bib，或从 Zotero 工作台插入引用；构建自动排版参考文献并生成文献页。图形每次完整编译，以保证导入文件修改和缺失产物不会被缓存漏掉。
 
 ## VS Code 实时写作预览
 
-运行 `python scripts/editor.py preview`，在本地网页查看包含草稿的实际排版。可在 VS Code 配置保存后更新，或设置 `files.autoSave = "afterDelay"`；预览每 100 ms 同步源文件到包含公式保护的构建副本，Zola 监听等待为 1 ms，保持完整站点重建以同步文章列表、主题与搜索。浏览器通过仅在本地 serve 模式加载的 `preview.js` 更新正文，复用 KaTeX、保留滚动位置。重建期间的短暂 404、网络中断或格式错误会保留上一版页面并自动重试；持续失败时显示提示，可点击重试或继续保存恢复。文章 Typst 图形由常驻 watch 进程编译；开启个人资料功能时，`profile/` 中的资料、导入文件和素材在保存稳定约 0.4 秒后重新生成个人页与简历。个人资料编译失败时保留上一版产物，修正并保存后自动恢复。
+运行 `blogctl preview`，在本地网页查看包含草稿的实际排版。可在 VS Code 配置保存后更新，或设置 `files.autoSave = "afterDelay"`；预览每 100 ms 同步源文件到包含公式保护的构建副本，Zola 监听等待为 1 ms，保持完整站点重建以同步文章列表、主题与搜索。浏览器通过仅在本地 serve 模式加载的 `preview.js` 更新正文，复用 KaTeX、保留滚动位置。重建期间的短暂 404、网络中断或格式错误会保留上一版页面并自动重试；持续失败时显示提示，可点击重试或继续保存恢复。文章 Typst 图形由常驻 watch 进程编译；开启个人资料功能时，`profile/` 中的资料、导入文件和素材在保存稳定约 0.4 秒后重新生成个人页与简历。个人资料编译失败时保留上一版产物，修正并保存后自动恢复。
 
-性能复测：`python scripts/benchmark_preview.py` 在项目临时目录复制真实网站，测量写文件到新 HTML 可读取的耗时，不修改文章。2026-09-12 的 20 次样本：监听等待 200 ms 时中位数 261.51 ms，等待 1 ms 时 47.67 ms、P95 50.01 ms。浏览器实测正文和公式局部更新约 2.6–3.5 ms；这些是分段测量，不代表完整按键到屏幕延迟。
-
-`python scripts/test_preview_rebuild.py` 可在隔离副本中复现 Zola 重建期间的 HTTP 404，确认重建后恢复 200；`node --test tests/preview.test.cjs` 检查浏览器保留旧正文、自动恢复及重试上限。
+`node --test tests/preview.test.cjs` 检查浏览器保留旧正文、自动恢复及重试上限。
 
 ## 双链与知识图谱
 
@@ -166,13 +159,13 @@ Rust 测试覆盖文章解析、中文检索、元数据一致性及文章路径
 
 ```powershell
 # 生成个人介绍数据、本地简历和公开简历
-python scripts/editor.py resume
+blogctl resume
 
 # 边写边看 /about/，保存后自动更新网页和 PDF
-python scripts/editor.py preview
+blogctl preview
 
 # 生成并检查完整网站
-python scripts/editor.py check
+blogctl check
 ```
 
 VS Code 的“终端 → 运行任务”中也有“博客：生成个人介绍与简历”“博客：预览网站（含草稿）”和“博客：构建并检查”。打开 `profile/cv.typ` 可继续使用 Tinymist 编辑和预览排版；网站预览由上面的博客任务启动。
@@ -188,7 +181,7 @@ VS Code 的“终端 → 运行任务”中也有“博客：生成个人介绍�
 
 `site/content/about.md` 现在只保留页面路由和模板设置，个人资料无需再编辑这份 Markdown，也不要手改生成的 JSON 或 PDF。首页署名同样从 Typst 读取；页面样式在 `site/static/about.css`，公共外观由 `apollo.css` 管理。实时预览输出到 `.tools/site-preview`，不会把草稿混入 `site/public` 的发布产物。
 
-`cargo run -p blogctl -- build` 也会在运行 Zola 前调用同一份导出脚本，因此 Rust 完整构建还需要 Python 3.11+；可用 `PYTHON` 环境变量指定解释器。字体优先使用 Noto CJK，本机没有安装时自动使用微软雅黑／宋体；CI 安装 Noto CJK。`layout.typ` 只负责排版，平时无需修改。
+`blogctl build` 在运行 Zola 前生成个人资料。字体优先使用 Noto CJK，本机没有安装时自动使用微软雅黑／宋体；CI 安装 Noto CJK。`layout.typ` 只负责排版，平时无需修改。
 
 配图规则统一维护在 [ZEN.md](../ZEN.md)，可编辑的精确图形模板在 `design/visual-system/typst/blog-diagram.typ`。历史配图探索素材与个人研究图片不进入干净站点模板。
 
@@ -201,8 +194,8 @@ PDF 阅读、绘制与修改批注、附件存储和跨设备同步由 Zotero �
 Windows 没有安装 Zotero 时，可以运行 **Research Blog: 启动本地 Zotero**，或使用：
 
 ```powershell
-python scripts/zotero.py setup
-python scripts/zotero.py start
+blogctl zotero setup
+blogctl zotero start
 ```
 
 助手下载官方 Zotero 10.0.6 便携版，客户端、独立配置和文献库存放于 Git 忽略的 `.tools/zotero/`，不会进入网站。已有系统 Zotero 仍可直接连接；若要切换到本项目独立库，应先退出其他 Zotero 实例。非 Windows 用户安装官方桌面版后使用同一工作台。
@@ -229,4 +222,4 @@ python scripts/zotero.py start
 | `researchBlog.zotero.libraryPath` | `users/0` | 个人库；群组库使用 `groups/数字ID` |
 | `researchBlog.zotero.autoRefreshSeconds` | `60` | 打开工作台后的刷新间隔；0 关闭 |
 
-验证：`npm --prefix extensions/research-blog test`、`python -m unittest discover -s tests -p test_references.py`、`python scripts/editor.py check`。本地运行与 API 协议见 [Zotero Local API](https://www.zotero.org/support/dev/web_api/v3/local_api)，同步设置见 [Zotero Sync](https://www.zotero.org/support/sync)。
+验证：`npm --prefix extensions/research-blog test`、`cargo test -p blog-site`、`blogctl check`。本地运行与 API 协议见 [Zotero Local API](https://www.zotero.org/support/dev/web_api/v3/local_api)，同步设置见 [Zotero Sync](https://www.zotero.org/support/sync)。

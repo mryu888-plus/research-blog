@@ -80,11 +80,11 @@ ZEN 是项目自带的默认风格：石墨黑、暖纸白，加少量陶土红�
 在项目根目录运行：
 
 ```sh
-node scripts/sync_zen.cjs
-node scripts/sync_zen.cjs --check
+blogctl zen
+blogctl zen --check
 ```
 
-第一条命令验证参数并生成接入文件；第二条只检查是否存在遗漏同步的文件。网站和插件的常规构建也会执行同步。运行 `python scripts/editor.py preview` 后，保存 `ZEN.md` 会更新网站预览，方便检查明暗主题和不同屏幕宽度。
+第一条命令验证参数并生成接入文件；第二条只检查是否存在遗漏同步的文件。网站构建和预览也会执行同步。运行 `blogctl preview` 后，保存 `ZEN.md` 会更新网站预览，方便检查明暗主题和不同屏幕宽度。
 
 已安装的 VSIX 使用打包时的风格数据。要更新编辑器配色，重新打包、安装主题插件；修改图形片段或 AI 规则后，重新打包、安装写作插件：
 

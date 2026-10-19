@@ -2,9 +2,9 @@
 
 ZEN 是这个项目的默认风格：**石墨黑和暖纸白，细线分隔，留白充足，只用一点陶土红。** 可以直接用，也可以在这里改成自己的颜色、字体、版面尺寸、图形参数和配图规则。
 
-设计规则和参数只在这个文件里维护。同步脚本读取下面 `zen:tokens` 和 `zen:prompts` 两段 JSON，生成网站 CSS、VS Code 主题、Typst 模板和 AI 提示词。改完运行 `node scripts/sync_zen.cjs`；构建网站、打开预览、构建两款插件时也会自动同步。
+设计规则和参数只在这个文件里维护。`blogctl zen` 读取下面 `zen:tokens` 和 `zen:prompts` 两段 JSON，生成网站 CSS、VS Code 主题、Typst 模板和 AI 提示词。改完运行 `blogctl zen`；构建网站和打开预览时也会自动同步。
 
-每类参数的用途和改法见[自定义指南](docs/style-guide.md)。文件名、两段 JSON 的标记和 `schemaVersion` 不要动；`name` 可以换成你自己的风格名，`graphite` 和 `paper` 分别是深色和浅色配置，键名保持不变。下面的文字说明的是默认方案，改了参数可以一起改；同步脚本只读 JSON。
+每类参数的用途和改法见[自定义指南](docs/style-guide.md)。文件名、两段 JSON 的标记和 `schemaVersion` 不要动；`name` 可以换成你自己的风格名，`graphite` 和 `paper` 分别是深色和浅色配置，键名保持不变。下面的文字说明的是默认方案，改了参数可以一起改；`blogctl zen` 只读 JSON。
 
 ## 基本原则
 
@@ -135,16 +135,14 @@ AI 配图分三种用途：`editorial` 是正文配图，`concept` 画关系和�
 ## 维护与验证
 
 ```powershell
-# 改完 ZEN 后同步所有生成文件（Node.js 18+）
-node scripts/sync_zen.cjs
+# 改完 ZEN 后同步所有生成文件
+blogctl zen
 # 只检查生成文件是否已同步，不写入
-node scripts/sync_zen.cjs --check
-# 网站和插件照常各自构建
-python scripts/build_site.py
-npm --prefix extensions/research-blog run build
-npm --prefix extensions/research-notes-theme run build
+blogctl zen --check
+# 照常构建网站
+blogctl build
 ```
 
-生成的文件有 `site/static/zen.css`、`design/zen.generated.cjs`、两套主题 JSON 和主题预览页；Typst 模板里的 ZEN 参数段和 `blogdiagram` 片段也会一起更新。这些生成内容不要手改。`apollo.css` 和各页面的样式只管组件和布局，用的是 `zen.css` 提供的变量。
+生成的文件有 `site/static/zen.css` 和 Typst 模板里的 ZEN 参数段。在 Research Blog 的源码仓库里，还会一起更新 `design/zen.generated.cjs`、两套主题 JSON、主题预览页和 `blogdiagram` 片段。这些生成内容不要手改。`apollo.css` 和各页面的样式只管组件和布局，用的是 `zen.css` 提供的变量。
 
 新组件先用现有的语义变量，确实需要新的语义角色时再加到这个文件里。改完之后检查深色和浅色主题、手机上的排版、键盘操作，以及图形的方向和可读性；构建时会检查生成文件有没有同步。改了本地的 ZEN 不会自动更新线上网站，也不会替换已经安装的 VSIX，要按正常流程发布或重新安装。
