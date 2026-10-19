@@ -1,5 +1,13 @@
 # 更新记录
 
+## 未发布
+
+- 预览和构建检查改为调用 `blogctl preview`、`blogctl check`，不再需要 `scripts/editor.py` 和 Python。
+- 新增设置 `researchBlog.blogctlPath`，填写 `blogctl` 的路径；找不到程序时提示下载和安装方法。
+- Windows 便携版 Zotero 改由 `blogctl zotero start` 启动，不再需要 `scripts/zotero.py`。
+- 预览里的系列编辑服务移到 `blogctl`，插件不再打包 `preview-server.cjs`。
+- 构建时用 `blogctl zen --check` 检查 ZEN 生成文件，不再自己生成。
+
 ## 0.3.0 — 2026-10-12
 
 - 新增 Zotero 文献工作台：分类、标签、搜索、PDF 批注查看、授权编辑和导入、阅读草稿与引用插入。

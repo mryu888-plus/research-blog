@@ -185,9 +185,14 @@ test('workspace trust gates browsing, authorization, local launch and all file w
   assert.equal(h.source.listCount, 0); assert.equal(h.source.mutationCount, 0); assert.equal(h.spawned.length, 0); assert.equal(h.panels.length, 0); assert.equal(h.errors.length, 5); assert(!fs.existsSync(path.join(h.root, 'site/data/references.json')));
 });
 
-test('portable Zotero fallback launches only a checked script with structured arguments', async t => {
-  const h = harness(t, { externalFails: true }); fs.mkdirSync(path.join(h.root, 'scripts')); fs.writeFileSync(path.join(h.root, 'scripts/zotero.py'), '# fixture');
-  await h.command('openZotero'); const call = h.spawned[0]; assert.equal(call.binary, 'python'); assert.equal(call.data.shell, false); assert.equal(call.data.windowsHide, true); assert.equal(path.relative(call.args[0], path.join(h.root, 'scripts/zotero.py')), ''); assert.deepEqual(call.args.slice(1), ['start', '--port', '23119', '--uri', 'zotero://select/library']); assert.equal(h.errors.length, 0);
+test('portable Zotero fallback runs blogctl zotero with structured arguments', async t => {
+  const h = harness(t, { externalFails: true });
+  await h.command('openZotero'); const call = h.spawned[0]; assert.equal(call.binary, 'blogctl'); assert.equal(call.data.shell, false); assert.equal(call.data.windowsHide, true); assert.equal(path.relative(call.data.cwd, h.root), ''); assert.deepEqual(call.args, ['--root', h.root, 'zotero', 'start', '--port', '23119', '--uri', 'zotero://select/library']); assert.equal(h.errors.length, 0);
+});
+
+test('portable Zotero fallback uses the configured blogctl path', async t => {
+  const h = harness(t, { externalFails: true, config: { blogctlPath: 'C:/Tools/blogctl.exe' } });
+  await h.command('openZotero'); assert.equal(h.spawned[0].binary, 'C:/Tools/blogctl.exe'); assert.equal(h.errors.length, 0);
 });
 
 test('snapshot merge strips private fields, retains other libraries and prevents path escapes', t => {

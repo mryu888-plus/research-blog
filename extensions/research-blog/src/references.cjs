@@ -6,6 +6,7 @@ const { spawn } = require('node:child_process');
 const { URI } = require('vscode-uri');
 const { parse: parseToml, stringify: stringifyToml } = require('smol-toml');
 const core = require('./collections-core.cjs');
+const { INSTALL_HINT, blogctlPath, blogRoot } = require('./blogctl.cjs');
 const { parseArticle } = require('./engine.cjs');
 const { extractCitations } = require('./reference-index.cjs');
 const markdown = new (require('markdown-it'))({ html: true });
@@ -272,14 +273,13 @@ function registerReferences(context, injected = {}) {
   }
   async function launchZotero(state, uri) {
     trusted();
-    const repo = state.scope.folder.uri.fsPath;
-    const script = core.safePath(repo, 'scripts', 'zotero.py');
-    if (!fs.existsSync(script)) throw new Error('没有找到 Zotero 启动助手。请先安装 Zotero，并在高级设置中开启本机通信。');
+    const repo = blogRoot(state.scope.contentRoot);
+    const binary = blogctlPath(vscode, state.scope.folder.uri);
     await new Promise((resolve, reject) => {
       const port = new URL(setting(state.scope).get('baseUrl', 'http://127.0.0.1:23119/api/')).port || '80';
-      const child = (injected.spawn || spawn)('python', [script, 'start', '--port', port, ...(uri ? ['--uri', uri] : [])], { cwd: repo, windowsHide: true, shell: false, stdio: 'ignore' });
-      child.once('error', () => reject(new Error('无法运行 Zotero 启动助手。请检查 Python 与 Zotero 安装。')));
-      child.once('exit', code => code === 0 ? resolve() : reject(new Error('Zotero 启动助手失败。请在终端运行 python scripts/zotero.py status 查看状态。')));
+      const child = (injected.spawn || spawn)(binary, ['--root', repo, 'zotero', 'start', '--port', port, ...(uri ? ['--uri', uri] : [])], { cwd: repo, windowsHide: true, shell: false, stdio: 'ignore' });
+      child.once('error', () => reject(new Error(INSTALL_HINT)));
+      child.once('exit', code => code === 0 ? resolve() : reject(new Error('Zotero 启动助手失败。请在终端运行 blogctl zotero status 查看状态。')));
     });
     for (let attempt = 0; attempt < 8; attempt++) {
       await refresh(state, true); if (state.online) return true;

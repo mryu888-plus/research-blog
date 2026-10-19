@@ -55,6 +55,6 @@ npm run package
 
 修改仓库根目录 `ZEN.md` 中的 `palettes.graphite` 和 `palettes.paper`，其中 `editor` 保存语法色、诊断色、选择区域和终端颜色，再重新构建、打包并安装 VSIX。可以修改风格 `name`，但两套主题仍保留 **Research Notes Graphite**、**Research Notes Paper** 名称和扩展标识；现有主题设置可以继续使用。`fonts` 不会修改 VS Code 编辑器字体，需要用户自行设置。
 
-`scripts/build.cjs` 只维护 VS Code 的角色映射；`themes/` 下的 JSON 和 `preview.html` 是生成文件，请勿单独手改。`npm run build` 自动同步全部风格接入面；在仓库根目录运行 `node scripts/sync_zen.cjs --check` 可检查是否遗漏同步。网站实时预览会监听风格源，已安装的主题则使用打包数据。源码构建需要完整博客仓库；安装后的纯主题 VSIX 不依赖仓库。
+`themes/` 下的 JSON 和 `preview.html` 是生成文件，请勿手改。它们由仓库根目录的 `blogctl zen`（源码仓库里是 `cargo run -p blogctl -- zen`）从 `ZEN.md` 生成；VS Code 的颜色角色映射在 `crates/blog-site/src/zen/theme.json`。`npm run build` 只检查生成文件是否最新，不是最新时构建失败。网站实时预览会监听风格源，已安装的主题则使用打包数据。源码构建需要完整博客仓库；安装后的纯主题 VSIX 不依赖仓库。
 
 配色格式遵循 [VS Code Color Theme](https://code.visualstudio.com/api/extension-guides/color-theme)、[Theme Color Reference](https://code.visualstudio.com/api/references/theme-color) 与 [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide)。

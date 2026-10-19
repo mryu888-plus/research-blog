@@ -53,7 +53,7 @@ API Key 保存在 SecretStorage。未设置生图专用 Key 时，仅当基础�
 | `researchBlog.images.styleInstructions` | 空 | 追加正文示意图的构图或风格偏好 |
 | `researchBlog.images.preparePrompt` | `false` | 可选先用文字模型整理构思 |
 
-写入和 AI 功能需要受信任的本地工作区。预览与构建调用 `scripts/editor.py`，需要完整博客仓库和 Python、Zola、Typst、Node.js 环境。首次从源码使用预览时，先执行 `npm --prefix extensions/research-blog ci` 和 `npm --prefix extensions/research-blog run build`，生成本地编辑服务。
+写入和 AI 功能需要受信任的本地工作区。预览与构建调用 `blogctl` 程序，不需要 Python 或 Node.js。`blogctl` 从 [Releases](https://github.com/mryu888-plus/research-blog/releases) 下载，放进 PATH；源码仓库里也可以运行 `cargo install --path crates/blogctl` 安装。不在 PATH 里时，在设置 `researchBlog.blogctlPath` 填它的完整路径。Zola 和 Typst 由 `blogctl` 第一次用到时自动下载。
 
 ## 下载、安装和升级
 
@@ -63,7 +63,7 @@ API Key 保存在 SecretStorage。未设置生图专用 Key 时，仅当基础�
 2. 在 VS Code 按 `Ctrl+Shift+X`，点击扩展面板右上角 `…` → **Install from VSIX… / 从 VSIX 安装…**，选择下载的文件。
 3. 确认已安装 **Research Blog Language Tools**（`mryu888-plus.research-blog`）和配套 **Tinymist**（`myriad-dreamin.tinymist`）。按提示重载窗口；也可在命令面板运行 **Developer: Reload Window**。
 
-安装包将 Tinymist 声明为配套扩展。若它没有自动安装，在扩展面板搜索上述 ID 安装；离线环境需要另外准备 Tinymist 的 VSIX。博客语言服务本身不需要额外安装 Node.js、Python、Zola 或 Rust；构建网站和预览的依赖见[仓库使用文档](../../README.md)。
+安装包将 Tinymist 声明为配套扩展。若它没有自动安装，在扩展面板搜索上述 ID 安装；离线环境需要另外准备 Tinymist 的 VSIX。博客语言服务本身不需要额外安装 Node.js、Python、Zola 或 Rust；构建网站和预览只需要 `blogctl`，见[仓库使用文档](../../README.md)。
 
 也可以在 PowerShell 指定下载文件的实际路径：
 
@@ -76,7 +76,7 @@ code --list-extensions --show-versions
 
 ## 打开正确的目录
 
-选择 **File → Open Folder… / 文件 → 打开文件夹…**，打开包含 `site/`、`scripts/` 和 `extensions/` 的博客仓库根目录。默认索引范围为 `site/content/**/*.md`；双链目标来自其中 `posts/` 下的文章。
+选择 **File → Open Folder… / 文件 → 打开文件夹…**，打开包含 `site/` 的博客根目录，也就是 `site/config.toml` 所在的目录。默认索引范围为 `site/content/**/*.md`；双链目标来自其中 `posts/` 下的文章。
 
 如果直接打开的是 `site` 目录，在该工作区的 `.vscode/settings.json` 中设置：
 
@@ -175,13 +175,13 @@ $$
 
 ZEN 的精确图形规范用于 **Typst 图形代码**：石墨黑 / 暖纸白、两档线宽、少量陶土红、清晰字体和严格对齐。在空白 `.typ` 文件输入 **`blogdiagram`** 再按 `Ctrl+Space` 可插入完整模板。Typst 的 AI 补全（含 Markdown 的 typst 围栏）自动携带这套规则，并优先沿用已有代码的配色与布局；普通代码与 LaTeX 不受影响。可复制模板见仓库 `design/visual-system/typst/blog-diagram.typ`。
 
-本插件负责编辑辅助；预览完整网站时，在博客根目录运行：
+本插件负责编辑辅助；预览完整网站时，运行命令 **博客：预览网站（含草稿）**，或在博客根目录运行：
 
 ```powershell
-python scripts/editor.py preview
+blogctl preview
 ```
 
-该命令需要仓库文档列出的 Python、Zola、Typst 等依赖。它会预览包含草稿的页面并监听图形变化。正式构建使用 `python scripts/build_site.py`，将 `figures/example.typ` 编译为文章目录下的 `example.svg`（与 `index.md` 同级）后生成网站。
+它会预览包含草稿的页面并监听图形变化。正式构建使用 `blogctl build`，构建并检查使用 `blogctl check`；构建时把 `figures/example.typ` 编译为文章目录下的 `example.svg`（与 `index.md` 同级）后生成网站。
 
 ## 可选 AI 补全
 
@@ -220,6 +220,7 @@ AI 请求流程已通过本机 HTTP 模拟接口验证，尚未完成真实模�
 | 配置键 | 默认值 | 用法与范围 |
 | --- | --- | --- |
 | `researchBlog.contentPath` | `"site/content"` | 相对工作区的文章目录；必须在工作区内，修改后重启语言服务；可按工作区文件夹设置 |
+| `researchBlog.blogctlPath` | `"blogctl"` | 预览、构建检查和启动 Zotero 时调用的程序；不在 PATH 里时填完整路径；机器级 |
 | `researchBlog.trace.server` | `"off"` | LSP 通信日志：`"off"`、`"messages"`、`"verbose"` |
 | `researchBlog.ai.enabled` | `false` | 开启公式、围栏代码块和 Typst 的 AI 行内补全 |
 | `researchBlog.ai.baseUrl` | `"https://api.openai.com/v1"` | Chat Completions 兼容接口基础地址；机器级，仅在用户设置配置 |
@@ -243,13 +244,13 @@ AI 请求流程已通过本机 HTTP 模拟接口验证，尚未完成真实模�
 | 更换 AI 接口后不工作 | 为新地址重新运行 **Research Blog: 设置 AI API Key**；检查地址未重复包含 `/chat/completions`，远程地址使用 HTTPS |
 | AI 返回 HTTP 400、401 或 404 | 检查服务商实际支持的模型、接口地址、Key 和 token 参数；仅支持旧参数的接口设为 `max_tokens`。错误不会包含接口响应正文，详细原因需结合服务商侧记录确认 |
 | AI 返回 HTTP 429 或始终超时 | 检查服务商额度、限流和网络；可增加 `debounceMs` 或降低 `maxTokens`。生成超过 15 秒会取消；仅支持流式输出的接口不适用 |
-| 网站没有显示草稿或图形 | 编辑辅助不等于发布。用 `python scripts/editor.py preview` 查看草稿；正式发布前检查 `draft`，并完成网站构建 |
+| 网站没有显示草稿或图形 | 编辑辅助不等于发布。用 `blogctl preview` 查看草稿；正式发布前检查 `draft`，并完成网站构建 |
 
 语言服务的输出通道为 **Research Blog (工作区名称)**。需要进一步诊断时，临时将 `researchBlog.trace.server` 设为 `"verbose"`，复现后改回 `"off"`。详细 LSP 通信日志可能包含文档内容，分享前请检查。
 
 ## 源码开发和验证
 
-以下步骤仅供修改插件源码时使用。在完整博客仓库中执行，需要 Node.js 和 npm：
+以下步骤仅供修改插件源码时使用。在完整博客仓库中执行，需要 Node.js、npm 和 Rust：`npm run build` 会运行 `blogctl zen --check`，PATH 里没有 `blogctl` 时改用 `cargo run -p blogctl`。
 
 ```powershell
 cd extensions/research-blog

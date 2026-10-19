@@ -3,6 +3,7 @@ const vscode = require('vscode');
 const fs = require('node:fs');
 const path = require('node:path');
 const core = require('./collections-core.cjs');
+const { blogctlPath, blogRoot, ensureBlogctl } = require('./blogctl.cjs');
 
 function scopeFor(folder) {
   if (!folder || folder.uri.scheme !== 'file') throw new Error('请先用 VS Code 打开博客文件夹。');
@@ -107,11 +108,11 @@ function registerWriting(context) {
   });
   for (const [action, label] of [['preview', '博客：预览网站（含草稿）'], ['check', '博客：构建并检查']]) command(`researchBlog.${action}`, async node => {
     const scope = await chooseScope(node); if (!scope) return;
-    const repo = path.dirname(path.dirname(scope.contentRoot)), script = path.join(repo, 'scripts/editor.py');
-    if (!fs.existsSync(script)) throw new Error('此博客缺少 scripts/editor.py，请打开完整博客仓库。');
+    const repo = blogRoot(scope.contentRoot);
     const running = vscode.tasks.taskExecutions.find(e => e.task.definition.type === 'researchBlog' && e.task.definition.action === action && e.task.scope?.uri?.toString() === scope.folder.uri.toString());
     if (running) { vscode.window.showInformationMessage(`${label}已在运行，请查看终端。`); return; }
-    const task = new vscode.Task({ type: 'researchBlog', action }, scope.folder, label, 'Research Blog', new vscode.ProcessExecution('python', [script, action], { cwd: repo }), []);
+    const binary = await ensureBlogctl(blogctlPath(vscode, scope.folder.uri));
+    const task = new vscode.Task({ type: 'researchBlog', action }, scope.folder, label, 'Research Blog', new vscode.ProcessExecution(binary, ['--root', repo, action], { cwd: repo }), []);
     task.presentationOptions = { reveal: vscode.TaskRevealKind.Always, panel: vscode.TaskPanelKind.Dedicated };
     task.isBackground = action === 'preview';
     await vscode.tasks.executeTask(task);
