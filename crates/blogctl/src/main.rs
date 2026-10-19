@@ -1,7 +1,7 @@
 //! blogctl：Research Blog 的命令行工具。构建、预览、检查和新建站点都在这里。
 
 use anyhow::{bail, Result};
-use blog_site::{article, builder, check, init, preview, profile, site, tools, zen};
+use blog_site::{article, builder, check, init, preview, profile, site, tools, zen, zotero};
 use clap::{Parser, Subcommand};
 use std::path::{Path, PathBuf};
 use std::process::ExitCode;
@@ -106,6 +106,24 @@ enum Commands {
         /// 加在下载地址前面的镜像前缀，也可以用环境变量 RESEARCH_BLOG_DOWNLOAD_PREFIX
         #[arg(long)]
         proxy_prefix: Option<String>,
+    },
+    /// 项目私有的 Zotero 客户端（只在 Windows 上下载和启动）
+    Zotero {
+        /// setup 下载并校验，start 启动或复用，status 查看本机 Zotero
+        #[arg(value_parser = ["setup", "start", "status"])]
+        action: String,
+        /// Zotero 本地 API 端口
+        #[arg(long, default_value_t = 23119)]
+        port: u32,
+        /// 单独的测试配置目录，须在 .tools/ 里
+        #[arg(long)]
+        profile: Option<PathBuf>,
+        /// 启动后打开的 zotero:// 链接
+        #[arg(long)]
+        uri: Option<String>,
+        /// 隐藏 Zotero 窗口
+        #[arg(long)]
+        hidden: bool,
     },
     /// 文章助手：建索引、开本地问答服务
     #[cfg(feature = "agent")]
@@ -251,6 +269,27 @@ fn run(cli: Cli) -> Result<()> {
             } else {
                 println!("ZEN: synced {} files.", changed.len());
             }
+        }
+        Commands::Zotero {
+            action,
+            port,
+            profile,
+            uri,
+            hidden,
+        } => {
+            zotero::check_port(port)?;
+            let root = find_root(cli.root)?;
+            println!(
+                "{}",
+                zotero::run(
+                    &root,
+                    &action,
+                    port,
+                    profile.as_deref(),
+                    uri.as_deref(),
+                    hidden
+                )?
+            );
         }
         #[cfg(feature = "agent")]
         Commands::Agent(command) => {

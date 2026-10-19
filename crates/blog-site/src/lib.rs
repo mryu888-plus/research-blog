@@ -17,3 +17,4 @@ pub mod references;
 pub mod site;
 pub mod tools;
 pub mod zen;
+pub mod zotero;
