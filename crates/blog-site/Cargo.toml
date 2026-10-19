@@ -6,10 +6,15 @@ edition.workspace = true
 [dependencies]
 anyhow = { workspace = true }
 fancy-regex = "0.14"
+flate2 = "1"
 hex = { workspace = true }
+lzma-rs = "0.3"
 regex = "1"
 serde = { workspace = true }
-serde_json = { workspace = true, features = ["float_roundtrip"] }
+serde_json = { workspace = true, features = ["float_roundtrip", "preserve_order"] }
 sha2 = { workspace = true }
+tar = { version = "0.4", default-features = false }
 toml = "0.8"
 unicode-normalization = "0.1"
+ureq = { version = "2", default-features = false, features = ["tls", "proxy-from-env"] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
