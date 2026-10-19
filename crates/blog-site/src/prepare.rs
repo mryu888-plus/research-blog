@@ -359,7 +359,6 @@ impl PreparedSite {
         let mut temporary = tempfile_in(&directory)?;
         let result = (|| {
             temporary.1.write_all(data)?;
-            temporary.1.sync_all().ok();
             drop(temporary.1);
             fs::rename(&temporary.0, destination)
                 .with_context(|| format!("cannot replace {}", destination.display()))
