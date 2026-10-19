@@ -7,16 +7,22 @@ edition.workspace = true
 name = "blogctl"
 path = "src/main.rs"
 
+[features]
+default = []
+# The optional article assistant: search index and local chat API.
+agent = ["dep:blog-ir", "dep:blog-build", "dep:blog-agent", "dep:tokio", "dep:axum", "dep:dotenvy", "dep:tracing", "dep:tracing-subscriber"]
+
 [dependencies]
-blog-ir = { path = "../blog-ir" }
-blog-build = { path = "../blog-build" }
-blog-agent = { path = "../blog-agent" }
+blog-site = { path = "../blog-site" }
 anyhow = { workspace = true }
-clap = { workspace = true }
-tracing = { workspace = true }
-tracing-subscriber = { workspace = true }
-tokio = { workspace = true }
-dotenvy = { workspace = true }
-serde_json = { workspace = true }
 chrono = { workspace = true }
-axum = { workspace = true }
+clap = { workspace = true }
+serde_json = { workspace = true }
+blog-ir = { path = "../blog-ir", optional = true }
+blog-build = { path = "../blog-build", optional = true }
+blog-agent = { path = "../blog-agent", optional = true }
+tokio = { workspace = true, optional = true }
+axum = { workspace = true, optional = true }
+dotenvy = { workspace = true, optional = true }
+tracing = { workspace = true, optional = true }
+tracing-subscriber = { workspace = true, optional = true }

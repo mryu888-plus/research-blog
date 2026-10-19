@@ -6,10 +6,12 @@ edition.workspace = true
 [dependencies]
 anyhow = { workspace = true }
 chrono = { workspace = true }
+ctrlc = "3"
 fancy-regex = "0.14"
 flate2 = "1"
 getrandom = "0.2"
 hex = { workspace = true }
+idna = "1"
 lzma-rs = "0.3"
 regex = "1"
 serde = { workspace = true }
@@ -20,3 +22,9 @@ toml = "0.8"
 unicode-normalization = "0.1"
 ureq = { version = "2", default-features = false, features = ["tls", "proxy-from-env"] }
 zip = { version = "2", default-features = false, features = ["deflate"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_Security", "Win32_System_JobObjects", "Win32_System_Threading"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = "0.2"
