@@ -1,0 +1,765 @@
+{
+  "$schema": "vscode://schemas/color-theme",
+  "name": "@name",
+  "type": "@type",
+  "semanticHighlighting": true,
+  "colors": {
+    "foreground": "@fg",
+    "descriptionForeground": "@secondary",
+    "disabledForeground": "@muted",
+    "focusBorder": "@accent",
+    "errorForeground": "@error",
+    "selection.background": "@selection",
+    "widget.border": "@edge",
+    "widget.shadow": "@shadow",
+    "textLink.foreground": "@accent",
+    "textLink.activeForeground": "@accent",
+    "textBlockQuote.background": "@panel",
+    "textBlockQuote.border": "@edge",
+    "textCodeBlock.background": "@panel",
+    "textPreformat.foreground": "@function",
+    "textPreformat.background": "@panel",
+    "textSeparator.foreground": "@border",
+    "icon.foreground": "@secondary",
+    "button.background": "@accent",
+    "button.foreground": "@buttonFg",
+    "button.hoverBackground": "@buttonHover",
+    "button.border": "#00000000",
+    "button.secondaryBackground": "@border",
+    "button.secondaryForeground": "@fg",
+    "button.secondaryHoverBackground": "@edge",
+    "checkbox.background": "@bg",
+    "checkbox.foreground": "@accent",
+    "checkbox.border": "@edge",
+    "input.background": "@bg",
+    "input.foreground": "@fg",
+    "input.border": "@edge",
+    "input.placeholderForeground": "@muted",
+    "inputOption.activeBorder": "@accent",
+    "inputOption.activeBackground": "@selection",
+    "inputOption.activeForeground": "@fg",
+    "inputValidation.errorBackground": "@panel",
+    "inputValidation.errorBorder": "@error",
+    "inputValidation.warningBackground": "@panel",
+    "inputValidation.warningBorder": "@warning",
+    "inputValidation.infoBackground": "@panel",
+    "inputValidation.infoBorder": "@info",
+    "dropdown.background": "@panel",
+    "dropdown.foreground": "@fg",
+    "dropdown.border": "@edge",
+    "dropdown.listBackground": "@raised",
+    "badge.background": "@selection",
+    "badge.foreground": "@fg",
+    "progressBar.background": "@accent",
+    "scrollbar.shadow": "#00000000",
+    "scrollbarSlider.background": "@muted/30",
+    "scrollbarSlider.hoverBackground": "@muted/50",
+    "scrollbarSlider.activeBackground": "@muted/70",
+    "titleBar.activeBackground": "@bg",
+    "titleBar.activeForeground": "@secondary",
+    "titleBar.inactiveBackground": "@bg",
+    "titleBar.inactiveForeground": "@muted",
+    "titleBar.border": "@border",
+    "commandCenter.background": "@panel",
+    "commandCenter.foreground": "@secondary",
+    "commandCenter.border": "@border",
+    "commandCenter.activeBackground": "@raised",
+    "commandCenter.activeForeground": "@fg",
+    "commandCenter.activeBorder": "@edge",
+    "activityBar.background": "@bg",
+    "activityBar.foreground": "@fg",
+    "activityBar.inactiveForeground": "@muted",
+    "activityBar.border": "@border",
+    "activityBar.activeBorder": "@accent",
+    "activityBar.activeBackground": "@panel",
+    "activityBarBadge.background": "@accent",
+    "activityBarBadge.foreground": "@buttonFg",
+    "sideBar.background": "@panel",
+    "sideBar.foreground": "@secondary",
+    "sideBar.border": "@border",
+    "sideBarTitle.foreground": "@fg",
+    "sideBarSectionHeader.background": "@panel",
+    "sideBarSectionHeader.foreground": "@secondary",
+    "sideBarSectionHeader.border": "@border",
+    "list.activeSelectionBackground": "@selection",
+    "list.activeSelectionForeground": "@fg",
+    "list.activeSelectionIconForeground": "@fg",
+    "list.inactiveSelectionBackground": "@inactiveSelection",
+    "list.inactiveSelectionForeground": "@fg",
+    "list.hoverBackground": "@line",
+    "list.hoverForeground": "@fg",
+    "list.focusBackground": "@selection",
+    "list.focusForeground": "@fg",
+    "list.focusOutline": "@accent",
+    "list.highlightForeground": "@accent",
+    "list.focusHighlightForeground": "@accent",
+    "list.dropBackground": "@selection/aa",
+    "list.errorForeground": "@error",
+    "list.warningForeground": "@warning",
+    "tree.indentGuidesStroke": "@edge",
+    "quickInput.background": "@panel",
+    "quickInput.foreground": "@fg",
+    "quickInputTitle.background": "@bg",
+    "quickInputList.focusBackground": "@selection",
+    "quickInputList.focusForeground": "@fg",
+    "pickerGroup.foreground": "@accent",
+    "pickerGroup.border": "@border",
+    "editorGroup.border": "@border",
+    "editorGroupHeader.tabsBackground": "@bg",
+    "editorGroupHeader.tabsBorder": "@border",
+    "editorGroupHeader.noTabsBackground": "@bg",
+    "tab.activeBackground": "@bg",
+    "tab.activeForeground": "@fg",
+    "tab.activeBorderTop": "@accent",
+    "tab.activeBorder": "@bg",
+    "tab.border": "@border",
+    "tab.inactiveBackground": "@panel",
+    "tab.inactiveForeground": "@muted",
+    "tab.unfocusedActiveForeground": "@secondary",
+    "tab.unfocusedInactiveForeground": "@muted",
+    "tab.hoverBackground": "@raised",
+    "tab.activeModifiedBorder": "@accent",
+    "tab.inactiveModifiedBorder": "@accent",
+    "editor.background": "@bg",
+    "editor.foreground": "@fg",
+    "editorLineNumber.foreground": "@muted",
+    "editorLineNumber.activeForeground": "@accent",
+    "editorCursor.foreground": "@accent",
+    "editorCursor.background": "@bg",
+    "editor.selectionBackground": "@selection",
+    "editor.inactiveSelectionBackground": "@inactiveSelection",
+    "editor.selectionHighlightBackground": "@accent/18",
+    "editor.selectionHighlightBorder": "@accent/60",
+    "editor.wordHighlightBackground": "@typeColor/16",
+    "editor.wordHighlightBorder": "@typeColor/60",
+    "editor.wordHighlightStrongBackground": "@accent/18",
+    "editor.wordHighlightStrongBorder": "@accent/70",
+    "editor.findMatchBackground": "@find",
+    "editor.findMatchBorder": "@accent",
+    "editor.findMatchHighlightBackground": "@accent/20",
+    "editor.findMatchHighlightBorder": "@accent/60",
+    "editor.lineHighlightBackground": "@line",
+    "editor.lineHighlightBorder": "#00000000",
+    "editor.rangeHighlightBackground": "@accent/0c",
+    "editor.hoverHighlightBackground": "@accent/0c",
+    "editorWhitespace.foreground": "@edge",
+    "editorIndentGuide.background1": "@border",
+    "editorIndentGuide.activeBackground1": "@edge",
+    "editorRuler.foreground": "@border",
+    "editorLink.activeForeground": "@accent",
+    "editorCodeLens.foreground": "@muted",
+    "editorGhostText.foreground": "@muted",
+    "editorGhostText.border": "#00000000",
+    "editorBracketMatch.background": "@accent/18",
+    "editorBracketMatch.border": "@accent",
+    "editorBracketHighlight.foreground1": "@secondary",
+    "editorBracketHighlight.foreground2": "@accent",
+    "editorBracketHighlight.foreground3": "@typeColor",
+    "editorBracketHighlight.foreground4": "@function",
+    "editorBracketHighlight.foreground5": "@string",
+    "editorBracketHighlight.foreground6": "@purple",
+    "editorBracketHighlight.unexpectedBracket.foreground": "@error",
+    "editorError.foreground": "@error",
+    "editorWarning.foreground": "@warning",
+    "editorInfo.foreground": "@info",
+    "editorHint.foreground": "@muted",
+    "editorGutter.background": "@bg",
+    "editorGutter.addedBackground": "@success",
+    "editorGutter.modifiedBackground": "@info",
+    "editorGutter.deletedBackground": "@error",
+    "editorOverviewRuler.border": "#00000000",
+    "editorOverviewRuler.errorForeground": "@error",
+    "editorOverviewRuler.warningForeground": "@warning",
+    "editorOverviewRuler.infoForeground": "@info",
+    "editorOverviewRuler.addedForeground": "@success/aa",
+    "editorOverviewRuler.deletedForeground": "@error/aa",
+    "editorOverviewRuler.modifiedForeground": "@info/aa",
+    "editorWidget.background": "@panel",
+    "editorWidget.foreground": "@fg",
+    "editorWidget.border": "@edge",
+    "editorSuggestWidget.background": "@panel",
+    "editorSuggestWidget.border": "@edge",
+    "editorSuggestWidget.foreground": "@fg",
+    "editorSuggestWidget.highlightForeground": "@accent",
+    "editorSuggestWidget.selectedBackground": "@selection",
+    "editorSuggestWidget.selectedForeground": "@fg",
+    "editorSuggestWidget.focusHighlightForeground": "@accent",
+    "editorHoverWidget.background": "@panel",
+    "editorHoverWidget.foreground": "@fg",
+    "editorHoverWidget.border": "@edge",
+    "editorHoverWidget.statusBarBackground": "@raised",
+    "editorInlayHint.background": "@panel",
+    "editorInlayHint.foreground": "@muted",
+    "peekView.border": "@edge",
+    "peekViewTitle.background": "@panel",
+    "peekViewTitleLabel.foreground": "@fg",
+    "peekViewTitleDescription.foreground": "@secondary",
+    "peekViewEditor.background": "@bg",
+    "peekViewResult.background": "@panel",
+    "peekViewResult.fileForeground": "@fg",
+    "peekViewResult.lineForeground": "@secondary",
+    "peekViewResult.selectionBackground": "@selection",
+    "peekViewResult.selectionForeground": "@fg",
+    "peekViewEditor.matchHighlightBackground": "@accent/25",
+    "peekViewResult.matchHighlightBackground": "@accent/25",
+    "diffEditor.insertedTextBackground": "@success/24",
+    "diffEditor.removedTextBackground": "@error/24",
+    "diffEditor.insertedLineBackground": "@success/0d",
+    "diffEditor.removedLineBackground": "@error/0d",
+    "diffEditor.diagonalFill": "@border",
+    "diffEditor.border": "@border",
+    "merge.currentHeaderBackground": "@success/35",
+    "merge.currentContentBackground": "@success/12",
+    "merge.incomingHeaderBackground": "@info/35",
+    "merge.incomingContentBackground": "@info/12",
+    "merge.commonHeaderBackground": "@muted/30",
+    "merge.commonContentBackground": "@muted/10",
+    "panel.background": "@bg",
+    "panel.border": "@border",
+    "panelTitle.activeForeground": "@fg",
+    "panelTitle.inactiveForeground": "@muted",
+    "panelTitle.activeBorder": "@accent",
+    "statusBar.background": "@panel",
+    "statusBar.foreground": "@secondary",
+    "statusBar.border": "@border",
+    "statusBar.noFolderBackground": "@panel",
+    "statusBar.noFolderForeground": "@secondary",
+    "statusBar.debuggingBackground": "@accent",
+    "statusBar.debuggingForeground": "@buttonFg",
+    "statusBarItem.hoverBackground": "@selection",
+    "statusBarItem.remoteBackground": "@selection",
+    "statusBarItem.remoteForeground": "@fg",
+    "statusBarItem.prominentBackground": "@selection",
+    "statusBarItem.prominentForeground": "@fg",
+    "statusBarItem.errorBackground": "@error",
+    "statusBarItem.errorForeground": "@buttonFg",
+    "statusBarItem.warningBackground": "@warning",
+    "statusBarItem.warningForeground": "@buttonFg",
+    "terminal.background": "@bg",
+    "terminal.foreground": "@fg",
+    "terminalCursor.foreground": "@accent",
+    "terminalCursor.background": "@bg",
+    "terminal.selectionBackground": "@selection",
+    "terminal.inactiveSelectionBackground": "@inactiveSelection",
+    "terminal.ansiBlack": "@ansiBlack",
+    "terminal.ansiRed": "@error",
+    "terminal.ansiGreen": "@success",
+    "terminal.ansiYellow": "@warning",
+    "terminal.ansiBlue": "@info",
+    "terminal.ansiMagenta": "@purple",
+    "terminal.ansiCyan": "@ansiCyan",
+    "terminal.ansiWhite": "@ansiWhite",
+    "terminal.ansiBrightBlack": "@muted",
+    "terminal.ansiBrightRed": "@error",
+    "terminal.ansiBrightGreen": "@success",
+    "terminal.ansiBrightYellow": "@warning",
+    "terminal.ansiBrightBlue": "@info",
+    "terminal.ansiBrightMagenta": "@purple",
+    "terminal.ansiBrightCyan": "@ansiBrightCyan",
+    "terminal.ansiBrightWhite": "@fg",
+    "gitDecoration.addedResourceForeground": "@success",
+    "gitDecoration.modifiedResourceForeground": "@info",
+    "gitDecoration.deletedResourceForeground": "@error",
+    "gitDecoration.untrackedResourceForeground": "@success",
+    "gitDecoration.ignoredResourceForeground": "@muted",
+    "gitDecoration.conflictingResourceForeground": "@warning",
+    "gitDecoration.submoduleResourceForeground": "@purple",
+    "notificationCenterHeader.background": "@bg",
+    "notificationCenterHeader.foreground": "@secondary",
+    "notifications.background": "@panel",
+    "notifications.foreground": "@fg",
+    "notifications.border": "@edge",
+    "notificationsErrorIcon.foreground": "@error",
+    "notificationsWarningIcon.foreground": "@warning",
+    "notificationsInfoIcon.foreground": "@info",
+    "breadcrumb.background": "@bg",
+    "breadcrumb.foreground": "@muted",
+    "breadcrumb.focusForeground": "@fg",
+    "breadcrumb.activeSelectionForeground": "@accent",
+    "breadcrumbPicker.background": "@panel",
+    "menu.background": "@panel",
+    "menu.foreground": "@fg",
+    "menu.border": "@edge",
+    "menu.selectionBackground": "@selection",
+    "menu.selectionForeground": "@fg",
+    "menu.separatorBackground": "@border",
+    "minimap.background": "@bg",
+    "minimap.selectionHighlight": "@accent/60",
+    "minimap.findMatchHighlight": "@accent",
+    "minimap.errorHighlight": "@error",
+    "minimap.warningHighlight": "@warning",
+    "minimapGutter.addedBackground": "@success",
+    "minimapGutter.modifiedBackground": "@info",
+    "minimapGutter.deletedBackground": "@error",
+    "debugToolBar.background": "@panel",
+    "debugToolBar.border": "@edge",
+    "debugIcon.breakpointForeground": "@error",
+    "debugIcon.startForeground": "@success",
+    "debugConsole.infoForeground": "@info",
+    "debugConsole.warningForeground": "@warning",
+    "debugConsole.errorForeground": "@error",
+    "debugConsole.sourceForeground": "@secondary",
+    "debugConsoleInputIcon.foreground": "@accent",
+    "settings.headerForeground": "@fg",
+    "settings.modifiedItemIndicator": "@accent",
+    "welcomePage.background": "@bg",
+    "welcomePage.tileBackground": "@panel",
+    "welcomePage.tileHoverBackground": "@raised",
+    "welcomePage.tileBorder": "@border",
+    "notebook.editorBackground": "@bg",
+    "notebook.cellBorderColor": "@border",
+    "notebook.focusedCellBorder": "@accent",
+    "notebook.cellEditorBackground": "@bg",
+    "notebook.selectedCellBackground": "@line",
+    "notebook.outputContainerBackgroundColor": "@panel",
+    "charts.foreground": "@secondary",
+    "charts.red": "@error",
+    "charts.blue": "@info",
+    "charts.green": "@success",
+    "charts.yellow": "@warning",
+    "charts.orange": "@accent",
+    "charts.purple": "@purple"
+  },
+  "tokenColors": [
+    {
+      "name": "Comments",
+      "scope": [
+        "comment",
+        "punctuation.definition.comment"
+      ],
+      "settings": {
+        "foreground": "@muted",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Keywords",
+      "scope": [
+        "keyword",
+        "storage.type",
+        "storage.modifier"
+      ],
+      "settings": {
+        "foreground": "@accent",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Operators",
+      "scope": [
+        "keyword.operator"
+      ],
+      "settings": {
+        "foreground": "@secondary",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Word operators",
+      "scope": [
+        "keyword.operator.logical.python",
+        "keyword.operator.word"
+      ],
+      "settings": {
+        "foreground": "@accent",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Punctuation",
+      "scope": [
+        "punctuation"
+      ],
+      "settings": {
+        "foreground": "@secondary",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Variables",
+      "scope": [
+        "variable",
+        "meta.definition.variable",
+        "support.variable"
+      ],
+      "settings": {
+        "foreground": "@fg",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Parameters",
+      "scope": [
+        "variable.parameter"
+      ],
+      "settings": {
+        "foreground": "@fg",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Language constants",
+      "scope": [
+        "constant.language",
+        "variable.language"
+      ],
+      "settings": {
+        "foreground": "@accent",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Strings",
+      "scope": [
+        "string"
+      ],
+      "settings": {
+        "foreground": "@string",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "String punctuation",
+      "scope": [
+        "punctuation.definition.string"
+      ],
+      "settings": {
+        "foreground": "@string",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Escapes",
+      "scope": [
+        "constant.character.escape",
+        "constant.character.character-class",
+        "constant.other.placeholder"
+      ],
+      "settings": {
+        "foreground": "@accent",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Template interpolation",
+      "scope": [
+        "punctuation.definition.template-expression",
+        "punctuation.section.embedded"
+      ],
+      "settings": {
+        "foreground": "@accent",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Embedded code",
+      "scope": [
+        "meta.embedded",
+        "source.groovy.embedded",
+        "meta.template.expression"
+      ],
+      "settings": {
+        "foreground": "@fg",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Numbers and constants",
+      "scope": [
+        "constant.numeric",
+        "constant.other",
+        "variable.other.constant",
+        "variable.other.enummember"
+      ],
+      "settings": {
+        "foreground": "@number",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Functions",
+      "scope": [
+        "entity.name.function",
+        "support.function",
+        "variable.function"
+      ],
+      "settings": {
+        "foreground": "@function",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Types",
+      "scope": [
+        "entity.name.type",
+        "entity.name.class",
+        "support.type",
+        "support.class",
+        "entity.other.inherited-class"
+      ],
+      "settings": {
+        "foreground": "@typeColor",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Namespaces",
+      "scope": [
+        "entity.name.namespace",
+        "entity.name.module"
+      ],
+      "settings": {
+        "foreground": "@typeColor",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Decorators and attributes",
+      "scope": [
+        "meta.annotation",
+        "entity.name.function.decorator",
+        "entity.other.attribute-name"
+      ],
+      "settings": {
+        "foreground": "@purple",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Properties",
+      "scope": [
+        "variable.other.property",
+        "support.type.property-name",
+        "meta.object-literal.key"
+      ],
+      "settings": {
+        "foreground": "@secondary",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Tags",
+      "scope": [
+        "entity.name.tag"
+      ],
+      "settings": {
+        "foreground": "@accent",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "CSS values",
+      "scope": [
+        "support.constant.property-value",
+        "support.constant.color",
+        "constant.other.color"
+      ],
+      "settings": {
+        "foreground": "@string",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "JSON keys",
+      "scope": [
+        "support.type.property-name.json",
+        "string.json meta.structure.dictionary.key"
+      ],
+      "settings": {
+        "foreground": "@fg",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Markup headings",
+      "scope": [
+        "markup.heading",
+        "entity.name.section"
+      ],
+      "settings": {
+        "foreground": "@accent",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Markup bold",
+      "scope": [
+        "markup.bold"
+      ],
+      "settings": {
+        "foreground": "@fg",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Markup italic",
+      "scope": [
+        "markup.italic"
+      ],
+      "settings": {
+        "foreground": "@fg",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Markup strike",
+      "scope": [
+        "markup.strikethrough"
+      ],
+      "settings": {
+        "foreground": "@muted",
+        "fontStyle": "strikethrough"
+      }
+    },
+    {
+      "name": "Markup inline code",
+      "scope": [
+        "markup.inline.raw",
+        "markup.raw.inline",
+        "markup.raw.block"
+      ],
+      "settings": {
+        "foreground": "@string",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Markup links",
+      "scope": [
+        "markup.underline.link",
+        "string.other.link"
+      ],
+      "settings": {
+        "foreground": "@typeColor",
+        "fontStyle": "underline"
+      }
+    },
+    {
+      "name": "Markup link labels",
+      "scope": [
+        "string.other.link.title",
+        "constant.other.reference.link"
+      ],
+      "settings": {
+        "foreground": "@function",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Markup quotes",
+      "scope": [
+        "markup.quote"
+      ],
+      "settings": {
+        "foreground": "@muted",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Markup lists",
+      "scope": [
+        "punctuation.definition.list.begin"
+      ],
+      "settings": {
+        "foreground": "@accent",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Math",
+      "scope": [
+        "support.function.math",
+        "constant.other.math",
+        "meta.math.block",
+        "meta.math.inline"
+      ],
+      "settings": {
+        "foreground": "@typeColor",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Diff inserted",
+      "scope": [
+        "markup.inserted"
+      ],
+      "settings": {
+        "foreground": "@success",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Diff deleted",
+      "scope": [
+        "markup.deleted"
+      ],
+      "settings": {
+        "foreground": "@error",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Diff changed",
+      "scope": [
+        "markup.changed"
+      ],
+      "settings": {
+        "foreground": "@warning",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Invalid tokens",
+      "scope": [
+        "invalid.illegal"
+      ],
+      "settings": {
+        "foreground": "@error",
+        "fontStyle": "underline"
+      }
+    },
+    {
+      "name": "Deprecated tokens",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "@muted",
+        "fontStyle": "strikethrough"
+      }
+    }
+  ],
+  "semanticTokenColors": {
+    "namespace": "@typeColor",
+    "type": "@typeColor",
+    "class": "@typeColor",
+    "enum": "@typeColor",
+    "interface": "@typeColor",
+    "struct": "@typeColor",
+    "typeParameter": "@typeColor",
+    "parameter": "@fg",
+    "variable": "@fg",
+    "property": "@secondary",
+    "enumMember": "@number",
+    "variable.readonly": "@number",
+    "property.readonly": "@number",
+    "function": "@function",
+    "method": "@function",
+    "macro": "@function",
+    "decorator": "@purple",
+    "event": "@function",
+    "keyword": "@accent",
+    "modifier": "@accent",
+    "comment": {
+      "foreground": "@muted",
+      "italic": true
+    },
+    "string": "@string",
+    "number": "@number",
+    "regexp": "@string",
+    "operator": "@secondary",
+    "*.deprecated": {
+      "strikethrough": true
+    }
+  }
+}
