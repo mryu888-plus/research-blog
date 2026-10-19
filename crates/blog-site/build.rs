@@ -75,8 +75,11 @@ fn main() {
     for directory in SHARED_DIRECTORIES {
         let path = repo.join(directory);
         println!("cargo:rerun-if-changed={}", path.display());
-        let mut names: Vec<String> = fs::read_dir(&path)
-            .unwrap_or_else(|_| panic!("missing {directory}"))
+        // Git does not keep empty directories, so a missing one is empty.
+        let Ok(listing) = fs::read_dir(&path) else {
+            continue;
+        };
+        let mut names: Vec<String> = listing
             .flatten()
             .filter(|e| e.path().is_file() && e.path().extension().is_some_and(|x| x == "html"))
             .map(|e| e.file_name().to_string_lossy().into_owned())
