@@ -472,6 +472,12 @@
           "scope": "resource",
           "description": "相对于工作区的文章目录；直接打开 site 时设为 content。修改后重启语言服务。"
         },
+        "researchBlog.blogctlPath": {
+          "type": "string",
+          "default": "blogctl",
+          "scope": "machine",
+          "description": "blogctl 程序的路径。预览、构建检查和启动 Zotero 都调用它。默认在 PATH 里找；没有放进 PATH 时填完整路径，Windows 上是 blogctl.exe。"
+        },
         "researchBlog.trace.server": {
           "type": "string",
           "enum": [

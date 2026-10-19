@@ -6,7 +6,7 @@
 mod entities;
 mod html;
 mod pyjson;
-mod url;
+pub(crate) mod url;
 
 use anyhow::{anyhow, bail, Result};
 use html::{parse_page, unescape, universal_newlines, Page};

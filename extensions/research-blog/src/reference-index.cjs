@@ -14,7 +14,7 @@ function extractCitations(visible) {
     const parts = cluster[1].split(';');
     const matches = parts.map(part => /^[ \t]*@([^\s@;,\[\]{}<>"\\]+)[ \t]*(?:,[ \t]*(.*))?[ \t]*$/u.exec(part));
     // A malformed group is prose, rather than a collection of independently
-    // salvageable citations. The Python publisher and Rust IR do the same.
+    // salvageable citations. The blogctl publisher and the Rust IR do the same.
     if (matches.some(match => !match)) continue;
     let offset = cluster.index + 1;
     for (let i = 0; i < parts.length; i++) {
