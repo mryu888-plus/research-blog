@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>研究手记 · 自定义 VS Code 主题</title>
+<style>
+*{box-sizing:border-box} :root{color-scheme:dark;--mono:"Cascadia Code",Consolas,"Microsoft YaHei",monospace}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.6 "Segoe UI","Microsoft YaHei",sans-serif;transition:background .18s,color .18s}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;color:inherit}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}button{border:0;background:none}header,main,footer{width:min(1240px,calc(100% - 80px));margin:auto}header{height:84px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}.brand{font-family:var(--mono);letter-spacing:-.04em;display:flex;align-items:center;gap:14px}.slash{font:30px var(--mono);color:var(--accent)}.edition{font:11px var(--mono);color:var(--muted);letter-spacing:.14em}.intro{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:35px 0 27px}.eyebrow{font:11px var(--mono);color:var(--muted);letter-spacing:.1em;margin:0 0 10px}.eyebrow span{color:var(--accent)}h1{font-size:30px;letter-spacing:-.04em;font-weight:500;margin:0}.subtitle{color:var(--muted);font-size:13px;margin:9px 0 0}.switch{display:flex;border:1px solid var(--border);padding:4px;border-radius:5px;flex-shrink:0;gap:4px}.switch button{padding:7px 17px;border-radius:2px;font:12px var(--mono);color:var(--muted)}.switch button[aria-pressed=true]{background:var(--selection);color:var(--fg)}.switch .dot{display:inline-block;width:8px;height:8px;border:1px solid var(--muted);border-radius:50%;margin-right:8px}.darkdot{background:var(--bg)}.lightdot{background:var(--raised)}.window{border:1px solid var(--border);border-radius:7px;overflow:hidden;box-shadow:0 24px 64px #00000012}.titlebar{height:38px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 15px;color:var(--muted);font:11px var(--mono)}.title-left{display:flex;gap:17px;align-items:center}.title-left b{color:var(--accent);font:21px var(--mono)}.title-center{min-width:230px;text-align:center;border:1px solid var(--border);border-radius:3px;background:var(--panel);padding:2px 35px}.workspace{display:grid;grid-template-columns:47px 202px minmax(0,1fr);min-height:540px}.rail{border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:23px;padding-top:16px;color:var(--muted)}.rail svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.35}.rail .active{position:relative;color:var(--fg)}.rail .active:before{content:"";position:absolute;left:-14px;top:-8px;width:2px;height:37px;background:var(--accent)}.rail .bottom{margin-top:auto;padding-bottom:17px}.explorer{background:var(--panel);border-right:1px solid var(--border);padding-top:15px;color:var(--secondary);font:12px/2.15 var(--mono)}.explorer-title{padding:0 18px 16px;font:10px "Segoe UI",sans-serif;letter-spacing:.08em;display:flex;justify-content:space-between}.folder{color:var(--fg);padding:0 12px;font-size:11px}.file{padding:0 12px 0 31px;white-space:nowrap}.file.sub{padding-left:46px}.file.selected{color:var(--fg);background:var(--selection)}.file span{display:inline-block;width:23px;color:var(--muted)}.file .changed{float:right;width:auto;color:var(--accent);font-size:10px}.side-note{border-top:1px solid var(--border);margin:160px 15px 0;padding-top:13px;font:10px/1.7 var(--mono);color:var(--muted)}.editor-area{min-width:0;display:flex;flex-direction:column}.tabs{height:39px;display:flex;align-items:stretch;border-bottom:1px solid var(--border)}.tabs button{border-right:1px solid var(--border);border-top:1px solid transparent;display:flex;gap:12px;align-items:center;padding:0 18px;background:var(--panel);color:var(--muted);font:12px var(--mono)}.tabs button[aria-selected=true]{border-top-color:var(--accent);background:var(--bg);color:var(--fg)}.tabs button small{color:var(--muted);font:10px var(--mono)}.breadcrumb{padding:9px 22px 7px;font:11px var(--mono);color:var(--muted)}.code-wrap{position:relative;flex:1;overflow:auto;min-height:352px;padding:3px 0 15px}pre{margin:0;font:13px/1.9 var(--mono);tab-size:4}.code-line{display:flex;min-height:24.7px;white-space:pre}.ln{font:11px/24.7px var(--mono);color:var(--muted);text-align:right;min-width:48px;padding-right:20px;user-select:none;flex-shrink:0}.source{white-space:pre;display:block;padding-right:20px}.code-line.current{background:var(--line)}.current .ln{color:var(--accent)}.terminal{border-top:1px solid var(--border);padding:0 22px 14px;font:11px/1.9 var(--mono);height:122px}.panel-tabs{height:37px;display:flex;gap:25px;align-items:center;font:10px "Segoe UI",sans-serif;color:var(--muted)}.panel-tabs .selected{color:var(--fg);position:relative}.panel-tabs .selected:after{content:"";height:1px;background:var(--accent);position:absolute;left:0;right:0;bottom:-7px}.terminal .prompt{color:var(--accent)}.terminal .pass{color:var(--success)}.terminal .dim{color:var(--muted)}.cursor{display:inline-block;background:var(--accent);width:6px;height:12px;vertical-align:-2px;margin-left:5px}.status{display:flex;justify-content:space-between;background:var(--panel);border-top:1px solid var(--border);padding:3px 15px;font:10px var(--mono);color:var(--secondary)}.status span{word-spacing:8px}.caption{font-size:11px;color:var(--muted);margin:15px 0 25px}.palette{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;border-top:1px solid var(--border);padding-top:22px}.swatch{display:flex;align-items:center;gap:12px}.swatch i{width:27px;height:27px;display:block;border:1px solid var(--border);border-radius:50%;flex-shrink:0}.swatch span{display:block;font:10px var(--mono);color:var(--muted)}.swatch strong{display:block;font-size:11px;font-weight:400}footer{padding:26px 0 28px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font:11px var(--mono)}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}@media(max-width:850px){header,main,footer{width:calc(100% - 32px)}.workspace{grid-template-columns:42px minmax(0,1fr)}.explorer{display:none}.intro{align-items:flex-start;flex-direction:column;padding-top:25px}.palette{grid-template-columns:repeat(3,1fr)}.title-center{min-width:0;padding:2px 12px}.title-left>span{display:none}h1{font-size:27px}.edition{font-size:9px}.tabs button{padding:0 12px}.rail .active:before{left:-11px}}@media(max-width:480px){.workspace{grid-template-columns:1fr}.rail{display:none}.title-center{display:none}.palette{gap:18px 8px}.swatch{gap:7px}.swatch i{width:20px;height:20px}.status span:last-child{display:none}.caption{line-height:1.8}footer{align-items:flex-start;gap:10px;flex-direction:column}.tabs button{padding:0 10px}.tabs button small{display:none}pre{font-size:12px}.ln{min-width:36px;padding-right:12px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<header><div class="brand"><span class="slash">/</span>研究手记 <span style="color:var(--muted);font-size:12px">Research Notes</span></div><div class="edition">RESEARCH NOTES / COLOR THEME 0.1</div></header>
+<main>
+<section class="intro"><div><p class="eyebrow"><span>/</span> A QUIET PLACE TO THINK</p><h1>熟悉的留白，写进代码。</h1><p class="subtitle" id="description">深色阅读环境：颜色来自你的风格源。</p></div><div class="switch" aria-label="主题配色"><button type="button" data-theme="graphite" aria-pressed="true"><i class="dot darkdot"></i>Graphite</button><button type="button" data-theme="paper" aria-pressed="false"><i class="dot lightdot"></i>Paper</button></div></section>
+<section class="window" aria-label="编辑器配色示意">
+<div class="titlebar"><div class="title-left"><b>/</b><span>File　 Edit　 View</span></div><div class="title-center">⌕　research-notes</div><span>—　 □　 ×</span></div>
+<div class="workspace">
+<aside class="rail" aria-hidden="true"><div class="active"><svg viewBox="0 0 24 24"><path d="M8 3h10l3 3v15H8zM3 17V1h12M17 3v5h4"/></svg></div><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m15 15 7 7"/></svg><svg viewBox="0 0 24 24"><circle cx="6" cy="4" r="2.5"/><circle cx="6" cy="20" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M6 7v10M18 8v2c0 4-12 1-12 5"/></svg><svg viewBox="0 0 24 24"><path d="m5 3 16 9L5 21Z"/></svg><svg viewBox="0 0 24 24"><path d="M2 3h8v8H2zM14 1h8v8h-8zM2 15h8v8H2zM14 13h8v8h-8z"/></svg><div class="bottom"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="m9 2 6 0 1 4 4 1 2 5-3 3v5l-5 2-3-3-5 1-3-5 2-4-1-5 5-2Z"/></svg></div></aside>
+<aside class="explorer"><div class="explorer-title">EXPLORER <span>···</span></div><div class="folder">⌄ RESEARCH-NOTES</div><div class="file">⌄ src</div><div class="file sub selected" data-file="python"><span>py</span>retrieval.py <i class="changed">M</i></div><div class="file sub" data-file="rust"><span>rs</span>graph.rs</div><div class="file">⌄ notes</div><div class="file sub" data-file="markdown"><span>md</span>research.md</div><div class="file"><span>◇</span>pyproject.toml</div><div class="file"><span>↳</span>.gitignore</div><div class="side-note">少一点喧闹。<br>多一点专注。</div></aside>
+<div class="editor-area"><div class="tabs" role="tablist" aria-label="代码示例"><button role="tab" id="tab-python" data-lang="python" aria-selected="true" aria-controls="code"><small>py</small>retrieval.py</button><button role="tab" id="tab-rust" data-lang="rust" aria-selected="false" aria-controls="code"><small>rs</small>graph.rs</button><button role="tab" id="tab-markdown" data-lang="markdown" aria-selected="false" aria-controls="code"><small>md</small>research.md</button></div><div class="breadcrumb" id="breadcrumb">src　›　retrieval.py　›　retrieve</div><div class="code-wrap" role="tabpanel" id="code" aria-labelledby="tab-python"><pre id="source"></pre></div><div class="terminal"><div class="panel-tabs"><span>PROBLEMS</span><span>OUTPUT</span><span class="selected">TERMINAL</span></div><div><span class="prompt">~/research-notes</span> <span class="dim">on</span> main</div><div><span class="prompt">❯</span> python -m pytest <span class="dim">tests/</span></div><div><span class="pass">12 passed</span> <span class="dim">in 0.42s · 示例输出</span><span class="cursor"></span></div></div></div>
+</div><div class="status"><span>⑂ main*　 ✓ 0　 ⚠ 0</span><span id="status-language">UTF-8　 LF　 Python　 Research Notes Graphite</span></div>
+</section>
+<p class="caption">配色示意 · 颜色直接读取本主题数据；界面为浏览器绘制，实际布局与语法高亮由 VS Code 及语言插件决定。</p>
+<div class="palette" id="palette" aria-label="当前主题色板"></div>
+</main><footer><span>研究手记 / RESEARCH NOTES</span><a href="./research-notes-theme-0.1.0.vsix" download>下载主题安装包 ↗</a></footer>
+<script>
+/* THEME_DATA */
+const samples = {
+  python: [
+    '# 让知识留下来，也让它们彼此连接。',
+    'from dataclasses import dataclass',
+    'from pathlib import Path',
+    '',
+    '@dataclass(frozen=True)',
+    'class ResearchNote:',
+    '    title: str',
+    '    score: float = 0.0',
+    '',
+    'def retrieve(query: str, limit: int = 5) -> list[ResearchNote]:',
+    '    """Find a small set of notes worth reading again."""',
+    '    index = load_index(Path("notes/"))',
+    '    matches = index.search(query, top_k=limit)',
+    '',
+    '    return [',
+    '        ResearchNote(title=note.title, score=note.score)',
+    '        for note in matches',
+    '        if note.score >= 0.75',
+    '    ]',
+  ],
+  rust: [
+    '// 笔记之间，连成一张缓慢生长的图。',
+    'use std::collections::HashMap;',
+    '',
+    '#[derive(Debug, Default)]',
+    'pub struct KnowledgeGraph {',
+    '    edges: HashMap<String, Vec<String>>,',
+    '}',
+    '',
+    'impl KnowledgeGraph {',
+    '    pub fn connect(&mut self, source: &str, target: &str) {',
+    '        self.edges',
+    '            .entry(source.to_owned())',
+    '            .or_default()',
+    '            .push(target.to_owned());',
+    '    }',
+    '',
+    '    pub fn len(&self) -> usize { self.edges.len() }',
+    '}',
+  ],
+  markdown: [
+    '# 检索之后，再想一步',
+    '',
+    '> 好的笔记，不只保存答案，也保存问题。',
+    '',
+    '## 从一段轨迹开始',
+    '',
+    '把一次探索写下来，再观察哪些步骤值得重复。',
+    '我们关心 **可复用的结构**，也保留 *尚未确定的判断*。',
+    '',
+    '- 收集来源与证据',
+    '- 建立笔记之间的联系',
+    '- 用 `parent_id` 保留原始上下文',
+    '',
+    '## 阅读线索',
+    '',
+    '[研究手记](https://mryu888-plus.github.io/research-blog/)',
+    '',
+    '下一次阅读，从这里继续。',
+  ],
+};
+const filenames = {python:'retrieval.py',rust:'graph.rs',markdown:'research.md'};
+let currentTheme = 'graphite', currentLang = 'python';
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function token(name, text) {
+  const settings = THEMES[currentTheme].tokenColors.find(rule=>rule.name===name)?.settings || {};
+  return `<span style="color:${settings.foreground || 'var(--fg)'};${settings.fontStyle?.includes('italic')?'font-style:italic;':''}${settings.fontStyle?.includes('bold')?'font-weight:600;':''}${settings.fontStyle?.includes('underline')?'text-decoration:underline;':''}">${esc(text)}</span>`;
+}
+// Small hand-scoped examples, not a replacement for a language grammar.
+function highlight(line) {
+  if(currentLang==='markdown') {
+    if(line.startsWith('#')) return token('Markup headings',line);
+    if(line.startsWith('>')) return token('Markup quotes',line);
+    if(line.startsWith('[')) return token('Markup links',line);
+    return line.split(/(\*\*.*?\*\*|\*.*?\*|`.*?`|^- )/).map(part=>{
+      if(part.startsWith('**')) return token('Markup bold',part);
+      if(part.startsWith('*')) return token('Markup italic',part);
+      if(part.startsWith('`')) return token('Markup inline code',part);
+      if(part==='- ') return token('Markup lists',part);
+      return esc(part);
+    }).join('');
+  }
+  if(line.trim().startsWith('//') || (currentLang==='python' && line.trim().startsWith('#'))) return token('Comments',line);
+  const keywords = new Set('from import class def return for in if use pub struct impl fn mut self True False None'.split(' '));
+  const types = new Set('str float int list usize String Vec HashMap Path ResearchNote KnowledgeGraph'.split(' '));
+  const pattern = /(""".*?"""|"[^"\n]*"|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*\b|[^\w\s]|\s+)/g;
+  return Array.from(line.matchAll(pattern),match=>{
+    const value=match[0],after=line.slice(match.index+value.length);
+    if(value.startsWith('"')) return token('Strings',value);
+    if(/^\d/.test(value)) return token('Numbers and constants',value);
+    if(keywords.has(value)) return token('Keywords',value);
+    if(types.has(value)) return token('Types',value);
+    if(value==='dataclass'||value==='derive') return token('Decorators and attributes',value);
+    if(/^\w/.test(value)&&after.startsWith('(')) return token('Functions',value);
+    if(/^[^\w\s]/.test(value)) return token('Punctuation',value);
+    return esc(value);
+  }).join('');
+}
+function render() {
+  const theme=THEMES[currentTheme],c=theme.colors;
+  const vars={bg:c['editor.background'],fg:c['editor.foreground'],muted:c['descriptionForeground'],accent:c['editorCursor.foreground'],border:c['panel.border'],panel:c['sideBar.background'],selection:c['list.activeSelectionBackground'],secondary:c['sideBar.foreground'],raised:c['editorWidget.background'],line:c['editor.lineHighlightBackground'],success:c['terminal.ansiGreen']};
+  for(const [key,value] of Object.entries(vars)) document.documentElement.style.setProperty('--'+key,value);
+  document.documentElement.style.colorScheme=theme.type;
+  document.querySelectorAll('[data-theme]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.theme===currentTheme));
+  document.querySelectorAll('[data-lang]').forEach(b=>{b.setAttribute('aria-selected',b.dataset.lang===currentLang);b.tabIndex=b.dataset.lang===currentLang?0:-1;});
+  document.querySelectorAll('[data-file]').forEach(el=>el.classList.toggle('selected',el.dataset.file===currentLang));
+  document.querySelector('#description').textContent=currentTheme==='graphite'?'深色阅读环境：颜色来自你的风格源。':'浅色阅读环境：颜色来自你的风格源。';
+  document.querySelector('#source').innerHTML=samples[currentLang].map((line,i)=>`<span class="code-line${i===9?' current':''}"><span class="ln">${i+1}</span><span class="source">${highlight(line)||' '}</span></span>`).join('');
+  document.querySelector('#code').setAttribute('aria-labelledby','tab-'+currentLang);
+  document.querySelector('#breadcrumb').textContent=`${currentLang==='markdown'?'notes':'src'}　›　${filenames[currentLang]}`;
+  document.querySelector('#status-language').textContent=`UTF-8　 LF　 ${currentLang}　 ${theme.name}`;
+  const swatches=[['底色',vars.bg],['正文',vars.fg],['强调色',vars.accent],['字符串',theme.semanticTokenColors.string],['类型',theme.semanticTokenColors.type],['数字',theme.semanticTokenColors.number]];
+  document.querySelector('#palette').innerHTML=swatches.map(([label,value])=>`<div class="swatch"><i style="background:${value}"></i><div><strong>${label}</strong><span>${value.toUpperCase()}</span></div></div>`).join('');
+}
+document.querySelectorAll('[data-theme]').forEach(b=>b.addEventListener('click',()=>{currentTheme=b.dataset.theme;render()}));
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{currentLang=b.dataset.lang;render()}));
+document.querySelector('.tabs').addEventListener('keydown',event=>{
+  if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+  event.preventDefault();const keys=Object.keys(samples);let i=keys.indexOf(currentLang);
+  i=event.key==='Home'?0:event.key==='End'?keys.length-1:(i+(event.key==='ArrowRight'?1:-1)+keys.length)%keys.length;
+  currentLang=keys[i];render();document.querySelector(`[data-lang="${currentLang}"]`).focus();
+});
+render();
+</script>
+</html>

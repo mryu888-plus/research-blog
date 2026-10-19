@@ -1,0 +1,92 @@
+/* Generated from ZEN.md by scripts/sync_zen.cjs. Do not edit. */
+:root {
+  color-scheme: dark;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "Cascadia Code", "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
+  --font-serif: "Georgia", "Cambria", "Times New Roman", serif;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-full: 999px;
+  --page-width: 1040px;
+  --reading-width: 720px;
+  --article-width: 700px;
+  --article-line-height: 1.95;
+  --body-line-height: 1.8;
+  --feedback-duration: 160ms;
+  --zen-graphite-background: #121213;
+  --zen-graphite-accent: #de8b82;
+  --zen-paper-background: #f8f7f4;
+  --zen-paper-accent: #9d4941;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --surface-0: #121213;
+  --surface-1: #171719;
+  --surface-2: #1e1e21;
+  --surface-3: #2c2c30;
+  --surface-4: #424247;
+  --text-primary: #ededee;
+  --text-secondary: #aaaab2;
+  --text-muted: #92929b;
+  --accent: #de8b82;
+  --accent-muted: #babac3;
+  --halo: rgb(207 211 225 / .07);
+  --scanline: rgb(229 230 238 / .055);
+  --nav-background: rgb(18 18 19 / .88);
+  --edge-light: rgb(255 255 255 / .035);
+  --panel-shadow: 0 16px 48px rgb(0 0 0 / .12);
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --surface-0: #f8f7f4;
+  --surface-1: #ffffff;
+  --surface-2: #efeeeb;
+  --surface-3: #deddd8;
+  --surface-4: #bcbcc4;
+  --text-primary: #242427;
+  --text-secondary: #5e5e68;
+  --text-muted: #666670;
+  --accent: #9d4941;
+  --accent-muted: #5e5e68;
+  --halo: rgb(76 79 95 / .04);
+  --scanline: rgb(56 56 70 / .035);
+  --nav-background: rgb(248 247 244 / .88);
+  --edge-light: rgb(255 255 255 / .65);
+  --panel-shadow: 0 16px 48px rgb(45 41 35 / .045);
+}
+@media (prefers-contrast: more) {
+  :root {
+  --text-secondary: #d6d6dc;
+  --text-muted: #bcbcc6;
+  --surface-3: #666670;
+  }
+  :root[data-theme="light"] {
+  --text-secondary: #33333b;
+  --text-muted: #454550;
+  --surface-3: #90909a;
+  }
+}
+@media print {
+  :root, :root[data-theme="light"] {
+  --surface-0: #ffffff;
+  --surface-1: #ffffff;
+  --surface-2: #eeeeee;
+  --surface-3: #cccccc;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #444444;
+  --accent: #000000;
+  }
+}

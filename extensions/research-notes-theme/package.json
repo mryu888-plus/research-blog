@@ -1,0 +1,30 @@
+{
+  "name": "research-notes-theme",
+  "displayName": "Research Notes · 研究手记",
+  "description": "A quiet graphite and warm paper color theme, with terracotta accents from the 研究手记 research blog.",
+  "version": "0.1.0",
+  "publisher": "mryu888-plus",
+  "license": "MIT",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Themes"],
+  "keywords": ["minimal", "graphite", "paper", "research", "terracotta"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mryu888-plus/research-blog.git",
+    "directory": "extensions/research-notes-theme"
+  },
+  "galleryBanner": { "color": "#121213", "theme": "dark" },
+  "capabilities": { "untrustedWorkspaces": { "supported": true }, "virtualWorkspaces": true },
+  "contributes": {
+    "themes": [
+      { "label": "Research Notes Graphite", "uiTheme": "vs-dark", "path": "./themes/research-notes-graphite-color-theme.json" },
+      { "label": "Research Notes Paper", "uiTheme": "vs", "path": "./themes/research-notes-paper-color-theme.json" }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "vscode:prepublish": "npm run build",
+    "package": "vsce package --no-dependencies --out research-notes-theme-0.1.0.vsix"
+  },
+  "devDependencies": { "@vscode/vsce": "3.6.0" }
+}

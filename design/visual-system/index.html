@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ZEN · 研究手记视觉语言</title><link rel="stylesheet" href="../../site/static/zen.css"><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><a class="brand" href="#top"><span>/</span> Research Blog</a><nav aria-label="方案目录"><a href="#language">视觉语言</a><a href="#plates">配图系统</a><a href="#reading">阅读示例</a></nav><button id="theme" aria-label="切换浅色预览">◐ <span>暖纸白</span></button></header>
+<main id="top">
+  <section class="intro">
+    <p class="note">ZEN · 共用设计语言。<a href="../../ZEN.md">查看统一规范 ↗</a> · 精确绘图使用 Typst，<a href="typst/blog-diagram.typ" download>下载 Typst 模板 ↗</a> · AI 配图已改为自然构图的正文示意图，下面保留早期风格探索。</p>
+    <p class="eyebrow"><span>01 /</span> ZEN / RESEARCH NOTES</p>
+    <div class="intro-title"><h1>让思想，<br>留下形状<span>。</span></h1><p>黑白实验出版物<br>用精密的线条、抽象的结构与克制的红，<br>为研究手记建立自己的视觉语言。</p></div>
+    <figure class="opening-plate"><img src="assets/semantic-field.png" alt="深色背景上，细密的等高线围绕语义邻域展开，一点陶土红标记局部焦点"><figcaption><span>PLATE 01 / SEMANTIC FIELD</span><span>从文字到向量 · 正文主题配图</span></figcaption></figure>
+    <div class="principles"><p><b>01</b><strong>一个有力的主体</strong><span>用一个构图讲清一个关系。</span></p><p><b>02</b><strong>线条形成秩序</strong><span>通过疏密、切片与遮挡表达层次。</span></p><p><b>03</b><strong>红色只落在重点</strong><span>标记一次选择、变化或联系。</span></p></div>
+  </section>
+  <section id="language" class="section">
+    <div class="section-title"><p class="eyebrow">02 / FOUNDATION</p><h2>和博客，说同一种语言。</h2><p>配色与字体沿用博客本体。图像增加表达力，阅读保持安静。</p></div>
+    <div class="foundation">
+      <div><h3>色彩 / 两种底色，一种语气</h3><div class="swatches"><div style="--swatch:var(--zen-graphite-background)"><i></i><b>石墨黑</b><code>#121213</code></div><div style="--swatch:var(--zen-paper-background)"><i></i><b>暖纸白</b><code>#F8F7F4</code></div><div style="--swatch:var(--zen-graphite-accent)"><i></i><b>暗色强调</b><code>#DE8B82</code></div><div style="--swatch:var(--zen-paper-accent)"><i></i><b>浅色强调</b><code>#9D4941</code></div></div><p class="note">黑白与灰阶承担主体，陶土红控制在画面约 3% 以内。正文使用高对比文字，细灰线只服务于分隔和次要结构。</p></div>
+      <div class="type-spec"><h3>字体 / 内容在前，编号在后</h3><p class="type-display">我们应当知道，<br>我们必将知道。</p><p class="type-body">中文标题与正文沿用无衬线字体，保持平实、清晰。等宽字体只用于日期、编号、代码与图注标识。公式保留数学字体。</p><p class="type-mono">Aa 0123456789 / Γ ⊨ φ</p><p class="note">标题 32–48 px · 正文 16–18 px / 行高 1.8 · 图注 12–13 px</p></div>
+    </div>
+    <div class="rules"><div><span>网格</span><strong>1040 / 720</strong><p>页面最大宽 1040 px，文章阅读列约 720 px。</p></div><div><span>留白</span><strong>8 / 16 / 32 / 64</strong><p>采用 8 px 间距级差。图内安全边距约 8%。</p></div><div><span>线条</span><strong>结构 / 细节</strong><p>轮廓稍强、内部线条稍细；缩小后仍有视觉重心。</p></div><div><span>强调</span><strong>一个焦点</strong><p>每张图只突出一个红色关系或局部变化。</p></div></div>
+  </section>
+  <section id="plates" class="section">
+    <div class="section-title"><p class="eyebrow">03 / IMAGE FAMILY</p><h2>同一套风格，三种任务。</h2><p>统一的是线条与秩序，题材决定形状。每篇文章有自己的图。</p></div>
+    <div class="tabs" role="tablist" aria-label="配图用途"><button role="tab" aria-selected="true" aria-controls="plate-panel" id="tab-editorial" data-mode="editorial">01 正文配图</button><button role="tab" aria-selected="false" aria-controls="plate-panel" id="tab-concept" data-mode="concept" tabindex="-1">02 概念图</button><button role="tab" aria-selected="false" aria-controls="plate-panel" id="tab-cover" data-mode="cover" tabindex="-1">03 系列封面</button></div>
+    <div id="plate-panel" class="gallery" role="tabpanel" aria-labelledby="tab-editorial"><figure class="gallery-art"><img id="gallery-image" src="assets/semantic-field.png" alt="语义邻域的抽象线场"></figure><div class="gallery-copy"><span id="gallery-number" class="eyebrow">PLATE 01</span><h3 id="gallery-title">语义场</h3><p id="gallery-description">以连续的等高线表达语义空间，以一个红色焦点表达局部邻域。图像先建立直觉，再由正文补足解释。</p><dl><div><dt>适合</dt><dd id="gallery-use">文章开篇、章节间的主题配图</dd></div><div><dt>构图</dt><dd id="gallery-layout">一个主体 · 疏密对照 · 适量留白</dd></div><div><dt>探索用途</dt><dd><code id="gallery-setting">早期探索 / editorial</code></dd></div></dl><a id="gallery-download" href="assets/semantic-field.png" download>下载原图 <span>↗</span></a></div></div>
+    <p class="note">这三张样图由 Qwen Image 3.0 Pro 生成。概念图表达关系与直觉；精确算法图、数值图表和公式继续使用 Typst / SVG，标题与说明由页面排版。</p>
+  </section>
+  <section id="reading" class="section">
+    <div class="section-title"><p class="eyebrow">04 / IN CONTEXT</p><h2>放回文章里，才算成立。</h2><p>图像有自己的位置，也给文字留下空间。</p></div>
+    <div class="reading-frame"><div class="reading-nav"><span class="brand"><span>/</span> Research Blog</span><span>研究笔记 / 视觉示例</span></div><article><p class="eyebrow">REPRESENTATION / 01</p><h2>不同的形式，<br>相同的关系。</h2><div class="byline">研究手记 <span>·</span> 概念配图示例</div><p>描述一个对象，可以有许多种方式。有时我们关心的并不是它看起来如何，而是变换之后，哪些关系仍然保持不变。</p><figure class="article-figure"><img src="assets/equivalence-plate.png" alt="三个不同轮廓的几何对象，共享一条穿过中心的红色轴线"><figcaption><span>FIG. 01</span> 形式可以不同，联系可以保持。此图为概念示意。</figcaption></figure><p>三种轮廓被同一条轴线贯穿。图像不替文字做完解释，只把值得注意的联系放到眼前。</p><blockquote>让细节服务于理解，让留白留给思考。</blockquote></article></div>
+  </section>
+  <section class="section system-end"><div><p class="eyebrow">05 / CONTINUITY</p><h2>精确图形交给代码，<br>概念示意交给图像。</h2></div><div class="workflow"><p><b>01 / Typst 共用规范</b><span>深浅配色、两档线宽、可编辑文字和精确对齐。</span></p><p><b>02 / 从模板开始</b><span>在空白 Typst 文件输入 blogdiagram，AI 补全沿用已有代码风格。</span></p><p><b>03 / Qwen 直接生图</b><span>正文示意图自由构图，保留必要标签，不默认附带旧抽象参考图。</span></p><p><b>04 / 在文章中检查</b><span>检查图意、标注、方向和缩小后的可读性，再决定采用。</span></p><a href="../../ZEN.md" download>保存 ZEN 设计语言 ↗</a></div></section>
+</main><footer><span><em>/</em> Research Blog · 研究手记</span><span>ZEN 1.0 / 2026</span></footer><script src="preview.js"></script>
+</body></html>
