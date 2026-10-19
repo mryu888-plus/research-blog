@@ -310,7 +310,9 @@ name = "blog-site"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "chrono",
  "fancy-regex",
+ "getrandom 0.2.17",
  "hex",
  "regex",
  "serde_json",

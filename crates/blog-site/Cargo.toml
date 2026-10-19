@@ -5,7 +5,9 @@ edition.workspace = true
 
 [dependencies]
 anyhow = { workspace = true }
+chrono = { workspace = true }
 fancy-regex = "0.14"
+getrandom = "0.2"
 hex = { workspace = true }
 regex = "1"
 serde_json = { workspace = true }
