@@ -54,8 +54,11 @@ pub struct PreparedSite {
     snapshot: HashMap<RelPath, Fingerprint>,
     directories: BTreeSet<RelPath>,
     texts: HashMap<RelPath, (Fingerprint, String)>,
+    /// The inputs of the last successful sync; an identical scan needs no work.
+    last_scan: Option<Scan>,
 }
 
+#[derive(PartialEq, Eq)]
 struct Scan {
     /// Files in scan order: config, then each input directory depth-first.
     files: Vec<(RelPath, Fingerprint)>,
@@ -87,6 +90,7 @@ impl PreparedSite {
             snapshot: HashMap::new(),
             directories: BTreeSet::new(),
             texts: HashMap::new(),
+            last_scan: None,
         })
     }
 
@@ -196,6 +200,14 @@ impl PreparedSite {
 
     pub fn sync(&mut self) -> Result<Vec<RelPath>> {
         let scan = self.scan()?;
+        if self.last_scan.as_ref() == Some(&scan) {
+            return Ok(Vec::new());
+        }
+        self.last_scan = None;
+        let scanned = Scan {
+            files: scan.files.clone(),
+            directories: scan.directories.clone(),
+        };
         let mut texts = Vec::new();
         for (relative, fingerprint) in &scan.files {
             if is_markdown(relative) {
@@ -295,10 +307,13 @@ impl PreparedSite {
         order.sort_by(|a, b| (*a.0 != original_bodies, a.0).cmp(&(*b.0 != original_bodies, b.0)));
         let texts: HashMap<&RelPath, &String> = texts.iter().map(|(r, t)| (r, t)).collect();
         for (relative, fingerprint) in order {
-            let destination = self.destination(relative)?;
-            if self.snapshot.get(relative) == Some(fingerprint) && destination.is_file() {
+            // An unchanged file is not rewritten, so it needs no link checks.
+            if self.snapshot.get(relative) == Some(fingerprint)
+                && relative.under(&self.target).is_file()
+            {
                 continue;
             }
+            let destination = self.destination(relative)?;
             if destination.exists() && !self.snapshot.contains_key(relative) {
                 bail!(
                     "Refusing to replace an unowned staging file: {}",
@@ -330,6 +345,7 @@ impl PreparedSite {
 
         self.snapshot = files.into_iter().collect();
         self.directories = directories;
+        self.last_scan = Some(scanned);
         changed.sort();
         Ok(changed)
     }
