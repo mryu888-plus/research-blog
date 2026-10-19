@@ -6,8 +6,8 @@ on:
     paths:
       - 'ZEN.md'
       - 'design/**'
-      - 'scripts/sync_zen.cjs'
-      - 'tests/zen.test.cjs'
+      - 'crates/blog-site/src/zen.rs'
+      - 'crates/blog-site/src/zen/**'
       - 'extensions/research-notes-theme/scripts/**'
       - 'extensions/research-blog/**'
       - 'site/static/knowledge-core.js'
@@ -16,8 +16,8 @@ on:
     paths:
       - 'ZEN.md'
       - 'design/**'
-      - 'scripts/sync_zen.cjs'
-      - 'tests/zen.test.cjs'
+      - 'crates/blog-site/src/zen.rs'
+      - 'crates/blog-site/src/zen/**'
       - 'extensions/research-notes-theme/scripts/**'
       - 'extensions/research-blog/**'
       - 'site/static/knowledge-core.js'
@@ -40,6 +40,9 @@ jobs:
         working-directory: extensions/research-blog
     steps:
       - uses: actions/checkout@v4
+      # The build checks ZEN outputs with blogctl, compiled from this checkout.
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -51,8 +54,6 @@ jobs:
         run: npm run build
       - name: Test language server and AI completion
         run: npm test
-      - name: Verify shared ZEN consumers
-        run: node --test ../../tests/zen.test.cjs
       - name: Package VSIX
         run: npm run package
       - uses: actions/upload-artifact@v4

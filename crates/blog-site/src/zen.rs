@@ -410,7 +410,7 @@ fn css(zen: &Js) -> String {
         ("accent", s(p, &["accent"])),
     ]));
     format!(
-        "/* Generated from ZEN.md by scripts/sync_zen.cjs. Do not edit. */\n:root {{\n  color-scheme: dark;\n{}\n{}\n}}\n:root[data-theme=\"light\"] {{\n  color-scheme: light;\n{}\n}}\n@media (prefers-contrast: more) {{\n  :root {{\n{}\n  }}\n  :root[data-theme=\"light\"] {{\n{}\n  }}\n}}\n@media print {{\n  :root, :root[data-theme=\"light\"] {{\n{}\n  }}\n}}\n",
+        "/* Generated from ZEN.md by blogctl zen. Do not edit. */\n:root {{\n  color-scheme: dark;\n{}\n{}\n}}\n:root[data-theme=\"light\"] {{\n  color-scheme: light;\n{}\n}}\n@media (prefers-contrast: more) {{\n  :root {{\n{}\n  }}\n  :root[data-theme=\"light\"] {{\n{}\n  }}\n}}\n@media print {{\n  :root, :root[data-theme=\"light\"] {{\n{}\n  }}\n}}\n",
         variables(&common),
         variables(&palette_vars(&graphite)),
         variables(&palette_vars(&paper)),
@@ -691,7 +691,7 @@ pub fn render_outputs(root: &Path, zen: &Js) -> Result<Vec<(String, String)>> {
     outputs.push((
         "design/zen.generated.cjs".to_string(),
         format!(
-            "'use strict';\n// Generated from ZEN.md by scripts/sync_zen.cjs. Do not edit.\nmodule.exports = {};\n",
+            "'use strict';\n// Generated from ZEN.md by blogctl zen. Do not edit.\nmodule.exports = {};\n",
             stringify(&data, 2)
         ),
     ));

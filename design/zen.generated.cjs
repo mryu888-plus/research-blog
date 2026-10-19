@@ -1,5 +1,5 @@
 'use strict';
-// Generated from ZEN.md by scripts/sync_zen.cjs. Do not edit.
+// Generated from ZEN.md by blogctl zen. Do not edit.
 module.exports = {
   "schemaVersion": 1,
   "name": "ZEN",
