@@ -2,6 +2,7 @@
 //! check and preview.
 
 pub mod check;
+pub mod editor_server;
 pub mod json;
 pub mod markdown;
 pub mod math;

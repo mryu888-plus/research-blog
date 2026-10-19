@@ -5,8 +5,10 @@ edition.workspace = true
 
 [dependencies]
 anyhow = { workspace = true }
+chrono = { workspace = true }
 fancy-regex = "0.14"
 flate2 = "1"
+getrandom = "0.2"
 hex = { workspace = true }
 lzma-rs = "0.3"
 regex = "1"
