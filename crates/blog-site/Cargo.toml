@@ -1,0 +1,14 @@
+[package]
+name = "blog-site"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+fancy-regex = "0.14"
+hex = { workspace = true }
+regex = "1"
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+toml = "0.8"
+unicode-normalization = "0.1"

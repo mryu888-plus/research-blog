@@ -4,6 +4,7 @@ members = [
     "crates/blog-build",
     "crates/blog-agent",
     "crates/blogctl",
+    "crates/blog-site",
 ]
 resolver = "2"
 
