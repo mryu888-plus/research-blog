@@ -18,29 +18,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Install pinned build tools
+      - name: Install blogctl
         env:
           GH_TOKEN: ${{ github.token }}
+          # The blogctl release this site was created with. Change it only on purpose.
+          BLOGCTL_VERSION: '__BLOGCTL_VERSION__'
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/blog-tools"
-          gh release download v0.23.4 --repo getzola/zola --pattern 'zola-v0.23.4-x86_64-unknown-linux-gnu.tar.gz' --dir "$RUNNER_TEMP/blog-tools"
-          tar -xzf "$RUNNER_TEMP/blog-tools/zola-v0.23.4-x86_64-unknown-linux-gnu.tar.gz" -C "$RUNNER_TEMP/blog-tools"
-          gh release download v0.15.1 --repo typst/typst --pattern 'typst-x86_64-unknown-linux-musl.tar.xz' --dir "$RUNNER_TEMP/blog-tools"
-          tar -xJf "$RUNNER_TEMP/blog-tools/typst-x86_64-unknown-linux-musl.tar.xz" -C "$RUNNER_TEMP/blog-tools" --strip-components=1
-          echo "$RUNNER_TEMP/blog-tools" >> "$GITHUB_PATH"
+          asset=blogctl-x86_64-unknown-linux-musl.tar.gz
+          dir="$RUNNER_TEMP/blogctl"
+          mkdir -p "$dir"
+          gh release download "blogctl-v$BLOGCTL_VERSION" --repo mryu888-plus/research-blog --pattern "$asset" --pattern SHA256SUMS --dir "$dir"
+          (cd "$dir" && grep " $asset\$" SHA256SUMS | sha256sum -c -)
+          tar -xzf "$dir/$asset" -C "$dir"
+          echo "$dir" >> "$GITHUB_PATH"
           sudo apt-get update -qq
           sudo apt-get install -y fonts-noto-cjk
-      - name: Build static website
-        run: python scripts/build_site.py
-      - name: Check public links and publishing boundaries
-        run: python scripts/check_site.py
+      - uses: actions/cache@v4
+        with:
+          path: ~/.local/share/research-blog/tools
+          key: research-blog-tools-${{ runner.os }}-zola-0.23.4-typst-0.15.1
+      - name: Build and check the website
+        run: blogctl check
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

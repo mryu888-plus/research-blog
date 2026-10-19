@@ -250,6 +250,10 @@ pub fn initialize(
         _ => json(&author),
     });
     fs::write(&config, content.as_bytes())?;
+    // The publishing workflow downloads the blogctl release that created the site.
+    let workflow = stage.path().join(".github").join("workflows").join("pages.yml");
+    let text = fs::read_to_string(&workflow)?;
+    fs::write(&workflow, text.replace("__BLOGCTL_VERSION__", env!("CARGO_PKG_VERSION")))?;
     check_path(&destination)?;
     if destination.exists() {
         if !is_empty_dir(&destination)? {
@@ -334,6 +338,8 @@ mod tests {
         let config = fs::read_to_string(target.join("site/config.toml")).unwrap();
         assert!(config.contains("\"演示 \\\"站\\\"\""));
         assert!(config.contains("\"https://example.invalid/notes/\""));
+        let workflow = fs::read_to_string(target.join(".github/workflows/pages.yml")).unwrap();
+        assert!(workflow.contains(&format!("BLOGCTL_VERSION: '{}'", env!("CARGO_PKG_VERSION"))));
         assert!(initialize(&target, "x", "https://example.invalid/", "y", false).is_err());
         fs::remove_dir_all(&base).unwrap();
     }

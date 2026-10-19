@@ -1,11 +1,6 @@
-target/
 output/
 site/public/
 .tools/
-node_modules/
-__pycache__/
-*.pyc
-*.vsix
 *.log
 .env
 .env.*

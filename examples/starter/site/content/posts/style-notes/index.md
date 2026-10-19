@@ -12,7 +12,7 @@ tags = ["design", "writing"]
 根目录的 `ZEN.md` 写着设计原则、字体、深浅两套配色、间距和图形规则。改了其中的 JSON 参数之后，运行：
 
 ```sh
-node scripts/sync_zen.cjs
+blogctl zen
 ```
 
 同步脚本会生成网站的 `zen.css`、两套编辑器主题、Typst 示例模板和插件用的配图规则。构建网站和预览时也会自动同步，预览还会监听 `ZEN.md` 的修改。

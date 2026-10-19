@@ -1,0 +1,79 @@
+name: Release blogctl
+# Push a tag named blogctl-v<version>, where <version> is the version in
+# Cargo.toml. Manual runs build the archives without publishing a release.
+on:
+  push:
+    tags: ['blogctl-v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: windows-latest, target: x86_64-pc-windows-msvc }
+          - { os: windows-11-arm, target: aarch64-pc-windows-msvc }
+          - { os: ubuntu-latest, target: x86_64-unknown-linux-musl }
+          - { os: ubuntu-24.04-arm, target: aarch64-unknown-linux-musl }
+          - { os: macos-latest, target: aarch64-apple-darwin }
+          - { os: macos-latest, target: x86_64-apple-darwin }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - name: Check the tag matches Cargo.toml
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: |
+          version=$(sed -n 's/^version = "\(.*\)"/\1/p' Cargo.toml | head -1)
+          test "${GITHUB_REF_NAME}" = "blogctl-v${version}" || { echo "tag ${GITHUB_REF_NAME} does not match version ${version}"; exit 1; }
+      - name: Install musl tools
+        if: contains(matrix.target, 'musl')
+        run: sudo apt-get update -qq && sudo apt-get install -y musl-tools
+      - name: Build
+        run: cargo build --release --locked -p blogctl --target ${{ matrix.target }}
+      - name: Package
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=dist/stage
+          mkdir -p "$out"
+          cp LICENSE THIRD_PARTY_NOTICES.md "$out/"
+          if [[ "${{ matrix.target }}" == *windows* ]]; then
+            cp "target/${{ matrix.target }}/release/blogctl.exe" "$out/"
+            (cd "$out" && 7z a -tzip "../blogctl-${{ matrix.target }}.zip" .)
+          else
+            cp "target/${{ matrix.target }}/release/blogctl" "$out/"
+            tar -czf "dist/blogctl-${{ matrix.target }}.tar.gz" -C "$out" .
+          fi
+          rm -rf "$out"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: blogctl-${{ matrix.target }}
+          path: dist/*
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd dist
+          sha256sum blogctl-* > SHA256SUMS
+          gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --title "$GITHUB_REF_NAME" \
+            --notes "blogctl 命令行程序。下载对应系统的压缩包，解压后把 blogctl 放进 PATH。SHA256SUMS 是校验和。" \
+            blogctl-* SHA256SUMS

@@ -14,35 +14,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install pinned build tools
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - uses: actions/cache@v4
+        with:
+          path: ~/.local/share/research-blog/tools
+          key: research-blog-tools-${{ runner.os }}-zola-0.23.4-typst-0.15.1
+      - name: Install a Chinese font and build blogctl
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/blog-tools"
-          gh release download v0.23.4 --repo getzola/zola --pattern 'zola-v0.23.4-x86_64-unknown-linux-gnu.tar.gz' --dir "$RUNNER_TEMP/blog-tools"
-          tar -xzf "$RUNNER_TEMP/blog-tools/zola-v0.23.4-x86_64-unknown-linux-gnu.tar.gz" -C "$RUNNER_TEMP/blog-tools"
-          gh release download v0.15.1 --repo typst/typst --pattern 'typst-x86_64-unknown-linux-musl.tar.xz' --dir "$RUNNER_TEMP/blog-tools"
-          tar -xJf "$RUNNER_TEMP/blog-tools/typst-x86_64-unknown-linux-musl.tar.xz" -C "$RUNNER_TEMP/blog-tools" --strip-components=1
-          echo "$RUNNER_TEMP/blog-tools" >> "$GITHUB_PATH"
           sudo apt-get update -qq
           sudo apt-get install -y fonts-noto-cjk
+          cargo build --release --locked -p blogctl
+          echo "$GITHUB_WORKSPACE/target/release" >> "$GITHUB_PATH"
       - name: Test frontend
         run: node --test tests/*.test.cjs
-      - name: Test math preparation and profile export
-        run: python -m unittest discover -s tests -p 'test_*.py'
-      - name: Build static blog
-        run: python scripts/build_site.py
-      - name: Verify public links and content
-        run: python scripts/check_site.py
-      - name: Exercise a fresh research workstation
-        run: python scripts/check_starter.py --destination .tools/starter-ci
+      - name: Build and check the blog
+        run: blogctl check
+      - name: Exercise a fresh site
+        run: |
+          set -euo pipefail
+          blogctl init "$RUNNER_TEMP/starter" --name "演示" --author "Researcher" --url "https://example.invalid/notes/"
+          blogctl --root "$RUNNER_TEMP/starter" check
+          blogctl --root "$RUNNER_TEMP/starter" zen --check
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

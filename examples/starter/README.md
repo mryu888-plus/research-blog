@@ -1,42 +1,41 @@
-# My Research Workbench
+# 我的研究笔记
 
-A personal blog and writing setup created from the Research Blog template. It comes with live preview, Markdown math, Typst figures, linked notes, Zotero integration, and one style file, `ZEN.md`, that you can change.
+这个目录是用 Research Blog 生成的个人博客：实时预览、Markdown 公式、Typst 图形、双链、Zotero 引用，风格写在一个文件 `ZEN.md` 里。
 
-You can hand this directory to a coding agent such as Claude Code or Codex: `AGENTS.md` tells it where things live, what to run after each kind of change, and what to ask you before doing. The rest of this file is for doing the same by hand.
+A personal blog created with Research Blog: live preview, Markdown math, Typst figures, linked notes and Zotero citations, with the style kept in one file, `ZEN.md`. Everything runs through one program, `blogctl`.
 
-Install Python 3.11+ and Node.js 18+. The setup script below downloads Zola 0.23.4 and Typst 0.15.1 into `.tools/` and verifies them; you can also install them yourself and put them on `PATH`. Python helpers use the standard library. VS Code is optional; Rust is only needed for the Rust CLI and Agent.
+可以把这个目录交给 Claude Code 或 Codex 这样的 agent：`AGENTS.md` 写了文件在哪、每种修改之后运行什么、哪些事要先问你。下面是自己动手的步骤。
 
-```sh
-python scripts/setup_tools.py
-npm --prefix extensions/research-blog ci --ignore-scripts
-npm --prefix extensions/research-blog run build
-python scripts/build_site.py
-python scripts/check_site.py
-python scripts/editor.py preview
-```
+## 准备
 
-The public build is in `site/public/`. Preview includes drafts and watches content, figures, and `ZEN.md`; use the local URL printed by the command.
+1. 从 [Research Blog 的发布页](https://github.com/mryu888-plus/research-blog/releases) 下载对应系统的 `blogctl`，解压后放进 PATH。
+2. 装一种中文字体。Windows 和 macOS 自带；Linux 可以装 `fonts-noto-cjk`。
 
-To build the editor extensions from source:
+Zola 和 Typst 不用自己装：第一次构建或预览时，`blogctl` 会下载固定版本并校验，之后所有站点共用。
+
+## 写作
 
 ```sh
-npm --prefix extensions/research-blog ci --ignore-scripts
-npm --prefix extensions/research-blog run package
-npm --prefix extensions/research-notes-theme ci --ignore-scripts
-npm --prefix extensions/research-notes-theme run package
+blogctl preview          # 实时预览，含草稿，地址打印在终端
+blogctl new "文章标题"    # 新建草稿
+blogctl check            # 构建并检查整个网站
 ```
 
-Install the resulting VSIX files through VS Code's **Install from VSIX** menu. Open an article and run **Research Blog: 预览网站（含草稿）**. Use **Research Blog: 打开文献工作台** for Zotero; sign in to Zotero yourself for synchronization. Local write integration requires Zotero 10+. Annotations are edited in Zotero's native PDF reader.
+文章在 `site/content/posts/` 下，每篇一个目录。没写完的文章保持 `draft = true`，它不会出现在网站上；但提交到公开 Git 仓库的文件别人照样能看到，私人笔记请放在仓库外面。公开网站只收录已发布文章引用的书目信息，本地 PDF、密钥和私人缓存不会进入网站。
 
-Change your title, author, and public URL in `site/config.toml`. The personal CV integration is disabled with `extra.profile_enabled = false`; `site/content/about.md` is a regular Markdown page. No personal profile or document library has been copied.
+站名、作者和网址在 `site/config.toml`。关于页是普通的 Markdown：`site/content/about.md`。
 
-ZEN is the included default style. Define your own colors, fonts, article width and line height, basic spacing, figure parameters, and AI guidance in the two JSON blocks in `ZEN.md`, then run `node scripts/sync_zen.cjs`. Website preview watches this file, and normal builds also synchronize it. See the [custom style guide](docs/style-guide.md) for a partial edit example and parameter details. Keep `schemaVersion` and the `graphite` / `paper` palette keys.
+## 风格
 
-Generated website CSS, editor themes, Typst templates, and image guidance consume that same source. Do not edit generated consumers directly; component layout can be customized in CSS. Fonts are not downloaded automatically, and themes do not change VS Code editor fonts. Installed extensions need to be packaged and installed again to receive changes; the existing theme names and extension IDs remain stable.
+默认风格叫 ZEN。颜色、字体、正文宽度和行高、间距、图形参数和配图规则都在 `ZEN.md` 的两段 JSON 里。改完运行 `blogctl zen`；开着预览时保存 `ZEN.md` 就会生效。不要手改生成的 `site/static/zen.css` 和 Typst 模板参数段；组件的布局可以直接改 CSS。
 
-Example notes live under `site/content/posts/`. Keep unfinished notes as `draft = true`. This excludes them from the website build; files committed to a public Git repository remain public. Keep private notes outside that repository. Only reference metadata used by published articles enters the public literature page; local PDF files, authorization keys, and private caches stay outside the website.
+## VS Code
 
-To publish with GitHub Pages, create an empty repository and set **Settings → Pages → Source** to **GitHub Actions**. Set `base_url` in `site/config.toml` to the actual Pages URL, such as `https://USERNAME.github.io/REPO/`, then push this workspace:
+写作插件和编辑器主题也在发布页，用 VS Code 的「从 VSIX 安装」装上。打开一篇文章，运行 **Research Blog: 预览网站（含草稿）**。**Research Blog: 打开文献工作台** 连接本机的 Zotero 10+；同步请自己登录 Zotero。
+
+## 发布到 GitHub Pages
+
+在 GitHub 新建一个空仓库，在 **Settings → Pages → Source** 里选 **GitHub Actions**。把 `site/config.toml` 的 `base_url` 改成实际地址，比如 `https://USERNAME.github.io/REPO/`，然后：
 
 ```sh
 git init -b main
@@ -46,8 +45,6 @@ git remote add origin https://github.com/USERNAME/REPO.git
 git push -u origin main
 ```
 
-The included `.github/workflows/pages.yml` builds and checks the website before publishing. Pull requests run the build and checks without deploying. Check the repository's Actions run for the deployment result and URL.
+`.github/workflows/pages.yml` 会下载生成这个站点时的同一版本 `blogctl`，构建、检查后再发布。PR 只构建和检查，不部署。结果和网址在仓库的 Actions 页面查看。
 
-Shared code and these starter examples use the [MIT license](LICENSE). See [content licensing](CONTENT_LICENSE.md), [third-party notices](THIRD_PARTY_NOTICES.md), and the [getting started guide](docs/getting-started.md). You choose the license for your own writing and assets.
-
-The full repository test suite and CI workflows belong to the upstream source checkout. Follow `CONTRIBUTING.md` there when contributing changes; this generated workspace contains the application and plugin sources for your own site.
+模板代码和示例使用 [MIT 许可](LICENSE)，另见[内容许可](CONTENT_LICENSE.md)和[第三方通知](THIRD_PARTY_NOTICES.md)。你自己的文章和素材用什么许可由你决定。
