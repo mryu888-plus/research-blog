@@ -1,6 +1,7 @@
 //! Research Blog site tools: the build input preparation shared by build,
 //! check and preview.
 
+pub mod check;
 pub mod json;
 pub mod markdown;
 pub mod math;
