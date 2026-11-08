@@ -42,8 +42,10 @@
   )
   v(1pt)
   text(entry.degree, font: sans, weight: "semibold", size: 11.4pt)
-  v(1pt)
-  text(entry.detail, size: 10.7pt, fill: ink)
+  if entry.detail != "" {
+    v(1pt)
+    text(entry.detail, size: 10.7pt, fill: ink)
+  }
   v(4pt)
 }
 
@@ -74,10 +76,12 @@
     text(entry.role, font: sans, fill: muted, weight: "medium", size: 10.4pt),
     text(entry.date, font: sans, fill: muted, weight: "medium", size: 9.9pt),
   )
-  block(inset: (left: 10pt))[
-    #v(1.5pt)
-    #text(entry.paper_title, font: sans, fill: ink, weight: "bold", size: 12.2pt)
-  ]
+  if entry.paper_title != "" {
+    block(inset: (left: 10pt))[
+      #v(1.5pt)
+      #text(entry.paper_title, font: sans, fill: ink, weight: "bold", size: 12.2pt)
+    ]
+  }
   v(3pt)
   for item in entry.bullets {
     bullet(item)
@@ -85,7 +89,32 @@
   v(4pt)
 }
 
-#let render-resume(profile, phone: "") = {
+#let zh-labels = (
+  education: [教育背景],
+  internships: [实习经历],
+  research: [科研经历],
+  skills: [技能与荣誉],
+  honors: [荣誉],
+  honors-row: "荣誉",
+  honors-sep: "；",
+)
+
+#let skill-rows(skills) = {
+  grid(
+    columns: (auto, 1fr),
+    column-gutter: 12pt,
+    row-gutter: 5pt,
+    align: left + top,
+    ..skills
+      .map(entry => (
+        text(entry.label, font: sans, fill: blue-dark, weight: "semibold", size: 10.4pt),
+        text(entry.items, size: 10.4pt),
+      ))
+      .flatten(),
+  )
+}
+
+#let render-resume(profile, skills: (), labels: zh-labels, phone: "") = {
   set page(paper: "a4", margin: (x: 1.45cm, y: 1.15cm))
   set text(font: body-font, size: 10.8pt, fill: ink, tracking: 0.008em)
   set par(leading: 0.65em, spacing: 0.5em)
@@ -120,7 +149,7 @@
   line(length: 100%, stroke: 1.25pt + blue)
 
   if profile.education.len() > 0 {
-    section([教育背景])
+    section(labels.education)
     for entry in profile.education {
       education(entry)
     }
@@ -129,7 +158,7 @@
   let internships = profile.experiences.filter(entry => entry.kind == "internship")
   if internships.len() > 0 {
     v(0.06fr)
-    section([实习经历])
+    section(labels.internships)
     for entry in internships {
       experience(entry)
     }
@@ -138,15 +167,22 @@
   let research = profile.experiences.filter(entry => entry.kind == "research")
   if research.len() > 0 {
     v(0.06fr)
-    section([科研经历])
+    section(labels.research)
     for entry in research {
       experience(entry)
     }
   }
 
-  if profile.honors.len() > 0 {
+  // 有技能时，荣誉并入同一栏，占一行。
+  if skills.len() > 0 {
+    let honors = profile.honors.map(entry => entry.year + " " + entry.title).join(labels.honors-sep)
+    let rows = if honors == "" { skills } else { skills + ((label: labels.honors-row, items: honors),) }
     v(0.06fr)
-    section([荣誉])
+    section(labels.skills)
+    skill-rows(rows)
+  } else if profile.honors.len() > 0 {
+    v(0.06fr)
+    section(labels.honors)
     grid(
       columns: (1.25fr, 1fr, 0.7fr),
       column-gutter: 14pt,
