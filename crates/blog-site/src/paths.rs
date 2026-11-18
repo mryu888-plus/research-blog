@@ -154,18 +154,17 @@ pub fn sort_names(names: &mut [String]) {
 
 /// True for symlinks and, on Windows, junctions and other reparse points.
 pub fn is_link(metadata: &fs::Metadata) -> bool {
-    if metadata.file_type().is_symlink() {
-        return true;
-    }
     #[cfg(windows)]
     {
         use std::os::windows::fs::MetadataExt;
         const FILE_ATTRIBUTE_REPARSE_POINT: u32 = 0x400;
-        if metadata.file_attributes() & FILE_ATTRIBUTE_REPARSE_POINT != 0 {
-            return true;
-        }
+        metadata.file_type().is_symlink()
+            || (metadata.file_attributes() & FILE_ATTRIBUTE_REPARSE_POINT != 0)
     }
-    false
+    #[cfg(not(windows))]
+    {
+        metadata.file_type().is_symlink()
+    }
 }
 
 /// Reject both ordinary symlinks and Windows junction/reparse points.

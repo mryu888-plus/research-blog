@@ -59,6 +59,8 @@ API Key 保存在 SecretStorage。未设置生图专用 Key 时，仅当基础�
 
 需要 **VS Code 1.85.0 或更新版本**。
 
+可以在 VS Code 扩展面板搜索 `mryu888-plus.research-blog`（[Marketplace 页面](https://marketplace.visualstudio.com/items?itemName=mryu888-plus.research-blog)）和主题 `mryu888-plus.research-notes-theme`（[Marketplace 页面](https://marketplace.visualstudio.com/items?itemName=mryu888-plus.research-notes-theme)）直接安装；也可以离线使用 VSIX 安装包：
+
 1. [下载 research-blog-0.3.0.vsix](https://github.com/mryu888-plus/research-blog/releases/download/vscode-v0.3.0/research-blog-0.3.0.vsix)（以及配套主题 [research-notes-theme-0.1.0.vsix](https://github.com/mryu888-plus/research-blog/releases/download/vscode-v0.3.0/research-notes-theme-0.1.0.vsix)），或打开 [vscode-v0.3.0 发布页](https://github.com/mryu888-plus/research-blog/releases/tag/vscode-v0.3.0)。安装使用发布包即可，无需编译源码。
 2. 在 VS Code 按 `Ctrl+Shift+X`，点击扩展面板右上角 `…` → **Install from VSIX… / 从 VSIX 安装…**，选择下载的文件。
 3. 确认已安装 **Research Blog Language Tools**（`mryu888-plus.research-blog`）和配套 **Tinymist**（`myriad-dreamin.tinymist`）。按提示重载窗口；也可在命令面板运行 **Developer: Reload Window**。
@@ -73,7 +75,7 @@ code --install-extension "$env:USERPROFILE\Downloads\research-notes-theme-0.1.0.
 code --list-extensions --show-versions
 ```
 
-升级时，从 [Releases](https://github.com/mryu888-plus/research-blog/releases) 下载新版本 VSIX，再执行同样的安装步骤并重载窗口。同版本重新安装可在上述安装命令末尾加 `--force`。插件尚未发布到 Marketplace，不会通过 Marketplace 自动获得新版本；升级通常会保留现有设置和 SecretStorage 中的 Key。版本变化见[更新记录](CHANGELOG.md)。
+从 Marketplace 安装时会随新版本自动更新；使用离线 VSIX 时，可从 [Releases](https://github.com/mryu888-plus/research-blog/releases) 下载新版本 VSIX 重新安装并重载窗口（同版本重装加 `--force`）。升级通常会保留现有设置和 SecretStorage 中的 Key。版本变化见[更新记录](CHANGELOG.md)。
 
 ## 打开正确的目录
 

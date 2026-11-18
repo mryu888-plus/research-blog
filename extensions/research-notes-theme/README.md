@@ -13,6 +13,8 @@
 
 ## 安装
 
+可以在 VS Code 扩展面板搜索 `mryu888-plus.research-notes-theme`（[Marketplace 页面](https://marketplace.visualstudio.com/items?itemName=mryu888-plus.research-notes-theme)）直接安装；如果自己在 `ZEN.md` 里改了配色并重新打包，按下面步骤本地安装：
+
 1. 在 VS Code 扩展面板右上角 `…` 中选择 **Install from VSIX… / 从 VSIX 安装…**。
 2. 选择 `research-notes-theme-0.1.0.vsix`。
 3. 按 `Ctrl+K`，再按 `Ctrl+T`，搜索 **Research Notes**，选择 Graphite 或 Paper。
@@ -23,7 +25,7 @@
 code --install-extension ./research-notes-theme-0.1.0.vsix
 ```
 
-这是独立的纯配色扩展，无运行时代码和依赖，不会修改编辑器设置、字体或安装语言插件。无需安装 Research Blog Language Tools。当前安装包供本地安装，尚未发布到 Marketplace。
+这是独立的纯配色扩展，无运行时代码和依赖，不会修改编辑器设置、字体或安装语言插件。无需安装 Research Blog Language Tools。
 
 ## 预览与可选设置
 

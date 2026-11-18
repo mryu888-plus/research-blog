@@ -149,7 +149,7 @@ Rust 测试覆盖公式保护、引用排版、构建副本、ZEN 生成、站�
 
 输入 `[[` 补全文章、`[[文章#` 补全章节，在 `[taxonomies]` 的 `tags` 数组中按 Ctrl+Space 选择标签；F12 跳转、Shift+F12 查找引用。打开 `figures/*.typ` 使用 Tinymist。AI 补全需在用户设置中填写接口和模型，并通过 **Research Blog: 设置 AI API Key** 保存密钥；建议以灰色文字显示，Tab 接受。
 
-完整示例、配置表、升级和排错步骤见 [插件使用说明](../extensions/research-blog/README.md)，版本变化见 [更新记录](../extensions/research-blog/CHANGELOG.md)。源码随仓库管理，安装包通过 GitHub Releases 分发；尚未发布到 VS Code Marketplace。
+完整示例、配置表、升级和排错步骤见 [插件使用说明](../extensions/research-blog/README.md)，版本变化见 [更新记录](../extensions/research-blog/CHANGELOG.md)。插件已上架 [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=mryu888-plus.research-blog)，离线安装包也同步放在 GitHub Releases。
 
 开发者在插件目录运行 `npm ci --ignore-scripts`、`npm run build`、`npm test` 和 `npm run package` 可生成 `.vsix`。`.github/workflows/vscode-extension.yml` 会在 Windows 和 Linux 上构建、测试并保存安装包；下载入口位于对应 Actions 运行的 Artifacts。
 

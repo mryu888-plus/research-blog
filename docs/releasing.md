@@ -38,7 +38,7 @@ npm --prefix extensions/research-blog run package
 
 安装生成的 `research-blog-VERSION.vsix`，重载窗口，在真实站点检查命令、补全、预览、文献工作台与引用。确认 VSIX manifest 版本、内置文件、第三方许可证和测试使用的是同一份源码。
 
-`vscode-extension.yml` 在 Windows 和 Linux 上构建测试并上传 Actions artifacts。Artifact 是该次构建结果，只有绑定明确版本与 commit 并正式上传到 Release 后，才作为稳定下载入口。发布插件可以沿用 `vscode-vVERSION` 的 tag 约定；发布说明应写最终能力、必要升级步骤、测试范围与已知限制。项目尚未发布到 VS Code Marketplace。
+`vscode-extension.yml` 在 Windows 和 Linux 上构建测试并上传 Actions artifacts。Artifact 是该次构建结果，只有绑定明确版本与 commit 并正式上传到 Release 后，才作为稳定下载入口。发布插件沿用 `vscode-vVERSION` 的 tag 约定，同时通过 `vsce publish` 发布到 VS Code Marketplace（publisher：`mryu888-plus`）；发布说明应写最终能力、必要升级步骤、测试范围与已知限制。
 
 主题使用独立目录与版本：
 
