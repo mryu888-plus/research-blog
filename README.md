@@ -4,7 +4,11 @@
 
 A personal blog and writing setup that an agent such as Claude Code or Codex can install and customize for you. Built for notes with formulas, figures and citations: math in Markdown, figures from Typst source, references from Zotero, published to GitHub Pages. This repository, including its VS Code extension, editor theme and promo film, was itself built by directing agents. The interface and the documentation are in Chinese.
 
-[作者的网站](https://mryu888-plus.github.io/research-blog/) · [快速开始](#快速开始) · [给 agent 的说明](AGENTS.md) · [使用手册](docs/manual.md) · [自定义风格](docs/style-guide.md) · [参与贡献](CONTRIBUTING.md)
+[English](README.en.md) · [模板在线演示](https://mryu888-plus.github.io/research-blog-demo/) · [作者的网站](https://mryu888-plus.github.io/research-blog/) · [快速开始](#快速开始) · [给 agent 的说明](AGENTS.md) · [使用手册](docs/manual.md) · [自定义风格](docs/style-guide.md) · [参与贡献](CONTRIBUTING.md)
+
+![Research Blog 45秒工作流演示](docs/assets/demo.gif)
+
+*45 秒工作流演示：从 `blogctl init` 起站、用自然语言让 Agent 改 `ZEN.md` 同步三端换肤，到公式免转义、Typst 矢量图与知识图谱。*
 
 ![用模板新建的研究笔记站点首页](docs/assets/workbench-home.png)
 

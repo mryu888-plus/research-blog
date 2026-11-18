@@ -6,8 +6,8 @@
 
 | 组件 | 版本来源 | 当前状态 |
 | --- | --- | --- |
-| `blogctl` | 根目录 `Cargo.toml` 的 `workspace.package.version` | 0.1.0。推送 `blogctl-v<版本>` 的 tag 后由 `blogctl-release.yml` 编译发布。 |
-| 研究写作插件 | `extensions/research-blog/package.json` 与 lockfile | 源码 0.3.0；本地可打包，公开的历史 `vscode-v0.1.0` 安装包不含当前完整功能。 |
+| `blogctl` | 根目录 `Cargo.toml` 的 `workspace.package.version` | 0.2.0。推送 `blogctl-v<版本>` 的 tag 后由 `blogctl-release.yml` 编译发布。 |
+| 研究写作插件 | `extensions/research-blog/package.json` 与 lockfile | 0.3.0；通过 `vscode-v0.3.0` 发布。 |
 | Research Notes 主题 | `extensions/research-notes-theme/package.json` | 源码 0.1.0，可本地构建和打包。 |
 | 静态站点 | main 的 Pages 工作流 | 仅在远端成功构建与部署后更新，不随本地 VSIX 安装自动发布。 |
 

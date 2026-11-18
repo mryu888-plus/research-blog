@@ -22,10 +22,13 @@ author = __SITE_AUTHOR__
 profile_enabled = false
 enable_katex = true
 agent_endpoint = ""
-topic_tree = []
+topic_tree = [
+  { id = "workflow", label = "研究工作流", children = [{ tag = "writing" }, { tag = "typst" }, { tag = "design" }] },
+]
 
 [extra.tag_labels]
 writing = "写作"
+typst = "Typst 图形"
 design = "设计"
 
 [extra.tag_descriptions]

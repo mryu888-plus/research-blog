@@ -61,6 +61,8 @@ const STARTER_FILES: &[&str] = &[
     "site/data/references.json",
     "site/content/posts/welcome/index.md",
     "site/content/posts/welcome/figures/style-example.typ",
+    "site/content/posts/graph-and-math/index.md",
+    "site/content/posts/graph-and-math/figures/workflow-pipeline.typ",
     "site/content/posts/style-notes/index.md",
     "site/content/posts/draft-note/index.md",
 ];

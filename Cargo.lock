@@ -280,7 +280,7 @@ dependencies = [
 
 [[package]]
 name = "blog-agent"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "async-stream",
@@ -301,7 +301,7 @@ dependencies = [
 
 [[package]]
 name = "blog-build"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "blog-ir",
@@ -311,7 +311,7 @@ dependencies = [
 
 [[package]]
 name = "blog-ir"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "hex",
  "pulldown-cmark",
@@ -324,7 +324,7 @@ dependencies = [
 
 [[package]]
 name = "blog-site"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "chrono",
@@ -350,7 +350,7 @@ dependencies = [
 
 [[package]]
 name = "blogctl"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "axum",

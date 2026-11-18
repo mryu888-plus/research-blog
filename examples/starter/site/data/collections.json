@@ -1,4 +1,22 @@
 {
   "version": 1,
-  "series": []
+  "series": [
+    {
+      "id": "s-starter",
+      "title": "快速上手（演示系列）",
+      "description": "演示系列目录、分组与文章上下篇导航。",
+      "groups": [
+        {
+          "id": "g-basics",
+          "title": "基础工作流",
+          "description": "从公式、Typst 图形到双链与主题定制。",
+          "articles": [
+            "posts/welcome/index.md",
+            "posts/graph-and-math/index.md",
+            "posts/style-notes/index.md"
+          ]
+        }
+      ]
+    }
+  ]
 }

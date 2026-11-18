@@ -4,9 +4,9 @@
 
 配图和 Typst 规则来自 [ZEN.md](../../ZEN.md)，和博客、编辑器配色用的是同一套设计。`npm run build` 会同步这些规则并打包进 VSIX，装好之后不再读取仓库里的文件。改了 ZEN 之后，重新构建、打包、安装就能更新插件；已有的插图不会被改动。
 
-## 系列、组与 AI 配图（v0.2.7）
+## 系列、组与 AI 配图
 
-安装本地构建的 `research-blog-0.3.0.vsix` 后重载窗口。此版本尚未发布到 GitHub Release；下方 v0.1.0 下载链接是旧版语言工具，不含这些新功能。
+安装 `research-blog-0.3.0.vsix` 后重载窗口，即可使用系列编排、Zotero 文献工作台、Typst 图形与 AI 配图功能。
 
 按 `Ctrl+Shift+P` 搜索 `Research Blog`，可直接运行 **新建系列**、**新建组**、**新建文章**、**预览网站（含草稿）**、**构建并检查**。资源管理器中也会出现 **研究手记** 侧栏。
 
@@ -59,7 +59,7 @@ API Key 保存在 SecretStorage。未设置生图专用 Key 时，仅当基础�
 
 需要 **VS Code 1.85.0 或更新版本**。
 
-1. [下载 research-blog-0.1.0.vsix](https://github.com/mryu888-plus/research-blog/releases/download/vscode-v0.1.0/research-blog-0.1.0.vsix)，或打开 [v0.1.0 发布页](https://github.com/mryu888-plus/research-blog/releases/tag/vscode-v0.1.0)。安装使用发布包即可，无需编译源码。
+1. [下载 research-blog-0.3.0.vsix](https://github.com/mryu888-plus/research-blog/releases/download/vscode-v0.3.0/research-blog-0.3.0.vsix)（以及配套主题 [research-notes-theme-0.1.0.vsix](https://github.com/mryu888-plus/research-blog/releases/download/vscode-v0.3.0/research-notes-theme-0.1.0.vsix)），或打开 [vscode-v0.3.0 发布页](https://github.com/mryu888-plus/research-blog/releases/tag/vscode-v0.3.0)。安装使用发布包即可，无需编译源码。
 2. 在 VS Code 按 `Ctrl+Shift+X`，点击扩展面板右上角 `…` → **Install from VSIX… / 从 VSIX 安装…**，选择下载的文件。
 3. 确认已安装 **Research Blog Language Tools**（`mryu888-plus.research-blog`）和配套 **Tinymist**（`myriad-dreamin.tinymist`）。按提示重载窗口；也可在命令面板运行 **Developer: Reload Window**。
 
@@ -68,7 +68,8 @@ API Key 保存在 SecretStorage。未设置生图专用 Key 时，仅当基础�
 也可以在 PowerShell 指定下载文件的实际路径：
 
 ```powershell
-code --install-extension "$env:USERPROFILE\Downloads\research-blog-0.1.0.vsix"
+code --install-extension "$env:USERPROFILE\Downloads\research-blog-0.3.0.vsix"
+code --install-extension "$env:USERPROFILE\Downloads\research-notes-theme-0.1.0.vsix"
 code --list-extensions --show-versions
 ```
 
